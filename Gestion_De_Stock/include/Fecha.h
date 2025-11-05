@@ -1,34 +1,30 @@
 #ifndef FECHA_H
 #define FECHA_H
 
+#include <iostream>
 
-class Fecha
-{
-    public:
-        /** Default constructor */
-        Fecha();
-        /** Default destructor */
-        virtual ~Fecha();
+using namespace std;
 
-        /** Access m_Dia
-         * \return The current value of m_Dia
-         */
-        unsigned int GetDia() { return m_Dia; }
-        /** Access m_Mes
-         * \return The current value of m_Mes
-         */
-        unsigned int GetMes() { return m_Mes; }
-        /** Access m_Anio
-         * \return The current value of m_Anio
-         */
-        unsigned int GetAnio() { return m_Anio; }
+class Fecha {
+private:
+    unsigned int _dia, _mes, _anio;
 
-    protected:
+public:
+    // Constructor
+    Fecha(unsigned int dia = 1, unsigned int mes = 1, unsigned int anio = 1900);
 
-    private:
-        unsigned int m_Dia; //!< Member variable "m_Dia"
-        unsigned int m_Mes; //!< Member variable "m_Mes"
-        unsigned int m_Anio; //!< Member variable "m_Anio"
+    // Getters
+    unsigned int getDia();
+    unsigned int getMes();
+    unsigned int getAnio();
+
+    // Setters
+    void setDia(unsigned int d);
+    void setMes(unsigned int m);
+    void setAnio(unsigned int a);
 };
+
+// Imprisión de fecha
+std::ostream& operator<<(std::ostream& os, const Fecha& obj);
 
 #endif // FECHA_H

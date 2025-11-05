@@ -1,48 +1,38 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 
+#include <iostream>
+#include <cstring>
+#include <string>
+
+using namespace std;
+
 class Persona {
-    public:
-        /** Default constructor */
-        Persona();
-        /** Default destructor */
-        virtual ~Persona();
+protected:
+    string nombre, 
+            apellido, 
+            telefono, 
+            celular;
 
-    protected:
-        /** Access m_DNI
-         * \return The current value of m_DNI
-         */
-        unsigned int GetDNI() { return m_DNI; }
-        /** Access m_Nombre[20]
-         * \return The current value of m_Nombre[20]
-         */
-        char GetNombre[20]() { return m_Nombre[20]; }
-        /** Access m_Apellido[20]
-         * \return The current value of m_Apellido[20]
-         */
-        char GetApellido[20]() { return m_Apellido[20]; }
-        /** Access m_Telefono[15]
-         * \return The current value of m_Telefono[15]
-         */
-        void SetTelefono(const char[15] val) { m_Telefono = val; }
-        /** Access m_Telefono[15]
-         * \return The current value of m_Telefono[15]
-         */
-        char GetTelefono[15]() { return m_Telefono[15]; }
-        /** Access m_Celular[15]
-         * \return The current value of m_Celular[15]
-         */
-        void SetCelular(const char[15] val) { m_Celular = val; }
-        /** Access m_Celular[15]
-         * \return The current value of m_Celular[15]
-         */
-        char GetCelular[15]() { return m_Celular[15]; }
+public:
+    Persona();
+    ~Persona();
 
-        const unsigned int m_DNI; //!< Member variable "m_DNI"
-        char m_Nombre[20]; //!< Member variable "m_Nombre[20]"
-        char m_Apellido[20]; //!< Member variable "m_Apellido[20]"
-        char m_Telefono[15]; //!< Member variable "m_Telefono[15]"
-        char m_Celular[15]; //!< Member variable "m_Celular[15]"
+    // Getters
+    const string& getNombre();
+    const string& getApellido();
+    const string& getTelefono();
+    const string& getCelular();
+
+    // Setters
+    void setNombre(const string& n);
+    void setNombre(const char* n);
+    void setApellido(const string& a);
+    void setApellido(const char* a);
+    void setTelefono(const string& t);
+    void setTelefono(const char* t);
+    void setCelular(const string& c);
+    void setCelular(const char* c);
 };
 
 #endif // PERSONA_H

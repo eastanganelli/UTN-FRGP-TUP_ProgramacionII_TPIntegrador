@@ -3,49 +3,42 @@
 
 #include "Persona.h"
 
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
 class Cliente : public Persona {
-    public:
-        /** Default constructor */
-        Cliente();
-        /** Default destructor */
-        virtual ~Cliente();
+private:
+    int idCliente;
+    int idTipoResponsable;
+    string correo;
+    string cuilCuit;
+    bool alta;
 
-        /** Access m_Id
-         * \return The current value of m_Id
-         */
-        const unsigned int GetId() { return m_Id; }
-        /** Set m_Id
-         * \param val New value to set
-         */
-        void SetId(const unsigned int val) { m_Id = val; }
-        /** Access m_Correo[70]
-         * \return The current value of m_Correo[70]
-         */
-        char GetCorreo[70]() { return m_Correo[70]; }
-        /** Set m_Correo[70]
-         * \param val New value to set
-         */
-        void SetCorreo[70](char val) { m_Correo[70] = val; }
-        /** Access m_CuilCuit[15]
-         * \return The current value of m_CuilCuit[15]
-         */
-        char GetCuilCuit[15]() { return m_CuilCuit[15]; }
-        /** Access m_Alta
-         * \return The current value of m_Alta
-         */
-        bool GetAlta() { return m_Alta; }
-        /** Set m_Alta
-         * \param val New value to set
-         */
-        void SetAlta(bool val) { m_Alta = val; }
+public:
+    // Getters
+    int getIDCliente();
+    const string getCorreo();
+    const string getCuilCuit();
+    bool getAlta();
+    int getIDTipoResponsable();
 
-    protected:
+    // Setters
+    void setIDCliente(int id);
+    void setCorreo(const char* c);
+    void setCorreo(const string& c);
+    void setCuilCuit(const char* c);
+    void setCuilCuit(const string& c);
+    void setAlta(bool a);
+    void setIDTipoResponsable(int id);
 
-    private:
-        const unsigned int m_Id; //!< Member variable "m_Id"
-        char m_Correo[70]; //!< Member variable "m_Correo[70]"
-        char m_CuilCuit[15]; //!< Member variable "m_CuilCuit[15]"
-        bool m_Alta; //!< Member variable "m_Alta"
+    // Métodos
+    void cargar();
+    bool escribirDisco(int pos);
+    bool leerDisco(int pos);
 };
 
-#endif // CLIENTE_H
+std::ostream& operator<<(std::ostream& os, const Cliente& obj);
+
+#endif // CLIENTE_H```
