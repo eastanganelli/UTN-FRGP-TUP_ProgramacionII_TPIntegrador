@@ -2,6 +2,7 @@
 #define COMPROBANTE_H
 
 #include "Fecha.h"
+#include "Cliente.h"
 
 #include <iostream>
 #include <cstring>
@@ -12,28 +13,23 @@ using namespace std;
 class Comprobante {
 protected:
     int idVenta;
-    int idCliente;
+    Cliente cliente;
     Fecha fechaVenta;
-    bool aprobado;
 
 public:
     // Getters
     int getIDVenta();
-    int getIDCliente();
+    const Cliente& getCliente();
     Fecha getFechaVenta();
-    bool getAprobado();
 
     // Setters
     void setIDVenta(int id);
-    void setIDCliente(int id);
+    void setCliente(const Cliente& c);
     void setFechaVenta(Fecha f);
-    void setAprobado(bool a);
 
     // Métodos
     void cargar();
     void mostrar();
-    bool escribirDisco(int pos);
-    bool leerDisco(int pos);
 };
 
 #endif // COMPROBANTE_H

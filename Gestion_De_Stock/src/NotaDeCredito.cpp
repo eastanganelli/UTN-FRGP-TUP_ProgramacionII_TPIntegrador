@@ -1,23 +1,23 @@
 #include "NotaDeCredito.h"
 
-int NotaDeCredito::getIDFacturaOriginal() { return _idFacturaOriginal; }
-const string& NotaDeCredito::getMotivoAnulacion() { return _motivoAnulacion; }
+int NotaDeCredito::getIDFacturaOriginal() { return this->idFacturaOriginal; }
+const string& NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
 
-void NotaDeCredito::setIDFacturaOriginal(int id) { _idFacturaOriginal = id; }
-void NotaDeCredito::setMotivoAnulacion(const char* m) { strcpy(_motivoAnulacion, m); }
-void NotaDeCredito::setMotivoAnulacion(const string& m) { _motivoAnulacion = m; }
+void NotaDeCredito::setIDFacturaOriginal(int id) { this->idFacturaOriginal = id; }
+void NotaDeCredito::setMotivoAnulacion(const char* m) { strcpy(this->motivoAnulacion, m); }
+void NotaDeCredito::setMotivoAnulacion(const string& m) { this->motivoAnulacion = m; }
 
 void NotaDeCredito::operator++(const Producto& item) {
     this->agregarItem(item);
 }
 void NotaDeCredito::agregarItem(const Producto& item) {
-    items.push_back(item);
+    this->items.push_back(item);
 }
 void NotaDeCredito::operator--(const Producto& item) {
     this->eliminarItem(item);
 }
 void NotaDeCredito::eliminarItem(const Producto& item) {
-    items.erase(remove(items.begin(), items.end(), item), items.end());
+    this->items.erase(remove(this->items.begin(), this->items.end(), item), this->items.end());
 }
 
 std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj) {

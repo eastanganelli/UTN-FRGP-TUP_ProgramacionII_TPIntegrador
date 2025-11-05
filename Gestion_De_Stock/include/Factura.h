@@ -31,7 +31,6 @@ public:
     void setVencimientoCAE(Fecha f);
 
     // Métodos
-    void mostrar();
 };
 
 
