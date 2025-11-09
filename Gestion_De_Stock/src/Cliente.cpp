@@ -1,16 +1,24 @@
 #include "Cliente.h"
 
-int Cliente::getIDCliente() { return this->idCliente; }
-const string Cliente::getCorreo() { return this->correo; }
-const string Cliente::getCuilCuit() { return this->cuilCuit; }
-bool Cliente::getAlta() { return this->alta; }
-int Cliente::getIDTipoResponsable() { return this->idTipoResponsable; }
+int Cliente::getID() {
+    return this->id;
+}
 
-void Cliente::setIDCliente(int id) { this->idCliente = id; }
-void Cliente::setCorreo(const char* c) { strcpy(this->correo, c); }
-void Cliente::setCuilCuit(const char* c) { strcpy(this->cuilCuit, c); }
-void Cliente::setAlta(bool a) { this->alta = a; }
-void Cliente::setIDTipoResponsable(int id) { this->idTipoResponsable = id; }
+const string Cliente::getCuilCuit() {
+    return this->cuilCuit;
+}
+
+int Cliente::getIDTipoResponsable() {
+    return this->idTipoResponsable;
+}
+
+void Cliente::setCuilCuit(const string& c) {
+    strcpy(this->cuilCuit, c.c_str());
+}
+
+void Cliente::setIDTipoResponsable(int id) {
+    this->idTipoResponsable = id;
+}
 
 /**void Cliente::cargar() {
     std::cout << "ID Cliente: ";

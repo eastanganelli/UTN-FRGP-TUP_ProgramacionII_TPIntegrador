@@ -16,7 +16,7 @@ class Factura : public Comprobante {
     Fecha vencimientoCAE;
 
 public:
-    Factura(char _tipoFactura = 'B');
+    Factura(unsigned int _id, char _tipoFactura = 'B');
     ~Factura();
 
     // Getters

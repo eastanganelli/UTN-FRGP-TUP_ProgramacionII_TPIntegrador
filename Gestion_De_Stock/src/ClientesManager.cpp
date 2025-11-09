@@ -20,7 +20,7 @@ bool ClienteManager::eliminar(int id) {
 
 Cliente* ClienteManager::buscar(int id) {
     for (size_t i = 0; i < this->clientes.size(); ++i) {
-        if (this->clientes[i].getIDCliente() == id) {
+        if (this->clientes[i].getID() == id) {
             return &this->clientes[i];
         }
     }
@@ -29,7 +29,7 @@ Cliente* ClienteManager::buscar(int id) {
 
 int ClienteManager::obtenerIndice(int id) {
     for (size_t i = 0; i < this->clientes.size(); ++i) {
-        if (this->clientes[i].getIDCliente() == id) {
+        if (this->clientes[i].getID() == id) {
             return i;
         }
     }

@@ -20,7 +20,7 @@ bool NotaDeCreditoManager::eliminar(int idVenta) {
 
 NotaDeCredito* NotaDeCreditoManager::buscar(int idVenta) {
     for (size_t i = 0; i < this->notasDeCredito.size(); ++i) {
-        if (this->notasDeCredito[i].getIDComprobante() == idVenta) {
+        if (this->notasDeCredito[i].getID() == idVenta) {
             return &this->notasDeCredito[i];
         }
     }
@@ -29,7 +29,7 @@ NotaDeCredito* NotaDeCreditoManager::buscar(int idVenta) {
 
 int NotaDeCreditoManager::obtenerIndice(int idVenta) {
     for (size_t i = 0; i < this->notasDeCredito.size(); ++i) {
-        if (this->notasDeCredito[i].getIDComprobante() == idVenta) {
+        if (this->notasDeCredito[i].getID() == idVenta) {
             return i;
         }
     }

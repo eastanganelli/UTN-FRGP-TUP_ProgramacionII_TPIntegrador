@@ -11,24 +11,25 @@
 using namespace std;
 
 class Comprobante {
+private:
+    const unsigned int id;
+
 protected:
-    int idComprobante;
-    Cliente cliente;
-    Fecha fechaComprobante;
+    Cliente* cliente;
+    Fecha creado;
 
 public:
-    Comprobante();
+    Comprobante(unsigned int _id);
     ~Comprobante();
 
     // Getters
-    int getIDComprobante();
-    const Cliente& getCliente();
-    Fecha getFechaComprobante();
+    unsigned int getID();
+    const Cliente* getCliente();
+    Fecha& getFecha();
 
     // Setters
-    void setIDComprobante(int id);
-    void setCliente(const Cliente& c);
-    void setFechaComprobante(Fecha f);
+    void setCliente(Cliente*& c);
+    void setFecha(Fecha f);
 
     // Métodos
     void mostrar();

@@ -6,7 +6,7 @@
 
 1762642262 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\itemventa.cpp
 
-1762661350 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\facturasmanager.cpp
+1762705223 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\facturasmanager.cpp
 	"FacturasManager.h"
 
 1762642262 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\facturasmanager.h
@@ -16,13 +16,13 @@
 	<vector>
 	<string>
 
-1762700591 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\factura.h
+1762705053 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\factura.h
 	"Comprobante.h"
 	<iostream>
 	<cstring>
 	<string>
 
-1762647538 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\comprobante.h
+1762706773 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\comprobante.h
 	"Fecha.h"
 	"Cliente.h"
 	<iostream>
@@ -32,18 +32,18 @@
 1762653020 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\fecha.h
 	<iostream>
 
-1762647413 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\cliente.h
+1762707061 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\cliente.h
 	"Persona.h"
 	<iostream>
 	<cstring>
 	<string>
 
-1762703866 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\persona.h
+1762707099 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\persona.h
 	<iostream>
 	<cstring>
 	<string>
 
-1762647471 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\cliente.cpp
+1762707061 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\cliente.cpp
 	"Cliente.h"
 
 1762647486 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\clientesmanager.cpp
@@ -56,7 +56,7 @@
 	<vector>
 	<string>
 
-1762647624 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\comprobante.cpp
+1762706773 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\comprobante.cpp
 	"Comprobante.h"
 
 1762642262 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\productoproveedor.cpp
@@ -82,19 +82,19 @@
 
 1762170471 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\tiporesponsable.h
 
-1762700454 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\factura.cpp
+1762705024 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\factura.cpp
 	"Factura.h"
 
 1762660804 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\fecha.cpp
 	"Fecha.h"
 
-1762700762 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
+1762705213 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
 	"Persona.h"
 
 1762698196 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\producto.cpp
 	"Producto.h"
 
-1762699538 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\notadecreditosmanager.cpp
+1762705235 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\notadecreditosmanager.cpp
 	"NotaDeCreditosManager.h"
 
 1762699443 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\notadecreditosmanager.h

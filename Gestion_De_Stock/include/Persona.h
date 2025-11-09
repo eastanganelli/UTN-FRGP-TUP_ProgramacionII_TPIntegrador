@@ -9,10 +9,12 @@ using namespace std;
 
 class Persona {
 protected:
+    char DNI[8];
     char nombre[20];
     char apellido[25];
-    char DNI[8];
     char telefono[2][15];
+    char correo[120];
+    bool alta;
 
 public:
     Persona(string& _nombre, string& _apellido, string& _DNI);
@@ -21,15 +23,19 @@ public:
     ~Persona();
 
     // Getters
+    bool getAlta();
     string getDNI();
     string getNombre();
     string getApellido();
+    string getCorreo();
     string getTelefono(int posicion);
 
     // Setters
+    void setAlta(bool a);
     void setDNI(const string& dni);
     void setNombre(const string& n);
     void setApellido(const string& a);
+    void setCorreo(const string& correo);
     void setTelefono(const string& t, int posicion);
 };
 

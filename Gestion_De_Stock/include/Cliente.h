@@ -11,25 +11,21 @@ using namespace std;
 
 class Cliente : public Persona {
 private:
-    int idCliente;
-    int idTipoResponsable;
-    char correo[120];
+    const unsigned int id;
+    unsigned int idTipoResponsable;
     char cuilCuit[11];
-    bool alta;
 
 public:
+    Cliente();
+    ~Cliente();
+
     // Getters
-    int getIDCliente();
-    const string getCorreo();
+    int getID();
     const string getCuilCuit();
-    bool getAlta();
     int getIDTipoResponsable();
 
     // Setters
-    void setIDCliente(int id);
-    void setCorreo(const char* c);
-    void setCuilCuit(const char* c);
-    void setAlta(bool a);
+    void setCuilCuit(const string& cuilCuit);
     void setIDTipoResponsable(int id);
 
     // Métodos
