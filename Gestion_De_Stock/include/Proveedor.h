@@ -8,14 +8,16 @@ using namespace std;
 
 class Proveedor {
 private:
-    int idProveedor;
-    char nombre;
-    char telefono;
-    char direccion;
-    char rubro;
+    int id;
+    char nombre[35];
+    char telefono[25];
+    char direccion[120];
+    char rubro[15];
     bool alta;
 
 public:
+
+
     // Getters
     int getIdProveedor();
     const string getNombre();
