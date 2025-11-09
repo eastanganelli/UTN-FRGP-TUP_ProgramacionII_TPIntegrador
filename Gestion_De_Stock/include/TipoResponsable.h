@@ -1,24 +1,24 @@
 #ifndef TIPORESPONSABLE_H
 #define TIPORESPONSABLE_H
 
+#include <cstring>
+#include <string>
 
-class TipoResponsable
-{
-    public:
-        /** Default constructor */
-        TipoResponsable();
-        /** Default destructor */
-        virtual ~TipoResponsable();
+using namespace std;
 
-        /** Access m_Id
-         * \return The current value of m_Id
-         */
-        unsigned int GetId() { return m_Id; }
+class TipoResponsable {
+private:
+    const unsigned int id;
+    char descripcion[50];
+    float porcentaje;
 
-    protected:
+public:
+    TipoResponsable(unsigned int _id, string _descripcion, float porcentaje);
+    ~TipoResponsable();
 
-    private:
-        unsigned int m_Id; //!< Member variable "m_Id"
+    unsigned int getId();
+    string getDescripcion();
+    float getPorcentaje();
 };
 
 #endif // TIPORESPONSABLE_H

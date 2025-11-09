@@ -44,7 +44,7 @@ string Persona::getApellido() {
     return string(this->apellido);
 }
 
-const string Persona::getCorreo() {
+string Persona::getCorreo() {
     return string(this->correo);
 }
 

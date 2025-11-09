@@ -16,7 +16,7 @@ private:
     char cuilCuit[11];
 
 public:
-    Cliente();
+    Cliente(unsigned int _id, unsigned int _);
     ~Cliente();
 
     // Getters

@@ -32,7 +32,7 @@
 1762653020 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\fecha.h
 	<iostream>
 
-1762707061 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\cliente.h
+1762707717 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\cliente.h
 	"Persona.h"
 	<iostream>
 	<cstring>
@@ -88,7 +88,7 @@
 1762660804 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\fecha.cpp
 	"Fecha.h"
 
-1762705213 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
+1762707303 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
 	"Persona.h"
 
 1762698196 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\producto.cpp
