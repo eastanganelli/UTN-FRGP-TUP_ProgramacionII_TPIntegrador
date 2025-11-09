@@ -17,6 +17,9 @@ protected:
     Fecha fechaComprobante;
 
 public:
+    Comprobante();
+    ~Comprobante();
+
     // Getters
     int getIDComprobante();
     const Cliente& getCliente();

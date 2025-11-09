@@ -6,7 +6,7 @@
 
 1762642262 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\itemventa.cpp
 
-1762643098 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\facturasmanager.cpp
+1762661350 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\facturasmanager.cpp
 	"FacturasManager.h"
 
 1762642262 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\facturasmanager.h
@@ -16,7 +16,7 @@
 	<vector>
 	<string>
 
-1762653073 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\factura.h
+1762700591 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\factura.h
 	"Comprobante.h"
 	<iostream>
 	<cstring>
@@ -38,7 +38,7 @@
 	<cstring>
 	<string>
 
-1762661432 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\persona.h
+1762703866 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\persona.h
 	<iostream>
 	<cstring>
 	<string>
@@ -71,7 +71,7 @@
 	<vector>
 	<string>
 
-1762642262 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\producto.h
+1762697810 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\producto.h
 	<iostream>
 	<cstring>
 
@@ -82,12 +82,36 @@
 
 1762170471 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\tiporesponsable.h
 
-1762660722 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\factura.cpp
+1762700454 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\factura.cpp
 	"Factura.h"
 
 1762660804 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\fecha.cpp
 	"Fecha.h"
 
-1762661432 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
+1762700762 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\persona.cpp
 	"Persona.h"
+
+1762698196 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\producto.cpp
+	"Producto.h"
+
+1762699538 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\notadecreditosmanager.cpp
+	"NotaDeCreditosManager.h"
+
+1762699443 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\notadecreditosmanager.h
+	"NotaDeCredito.h"
+	<iostream>
+	<cstdio>
+	<vector>
+	<string>
+
+1762700618 c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\include\notadecredito.h
+	"Comprobante.h"
+	"Producto.h"
+	<iostream>
+	<cstring>
+	<string>
+	<vector>
+
+1762700707 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\notadecredito.cpp
+	"NotaDeCredito.h"
 

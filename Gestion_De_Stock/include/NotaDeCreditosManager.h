@@ -12,11 +12,11 @@ using namespace std;
 
 class NotaDeCreditoManager {
 private:
-    vector<NotaDeCredito> _notasDeCredito;
-    string _rutaArchivo;
+    vector<NotaDeCredito> notasDeCredito;
+    string rutaArchivo;
 
 public:
-    NotaDeCreditoManager(string ruta);
+    NotaDeCreditoManager(string& ruta);
 
     void agregar(NotaDeCredito& nota);
     bool eliminar(int idVenta);
@@ -25,7 +25,7 @@ public:
 
     int getCantidad();
     NotaDeCredito getPorIndice(int index);
-    
+
     void listarTodos();
 
     bool cargarDeArchivo();

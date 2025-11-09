@@ -14,8 +14,8 @@ using namespace std;
 class NotaDeCredito : public Comprobante {
 private:
     int idFacturaOriginal;
-    string motivoAnulacion;
-    vector<Producto> items;
+    char motivoAnulacion[256];
+    vector<Producto*> items;
 
 public:
     // Getters
@@ -24,14 +24,13 @@ public:
 
     // Setters
     void setIDFacturaOriginal(int id);
-    void setMotivoAnulacion(const char* m);
     void setMotivoAnulacion(const string& m);
 
     // Metodos
-    void agregarItem(const Producto&* item);
-    void operator++(const Producto&* item);
-    void eliminarItem(const Producto&* item);
-    void operator--(const Producto&* item);
+    void agregarItem(Producto*& item);
+    void operator+(Producto*& item);
+    void eliminarItem(Producto*& item);
+    void operator-(Producto*& item);
 };
 
 std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj);

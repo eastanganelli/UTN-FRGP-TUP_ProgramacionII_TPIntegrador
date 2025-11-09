@@ -1,10 +1,9 @@
 #include "Comprobante.h"
 
-int Comprobante::getIDComprobante() { return this->idComprobante; }
+unsigned int Comprobante::getIDComprobante() { return this->idComprobante; }
 const Cliente& Comprobante::getCliente() { return this->cliente; }
 Fecha Comprobante::getFechaComprobante() { return this->fechaComprobante; }
 
-void Comprobante::setIDComprobante(int id) { this->idComprobante = id; }
 void Comprobante::setCliente(const Cliente& c) { this->cliente = c; }
 void Comprobante::setFechaComprobante(Fecha f) { this->fechaComprobante = f; }
 

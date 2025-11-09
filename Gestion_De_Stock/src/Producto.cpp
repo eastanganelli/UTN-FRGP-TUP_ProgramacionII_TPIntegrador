@@ -1,16 +1,14 @@
 #include "Producto.h"
 
 int Producto::getIDProducto() { return this->idProducto; }
-string Producto::getNombre() { return string(this->nombre.c_str()); }
-string Producto::getDescripcion() { return (this->descripcion.c_str()); }
+string Producto::getNombre() { return string(this->nombre); }
+string Producto::getDescripcion() { return string(this->descripcion); }
 float Producto::getPrecio() { return this->precio; }
 int Producto::getStock() { return this->stock; }
 
 void Producto::setIDProducto(int id) { this->idProducto = id; }
-void Producto::setNombre(const char* n) { strcpy(this->nombre, n); }
-void Producto::setNombre(const string& n) { this->nombre = n; }
-void Producto::setDescripcion(const char* d) { strcpy(this->descripcion, d); }
-void Producto::setDescripcion(const string& d) { this->descripcion = d; }
+void Producto::setNombre(const string& n) { strcpy(this->nombre, n.c_str()); }
+void Producto::setDescripcion(const string& d) { strcpy(this->descripcion, d.c_str()); }
 void Producto::setPrecio(float p) { this->precio = p; }
 void Producto::setStock(int s) { this->stock = s; }
 

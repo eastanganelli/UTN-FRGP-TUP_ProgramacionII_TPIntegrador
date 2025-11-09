@@ -9,24 +9,22 @@ using namespace std;
 class Producto {
 private:
     int idProducto;
-    string nombre;
-    string descripcion;
+    char nombre[20];
+    char descripcion[256];
     float precio;
     int stock;
 
 public:
     // Getters
     int getIDProducto();
-    const string& getNombre();
-    const string& getDescripcion();
+    string getNombre();
+    string getDescripcion();
     float getPrecio();
     int getStock();
 
     // Setters
     void setIDProducto(int id);
-    void setNombre(const char* n);
     void setNombre(const string& n);
-    void setDescripcion(const char* d);
     void setDescripcion(const string& d);
     void setPrecio(float p);
     void setStock(int s);

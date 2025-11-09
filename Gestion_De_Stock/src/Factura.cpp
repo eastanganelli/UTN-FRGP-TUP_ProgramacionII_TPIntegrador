@@ -1,6 +1,6 @@
 #include "Factura.h"
 
-Factura::Factura(const char _tipoFactura) : tipoFactura(_tipoFactura) {
+Factura::Factura(char _tipoFactura) : Comprobante(), tipoFactura(_tipoFactura) {
 
 }
 

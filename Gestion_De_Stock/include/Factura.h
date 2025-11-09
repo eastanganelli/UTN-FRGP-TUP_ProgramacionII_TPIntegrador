@@ -10,14 +10,13 @@
 using namespace std;
 
 class Factura : public Comprobante {
-private:
-    const char tipoFactura; // 'A', 'B', 'C'
+    char tipoFactura; // 'A', 'B', 'C'
     float totalIVA;
     char cae[14];
     Fecha vencimientoCAE;
 
 public:
-    Factura(const char _tipoFactura = 'B');
+    Factura(char _tipoFactura = 'B');
     ~Factura();
 
     // Getters
