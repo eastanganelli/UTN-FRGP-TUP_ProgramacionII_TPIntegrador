@@ -1,38 +1,33 @@
 #ifndef PROVEEDOR_H
 #define PROVEEDOR_H
 
+#include "DatosPersonales.h"
+
 #include <iostream>
 #include <cstring>
 
 using namespace std;
 
-class Proveedor {
+class Proveedor : public DatosPersonales {
 private:
     int id;
-    char nombre[35];
-    char telefono[25];
-    char direccion[120];
+    char nombreRazon[35];
     char rubro[15];
     bool alta;
 
 public:
-
+    Proveedor();
+    ~Proveedor();
 
     // Getters
-    int getIdProveedor();
+    int getID();
     const string getNombre();
-    const string getTelefono();
-    const string getDireccion();
     const string getRubro();
     bool getAlta();
 
     // Setters
-    void setIdProveedor(int id);
     void setNombre(const string& nombre);
-    void setTelefono(const string& telefono);
-    void setDireccion(const string& direccion);
     void setRubro(const string& rubro);
-    void setAlta(bool alta);
 
     // Metodos
 

@@ -1,7 +1,7 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "Persona.h"
+#include "DatosPersonales.h"
 #include "TipoResponsable.h"
 
 #include <iostream>
@@ -10,24 +10,33 @@
 
 using namespace std;
 
-class Cliente : public Persona {
+class Cliente : public DatosPersonales {
 private:
     const unsigned int id;
+    char DNI[8];
+    char nombre[20];
+    char apellido[25];
     char cuilCuit[11];
     TipoResponsable* razonSocial;
 
 public:
-    Cliente(string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
-    Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
-    Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
+    Cliente(bool _alta = false, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
+    Cliente(bool _alta = false, string& _telefono_I, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
+    Cliente(bool _alta = false, string& _telefono_I, string& _telefono_II, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
     ~Cliente();
 
     // Getters
     int getID();
-    const string getCuilCuit();
+    string getDNI();
+    string getNombre();
+    string getApellido();
+    string getCuilCuit();
     TipoResponsable* getRazonSocial();
 
     // Setters
+    void setDNI(const string& dni);
+    void setNombre(const string& n);
+    void setApellido(const string& a);
     void setCuilCuit(const string& cuilCuit);
     void setRazonSocial(TipoResponsable* rs);
 

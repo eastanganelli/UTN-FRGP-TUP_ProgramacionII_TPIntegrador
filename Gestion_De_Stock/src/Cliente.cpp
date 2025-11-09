@@ -1,21 +1,21 @@
 #include "Cliente.h"
 
 Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : Persona(_nombre, _apellido, _DNI), id(_id) {
+    : DatosPersonales(_nombre, _apellido, _DNI), id(_id) {
     strcpy(this->cuilCuit, _cuilCuit.c_str());
     this->razonSocial = _razonSocial;
     this->alta = _alta;
 }
 
 Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : Persona(_nombre, _apellido, _DNI, _telefono_I), id(_id) {
+    : DatosPersonales(_nombre, _apellido, _DNI, _telefono_I), id(_id) {
     strcpy(this->cuilCuit, _cuilCuit.c_str());
     this->razonSocial = _razonSocial;
     this->alta = _alta;
 }
 
 Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : Persona(_nombre, _apellido, _DNI, _telefono_I, _telefono_II), id(_id) {
+    : DatosPersonales(_nombre, _apellido, _DNI, _telefono_I, _telefono_II), id(_id) {
     strcpy(this->cuilCuit, _cuilCuit.c_str());
     this->razonSocial = _razonSocial;
     this->alta = _alta;
@@ -29,8 +29,32 @@ int Cliente::getID() {
     return this->id;
 }
 
-const string Cliente::getCuilCuit() {
-    return this->cuilCuit;
+string Cliente::getDNI() {
+    return string(this->DNI);
+}
+
+string Cliente::getNombre() {
+    return string(this->nombre);
+}
+
+string Cliente::getApellido() {
+    return string(this->apellido);
+}
+
+void Cliente::setDNI(const string& dni) {
+    strcpy(this->DNI, dni.c_str());
+}
+
+void Cliente::setNombre(const string& n) {
+    strcpy(this->nombre, n.c_str());
+}
+
+void Cliente::setApellido(const string& a) {
+    strcpy(this->apellido, a.c_str());
+}
+
+string Cliente::getCuilCuit() {
+    return string(this->cuilCuit);
 }
 
 TipoResponsable* Cliente::getRazonSocial() {
