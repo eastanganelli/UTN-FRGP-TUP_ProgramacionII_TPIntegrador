@@ -6,19 +6,16 @@
 
 using namespace std;
 
-class Proveedor
-{
+class Proveedor {
+private:
+    int idProveedor;
+    char nombre;
+    char telefono;
+    char direccion;
+    char rubro;
+    bool alta;
 
-    private:
-        int idProveedor;
-        string nombre;
-        string telefono;
-        string direccion;
-        string rubro;
-        bool alta;
-
-    public:
-
+public:
     // Getters
     int getIdProveedor();
     const string getNombre();
@@ -26,7 +23,7 @@ class Proveedor
     const string getDireccion();
     const string getRubro();
     bool getAlta();
-    
+
     // Setters
     void setIdProveedor(int id);
     void setNombre(const string& nombre);
@@ -34,13 +31,9 @@ class Proveedor
     void setDireccion(const string& direccion);
     void setRubro(const string& rubro);
     void setAlta(bool alta);
-    
+
     // Metodos
-    void cargar();
-    bool escribirDisco(int pos);
-    bool leerDisco(int pos);
-    
-        
+
 };
 
 #endif // PROVEEDOR_H
