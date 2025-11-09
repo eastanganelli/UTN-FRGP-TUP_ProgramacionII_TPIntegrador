@@ -12,23 +12,22 @@ using namespace std;
 
 class Comprobante {
 protected:
-    int idVenta;
+    int idComprobante;
     Cliente cliente;
-    Fecha fechaVenta;
+    Fecha fechaComprobante;
 
 public:
     // Getters
-    int getIDVenta();
+    int getIDComprobante();
     const Cliente& getCliente();
-    Fecha getFechaVenta();
+    Fecha getFechaComprobante();
 
     // Setters
-    void setIDVenta(int id);
+    void setIDComprobante(int id);
     void setCliente(const Cliente& c);
-    void setFechaVenta(Fecha f);
+    void setFechaComprobante(Fecha f);
 
     // Métodos
-    void cargar();
     void mostrar();
 };
 

@@ -1,8 +1,8 @@
 #include "Producto.h"
 
 int Producto::getIDProducto() { return this->idProducto; }
-const char* Producto::getNombre() { return this->nombre; }
-const char* Producto::getDescripcion() { return this->descripcion; }
+string Producto::getNombre() { return string(this->nombre.c_str()); }
+string Producto::getDescripcion() { return (this->descripcion.c_str()); }
 float Producto::getPrecio() { return this->precio; }
 int Producto::getStock() { return this->stock; }
 

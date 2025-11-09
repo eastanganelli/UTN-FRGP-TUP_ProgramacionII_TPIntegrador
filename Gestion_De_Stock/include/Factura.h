@@ -11,24 +11,24 @@ using namespace std;
 
 class Factura : public Comprobante {
 private:
-    char _tipoFactura; // 'A', 'B', 'C'
-    float _totalIVA;
-    string cae;
+    const char tipoFactura; // 'A', 'B', 'C'
+    float totalIVA;
+    char cae[14];
     Fecha vencimientoCAE;
 
 public:
+    Factura(const char _tipoFactura = 'B');
+    ~Factura();
+
     // Getters
     char getTipoFactura();
     float getTotalIVA();
-    const string& getCAE();
+    const char getCAE();
     Fecha getVencimientoCAE();
 
     // Setters
     void setTipoFactura(char t);
     void setTotalIVA(float iva);
-    void setCAE(const char* c);
-    void setCAE(const string& c);
-    void setVencimientoCAE(Fecha f);
 
     // Métodos
 };

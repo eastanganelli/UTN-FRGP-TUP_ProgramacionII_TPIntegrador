@@ -1,17 +1,25 @@
 #include "Persona.h"
 
-const string& Persona::getNombre() { return this->nombre; }
-const string& Persona::getApellido() { return this->apellido; }
-const string& Persona::getTelefono() { return this->telefono; }
-const string& Persona::getCelular() { return this->celular; }
+string Persona::getNombre() {
+    return string(this->nombre);
+}
 
+string Persona::getApellido() {
+    return string(this->apellido);
+}
 
-void Persona::setNombre(const char* n) { strcpy(this->nombre, n); }
-void Persona::setApellido(const char* a) { strcpy(this->apellido, a); }
-void Persona::setTelefono(const char* t) { strcpy(this->telefono, t); }
-void Persona::setCelular(const char* c) { strcpy(this->celular, c); }
+string Persona::getTelefono(int posicion) {
+    return string(this->telefono[posicion]);
+}
 
-void Persona::setNombre(const string& n) { this->nombre = n; }
-void Persona::setApellido(const string& a) { this->apellido = a; }
-void Persona::setTelefono(const string& t) { this->telefono = t; }
-void Persona::setCelular(const string& c) { this->celular = c; }
+void Persona::setNombre(const string& n) {
+    strcpy(this->nombre, n.c_str());
+}
+
+void Persona::setApellido(const string& a) {
+    strcpy(this->apellido, a.c_str());
+}
+
+void Persona::setTelefono(const string& t, int posicion) {
+    strcpy(this->telefono[posicion], t.c_str());
+}

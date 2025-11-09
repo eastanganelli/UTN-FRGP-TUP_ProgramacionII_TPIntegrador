@@ -1,3 +1,4 @@
+#include "NotaDeCreditosManager.h"
 
 NotaDeCreditoManager::NotaDeCreditoManager(string ruta) {
     this->rutaArchivo = ruta;
@@ -59,7 +60,7 @@ bool NotaDeCreditoManager::cargarDeArchivo() {
     // while (fread(&temp, sizeof(NotaDeCredito), 1, pFile) == 1) {
     //     this->_notasDeCredito.push_back(temp);
     // }
-    
+
     // fclose(pFile);
     return true;
 }
@@ -71,7 +72,7 @@ bool NotaDeCreditoManager::escribirArchivo() {
     // for (size_t i = 0; i < this->_notasDeCredito.size(); ++i) {
     //     fwrite(&this->_notasDeCredito[i], sizeof(NotaDeCredito), 1, pFile);
     // }
-    
+
     // fclose(pFile);
     return true;
 }

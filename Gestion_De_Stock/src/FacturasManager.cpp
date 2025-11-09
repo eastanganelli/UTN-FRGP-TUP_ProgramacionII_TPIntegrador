@@ -1,4 +1,4 @@
-#include "FacturaManager.h"
+#include "FacturasManager.h"
 
 FacturaManager::FacturaManager(string ruta) {
     this->rutaArchivo = ruta;
@@ -20,7 +20,7 @@ bool FacturaManager::eliminar(int idVenta) {
 
 Factura* FacturaManager::buscar(int idVenta) {
     for (size_t i = 0; i < this->facturas.size(); ++i) {
-        if (this->facturas[i].getIDVenta() == idVenta) {
+        if (this->facturas[i].getIDComprobante() == idVenta) {
             return &this->facturas[i];
         }
     }
@@ -29,7 +29,7 @@ Factura* FacturaManager::buscar(int idVenta) {
 
 int FacturaManager::obtenerIndice(int idVenta) {
     for (size_t i = 0; i < this->facturas.size(); ++i) {
-        if (this->facturas[i].getIDVenta() == idVenta) {
+        if (this->facturas[i].getIDComprobante() == idVenta) {
             return i;
         }
     }
@@ -60,7 +60,7 @@ bool FacturaManager::cargarDeArchivo() {
     // while (fread(&temp, sizeof(Factura), 1, pFile) == 1) {
     //     this->facturas.push_back(temp);
     // }
-    
+
     // fclose(pFile);
     return true;
 }
@@ -72,7 +72,7 @@ bool FacturaManager::escribirArchivo() {
     // for (size_t i = 0; i < this->facturas.size(); ++i) {
     //     fwrite(&this->facturas[i], sizeof(Factura), 1, pFile);
     // }
-    
+
     // fclose(pFile);
     return true;
 }

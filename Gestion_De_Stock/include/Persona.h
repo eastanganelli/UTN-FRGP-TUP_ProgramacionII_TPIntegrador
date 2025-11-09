@@ -9,30 +9,23 @@ using namespace std;
 
 class Persona {
 protected:
-    string nombre, 
-            apellido, 
-            telefono, 
-            celular;
+    char nombre[20];
+    char apellido[25];
+    char telefono[2][15];
 
 public:
     Persona();
     ~Persona();
 
     // Getters
-    const string& getNombre();
-    const string& getApellido();
-    const string& getTelefono();
-    const string& getCelular();
+    string getNombre();
+    string getApellido();
+    string getTelefono(int posicion);
 
     // Setters
     void setNombre(const string& n);
-    void setNombre(const char* n);
     void setApellido(const string& a);
-    void setApellido(const char* a);
-    void setTelefono(const string& t);
-    void setTelefono(const char* t);
-    void setCelular(const string& c);
-    void setCelular(const char* c);
+    void setTelefono(const string& t, int posicion);
 };
 
 #endif // PERSONA_H

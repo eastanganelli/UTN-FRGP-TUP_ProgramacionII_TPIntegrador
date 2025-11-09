@@ -1,4 +1,4 @@
-#include "ClienteManager.h"
+#include "ClientesManager.h"
 
 ClienteManager::ClienteManager(string ruta) {
     this->rutaArchivo = ruta;
@@ -46,7 +46,7 @@ Cliente ClienteManager::getPorIndice(int index) {
 
 void ClienteManager::listarTodos() {
     for (size_t i = 0; i < this->clientes.size(); ++i) {
-        this->clientes[i].mostrar();
+        //this->clientes[i].mostrar();
         cout << "--------------------" << endl;
     }
 }
@@ -55,12 +55,12 @@ bool ClienteManager::cargarDeArchivo() {
     // this->clientes.clear();
     // FILE* pFile = fopen(this->rutaArchivo.c_str(), "rb");
     // if (pFile == NULL) return false;
-    
+
     // Cliente temp;
     // while (fread(&temp, sizeof(Cliente), 1, pFile) == 1) {
     //     this->clientes.push_back(temp);
     // }
-    
+
     // fclose(pFile);
     return true;
 }
@@ -72,7 +72,7 @@ bool ClienteManager::escribirArchivo() {
     // for (size_t i = 0; i < this->clientes.size(); ++i) {
     //     fwrite(&this->clientes[i], sizeof(Cliente), 1, pFile);
     // }
-    
+
     // fclose(pFile);
     return true;
 }

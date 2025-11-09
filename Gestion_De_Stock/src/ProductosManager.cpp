@@ -1,4 +1,4 @@
-#include "ProductoManager.h"
+#include "ProductosManager.h"
 
 ProductoManager::ProductoManager(string ruta) {
     this->rutaArchivo = ruta;

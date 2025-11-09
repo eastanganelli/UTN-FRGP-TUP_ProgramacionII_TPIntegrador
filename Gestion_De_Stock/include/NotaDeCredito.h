@@ -28,10 +28,10 @@ public:
     void setMotivoAnulacion(const string& m);
 
     // Metodos
-    void agregarItem(const Producto& item);
-    void operator++(const Producto& item);
-    void eliminarItem(const Producto& item);
-    void operator--(const Producto& item);
+    void agregarItem(const Producto&* item);
+    void operator++(const Producto&* item);
+    void eliminarItem(const Producto&* item);
+    void operator--(const Producto&* item);
 };
 
 std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj);

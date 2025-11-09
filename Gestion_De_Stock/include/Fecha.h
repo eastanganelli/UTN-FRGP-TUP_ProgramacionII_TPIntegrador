@@ -7,7 +7,7 @@ using namespace std;
 
 class Fecha {
 private:
-    unsigned int _dia, _mes, _anio;
+    unsigned int dia, mes, anio;
 
 public:
     // Constructor
