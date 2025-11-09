@@ -1,5 +1,30 @@
 #include "Cliente.h"
 
+Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
+    : Persona(_nombre, _apellido, _DNI), id(_id) {
+    strcpy(this->cuilCuit, _cuilCuit.c_str());
+    this->razonSocial = _razonSocial;
+    this->alta = _alta;
+}
+
+Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
+    : Persona(_nombre, _apellido, _DNI, _telefono_I), id(_id) {
+    strcpy(this->cuilCuit, _cuilCuit.c_str());
+    this->razonSocial = _razonSocial;
+    this->alta = _alta;
+}
+
+Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
+    : Persona(_nombre, _apellido, _DNI, _telefono_I, _telefono_II), id(_id) {
+    strcpy(this->cuilCuit, _cuilCuit.c_str());
+    this->razonSocial = _razonSocial;
+    this->alta = _alta;
+}
+
+Cliente::~Cliente() {
+    this->razonSocial = nullptr;
+}
+
 int Cliente::getID() {
     return this->id;
 }
@@ -8,16 +33,16 @@ const string Cliente::getCuilCuit() {
     return this->cuilCuit;
 }
 
-int Cliente::getIDTipoResponsable() {
-    return this->idTipoResponsable;
+TipoResponsable* Cliente::getRazonSocial() {
+    return this->razonSocial;
 }
 
 void Cliente::setCuilCuit(const string& c) {
     strcpy(this->cuilCuit, c.c_str());
 }
 
-void Cliente::setIDTipoResponsable(int id) {
-    this->idTipoResponsable = id;
+void Cliente::setRazonSocial(TipoResponsable* rs) {
+    this->razonSocial = rs;
 }
 
 /**void Cliente::cargar() {

@@ -2,6 +2,7 @@
 #define CLIENTE_H
 
 #include "Persona.h"
+#include "TipoResponsable.h"
 
 #include <iostream>
 #include <cstring>
@@ -12,21 +13,23 @@ using namespace std;
 class Cliente : public Persona {
 private:
     const unsigned int id;
-    unsigned int idTipoResponsable;
     char cuilCuit[11];
+    TipoResponsable* razonSocial;
 
 public:
-    Cliente(unsigned int _id, unsigned int _);
+    Cliente(string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
+    Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
+    Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta = false);
     ~Cliente();
 
     // Getters
     int getID();
     const string getCuilCuit();
-    int getIDTipoResponsable();
+    TipoResponsable* getRazonSocial();
 
     // Setters
     void setCuilCuit(const string& cuilCuit);
-    void setIDTipoResponsable(int id);
+    void setRazonSocial(TipoResponsable* rs);
 
     // Métodos
     //void cargar();

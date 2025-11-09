@@ -25,7 +25,6 @@ Persona::Persona(string& _nombre, string& _apellido, string& _DNI, string& _tele
 }
 
 Persona::~Persona() {
-
 }
 
 bool Persona::getAlta() {
