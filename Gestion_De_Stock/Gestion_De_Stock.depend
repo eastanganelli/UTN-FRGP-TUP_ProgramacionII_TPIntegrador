@@ -134,8 +134,8 @@
 1762725938 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\fecha.h
 	<iostream>
 
-1762726649 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
-	"Persona.h"
+1762727634 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
+	"DatosPersonales.h"
 	"TipoResponsable.h"
 	<iostream>
 	<cstring>
@@ -200,4 +200,9 @@
 
 1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\tiporesponsable.cpp
 	"TipoResponsable.h"
+
+1762728598 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\datospersonales.h
+	<iostream>
+	<cstring>
+	<string>
 

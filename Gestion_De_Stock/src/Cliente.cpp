@@ -1,24 +1,12 @@
 #include "Cliente.h"
 
-Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : DatosPersonales(_nombre, _apellido, _DNI), id(_id) {
+Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI, unsigned int _id, string _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
+    : DatosPersonales(_alta, _telefono_I, _telefono_II), id(_id) {
+    strcpy(this->nombre, _nombre.c_str());
+    strcpy(this->apellido, _apellido.c_str());
+    strcpy(this->DNI, _DNI.c_str());
     strcpy(this->cuilCuit, _cuilCuit.c_str());
     this->razonSocial = _razonSocial;
-    this->alta = _alta;
-}
-
-Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : DatosPersonales(_nombre, _apellido, _DNI, _telefono_I), id(_id) {
-    strcpy(this->cuilCuit, _cuilCuit.c_str());
-    this->razonSocial = _razonSocial;
-    this->alta = _alta;
-}
-
-Cliente::Cliente(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : DatosPersonales(_nombre, _apellido, _DNI, _telefono_I, _telefono_II), id(_id) {
-    strcpy(this->cuilCuit, _cuilCuit.c_str());
-    this->razonSocial = _razonSocial;
-    this->alta = _alta;
 }
 
 Cliente::~Cliente() {

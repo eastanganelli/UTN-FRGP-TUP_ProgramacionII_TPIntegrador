@@ -20,9 +20,7 @@ private:
     TipoResponsable* razonSocial;
 
 public:
-    Cliente(bool _alta = false, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
-    Cliente(bool _alta = false, string& _telefono_I, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
-    Cliente(bool _alta = false, string& _telefono_I, string& _telefono_II, string& _nombre, string& _apellido, string& _DNI, unsigned int _id, string& _cuilCuit, TipoResponsable* _razonSocial);
+    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string _telefono_I = "", string _telefono_II = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
     ~Cliente();
 
     // Getters

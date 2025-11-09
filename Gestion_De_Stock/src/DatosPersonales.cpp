@@ -1,25 +1,9 @@
 #include "DatosPersonales.h"
 
-DatosPersonales::DatosPersonales(string& _nombre, string& _apellido, string& _DNI) {
-    strcpy(this->nombre, _nombre.c_str());
-    strcpy(this->apellido, _apellido.c_str());
-    strcpy(this->DNI, _DNI.c_str());
-    this->telefono[0][0] = { '\0' };
-    this->telefono[1][0] = { '\0' };
-}
-
-DatosPersonales::DatosPersonales(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I) {
-    strcpy(this->nombre, _nombre.c_str());
-    strcpy(this->apellido, _apellido.c_str());
-    strcpy(this->DNI, _DNI.c_str());
-    strcpy(this->telefono[0], _telefono_I.c_str());
-    this->telefono[1][0] = { '\0' };
-}
-
-DatosPersonales::DatosPersonales(string& _nombre, string& _apellido, string& _DNI, string& _telefono_I, string& _telefono_II) {
-    strcpy(this->nombre, _nombre.c_str());
-    strcpy(this->apellido, _apellido.c_str());
-    strcpy(this->DNI, _DNI.c_str());
+DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono_I, string _telefono_II) {
+    this->alta = _alta;
+    strcpy(this->direccion, _direccion.c_str());
+    strcpy(this->correo, _correo.c_str());
     strcpy(this->telefono[0], _telefono_I.c_str());
     strcpy(this->telefono[1], _telefono_II.c_str());
 }

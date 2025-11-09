@@ -13,10 +13,8 @@ protected:
     char correo[120];
     char direccion[120];
     char telefono[2][15];
-    
-    DatosPersonales(bool _alta = false);
-    DatosPersonales(bool _alta = false, string& _telefono_I);
-    DatosPersonales(bool _alta = false, string& _telefono_I, string& _telefono_II);
+
+    DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono_I = "", string _telefono_II = "");
 
 public:
     ~DatosPersonales();
