@@ -9,6 +9,10 @@ DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, 
 }
 
 DatosPersonales::~DatosPersonales() {
+    this->direccion[0] = '\0';
+    this->correo[0] = '\0';
+    this->telefono[0][0] = '\0';
+    this->telefono[1][0] = '\0';
 }
 
 bool DatosPersonales::getAlta() {
@@ -17,6 +21,10 @@ bool DatosPersonales::getAlta() {
 
 string DatosPersonales::getCorreo() {
     return string(this->correo);
+}
+
+string DatosPersonales::getDireccion() {
+    return string(this->direccion);
 }
 
 string DatosPersonales::getTelefono(int posicion) {
@@ -29,6 +37,10 @@ void DatosPersonales::setAlta(bool a) {
 
 void DatosPersonales::setCorreo(const string& c) {
     strcpy(this->correo, c.c_str());
+}
+
+void DatosPersonales::setDireccion(const string& d) {
+    strcpy(this->direccion, d.c_str());
 }
 
 void DatosPersonales::setTelefono(const string& t, int posicion) {

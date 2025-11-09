@@ -10,10 +10,12 @@ using namespace std;
 
 class Proveedor : public DatosPersonales {
 private:
-    int id;
-    char nombreRazon[35];
-    char rubro[15];
     bool alta;
+    int id;
+    char rubro[15];
+    char cuit[11];
+    char nombreRazon[35];
+    TipoResponsable* razonSocial;
 
 public:
     Proveedor();
@@ -21,13 +23,15 @@ public:
 
     // Getters
     int getID();
-    const string getNombre();
-    const string getRubro();
     bool getAlta();
+    const string getCuit();
+    const string getRubro();
+    const string getNombreRazon();
 
     // Setters
-    void setNombre(const string& nombre);
     void setRubro(const string& rubro);
+    void setRubro(const )
+    void setNombreRazon(const string& nombre);
 
     // Metodos
 
