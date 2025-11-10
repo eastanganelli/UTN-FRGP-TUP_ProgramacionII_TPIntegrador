@@ -1,8 +1,11 @@
 #include <iostream>
+#include "menu.h"
 
 using namespace std;
 
 int main() {
-    // TODO: Implementar
+   
+    Menu menu;
+    menu.mostrar();
     return 0;
 }

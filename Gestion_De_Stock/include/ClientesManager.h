@@ -2,6 +2,7 @@
 #define CLIENTEMANAGER_H
 
 #include "Cliente.h"
+#include "Base.h"
 
 #include <iostream>
 #include <cstdio>
@@ -10,7 +11,7 @@
 
 using namespace std;
 
-class ClienteManager {
+class ClienteManager : public Base {
 private:
     vector<Cliente> clientes;
     string rutaArchivo;
@@ -30,6 +31,11 @@ public:
 
     bool cargarDeArchivo();
     bool escribirArchivo();
+
+    void alta() override;
+    void baja() override;
+    void modificacion() override;
+    void consulta() const override;
 };
 
 #endif // CLIENTEMANAGER_H
