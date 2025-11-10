@@ -18,7 +18,7 @@ private:
 public:
     NotaDeCreditoManager(string& ruta);
 
-    void agregar(NotaDeCredito& nota);
+    void agregar(NotaDeCredito* nota);
     bool eliminar(int idVenta);
     NotaDeCredito* buscar(int idVenta);
     int obtenerIndice(int idVenta);

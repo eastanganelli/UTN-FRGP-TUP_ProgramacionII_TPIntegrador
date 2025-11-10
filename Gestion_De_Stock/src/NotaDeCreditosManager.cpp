@@ -5,7 +5,7 @@ NotaDeCreditoManager::NotaDeCreditoManager(string& ruta) {
     cargarDeArchivo();
 }
 
-void NotaDeCreditoManager::agregar(NotaDeCredito& nota) {
+void NotaDeCreditoManager::agregar(NotaDeCredito* nota) {
     this->notasDeCredito.push_back(nota);
 }
 
@@ -29,7 +29,7 @@ NotaDeCredito* NotaDeCreditoManager::buscar(int idVenta) {
 
 int NotaDeCreditoManager::obtenerIndice(int idVenta) {
     for (size_t i = 0; i < this->notasDeCredito.size(); ++i) {
-        if (this->notasDeCredito[i].getID() == idVenta) {
+        if (this->notasDeCredito[i]->getID() == idVenta) {
             return i;
         }
     }

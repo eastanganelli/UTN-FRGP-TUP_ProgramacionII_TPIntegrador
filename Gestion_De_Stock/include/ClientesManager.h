@@ -12,19 +12,19 @@ using namespace std;
 
 class ClienteManager {
 private:
-    vector<Cliente> clientes;
+    vector<Cliente*> clientes;
     string rutaArchivo;
 
 public:
     ClienteManager(string ruta);
 
-    void agregar(Cliente& cli);
+    void agregar(Cliente* cli);
     bool eliminar(int id);
     Cliente* buscar(int id);
     int obtenerIndice(int id);
 
     int getCantidad();
-    Cliente getPorIndice(int index);
+    Cliente* getPorIndice(int index);
 
     void listarTodos();
 

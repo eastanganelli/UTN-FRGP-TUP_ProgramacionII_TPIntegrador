@@ -20,7 +20,7 @@ private:
     TipoResponsable* razonSocial;
 
 public:
-    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string _telefono_I = "", string _telefono_II = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
+    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string _telefono = "", string _celular = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
     ~Cliente();
 
     // Getters
@@ -44,6 +44,6 @@ public:
     //bool leerDisco(int pos);
 };
 
-std::ostream& operator<<(std::ostream& os, const Cliente& obj);
+std::ostream& operator<<(std::ostream& os, Cliente* obj);
 
 #endif // CLIENTE_H

@@ -4,6 +4,10 @@ Comprobante::Comprobante(unsigned int _id) : id(_id) {
 
 }
 
+Comprobante::~Comprobante() {
+
+}
+
 unsigned int Comprobante::getID() {
     return this->id;
 }

@@ -19,7 +19,7 @@ void NotaDeCredito::eliminarItem(Producto*& item) {
     // this->items.erase(remove(this->items.begin(), this->items.end(), *item), this->items.end());
 }
 
-std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj) {
+std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj) {
     /*os << "--- NOTA DE CREDITO ---" << std::endl;
     // os << static_cast<const Comprobante&>(obj); // Llama al operador del padre
     os << "Factura Original Afectada: " << obj.getIDFacturaOriginal() << std::endl;

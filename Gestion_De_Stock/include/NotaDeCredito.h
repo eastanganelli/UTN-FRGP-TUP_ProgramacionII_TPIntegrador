@@ -33,6 +33,6 @@ public:
     void operator-(Producto*& item);
 };
 
-std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj);
+std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj);
 
 #endif // NOTADECREDITO_H

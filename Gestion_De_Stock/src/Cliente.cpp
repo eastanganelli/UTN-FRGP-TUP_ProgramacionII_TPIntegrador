@@ -1,7 +1,7 @@
 #include "Cliente.h"
 
-Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI, unsigned int _id, string _cuilCuit, TipoResponsable* _razonSocial, bool _alta)
-    : DatosPersonales(_alta, _telefono_I, _telefono_II), id(_id) {
+Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI, string _cuilCuit, string _telefono, string _celular, TipoResponsable* _razonSocial, bool _alta)
+    : id(_id), DatosPersonales(_alta, _telefono, _celular) {
     strcpy(this->nombre, _nombre.c_str());
     strcpy(this->apellido, _apellido.c_str());
     strcpy(this->DNI, _DNI.c_str());
@@ -91,7 +91,7 @@ void Cliente::setRazonSocial(TipoResponsable* rs) {
     return true;
 }**/
 
-std::ostream& operator<<(std::ostream& os, const Cliente& obj) {
+std::ostream& operator<<(std::ostream& os, Cliente* obj) {
     //os << obj.getCuilCuit;
     return os;
 }

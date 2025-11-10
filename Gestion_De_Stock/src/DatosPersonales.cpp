@@ -1,18 +1,18 @@
 #include "DatosPersonales.h"
 
-DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono_I, string _telefono_II) {
+DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular) {
     this->alta = _alta;
     strcpy(this->direccion, _direccion.c_str());
     strcpy(this->correo, _correo.c_str());
-    strcpy(this->telefono[0], _telefono_I.c_str());
-    strcpy(this->telefono[1], _telefono_II.c_str());
+    strcpy(this->telefono, _telefono.c_str());
+    strcpy(this->celular, _celular.c_str());
 }
 
 DatosPersonales::~DatosPersonales() {
-    this->direccion[0] = '\0';
     this->correo[0] = '\0';
-    this->telefono[0][0] = '\0';
-    this->telefono[1][0] = '\0';
+    this->celular[0] = '\0';
+    this->telefono[0] = '\0';
+    this->direccion[0] = '\0';
 }
 
 bool DatosPersonales::getAlta() {
@@ -27,8 +27,12 @@ string DatosPersonales::getDireccion() {
     return string(this->direccion);
 }
 
-string DatosPersonales::getTelefono(int posicion) {
-    return string(this->telefono[posicion]);
+string DatosPersonales::getTelefono() {
+    return string(this->telefono);
+}
+
+string DatosPersonales::getCelular() {
+    return string(this->celular);
 }
 
 void DatosPersonales::setAlta(bool a) {
@@ -43,6 +47,10 @@ void DatosPersonales::setDireccion(const string& d) {
     strcpy(this->direccion, d.c_str());
 }
 
-void DatosPersonales::setTelefono(const string& t, int posicion) {
-    strcpy(this->telefono[posicion], t.c_str());
+void DatosPersonales::setTelefono(const string& t) {
+    strcpy(this->telefono, t.c_str());
+}
+
+void DatosPersonales::setCelular(const string& c) {
+    strcpy(this->celular, c.c_str());
 }

@@ -2,6 +2,7 @@
 #define PROVEEDOR_H
 
 #include "DatosPersonales.h"
+#include "TipoResponsable.h"
 
 #include <iostream>
 #include <cstring>
@@ -18,20 +19,22 @@ private:
     TipoResponsable* razonSocial;
 
 public:
-    Proveedor(unsigned int _id = 0, string _nombreRazon = "", string _cuit = "", string _telefono_I = "", string _telefono_II = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
+    Proveedor(unsigned int _id = 0, string _cuit = "", string _nombreRazon = "", string _telefono = "", string _celular = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
     ~Proveedor();
 
     // Getters
     int getID();
     bool getAlta();
-    const string getCuit();
-    const string getRubro();
-    const string getNombreRazon();
+    string getCuit();
+    string getRubro();
+    string getNombreRazon();
+    TipoResponsable* getRazonSocial();
 
     // Setters
-    void setRubro(const string& rubro);
-    void setRubro(const )
-    void setNombreRazon(const string& nombre);
+    void setCuit(string& cuit);
+    void setRubro(string& rubro);
+    void setNombreRazon(string& nombre);
+    void setRazonSocial(TipoResponsable* rs);
 
     // Metodos
 

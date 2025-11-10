@@ -5,7 +5,7 @@ FacturaManager::FacturaManager(string ruta) {
     cargarDeArchivo();
 }
 
-void FacturaManager::agregar(Factura& fact) {
+void FacturaManager::agregar(Factura* fact) {
     this->facturas.push_back(fact);
 }
 
@@ -20,8 +20,8 @@ bool FacturaManager::eliminar(int idVenta) {
 
 Factura* FacturaManager::buscar(int idVenta) {
     for (size_t i = 0; i < this->facturas.size(); ++i) {
-        if (this->facturas[i].getID() == idVenta) {
-            return &this->facturas[i];
+        if (this->facturas[i]->getID() == idVenta) {
+            return this->facturas[i];
         }
     }
     return nullptr;
@@ -29,7 +29,7 @@ Factura* FacturaManager::buscar(int idVenta) {
 
 int FacturaManager::obtenerIndice(int idVenta) {
     for (size_t i = 0; i < this->facturas.size(); ++i) {
-        if (this->facturas[i].getID() == idVenta) {
+        if (this->facturas[i]->getID() == idVenta) {
             return i;
         }
     }
@@ -40,13 +40,13 @@ int FacturaManager::getCantidad() {
     return this->facturas.size();
 }
 
-Factura FacturaManager::getPorIndice(int index) {
+Factura* FacturaManager::getPorIndice(int index) {
     return this->facturas[index];
 }
 
 void FacturaManager::listarTodos() {
     for (size_t i = 0; i < this->facturas.size(); ++i) {
-        this->facturas[i].mostrar();
+        this->facturas[i]->mostrar();
         cout << "--------------------" << endl;
     }
 }

@@ -5,7 +5,7 @@ ClienteManager::ClienteManager(string ruta) {
     cargarDeArchivo();
 }
 
-void ClienteManager::agregar(Cliente& cli) {
+void ClienteManager::agregar(Cliente* cli) {
     this->clientes.push_back(cli);
 }
 
@@ -20,8 +20,8 @@ bool ClienteManager::eliminar(int id) {
 
 Cliente* ClienteManager::buscar(int id) {
     for (size_t i = 0; i < this->clientes.size(); ++i) {
-        if (this->clientes[i].getID() == id) {
-            return &this->clientes[i];
+        if (this->clientes[i]->getID() == id) {
+            return this->clientes[i];
         }
     }
     return nullptr;
@@ -29,7 +29,7 @@ Cliente* ClienteManager::buscar(int id) {
 
 int ClienteManager::obtenerIndice(int id) {
     for (size_t i = 0; i < this->clientes.size(); ++i) {
-        if (this->clientes[i].getID() == id) {
+        if (this->clientes[i]->getID() == id) {
             return i;
         }
     }
@@ -40,7 +40,7 @@ int ClienteManager::getCantidad() {
     return this->clientes.size();
 }
 
-Cliente ClienteManager::getPorIndice(int index) {
+Cliente* ClienteManager::getPorIndice(int index) {
     return this->clientes[index];
 }
 

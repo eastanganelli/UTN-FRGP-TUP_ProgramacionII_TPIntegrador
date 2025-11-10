@@ -121,7 +121,7 @@
 1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\main.cpp
 	<iostream>
 
-1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobante.cpp
+1762732958 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobante.cpp
 	"Comprobante.h"
 
 1762725938 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\comprobante.h
@@ -134,7 +134,7 @@
 1762725938 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\fecha.h
 	<iostream>
 
-1762727634 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
+1762732029 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
 	"DatosPersonales.h"
 	"TipoResponsable.h"
 	<iostream>
@@ -150,10 +150,10 @@
 	<cstring>
 	<string>
 
-1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\factura.cpp
+1762732672 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\factura.cpp
 	"Factura.h"
 
-1762725938 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\factura.h
+1762732727 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\factura.h
 	"Comprobante.h"
 	<iostream>
 	<cstring>
@@ -166,10 +166,10 @@
 
 1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\itemventa.cpp
 
-1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\notadecredito.cpp
+1762732858 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\notadecredito.cpp
 	"NotaDeCredito.h"
 
-1762725938 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\notadecredito.h
+1762732852 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\notadecredito.h
 	"Comprobante.h"
 	"Producto.h"
 	<iostream>
@@ -196,13 +196,46 @@
 	<vector>
 	<string>
 
-1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\proveedor.cpp
+1762730591 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\proveedor.cpp
+	"Proveedor.h"
 
 1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\tiporesponsable.cpp
 	"TipoResponsable.h"
 
-1762728598 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\datospersonales.h
+1762731771 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\datospersonales.h
 	<iostream>
 	<cstring>
+	<string>
+
+1762732023 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\cliente.cpp
+	"Cliente.h"
+
+1762731882 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\datospersonales.cpp
+	"DatosPersonales.h"
+
+1762731941 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\proveedor.h
+	"DatosPersonales.h"
+	"TipoResponsable.h"
+	<iostream>
+	<cstring>
+
+1762732469 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+	"ClientesManager.h"
+
+1762732493 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\clientesmanager.h
+	"Cliente.h"
+	<iostream>
+	<cstdio>
+	<vector>
+	<string>
+
+1762732814 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\facturasmanager.cpp
+	"FacturasManager.h"
+
+1762732809 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\facturasmanager.h
+	"Factura.h"
+	<iostream>
+	<cstdio>
+	<vector>
 	<string>
 
