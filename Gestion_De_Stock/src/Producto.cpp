@@ -1,45 +1,41 @@
 #include "Producto.h"
 
-int Producto::getIDProducto() { return this->idProducto; }
-string Producto::getNombre() { return string(this->nombre); }
-string Producto::getDescripcion() { return string(this->descripcion); }
-float Producto::getPrecio() { return this->precio; }
-int Producto::getStock() { return this->stock; }
-
-void Producto::setIDProducto(int id) { this->idProducto = id; }
-void Producto::setNombre(const string& n) { strcpy(this->nombre, n.c_str()); }
-void Producto::setDescripcion(const string& d) { strcpy(this->descripcion, d.c_str()); }
-void Producto::setPrecio(float p) { this->precio = p; }
-void Producto::setStock(int s) { this->stock = s; }
-
-void Producto::cargar() {
-    cout << "ID Producto: ";
-    cin >> this->idProducto;
-    cout << "Nombre: ";
-    cin.ignore(); // Limpiar buffer
-    cin.getline(this->nombre, 100);
-    cout << "Descripcion: ";
-    cin.getline(this->descripcion, 150);
-    cout << "Precio: ";
-    cin >> this->precio;
-    cout << "Stock: ";
-    cin >> this->stock;
+int Producto::getID() {
+    return this->id;
 }
 
-void Producto::mostrar() {
-    cout << "ID Producto: " << this->idProducto << endl;
-    cout << "Nombre: " << this->nombre << endl;
-    cout << "Descripcion: " << this->descripcion << endl;
-    cout << "Precio: $" << this->precio << endl;
-    cout << "Stock: " << this->stock << " unidades" << endl;
+string Producto::getNombre() {
+    return string(this->nombre);
 }
 
-bool Producto::escribirDisco(int pos) {
-    cout << "Simulando escritura de Producto en disco..." << endl;
-    return true;
+string Producto::getDescripcion() {
+    return string(this->descripcion);
 }
 
-bool Producto::leerDisco(int pos) {
-    cout << "Simulando lectura de Producto desde disco..." << endl;
-    return true;
+float Producto::getPrecio() {
+    return this->precio;
+}
+
+unsigned int Producto::getStock() {
+    return this->stock;
+}
+
+void Producto::setID(int id) {
+    this->id = id;
+}
+
+void Producto::setNombre(const string& n) {
+    strcpy(this->nombre, n.c_str());
+}
+
+void Producto::setDescripcion(const string& d) {
+    strcpy(this->descripcion, d.c_str());
+}
+
+void Producto::setPrecio(float p) {
+    this->precio = p;
+}
+
+void Producto::setStock(unsigned int s) {
+    this->stock = s;
 }

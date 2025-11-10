@@ -1,4 +1,4 @@
-#include "Comprobantesmanager.h"
+#include "ComprobantesManager.h"
 
 Comprobantesmanager::Comprobantesmanager()
 {

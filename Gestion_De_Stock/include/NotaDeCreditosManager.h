@@ -1,7 +1,7 @@
 #ifndef NOTADECREDITOMANAGER_H
 #define NOTADECREDITOMANAGER_H
 
-#include "NotaDeCredito.h"
+// #include "NotaDeCredito.h"
 
 #include <iostream>
 #include <cstdio>
@@ -12,24 +12,23 @@ using namespace std;
 
 class NotaDeCreditoManager {
 private:
-    vector<NotaDeCredito> notasDeCredito;
     string rutaArchivo;
 
 public:
     NotaDeCreditoManager(string& ruta);
 
-    void agregar(NotaDeCredito* nota);
-    bool eliminar(int idVenta);
-    NotaDeCredito* buscar(int idVenta);
-    int obtenerIndice(int idVenta);
+    // void agregar(NotaDeCredito* nota);
+    // bool eliminar(int idVenta);
+    // NotaDeCredito* buscar(int idVenta);
+    // int obtenerIndice(int idVenta);
 
-    int getCantidad();
-    NotaDeCredito getPorIndice(int index);
+    // int getCantidad();
+    // NotaDeCredito getPorIndice(int index);
 
-    void listarTodos();
+    // void listarTodos();
 
-    bool cargarDeArchivo();
-    bool escribirArchivo();
+    // bool cargarDeArchivo();
+    // bool escribirArchivo();
 };
 
 #endif // NOTADECREDITOMANAGER_H

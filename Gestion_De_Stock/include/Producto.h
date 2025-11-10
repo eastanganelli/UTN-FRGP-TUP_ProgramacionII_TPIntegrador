@@ -8,32 +8,29 @@ using namespace std;
 
 class Producto {
 private:
-    int idProducto;
+    int id;
     char nombre[20];
     char descripcion[256];
     float precio;
-    int stock;
+    unsigned int stock;
 
 public:
     // Getters
-    int getIDProducto();
+    int getID();
     string getNombre();
     string getDescripcion();
     float getPrecio();
-    int getStock();
+    unsigned int getStock();
 
     // Setters
-    void setIDProducto(int id);
+    void setID(int id);
     void setNombre(const string& n);
     void setDescripcion(const string& d);
     void setPrecio(float p);
     void setStock(int s);
 
     // Métodos
-    void cargar();
-    void mostrar();
-    bool escribirDisco(int pos);
-    bool leerDisco(int pos);
+    
 };
 
 
