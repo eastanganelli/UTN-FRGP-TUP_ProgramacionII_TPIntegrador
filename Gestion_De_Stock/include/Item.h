@@ -14,9 +14,15 @@ private:
     char descripcion[100];
     unsigned int cantidad;
     float precioUnitario;
-    float precioTotal;
 
 public:
+    // Constructor
+    Item();
+    Item(unsigned int id, unsigned int codigoProducto, string descripcion, unsigned int cantidad, float precioUnitario);
+
+    // Destructor
+    ~Item();
+
     // Getters
     unsigned int getID();
     unsigned int getCodigoProducto();
@@ -32,7 +38,7 @@ public:
     void setPrecioTotal(float precio);
 
     // Métodos
-
+    void operator=(Item& item);
 };
 
 std::ostream& operator<<(std::ostream& os, Item* obj);

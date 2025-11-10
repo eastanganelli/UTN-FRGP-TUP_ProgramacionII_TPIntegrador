@@ -1,1 +1,76 @@
+#include "Item.h"
 
+Item::Item() : id(0), codigoProducto(0), cantidad(0), precioUnitario(0.0f) {
+    strcpy(this->descripcion, "");
+}
+
+Item::Item(unsigned int id, unsigned int codigoProducto, string descripcion, unsigned int cantidad, float precioUnitario) {
+    this->id = id;
+    this->codigoProducto = codigoProducto;
+    strcpy(this->descripcion, descripcion.c_str());
+    this->cantidad = cantidad;
+    this->precioUnitario = precioUnitario;
+}
+
+Item::~Item() {
+    // Destructor
+}
+unsigned int Item::getID() {
+    return this->id;
+}
+
+unsigned int Item::getCodigoProducto() {
+    return this->codigoProducto;
+}
+
+unsigned int Item::getCantidad() {
+    return this->cantidad;
+}
+
+float Item::getPrecioUnitario() {
+    return this->precioUnitario;
+}
+
+float Item::getPrecioTotal() {
+    return this->cantidad * this->precioUnitario;
+}
+
+void Item::setID(unsigned int id) {
+    this->id = id;
+}
+
+void Item::setCodigoProducto(unsigned int id) {
+    this->codigoProducto = id;
+}
+
+void Item::setCantidad(unsigned int cant) {
+    this->cantidad = cant;
+}
+
+void Item::setPrecioUnitario(float precio) {
+    this->precioUnitario = precio;
+}
+
+void Item::setPrecioTotal(float precio) {
+    if (this->cantidad != 0) {
+        this->precioUnitario = precio / this->cantidad;
+    } else {
+        this->precioUnitario = 0.0f;
+    }
+}
+
+void Item::operator=(Item& item) {
+    this->id = item.id;
+    this->codigoProducto = item.codigoProducto;
+    strcpy(this->descripcion, item.descripcion);
+    this->cantidad = item.cantidad;
+    this->precioUnitario = item.precioUnitario;
+}
+
+std::ostream& operator<<(std::ostream& os, Item* obj) {
+    os << "ID: " << obj->getID() << ", Codigo Producto: " << obj->getCodigoProducto()
+       << ", Descripcion: " << ", Cantidad: " << obj->getCantidad()
+       << ", Precio Unitario: " << obj->getPrecioUnitario()
+       << ", Precio Total: " << obj->getPrecioTotal();
+    return os;
+}

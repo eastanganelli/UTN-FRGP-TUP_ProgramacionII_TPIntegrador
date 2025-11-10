@@ -265,8 +265,17 @@
 	"menu.h"
 	<iostream>
 
-1762815221 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\item.h
+1762816491 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\item.h
 	<iostream>
 	<cstring>
+	<string>
+
+1762809189 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\notadecreditosmanager.cpp
+	"NotaDeCreditosManager.h"
+
+1762809189 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\notadecreditosmanager.h
+	<iostream>
+	<cstdio>
+	<vector>
 	<string>
 
