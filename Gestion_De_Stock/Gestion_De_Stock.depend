@@ -122,10 +122,11 @@
 	<iostream>
 	"menu.h"
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobante.cpp
+1762815360 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobante.cpp
 	"Comprobante.h"
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\comprobante.h
+1762815285 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\comprobante.h
+	"Item.h"
 	"Fecha.h"
 	"Cliente.h"
 	<iostream>
@@ -167,10 +168,10 @@
 
 1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\itemventa.cpp
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\notadecredito.cpp
+1762815415 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\notadecredito.cpp
 	"NotaDeCredito.h"
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\notadecredito.h
+1762814723 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\notadecredito.h
 	"Comprobante.h"
 	"Producto.h"
 	<iostream>
@@ -178,16 +179,17 @@
 	<string>
 	<vector>
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\producto.h
+1762812655 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\producto.h
+	"Proveedor.h"
 	<iostream>
 	<cstring>
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\producto.cpp
+1762815404 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\producto.cpp
 	"Producto.h"
 
 1762725938 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\productoproveedor.cpp
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\productosmanager.cpp
+1762815445 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\productosmanager.cpp
 	"ProductosManager.h"
 
 1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\productosmanager.h
@@ -252,8 +254,8 @@
 	<cstring>
 	<string>
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobantesmanager.cpp
-	"Comprobantesmanager.h"
+1762809189 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobantesmanager.cpp
+	"ComprobantesManager.h"
 
 1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\comprobantesmanager.h
 
@@ -262,4 +264,9 @@
 1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\menu.cpp
 	"menu.h"
 	<iostream>
+
+1762815221 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\item.h
+	<iostream>
+	<cstring>
+	<string>
 

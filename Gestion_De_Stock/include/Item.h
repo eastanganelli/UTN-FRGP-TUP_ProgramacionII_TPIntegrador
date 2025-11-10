@@ -11,7 +11,7 @@ class Item {
 private:
     unsigned int id;
     unsigned int codigoProducto;
-    char descripcion
+    char descripcion[100];
     unsigned int cantidad;
     float precioUnitario;
     float precioTotal;
@@ -23,7 +23,6 @@ public:
     unsigned int getCantidad();
     float getPrecioUnitario();
     float getPrecioTotal();
-    string getCondicionIVA();
 
     // Setters
     void setID(unsigned int id);
@@ -31,15 +30,11 @@ public:
     void setCantidad(unsigned int cant);
     void setPrecioUnitario(float precio);
     void setPrecioTotal(float precio);
-    void setCondicionIVA(string condicion);
 
     // Métodos
-    void cargar();
-    bool escribirDisco(int pos);
-    bool leerDisco(int pos);
+
 };
 
-
-std::ostream& operator<<(std::ostream& os, const ItemVenta& obj);
+std::ostream& operator<<(std::ostream& os, Item* obj);
 
 #endif // ITEM_H

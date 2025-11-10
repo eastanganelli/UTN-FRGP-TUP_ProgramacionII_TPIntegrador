@@ -20,7 +20,7 @@ bool ProductoManager::eliminar(int id) {
 
 Producto* ProductoManager::buscar(int id) {
     for (size_t i = 0; i < this->productos.size(); ++i) {
-        if (this->productos[i].getIDProducto() == id) {
+        if (this->productos[i].getID() == id) {
             return &this->productos[i];
         }
     }
@@ -29,7 +29,7 @@ Producto* ProductoManager::buscar(int id) {
 
 int ProductoManager::obtenerIndice(int id) {
     for (size_t i = 0; i < this->productos.size(); ++i) {
-        if (this->productos[i].getIDProducto() == id) {
+        if (this->productos[i].getID() == id) {
             return i;
         }
     }
@@ -46,7 +46,7 @@ Producto ProductoManager::getPorIndice(int index) {
 
 void ProductoManager::listarTodos() {
     for (size_t i = 0; i < this->productos.size(); ++i) {
-        this->productos[i].mostrar();
+        // this->productos[i]->mostrar();
         cout << "--------------------" << endl;
     }
 }

@@ -15,7 +15,6 @@ class NotaDeCredito : public Comprobante {
 private:
     int idFacturaOriginal;
     char motivoAnulacion[256];
-    // items;
 
 public:
     // Getters

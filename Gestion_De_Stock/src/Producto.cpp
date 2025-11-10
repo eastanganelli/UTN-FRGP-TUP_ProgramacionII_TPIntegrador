@@ -1,11 +1,11 @@
 #include "Producto.h"
 
-int Producto::getID() {
+unsigned int Producto::getID() {
     return this->id;
 }
 
-string Producto::getNombre() {
-    return string(this->nombre);
+unsigned int Producto::getCodigoProveedor() {
+    return this->codigoProveedor;
 }
 
 string Producto::getDescripcion() {
@@ -20,16 +20,8 @@ unsigned int Producto::getStock() {
     return this->stock;
 }
 
-void Producto::setID(int id) {
+void Producto::setID(unsigned int id) {
     this->id = id;
-}
-
-void Producto::setNombre(const string& n) {
-    strcpy(this->nombre, n.c_str());
-}
-
-void Producto::setDescripcion(const string& d) {
-    strcpy(this->descripcion, d.c_str());
 }
 
 void Producto::setPrecio(float p) {
