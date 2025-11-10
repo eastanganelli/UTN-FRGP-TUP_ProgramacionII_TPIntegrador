@@ -265,7 +265,7 @@
 	"menu.h"
 	<iostream>
 
-1762816491 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\item.h
+1762817176 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\item.h
 	<iostream>
 	<cstring>
 	<string>
@@ -278,4 +278,7 @@
 	<cstdio>
 	<vector>
 	<string>
+
+1762816931 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\item.cpp
+	"Item.h"
 

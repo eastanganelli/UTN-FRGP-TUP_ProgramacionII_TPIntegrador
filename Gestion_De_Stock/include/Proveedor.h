@@ -16,10 +16,10 @@ private:
     char rubro[15];
     char cuit[11];
     char nombreRazon[35];
-    TipoResponsable* razonSocial;
+    unsigned int codigoRazonSocial;
 
 public:
-    Proveedor(unsigned int _id = 0, string _cuit = "", string _nombreRazon = "", string _telefono = "", string _celular = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
+    Proveedor(unsigned int _id = 0, string _cuit = "", string _nombreRazon = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
     ~Proveedor();
 
     // Getters
@@ -28,13 +28,13 @@ public:
     string getCuit();
     string getRubro();
     string getNombreRazon();
-    TipoResponsable* getRazonSocial();
+    unsigned int getCodigoRazonSocial();
 
     // Setters
     void setCuit(string& cuit);
     void setRubro(string& rubro);
     void setNombreRazon(string& nombre);
-    void setRazonSocial(TipoResponsable* rs);
+    void setCodigoRazonSocial(unsigned int rs);
 
     // Metodos
 

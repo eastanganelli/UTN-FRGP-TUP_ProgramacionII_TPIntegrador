@@ -51,19 +51,9 @@ void Item::setPrecioUnitario(float precio) {
     this->precioUnitario = precio;
 }
 
-void Item::setPrecioTotal(float precio) {
-    if (this->cantidad != 0) {
-        this->precioUnitario = precio / this->cantidad;
-    } else {
-        this->precioUnitario = 0.0f;
-    }
-}
-
 void Item::operator=(Item& item) {
-    this->id = item.id;
     this->codigoProducto = item.codigoProducto;
     strcpy(this->descripcion, item.descripcion);
-    this->cantidad = item.cantidad;
     this->precioUnitario = item.precioUnitario;
 }
 

@@ -35,7 +35,6 @@ public:
     void setCodigoProducto(unsigned int id);
     void setCantidad(unsigned int cant);
     void setPrecioUnitario(float precio);
-    void setPrecioTotal(float precio);
 
     // Métodos
     void operator=(Item& item);

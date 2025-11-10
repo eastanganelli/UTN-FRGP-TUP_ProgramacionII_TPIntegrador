@@ -13,7 +13,6 @@ using namespace std;
 
 class ClienteManager : public Base {
 private:
-    vector<Cliente*> clientes;
     string rutaArchivo;
 
 public:
