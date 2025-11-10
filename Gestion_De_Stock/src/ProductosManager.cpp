@@ -80,3 +80,20 @@ bool ProductoManager::escribirArchivo() {
     // fclose(pFile);
     return true;
 }
+
+// Implementaciones Base
+void ProductoManager::alta() {
+    cout << "[Productos] Alta (pendiente de implementar)" << endl;
+}
+
+void ProductoManager::baja() {
+    cout << "[Productos] Baja (pendiente de implementar)" << endl;
+}
+
+void ProductoManager::modificacion() {
+    cout << "[Productos] Modificacion (pendiente de implementar)" << endl;
+}
+
+void ProductoManager::consulta() const {
+    cout << "[Productos] Consulta (pendiente de implementar)" << endl;
+}

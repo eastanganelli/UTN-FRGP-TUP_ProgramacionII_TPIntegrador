@@ -2,6 +2,7 @@
 #define PRODUCTOMANAGER_H
 
 #include "Producto.h"
+#include "Base.h"
 
 #include <iostream>
 #include <cstdio>
@@ -10,7 +11,7 @@
 
 using namespace std;
 
-class ProductoManager {
+class ProductoManager : public Base {
 private:
     vector<Producto> productos;
     string rutaArchivo;
@@ -30,6 +31,11 @@ public:
 
     bool cargarDeArchivo();
     bool escribirArchivo();
+
+    void alta() override;
+    void baja() override;
+    void modificacion() override;
+    void consulta() const override;
 };
 
 #endif // PRODUCTOMANAGER_H

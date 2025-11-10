@@ -76,3 +76,20 @@ bool ClienteManager::escribirArchivo() {
     // fclose(pFile);
     return true;
 }
+
+// Implementaciones Base
+void ClienteManager::alta() {
+    cout << "[Clientes] Alta (pendiente de implementar)" << endl;
+}
+
+void ClienteManager::baja() {
+    cout << "[Clientes] Baja (pendiente de implementar)" << endl;
+}
+
+void ClienteManager::modificacion() {
+    cout << "[Clientes] Modificacion (pendiente de implementar)" << endl;
+}
+
+void ClienteManager::consulta() const {
+    cout << "[Clientes] Consulta (pendiente de implementar)" << endl;
+}
