@@ -1,7 +1,7 @@
 #include "NotaDeCredito.h"
 
 int NotaDeCredito::getIDFacturaOriginal() { return this->idFacturaOriginal; }
-const string& NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
+string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
 
 void NotaDeCredito::setIDFacturaOriginal(int id) { this->idFacturaOriginal = id; }
 void NotaDeCredito::setMotivoAnulacion(const string& m) { strcpy(this->motivoAnulacion, m.c_str()); }

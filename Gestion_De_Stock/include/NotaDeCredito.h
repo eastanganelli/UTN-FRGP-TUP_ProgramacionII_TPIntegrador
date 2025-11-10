@@ -15,12 +15,12 @@ class NotaDeCredito : public Comprobante {
 private:
     int idFacturaOriginal;
     char motivoAnulacion[256];
-    vector<Producto*> items;
+    // items;
 
 public:
     // Getters
     int getIDFacturaOriginal();
-    const string& getMotivoAnulacion();
+    string getMotivoAnulacion();
 
     // Setters
     void setIDFacturaOriginal(int id);

@@ -1,7 +1,5 @@
-#ifndef ITEMVENTA_H
-#define ITEMVENTA_H
-
-#include "Comprobante.h"
+#ifndef ITEM_H
+#define ITEM_H
 
 #include <iostream>
 #include <cstring>
@@ -9,15 +7,13 @@
 
 using namespace std;
 
-class ItemVenta {
+class Item {
 private:
     int idItem;
-    int idVenta;
     int idProducto;
     int cantidad;
     float precioUnitario;
     float precioTotal;
-    string condicionIVA;
 
 public:
     // Getters
@@ -47,4 +43,4 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const ItemVenta& obj);
 
-#endif // ITEMVENTA_H
+#endif // ITEM_H

@@ -40,20 +40,25 @@
 		<Unit filename="include/Proveedor.h" />
 		<Unit filename="include/TipoResponsable.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Base.cpp" />
 		<Unit filename="src/Cliente.cpp" />
 		<Unit filename="src/ClientesManager.cpp" />
 		<Unit filename="src/Comprobante.cpp" />
+		<Unit filename="src/ComprobantesManager.cpp" />
 		<Unit filename="src/Comprobantesmanager.cpp" />
 		<Unit filename="src/DatosPersonales.cpp" />
 		<Unit filename="src/Factura.cpp" />
+		<Unit filename="src/FacturasManager.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Gestor.cpp" />
 		<Unit filename="src/ItemVenta.cpp" />
 		<Unit filename="src/NotaDeCredito.cpp" />
+		<Unit filename="src/NotaDeCreditosManager.cpp" />
 		<Unit filename="src/Producto.cpp" />
 		<Unit filename="src/ProductosManager.cpp" />
 		<Unit filename="src/Proveedor.cpp" />
 		<Unit filename="src/TipoResponsable.cpp" />
+		<Unit filename="src/menu.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
