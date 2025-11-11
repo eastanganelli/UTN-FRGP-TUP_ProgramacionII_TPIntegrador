@@ -63,7 +63,8 @@ Proveedor* ProveedorManager::Obtener(string cuit) {
     }
     Proveedor* proveedor = new Proveedor();
     while (fread(proveedor, sizeof(Proveedor), 1, archivo)) {
-        if (proveedor->getCuit() == cuit) {
+        string cuitProveedor = proveedor->getCuit();
+        if (cuitProveedor == cuit) {
             fclose(archivo);
             return proveedor;
         }

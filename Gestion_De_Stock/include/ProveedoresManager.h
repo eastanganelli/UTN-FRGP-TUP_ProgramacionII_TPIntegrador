@@ -3,7 +3,6 @@
 
 #include "Proveedor.h"
 
-#include <iostream>
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -14,7 +13,7 @@ class ProveedorManager {
 private:
     string rutaArchivo;
 
-    int Posicion(string dni, unsigned int& posicion);
+    int Posicion(string cuit, unsigned int& posicion);
     bool Existe(Proveedor& proveedor);
 
 public:
@@ -22,11 +21,11 @@ public:
     ~ProveedorManager();
 
     bool Crear(Proveedor& proveedor);
-    Proveedor* Obtener(string dni);
-    Proveedor* operator[](string dni);
-    bool Modificar(string dni, Proveedor* proveedorActualizado);
-    bool Modificar(string dni, Proveedor& proveedorActualizado);
-    bool Eliminar(string dni);
+    Proveedor* Obtener(string cuit);
+    Proveedor* operator[](string cuit);
+    bool Modificar(string cuit, Proveedor* proveedorActualizado);
+    bool Modificar(string cuit, Proveedor& proveedorActualizado);
+    bool Eliminar(string cuit);
     vector<Proveedor> Listar();
 
     unsigned int Contar();

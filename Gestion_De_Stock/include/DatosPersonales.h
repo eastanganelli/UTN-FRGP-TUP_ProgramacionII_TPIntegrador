@@ -1,7 +1,6 @@
 #ifndef DATOSPERSONALES_H
 #define DATOSPERSONALES_H
 
-#include <iostream>
 #include <cstring>
 #include <string>
 

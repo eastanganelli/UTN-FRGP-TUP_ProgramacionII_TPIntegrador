@@ -13,7 +13,7 @@ Cliente::~Cliente() {
 }
 
 string Cliente::getDNI() {
-    return string(this->DNI);
+    return string(this->DNI, 8);
 }
 
 string Cliente::getNombre() {
@@ -22,6 +22,10 @@ string Cliente::getNombre() {
 
 string Cliente::getApellido() {
     return string(this->apellido);
+}
+
+string Cliente::getCuilCuit() {
+    return string(this->cuilCuit, 11);
 }
 
 void Cliente::setDNI(const string& dni) {
@@ -34,10 +38,6 @@ void Cliente::setNombre(const string& n) {
 
 void Cliente::setApellido(const string& a) {
     strcpy(this->apellido, a.c_str());
-}
-
-string Cliente::getCuilCuit() {
-    return string(this->cuilCuit);
 }
 
 void Cliente::setCuilCuit(const string& c) {

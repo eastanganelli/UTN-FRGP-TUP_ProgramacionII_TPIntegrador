@@ -1,8 +1,9 @@
 #include <iostream>
 // #include "include/menu.h"
 
-#include "include/Cliente.h"
 #include "include/ClientesManager.h"
+#include "include/ProveedoresManager.h"
+#include "include/ProductosManager.h"
 
 using namespace std;
 
@@ -32,12 +33,36 @@ void TestingCliente() {
     cout<<clientes.Contar();
 }
 
+void TestingProveedores() {
+    ProveedorManager proveedores("proveedores.bin");
+
+    Proveedor dipasqua("10390688572", "dipasqua", "textil", "av dr honorio 1915", "-", "1131454150", "", 0, true);
+
+    proveedores.Crear(dipasqua);
+
+    Proveedor* aux_selec = proveedores["10390688572"];
+    aux_selec->setNombreRazon("stanganelli SRL");
+
+    proveedores.Modificar("10390688572", aux_selec);
+
+    if(aux_selec != nullptr)
+        cout << aux_selec->getNombreRazon();
+}
+
+void TestingProductos() {
+    ProductoManager productos("productos.bin");
+
+
+}
+
 int main() {
 
     // Menu menu;
     // menu.mostrar();
 
-    TestingCliente();
+    //TestingCliente();
+    //TestingProveedores();
+    // TestingProductos();
 
     return 0;
 }
