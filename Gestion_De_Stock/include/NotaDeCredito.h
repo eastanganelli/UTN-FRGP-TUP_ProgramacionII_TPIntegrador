@@ -15,12 +15,11 @@ class NotaDeCredito : public Comprobante {
 private:
     int idFacturaOriginal;
     char motivoAnulacion[256];
-    vector<Producto*> items;
 
 public:
     // Getters
     int getIDFacturaOriginal();
-    const string& getMotivoAnulacion();
+    string getMotivoAnulacion();
 
     // Setters
     void setIDFacturaOriginal(int id);
@@ -33,6 +32,6 @@ public:
     void operator-(Producto*& item);
 };
 
-std::ostream& operator<<(std::ostream& os, const NotaDeCredito& obj);
+std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj);
 
 #endif // NOTADECREDITO_H

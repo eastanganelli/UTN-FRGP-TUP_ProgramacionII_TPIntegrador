@@ -1,6 +1,9 @@
 #ifndef COMPROBANTE_H
 #define COMPROBANTE_H
 
+#define ITEMS_MAX 20
+
+#include "Item.h"
 #include "Fecha.h"
 #include "Cliente.h"
 
@@ -13,10 +16,15 @@ using namespace std;
 class Comprobante {
 private:
     const unsigned int id;
+    const unsigned int cantidadMaxItems;
+    unsigned int cantidadItems;
+    Item items[ITEMS_MAX];
 
 protected:
-    Cliente* cliente;
     Fecha creado;
+    unsigned int codigoCliente;
+
+    float getPrecioTotal();
 
 public:
     Comprobante(unsigned int _id);
@@ -24,14 +32,17 @@ public:
 
     // Getters
     unsigned int getID();
-    const Cliente* getCliente();
+    unsigned int getCodigoCliente();
+    unsigned int getCantidadItems();
     Fecha& getFecha();
 
     // Setters
-    void setCliente(Cliente*& c);
-    void setFecha(Fecha f);
+    void setCodigoCliente(unsigned int codigo);
 
     // Métodos
+    void operator+(Item& item);
+    void operator-(Item& item);
+    Item& operator[](unsigned int index);
     void mostrar();
 };
 

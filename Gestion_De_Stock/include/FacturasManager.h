@@ -12,19 +12,19 @@ using namespace std;
 
 class FacturaManager {
 private:
-    vector<Factura> facturas;
+    vector<Factura*> facturas;
     string rutaArchivo;
 
 public:
     FacturaManager(string ruta);
 
-    void agregar(Factura& fact);
+    void agregar(Factura* fact);
     bool eliminar(int idVenta);
     Factura* buscar(int idVenta);
     int obtenerIndice(int idVenta);
 
     int getCantidad();
-    Factura getPorIndice(int index);
+    Factura* getPorIndice(int index);
 
     void listarTodos();
 

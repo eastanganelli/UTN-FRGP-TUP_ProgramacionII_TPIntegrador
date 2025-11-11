@@ -1,3 +1,8 @@
+out/*
+build/*
+bin/*
+obj/*
+.qtcreator/*
 # Prerequisites
 *.d
 

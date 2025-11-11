@@ -1,22 +1,22 @@
-#include "../include/ProductosManager.h"
+#include "../include/ProveedoresManager.h"
 
-ProductoManager::ProductoManager(string ruta) {
+ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;
 }
 
-ProductoManager::~ProductoManager() {
+ProveedorManager::~ProveedorManager() {
 
 }
 
-int ProductoManager::Posicion(string codigo, unsigned int& posicion) {
+int ProveedorManager::Posicion(string cuit, unsigned int& posicion) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return -1;
     }
-    Producto producto;
+    Proveedor proveedor;
     unsigned int index = 0;
-    while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getCodigo() == codigo) {
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor.getCuit() == cuit) {
             posicion = index;
             fclose(archivo);
             return 0;
@@ -27,14 +27,14 @@ int ProductoManager::Posicion(string codigo, unsigned int& posicion) {
     return -1;
 }
 
-bool ProductoManager::Existe(Producto& producto) {
+bool ProveedorManager::Existe(Proveedor& proveedor) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
     }
-    Producto tempProducto;
-    while (fread(&tempProducto, sizeof(Producto), 1, archivo)) {
-        if (tempProducto.getCodigo() == producto.getCodigo()) {
+    Proveedor tempProveedor;
+    while (fread(&tempProveedor, sizeof(Proveedor), 1, archivo)) {
+        if (tempProveedor.getCuit() == proveedor.getCuit()) {
             fclose(archivo);
             return true;
         }
@@ -43,69 +43,69 @@ bool ProductoManager::Existe(Producto& producto) {
     return false;
 }
 
-bool ProductoManager::Crear(Producto& producto) {
-    if (Existe(producto)) {
+bool ProveedorManager::Crear(Proveedor& proveedor) {
+    if (Existe(proveedor)) {
         return false;
     }
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "ab");
     if (archivo == nullptr) {
         return false;
     }
-    fwrite(&producto, sizeof(Producto), 1, archivo);
+    fwrite(&proveedor, sizeof(Proveedor), 1, archivo);
     fclose(archivo);
     return true;
 }
 
-Producto* ProductoManager::Obtener(string codigo) {
+Proveedor* ProveedorManager::Obtener(string cuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
     }
-    Producto* producto = new Producto();
-    while (fread(producto, sizeof(Producto), 1, archivo)) {
-        if (producto->getCodigo() == codigo) {
+    Proveedor* proveedor = new Proveedor();
+    while (fread(proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor->getCuit() == cuit) {
             fclose(archivo);
-            return producto;
+            return proveedor;
         }
     }
     fclose(archivo);
-    delete producto;
+    delete proveedor;
     return nullptr;
 }
 
-Producto* ProductoManager::operator[](string codigo) {
-    return Obtener(codigo);
+Proveedor* ProveedorManager::operator[](string cuit) {
+    return Obtener(cuit);
 }
 
-bool ProductoManager::Modificar(string codigo, Producto* productoActualizado) {
+bool ProveedorManager::Modificar(string cuit, Proveedor* proveedorActualizado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
 
-    if (this->Posicion(codigo, pos) || archivo == nullptr) {
+    if (this->Posicion(cuit, pos) || archivo == nullptr) {
         return resultado;
     }
-    fseek(archivo, sizeof(Producto) * pos, SEEK_SET);
-    resultado = fwrite(productoActualizado, sizeof(Producto), 1, archivo);
+    fseek(archivo, sizeof(Proveedor) * pos, SEEK_SET);
+    resultado = fwrite(proveedorActualizado, sizeof(Proveedor), 1, archivo);
     fclose(archivo);
     return resultado;
 }
 
-bool ProductoManager::Modificar(string codigo, Producto& productoActualizado) {
+bool ProveedorManager::Modificar(string cuit, Proveedor& proveedorActualizado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
 
-    if (this->Posicion(codigo, pos) || archivo == nullptr) {
+    if (this->Posicion(cuit, pos) || archivo == nullptr) {
         return resultado;
     }
-    fseek(archivo, sizeof(Producto) * pos, SEEK_SET);
-    resultado = fwrite(&productoActualizado, sizeof(Producto), 1, archivo);
+    fseek(archivo, sizeof(Proveedor) * pos, SEEK_SET);
+    resultado = fwrite(&proveedorActualizado, sizeof(Proveedor), 1, archivo);
     fclose(archivo);
     return resultado;
 }
 
-bool ProductoManager::Eliminar(string codigo) {
+bool ProveedorManager::Eliminar(string cuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
@@ -115,11 +115,11 @@ bool ProductoManager::Eliminar(string codigo) {
         fclose(archivo);
         return false;
     }
-    Producto producto;
+    Proveedor proveedor;
     bool encontrado = false;
-    while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getCodigo() != codigo) {
-            fwrite(&producto, sizeof(Producto), 1, tempArchivo);
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor.getCuit() != cuit) {
+            fwrite(&proveedor, sizeof(Proveedor), 1, tempArchivo);
         } else {
             encontrado = true;
         }
@@ -131,21 +131,21 @@ bool ProductoManager::Eliminar(string codigo) {
     return encontrado;
 }
 
-vector<Producto> ProductoManager::Listar() {
-    vector<Producto> productos;
+vector<Proveedor> ProveedorManager::Listar() {
+    vector<Proveedor> proveedors;
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return productos;
+        return proveedors;
     }
-    Producto producto;
-    while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        productos.push_back(producto);
+    Proveedor proveedor;
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        proveedors.push_back(proveedor);
     }
     fclose(archivo);
-    return productos;
+    return proveedors;
 }
 
-unsigned int ProductoManager::Contar() {
+unsigned int ProveedorManager::Contar() {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return 0;
@@ -153,5 +153,5 @@ unsigned int ProductoManager::Contar() {
     fseek(archivo, 0, SEEK_END);
     unsigned int size = ftell(archivo);
     fclose(archivo);
-    return size / sizeof(Producto);
+    return size / sizeof(Proveedor);
 }

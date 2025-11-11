@@ -12,10 +12,11 @@ protected:
     bool alta;
     char correo[120];
     char direccion[120];
-    char telefono[2][15];
+    char telefono[15];
+    char celular[15];
+    unsigned int codigoRazonSocial;
 
-    DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono_I = "", string _telefono_II = "");
-
+    DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0);
 public:
     ~DatosPersonales();
 
@@ -23,13 +24,17 @@ public:
     bool getAlta();
     string getCorreo();
     string getDireccion();
-    string getTelefono(int posicion);
+    string getTelefono();
+    string getCelular();
+    unsigned int getCodigoRazonSocial();
 
     // Setters
     void setAlta(bool a);
     void setCorreo(const string& correo);
     void setDireccion(const string& direccion);
-    void setTelefono(const string& t, int posicion);
+    void setTelefono(const string& t);
+    void setCelular(const string& c);
+    void setCodigoRazonSocial(unsigned int codigo);
 };
 
 #endif // DATOSPERSONALES_H

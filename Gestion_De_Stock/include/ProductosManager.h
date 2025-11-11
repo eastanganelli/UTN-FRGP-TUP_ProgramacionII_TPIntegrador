@@ -2,40 +2,33 @@
 #define PRODUCTOMANAGER_H
 
 #include "Producto.h"
-#include "Base.h"
 
-#include <iostream>
 #include <cstdio>
 #include <vector>
 #include <string>
 
 using namespace std;
 
-class ProductoManager : public Base {
+class ProductoManager {
 private:
-    vector<Producto> productos;
     string rutaArchivo;
+
+    int Posicion(string codigo, unsigned int& posicion);
+    bool Existe(Producto& producto);
 
 public:
     ProductoManager(string ruta);
+    ~ProductoManager();
 
-    void agregar(Producto& prod);
-    bool eliminar(int id);
-    Producto* buscar(int id);
-    int obtenerIndice(int id);
+    bool Crear(Producto& producto);
+    Producto* Obtener(string codigo);
+    Producto* operator[](string codigo);
+    bool Modificar(string codigo, Producto* productoActualizado);
+    bool Modificar(string codigo, Producto& productoActualizado);
+    bool Eliminar(string codigo);
+    vector<Producto> Listar();
 
-    int getCantidad();
-    Producto getPorIndice(int index);
-    
-    void listarTodos();
-
-    bool cargarDeArchivo();
-    bool escribirArchivo();
-
-    void alta() override;
-    void baja() override;
-    void modificacion() override;
-    void consulta() const override;
+    unsigned int Contar();
 };
 
 #endif // PRODUCTOMANAGER_H

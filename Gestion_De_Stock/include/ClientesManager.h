@@ -2,7 +2,6 @@
 #define CLIENTEMANAGER_H
 
 #include "Cliente.h"
-#include "Base.h"
 
 #include <iostream>
 #include <cstdio>
@@ -11,31 +10,26 @@
 
 using namespace std;
 
-class ClienteManager : public Base {
+class ClienteManager {
 private:
-    vector<Cliente> clientes;
     string rutaArchivo;
+
+    int Posicion(string dni, unsigned int& posicion);
+    bool Existe(Cliente& cliente);
 
 public:
     ClienteManager(string ruta);
+    ~ClienteManager();
 
-    void agregar(Cliente& cli);
-    bool eliminar(int id);
-    Cliente* buscar(int id);
-    int obtenerIndice(int id);
+    bool Crear(Cliente& cliente);
+    Cliente* Obtener(string dni);
+    Cliente* operator[](string dni);
+    bool Modificar(string dni, Cliente* clienteActualizado);
+    bool Modificar(string dni, Cliente& clienteActualizado);
+    bool Eliminar(string dni);
+    vector<Cliente> Listar();
 
-    int getCantidad();
-    Cliente getPorIndice(int index);
-
-    void listarTodos();
-
-    bool cargarDeArchivo();
-    bool escribirArchivo();
-
-    void alta() override;
-    void baja() override;
-    void modificacion() override;
-    void consulta() const override;
+    unsigned int Contar();
 };
 
 #endif // CLIENTEMANAGER_H

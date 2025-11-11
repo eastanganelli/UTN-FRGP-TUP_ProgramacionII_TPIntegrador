@@ -10,7 +10,9 @@
 using namespace std;
 
 class Factura : public Comprobante {
+private:
     char tipoFactura; // 'A', 'B', 'C'
+    float total;
     float totalIVA;
     char cae[14];
     Fecha vencimientoCAE;
@@ -30,9 +32,9 @@ public:
     void setTotalIVA(float iva);
 
     // Métodos
+
 };
 
-
-std::ostream& operator<<(std::ostream& os, const Factura& obj);
+std::ostream& operator<<(std::ostream& os, Factura* obj);
 
 #endif // FACTURA_H
