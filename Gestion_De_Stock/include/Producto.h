@@ -1,9 +1,7 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
 
-#include "Proveedor.h"
-
-#include <iostream>
+#include <string>
 #include <cstring>
 
 using namespace std;
@@ -17,6 +15,10 @@ private:
     unsigned int stock;
 
 public:
+    // Constructor y Desctructor
+    Producto(string codigo = "", string codigoProveedor = "", string descripcion = "", float precio = 0, unsigned int stock = 0);
+    ~Producto();
+
     // Getters
     string getCodigo();
     string getCodigoProveedor();
@@ -25,15 +27,12 @@ public:
     unsigned int getStock();
 
     // Setters
-    void setCodigo(string c);
-    void setDescripcion(string& d);
+    void setDescripcion(string d);
     void setPrecio(float p);
     void setStock(unsigned int s);
 
     // Métodos
     
 };
-
-
 
 #endif // PRODUCTO_H

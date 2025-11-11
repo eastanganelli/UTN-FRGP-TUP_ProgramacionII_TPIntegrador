@@ -52,7 +52,7 @@ void TestingProveedores() {
 void TestingProductos() {
     ProductoManager productos("productos.bin");
 
-
+    Producto alfajor();
 }
 
 int main() {
