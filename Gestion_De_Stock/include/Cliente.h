@@ -2,7 +2,6 @@
 #define CLIENTE_H
 
 #include "DatosPersonales.h"
-#include "TipoResponsable.h"
 
 #include <iostream>
 #include <cstring>
@@ -12,18 +11,16 @@ using namespace std;
 
 class Cliente : public DatosPersonales {
 private:
-    const unsigned int id;
     char DNI[8];
     char nombre[20];
     char apellido[25];
     char cuilCuit[11];
 
 public:
-    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
+    Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
     ~Cliente();
 
     // Getters
-    int getID();
     string getDNI();
     string getNombre();
     string getApellido();

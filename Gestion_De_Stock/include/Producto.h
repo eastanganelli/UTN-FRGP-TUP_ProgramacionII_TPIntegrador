@@ -11,7 +11,7 @@ using namespace std;
 class Producto {
 private:
     unsigned int id;
-    unsigned int codigoProveedor;
+    char codigoProveedor[11];
     char descripcion[256];
     float precio;
     unsigned int stock;
@@ -19,14 +19,13 @@ private:
 public:
     // Getters
     unsigned int getID();
-    unsigned int getCodigoProveedor();
+    string getCodigoProveedor();
     string getDescripcion();
     float getPrecio();
     unsigned int getStock();
 
     // Setters
     void setID(unsigned int id);
-    void setCodigoProveedor(unsigned int codigo);
     void setDescripcion(string& d);
     void setPrecio(float p);
     void setStock(unsigned int s);

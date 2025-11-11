@@ -1,4 +1,4 @@
-#include "Comprobante.h"
+#include "../include/Comprobante.h"
 
 Comprobante::Comprobante(unsigned int _id) : id(_id), cantidadMaxItems(ITEMS_MAX) {
     this->cantidadItems = 0;

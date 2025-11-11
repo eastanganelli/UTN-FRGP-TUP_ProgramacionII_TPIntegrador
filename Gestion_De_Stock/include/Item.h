@@ -9,7 +9,6 @@ using namespace std;
 
 class Item {
 private:
-    unsigned int id;
     unsigned int codigoProducto;
     char descripcion[100];
     unsigned int cantidad;
@@ -24,14 +23,12 @@ public:
     ~Item();
 
     // Getters
-    unsigned int getID();
     unsigned int getCodigoProducto();
     unsigned int getCantidad();
     float getPrecioUnitario();
     float getPrecioTotal();
 
     // Setters
-    void setID(unsigned int id);
     void setCodigoProducto(unsigned int id);
     void setCantidad(unsigned int cant);
     void setPrecioUnitario(float precio);

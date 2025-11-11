@@ -1,4 +1,4 @@
-#include "NotaDeCredito.h"
+#include "../include/NotaDeCredito.h"
 
 int NotaDeCredito::getIDFacturaOriginal() { return this->idFacturaOriginal; }
 string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }

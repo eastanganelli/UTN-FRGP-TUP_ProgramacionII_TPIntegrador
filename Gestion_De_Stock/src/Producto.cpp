@@ -1,11 +1,11 @@
-#include "Producto.h"
+#include "../include/Producto.h"
 
 unsigned int Producto::getID() {
     return this->id;
 }
 
-unsigned int Producto::getCodigoProveedor() {
-    return this->codigoProveedor;
+string Producto::getCodigoProveedor() {
+    return string(this->codigoProveedor);
 }
 
 string Producto::getDescripcion() {

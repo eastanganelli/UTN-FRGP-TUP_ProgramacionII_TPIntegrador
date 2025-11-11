@@ -1,4 +1,4 @@
-#include "FacturasManager.h"
+#include "../include/FacturasManager.h"
 
 FacturaManager::FacturaManager(string ruta) {
     this->rutaArchivo = ruta;

@@ -22,10 +22,10 @@ public:
     ~ClienteManager();
 
     bool CrearCliente(Cliente& cliente);
-    Cliente* ObtenerCliente(unsigned int id);
-    Cliente* operator[](unsigned int id);
-    bool ModificarCliente(unsigned int id, Cliente& clienteActualizado);
-    bool EliminarCliente(unsigned int id);
+    Cliente* ObtenerCliente(string dni);
+    Cliente* operator[](string dni);
+    bool ModificarCliente(string dni, Cliente& clienteActualizado);
+    bool EliminarCliente(string dni);
     vector<Cliente> ListarClientes();
 
     unsigned int ContarClientes();

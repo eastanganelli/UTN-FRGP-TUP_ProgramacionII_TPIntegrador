@@ -1,4 +1,4 @@
-#include "DatosPersonales.h"
+#include "../include/DatosPersonales.h"
 
 DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular, unsigned int _codigoRazonSocial) {
     this->alta = _alta;

@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "../include/Item.h"
 
 Item::Item() : id(0), codigoProducto(0), cantidad(0), precioUnitario(0.0f) {
     strcpy(this->descripcion, "");
@@ -15,10 +15,6 @@ Item::Item(unsigned int id, unsigned int codigoProducto, string descripcion, uns
 Item::~Item() {
     // Destructor
 }
-unsigned int Item::getID() {
-    return this->id;
-}
-
 unsigned int Item::getCodigoProducto() {
     return this->codigoProducto;
 }
@@ -33,10 +29,6 @@ float Item::getPrecioUnitario() {
 
 float Item::getPrecioTotal() {
     return this->cantidad * this->precioUnitario;
-}
-
-void Item::setID(unsigned int id) {
-    this->id = id;
 }
 
 void Item::setCodigoProducto(unsigned int id) {
