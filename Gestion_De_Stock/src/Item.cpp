@@ -1,11 +1,10 @@
 #include "../include/Item.h"
 
-Item::Item() : id(0), codigoProducto(0), cantidad(0), precioUnitario(0.0f) {
+Item::Item() : codigoProducto(0), cantidad(0), precioUnitario(0.0f) {
     strcpy(this->descripcion, "");
 }
 
 Item::Item(unsigned int id, unsigned int codigoProducto, string descripcion, unsigned int cantidad, float precioUnitario) {
-    this->id = id;
     this->codigoProducto = codigoProducto;
     strcpy(this->descripcion, descripcion.c_str());
     this->cantidad = cantidad;
@@ -50,7 +49,7 @@ void Item::operator=(Item& item) {
 }
 
 std::ostream& operator<<(std::ostream& os, Item* obj) {
-    os << "ID: " << obj->getID() << ", Codigo Producto: " << obj->getCodigoProducto()
+    os << "ID: " << ", Codigo Producto: " << obj->getCodigoProducto()
        << ", Descripcion: " << ", Cantidad: " << obj->getCantidad()
        << ", Precio Unitario: " << obj->getPrecioUnitario()
        << ", Precio Total: " << obj->getPrecioTotal();

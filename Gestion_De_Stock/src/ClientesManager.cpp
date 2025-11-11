@@ -8,7 +8,26 @@ ClienteManager::~ClienteManager() {
 
 }
 
-bool ClienteManager::clienteExiste(Cliente& cliente) {
+int ClienteManager::Posicion(string dni, unsigned int& posicion) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return -1;
+    }
+    Cliente cliente;
+    unsigned int index = 0;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        if (cliente.getDNI() == dni) {
+            posicion = index;
+            fclose(archivo);
+            return 0;
+        }
+        index++;
+    }
+    fclose(archivo);
+    return -1;
+}
+
+bool ClienteManager::Existe(Cliente& cliente) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
@@ -24,8 +43,8 @@ bool ClienteManager::clienteExiste(Cliente& cliente) {
     return false;
 }
 
-bool ClienteManager::CrearCliente(Cliente& cliente) {
-    if (clienteExiste(cliente)) {
+bool ClienteManager::Crear(Cliente& cliente) {
+    if (Existe(cliente)) {
         return false;
     }
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "ab");
@@ -37,7 +56,7 @@ bool ClienteManager::CrearCliente(Cliente& cliente) {
     return true;
 }
 
-Cliente* ClienteManager::ObtenerCliente(string dni) {
+Cliente* ClienteManager::Obtener(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
@@ -55,28 +74,38 @@ Cliente* ClienteManager::ObtenerCliente(string dni) {
 }
 
 Cliente* ClienteManager::operator[](string dni) {
-    return ObtenerCliente(dni);
+    return Obtener(dni);
 }
 
-bool ClienteManager::ModificarCliente(string dni, Cliente& clienteActualizado) {
+bool ClienteManager::Modificar(string dni, Cliente* clienteActualizado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
-    if (archivo == nullptr) {
-        return false;
+    bool resultado = false;
+    unsigned int pos = 0;
+
+    if (this->Posicion(dni, pos) || archivo == nullptr) {
+        return resultado;
     }
-    Cliente cliente;
-    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getDNI() == dni) {
-            fseek(archivo, static_cast<long>(sizeof(Cliente)), SEEK_CUR);
-            fwrite(&clienteActualizado, sizeof(Cliente), 1, archivo);
-            fclose(archivo);
-            return true;
-        }
-    }
+    fseek(archivo, sizeof(Cliente) * pos, SEEK_SET);
+    resultado = fwrite(clienteActualizado, sizeof(Cliente), 1, archivo);
     fclose(archivo);
-    return false;
+    return resultado;
 }
 
-bool ClienteManager::EliminarCliente(string dni) {
+bool ClienteManager::Modificar(string dni, Cliente& clienteActualizado) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
+    bool resultado = false;
+    unsigned int pos = 0;
+
+    if (this->Posicion(dni, pos) || archivo == nullptr) {
+        return resultado;
+    }
+    fseek(archivo, sizeof(Cliente) * pos, SEEK_SET);
+    resultado = fwrite(&clienteActualizado, sizeof(Cliente), 1, archivo);
+    fclose(archivo);
+    return resultado;
+}
+
+bool ClienteManager::Eliminar(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
@@ -102,7 +131,7 @@ bool ClienteManager::EliminarCliente(string dni) {
     return encontrado;
 }
 
-vector<Cliente> ClienteManager::ListarClientes() {
+vector<Cliente> ClienteManager::Listar() {
     vector<Cliente> clientes;
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
@@ -116,7 +145,7 @@ vector<Cliente> ClienteManager::ListarClientes() {
     return clientes;
 }
 
-unsigned int ClienteManager::ContarClientes() {
+unsigned int ClienteManager::Contar() {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return 0;

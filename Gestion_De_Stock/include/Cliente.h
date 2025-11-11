@@ -13,7 +13,7 @@ class Cliente : public DatosPersonales {
 private:
     char DNI[8];
     char nombre[20];
-    char apellido[25];
+    char apellido[20];
     char cuilCuit[11];
 
 public:

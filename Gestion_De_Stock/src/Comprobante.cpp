@@ -47,13 +47,13 @@ void Comprobante::operator+(Item& item) {
 
 void Comprobante::operator-(Item& item) {
     for (unsigned int i = 0; i < this->cantidadItems; i++) {
-        if (this->items[i].getID() == item.getID()) {
-            for (unsigned int j = i; j < this->cantidadItems - 1; j++) {
-                this->items[j] = this->items[j + 1];
-            }
-            this->cantidadItems--;
-            return;
-        }
+        // if (this->items[i].g() == item.getID()) {
+        //     for (unsigned int j = i; j < this->cantidadItems - 1; j++) {
+        //         this->items[j] = this->items[j + 1];
+        //     }
+        //     this->cantidadItems--;
+        //     return;
+        // }
     }
     cerr << "Item no encontrado en el comprobante." << endl;
 }

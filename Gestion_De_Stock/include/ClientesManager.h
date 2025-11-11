@@ -15,20 +15,22 @@ class ClienteManager : public Base {
 private:
     string rutaArchivo;
 
-    bool clienteExiste(Cliente& cliente);
+    int Posicion(string dni, unsigned int& posicion);
+    bool Existe(Cliente& cliente);
 
 public:
     ClienteManager(string ruta);
     ~ClienteManager();
 
-    bool CrearCliente(Cliente& cliente);
-    Cliente* ObtenerCliente(string dni);
+    bool Crear(Cliente& cliente);
+    Cliente* Obtener(string dni);
     Cliente* operator[](string dni);
-    bool ModificarCliente(string dni, Cliente& clienteActualizado);
-    bool EliminarCliente(string dni);
-    vector<Cliente> ListarClientes();
+    bool Modificar(string dni, Cliente* clienteActualizado);
+    bool Modificar(string dni, Cliente& clienteActualizado);
+    bool Eliminar(string dni);
+    vector<Cliente> Listar();
 
-    unsigned int ContarClientes();
+    unsigned int Contar();
 };
 
 #endif // CLIENTEMANAGER_H
