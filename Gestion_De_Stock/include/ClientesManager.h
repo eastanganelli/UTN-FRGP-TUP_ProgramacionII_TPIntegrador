@@ -2,7 +2,6 @@
 #define CLIENTEMANAGER_H
 
 #include "Cliente.h"
-#include "Base.h"
 
 #include <iostream>
 #include <cstdio>
@@ -11,7 +10,7 @@
 
 using namespace std;
 
-class ClienteManager : public Base {
+class ClienteManager {
 private:
     string rutaArchivo;
 

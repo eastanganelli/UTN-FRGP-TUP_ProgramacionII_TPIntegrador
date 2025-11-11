@@ -1,7 +1,7 @@
 #include "../include/Producto.h"
 
-unsigned int Producto::getID() {
-    return this->id;
+string Producto::getCodigo() {
+    return string(this->codigo);
 }
 
 string Producto::getCodigoProveedor() {
@@ -20,8 +20,8 @@ unsigned int Producto::getStock() {
     return this->stock;
 }
 
-void Producto::setID(unsigned int id) {
-    this->id = id;
+void Producto::setCodigo(string c) {
+    strcpy(this->codigo, c.c_str());
 }
 
 void Producto::setPrecio(float p) {

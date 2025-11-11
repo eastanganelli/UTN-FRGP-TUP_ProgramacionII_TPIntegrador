@@ -8,7 +8,7 @@
 using namespace std;
 
 class Base {
-
+protected:
 public:
     virtual ~Base() {}
 
