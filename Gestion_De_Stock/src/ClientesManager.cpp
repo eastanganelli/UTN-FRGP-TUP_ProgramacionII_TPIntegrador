@@ -6,49 +6,51 @@ ClienteManager::ClienteManager(string ruta) {
 }
 
 void ClienteManager::agregar(Cliente* cli) {
-    this->clientes.push_back(cli);
+
 }
 
 bool ClienteManager::eliminar(int id) {
     int indice = obtenerIndice(id);
     if (indice != -1) {
-        this->clientes.erase(this->clientes.begin() + indice);
+        // this->clientes.erase(this->clientes.begin() + indice);
         return true;
     }
     return false;
 }
 
 Cliente* ClienteManager::buscar(int id) {
-    for (size_t i = 0; i < this->clientes.size(); ++i) {
+    /*for (size_t i = 0; i < this->clientes.size(); ++i) {
         if (this->clientes[i]->getID() == id) {
             return this->clientes[i];
         }
-    }
+    }*/
     return nullptr;
 }
 
 int ClienteManager::obtenerIndice(int id) {
-    for (size_t i = 0; i < this->clientes.size(); ++i) {
+    /*for (size_t i = 0; i < this->clientes.size(); ++i) {
         if (this->clientes[i]->getID() == id) {
             return i;
         }
-    }
+    }*/
     return -1;
 }
 
 int ClienteManager::getCantidad() {
-    return this->clientes.size();
+    //return this->clientes.size();
+    return 0;
 }
 
 Cliente* ClienteManager::getPorIndice(int index) {
-    return this->clientes[index];
+    //return this->clientes[index];
+    return nullptr;
 }
 
 void ClienteManager::listarTodos() {
-    for (size_t i = 0; i < this->clientes.size(); ++i) {
+    /*for (size_t i = 0; i < this->clientes.size(); ++i) {
         //this->clientes[i].mostrar();
         cout << "--------------------" << endl;
-    }
+    }*/
 }
 
 bool ClienteManager::cargarDeArchivo() {

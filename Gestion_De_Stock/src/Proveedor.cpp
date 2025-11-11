@@ -1,10 +1,10 @@
 #include "Proveedor.h"
 
-Proveedor::Proveedor(unsigned int _id, string _cuit, string _nombreRazon, string _telefono, string _celular, unsigned int _codigoRazonSocial, bool _alta)
-    : DatosPersonales(_telefono, _celular), alta(_alta), id(_id), codigoRazonSocial(_codigoRazonSocial) {
+Proveedor::Proveedor(unsigned int _id, string _cuit, string _nombreRazon, string _rubro, string _direccion, string _correo, string _telefono, string _celular, unsigned int _codigoRazonSocial, bool _alta)
+    : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular, _codigoRazonSocial), id(_id) {
     strcpy(this->cuit, _cuit.c_str());
     strcpy(this->nombreRazon, _nombreRazon.c_str());
-    strcpy(this->rubro, "");
+    strcpy(this->rubro, _rubro.c_str());
 }
 
 Proveedor::~Proveedor() {
@@ -31,10 +31,6 @@ string Proveedor::getNombreRazon() {
     return string(this->nombreRazon);
 }
 
-unsigned int Proveedor::getCodigoRazonSocial() {
-    return this->codigoRazonSocial;
-}
-
 void Proveedor::setCuit(string& cuit) {
     strcpy(this->cuit, cuit.c_str());
 }
@@ -46,8 +42,3 @@ void Proveedor::setRubro(string& rubro) {
 void Proveedor::setNombreRazon(string& nombre) {
     strcpy(this->nombreRazon, nombre.c_str());
 }
-
-void Proveedor::setCodigoRazonSocial(unsigned int rs) {
-    this->codigoRazonSocial = rs;
-}
-

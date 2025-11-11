@@ -1,11 +1,12 @@
 #include "DatosPersonales.h"
 
-DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular) {
+DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular, unsigned int _codigoRazonSocial) {
     this->alta = _alta;
     strcpy(this->direccion, _direccion.c_str());
     strcpy(this->correo, _correo.c_str());
     strcpy(this->telefono, _telefono.c_str());
     strcpy(this->celular, _celular.c_str());
+    this->codigoRazonSocial = _codigoRazonSocial;
 }
 
 DatosPersonales::~DatosPersonales() {
@@ -35,6 +36,10 @@ string DatosPersonales::getCelular() {
     return string(this->celular);
 }
 
+unsigned int DatosPersonales::getCodigoRazonSocial() {
+    return this->codigoRazonSocial;
+}
+
 void DatosPersonales::setAlta(bool a) {
     this->alta = a;
 }
@@ -53,4 +58,8 @@ void DatosPersonales::setTelefono(const string& t) {
 
 void DatosPersonales::setCelular(const string& c) {
     strcpy(this->celular, c.c_str());
+}
+
+void DatosPersonales::setCodigoRazonSocial(unsigned int codigo) {
+    this->codigoRazonSocial = codigo;
 }

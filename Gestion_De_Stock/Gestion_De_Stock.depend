@@ -136,7 +136,7 @@
 1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\fecha.h
 	<iostream>
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
+1762818678 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\cliente.h
 	"DatosPersonales.h"
 	"TipoResponsable.h"
 	<iostream>
@@ -206,27 +206,27 @@
 1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\tiporesponsable.cpp
 	"TipoResponsable.h"
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\datospersonales.h
+1762819302 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\datospersonales.h
 	<iostream>
 	<cstring>
 	<string>
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\cliente.cpp
+1762818785 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\cliente.cpp
 	"Cliente.h"
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\datospersonales.cpp
+1762819268 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\datospersonales.cpp
 	"DatosPersonales.h"
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\proveedor.h
+1762819386 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\proveedor.h
 	"DatosPersonales.h"
 	"TipoResponsable.h"
 	<iostream>
 	<cstring>
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+1762819395 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
 	"ClientesManager.h"
 
-1762741987 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\clientesmanager.h
+1762817588 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\clientesmanager.h
 	"Cliente.h"
 	"Base.h"
 	<iostream>
@@ -279,6 +279,6 @@
 	<vector>
 	<string>
 
-1762816931 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\item.cpp
+1762817173 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\item.cpp
 	"Item.h"
 

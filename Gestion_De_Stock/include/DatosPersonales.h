@@ -14,9 +14,9 @@ protected:
     char direccion[120];
     char telefono[15];
     char celular[15];
+    unsigned int codigoRazonSocial;
 
-    DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "");
-    DatosPersonales(const DatosPersonales& other);
+    DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0);
 public:
     ~DatosPersonales();
 
@@ -26,6 +26,7 @@ public:
     string getDireccion();
     string getTelefono();
     string getCelular();
+    unsigned int getCodigoRazonSocial();
 
     // Setters
     void setAlta(bool a);
@@ -33,6 +34,7 @@ public:
     void setDireccion(const string& direccion);
     void setTelefono(const string& t);
     void setCelular(const string& c);
+    void setCodigoRazonSocial(unsigned int codigo);
 };
 
 #endif // DATOSPERSONALES_H

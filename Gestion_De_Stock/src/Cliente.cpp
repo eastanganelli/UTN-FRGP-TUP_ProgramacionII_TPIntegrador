@@ -1,16 +1,11 @@
 #include "Cliente.h"
 
-Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI, string _cuilCuit, string _telefono, string _celular, TipoResponsable* _razonSocial, bool _alta)
-    : id(_id), DatosPersonales(_alta, _telefono, _celular) {
+Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI, string _cuilCuit, string direccion, string correo, string _telefono, string _celular, unsigned int _codigoRazonSocial, bool _alta)
+    : id(_id), DatosPersonales(_alta, direccion, correo, _telefono, _celular, _codigoRazonSocial) {
     strcpy(this->nombre, _nombre.c_str());
     strcpy(this->apellido, _apellido.c_str());
     strcpy(this->DNI, _DNI.c_str());
     strcpy(this->cuilCuit, _cuilCuit.c_str());
-    this->razonSocial = _razonSocial;
-}
-
-Cliente::~Cliente() {
-    this->razonSocial = nullptr;
 }
 
 int Cliente::getID() {
@@ -45,17 +40,10 @@ string Cliente::getCuilCuit() {
     return string(this->cuilCuit);
 }
 
-TipoResponsable* Cliente::getRazonSocial() {
-    return this->razonSocial;
-}
-
 void Cliente::setCuilCuit(const string& c) {
     strcpy(this->cuilCuit, c.c_str());
 }
 
-void Cliente::setRazonSocial(TipoResponsable* rs) {
-    this->razonSocial = rs;
-}
 
 /**void Cliente::cargar() {
     std::cout << "ID Cliente: ";

@@ -17,10 +17,9 @@ private:
     char nombre[20];
     char apellido[25];
     char cuilCuit[11];
-    TipoResponsable* razonSocial;
 
 public:
-    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string _telefono = "", string _celular = "", TipoResponsable* _razonSocial = nullptr, bool _alta = false);
+    Cliente(unsigned int _id = 0, string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
     ~Cliente();
 
     // Getters
@@ -29,14 +28,12 @@ public:
     string getNombre();
     string getApellido();
     string getCuilCuit();
-    TipoResponsable* getRazonSocial();
 
     // Setters
     void setDNI(const string& dni);
     void setNombre(const string& n);
     void setApellido(const string& a);
     void setCuilCuit(const string& cuilCuit);
-    void setRazonSocial(TipoResponsable* rs);
 
     // Métodos
     //void cargar();
