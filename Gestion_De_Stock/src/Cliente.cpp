@@ -8,6 +8,10 @@ Cliente::Cliente(unsigned int _id, string _nombre, string _apellido, string _DNI
     strcpy(this->cuilCuit, _cuilCuit.c_str());
 }
 
+Cliente::~Cliente() {
+
+}
+
 int Cliente::getID() {
     return this->id;
 }

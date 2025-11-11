@@ -118,9 +118,11 @@
 1762700707 source:c:\users\ezequ\documents\tp_progra_ii\gestion_de_stock\src\notadecredito.cpp
 	"NotaDeCredito.h"
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\main.cpp
+1762828789 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\main.cpp
 	<iostream>
 	"menu.h"
+	"Cliente.h"
+	"ClientesManager.h"
 
 1762815360 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\comprobante.cpp
 	"Comprobante.h"
@@ -200,7 +202,7 @@
 	<vector>
 	<string>
 
-1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\proveedor.cpp
+1762824724 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\proveedor.cpp
 	"Proveedor.h"
 
 1762741987 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\tiporesponsable.cpp
@@ -211,7 +213,7 @@
 	<cstring>
 	<string>
 
-1762818785 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\cliente.cpp
+1762826528 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\cliente.cpp
 	"Cliente.h"
 
 1762819268 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\datospersonales.cpp
@@ -223,10 +225,10 @@
 	<iostream>
 	<cstring>
 
-1762819395 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+1762828725 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
 	"ClientesManager.h"
 
-1762817588 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\clientesmanager.h
+1762828712 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacion2_tpintegrador\gestion_de_stock\include\clientesmanager.h
 	"Cliente.h"
 	"Base.h"
 	<iostream>

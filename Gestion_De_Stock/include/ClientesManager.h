@@ -15,26 +15,20 @@ class ClienteManager : public Base {
 private:
     string rutaArchivo;
 
+    bool clienteExiste(Cliente& cliente);
+
 public:
     ClienteManager(string ruta);
+    ~ClienteManager();
 
-    void agregar(Cliente* cli);
-    bool eliminar(int id);
-    Cliente* buscar(int id);
-    int obtenerIndice(int id);
+    bool CrearCliente(Cliente& cliente);
+    Cliente* ObtenerCliente(unsigned int id);
+    Cliente* operator[](unsigned int id);
+    bool ModificarCliente(unsigned int id, Cliente& clienteActualizado);
+    bool EliminarCliente(unsigned int id);
+    vector<Cliente> ListarClientes();
 
-    int getCantidad();
-    Cliente* getPorIndice(int index);
-
-    void listarTodos();
-
-    bool cargarDeArchivo();
-    bool escribirArchivo();
-
-    void alta() override;
-    void baja() override;
-    void modificacion() override;
-    void consulta() const override;
+    unsigned int ContarClientes();
 };
 
 #endif // CLIENTEMANAGER_H

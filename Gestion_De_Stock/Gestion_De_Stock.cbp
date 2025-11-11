@@ -25,33 +25,37 @@
 				</Compiler>
 			</Target>
 		</Build>
+		<Unit filename="include/Base.h" />
 		<Unit filename="include/Cliente.h" />
 		<Unit filename="include/ClientesManager.h" />
 		<Unit filename="include/Comprobante.h" />
-		<Unit filename="include/Comprobantesmanager.h" />
+		<Unit filename="include/ComprobantesManager.h" />
 		<Unit filename="include/DatosPersonales.h" />
 		<Unit filename="include/Factura.h" />
+		<Unit filename="include/FacturasManager.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Gestor.h" />
+		<Unit filename="include/Item.h" />
 		<Unit filename="include/ItemVenta.h" />
 		<Unit filename="include/NotaDeCredito.h" />
+		<Unit filename="include/NotaDeCreditosManager.h" />
 		<Unit filename="include/Producto.h" />
 		<Unit filename="include/ProductosManager.h" />
 		<Unit filename="include/Proveedor.h" />
 		<Unit filename="include/TipoResponsable.h" />
+		<Unit filename="include/menu.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Base.cpp" />
 		<Unit filename="src/Cliente.cpp" />
 		<Unit filename="src/ClientesManager.cpp" />
 		<Unit filename="src/Comprobante.cpp" />
 		<Unit filename="src/ComprobantesManager.cpp" />
-		<Unit filename="src/Comprobantesmanager.cpp" />
 		<Unit filename="src/DatosPersonales.cpp" />
 		<Unit filename="src/Factura.cpp" />
 		<Unit filename="src/FacturasManager.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Gestor.cpp" />
-		<Unit filename="src/ItemVenta.cpp" />
+		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/NotaDeCredito.cpp" />
 		<Unit filename="src/NotaDeCreditosManager.cpp" />
 		<Unit filename="src/Producto.cpp" />
