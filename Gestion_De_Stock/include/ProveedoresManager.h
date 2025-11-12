@@ -31,7 +31,7 @@ public:
     vector<Proveedor> Listar();
 
     unsigned int Contar();
-    void ImprimirRubros();
+    unsigned int SeleccionarRubro();
     string getNombreRubro(unsigned int cr);
 };
 

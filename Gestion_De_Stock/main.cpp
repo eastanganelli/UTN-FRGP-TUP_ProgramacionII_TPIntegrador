@@ -37,7 +37,8 @@ void TestingCliente() {
 
 void TestingProveedores() {
     ProveedorManager proveedores("proveedores.bin");
-
+    proveedores.SeleccionarRubro();
+    /*
     Proveedor dipasqua("10390688572", "dipasqua", 2, "av dr honorio 1915", "-", "1131454150", "", 0, true);
 
     proveedores.Crear(dipasqua);
@@ -49,6 +50,7 @@ void TestingProveedores() {
 
     if(aux_selec != nullptr)
         cout << aux_selec->getNombreRazon();
+    */
 }
 
 void TestingProductos() {
@@ -64,7 +66,7 @@ int main() {
     // menu.mostrar();
 
     //TestingCliente();
-    //TestingProveedores();
+    TestingProveedores();
     TestingProductos();
 
     return 0;
