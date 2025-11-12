@@ -1,4 +1,4 @@
-#include "../include/Producto.h"
+#include "Producto.h"
 
 Producto::Producto(string codigo, string codigoProveedor, string descripcion, float precio, unsigned int stock) {
     string aux_codigo = "";

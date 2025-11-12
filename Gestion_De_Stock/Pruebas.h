@@ -1,0 +1,48 @@
+#ifndef PRUEBAS_H
+#define PRUEBAS_H
+
+#include <iostream>
+#include <ctime>
+
+#include "src/ClientesManager.h"
+#include "src/ProveedoresManager.h"
+#include "src/ProductosManager.h"
+
+using namespace std;
+
+void TestingCliente();
+
+void TestingProveedores();
+
+void TestingProductos();
+
+struct DatosCliente {
+    std::string nombre;
+    std::string apellido;
+    std::string DNI;
+    std::string cuilCuit;
+    std::string direccion;
+    std::string correo;
+    std::string telefono;
+    std::string celular;
+    unsigned int codigoRazonSocial;
+    bool alta;
+};
+
+struct DatosProveedor {
+    std::string cuit;
+    std::string nombreRazon;
+    unsigned int rubro;
+    std::string direccion;
+    std::string correo;
+    std::string telefono;
+    std::string celular;
+    unsigned int codigoRazonSocial;
+    bool alta;
+};
+
+std::string generarCodigoAlfaNumerico(int longitud);
+
+void loadData();
+
+#endif // PRUEBAS_H

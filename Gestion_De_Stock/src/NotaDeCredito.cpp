@@ -1,4 +1,4 @@
-#include "../include/NotaDeCredito.h"
+#include "NotaDeCredito.h"
 
 string NotaDeCredito::getMotivoAnulacion() {
     return this->motivoAnulacion;

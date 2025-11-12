@@ -1,4 +1,4 @@
-#include "../include/ClientesManager.h"
+#include "ClientesManager.h"
 
 ClienteManager::ClienteManager(string ruta) {
     this->rutaArchivo = ruta;
@@ -25,6 +25,16 @@ int ClienteManager::Posicion(string dni, unsigned int& posicion) {
     }
     fclose(archivo);
     return -1;
+}
+
+Cliente *ClienteManager::Redimensionar(Cliente *clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
+    Cliente* nuevosClientes = new Cliente[nuevaCapacidad];
+    unsigned int elementosACopiar = (capacidadActual < nuevaCapacidad) ? capacidadActual : nuevaCapacidad;
+    for (unsigned int i = 0; i < elementosACopiar; i++) {
+        nuevosClientes[i] = clientes[i];
+    }
+    delete[] clientes;
+    return nuevosClientes;
 }
 
 bool ClienteManager::Existe(Cliente& cliente) {
@@ -131,18 +141,148 @@ bool ClienteManager::Eliminar(string dni) {
     return encontrado;
 }
 
-vector<Cliente> ClienteManager::Listar() {
-    vector<Cliente> clientes;
+Cliente* ClienteManager::Listar() {
+    const unsigned int cantidadClientes = this->Contar();
+    Cliente* clientes = new Cliente[cantidadClientes];
+    if(cantidadClientes > 0 && clientes != nullptr) {
+        FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+        if (archivo == nullptr) {
+            delete[] clientes;
+            return nullptr;
+        }
+        unsigned int i = 0;
+        while (fread(&clientes[i], sizeof(Cliente), 1, archivo)) {
+            i++;
+        }
+        fclose(archivo);
+    }
+    return clientes;
+}
+
+Cliente *ClienteManager::ListarXApellido() {
+    Cliente* misClientes = this->Listar();
+
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getApellido() > misClientes[j + 1].getApellido()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misClientes;
+}
+
+Cliente *ClienteManager::ListarXDNI() {
+    Cliente* misClientes = this->Listar();
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getDNI() > misClientes[j + 1].getDNI()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+    return misClientes;
+}
+
+Cliente *ClienteManager::ListarXcuilcuit() {
+    Cliente* misClientes = this->Listar();
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getCuilCuit() > misClientes[j + 1].getCuilCuit()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+    return misClientes;
+
+}
+
+Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return clientes;
+        return nullptr;
     }
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        clientes.push_back(cliente);
+        if (cliente.getCuilCuit() == cuilcuit) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
     }
     fclose(archivo);
-    return clientes;
+    return resultados;
+}
+
+Cliente *ClienteManager::ConsultaXDNI(string dni) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        if (cliente.getDNI() == dni) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Cliente *ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        if (cliente.getNombre() == nombre && cliente.getApellido() == apellido) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Cliente *ClienteManager::ConsultaXCorreo(string correo) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        if (cliente.getCorreo() == correo) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
+    }
+    fclose(archivo);
+    return resultados;
 }
 
 unsigned int ClienteManager::Contar() {

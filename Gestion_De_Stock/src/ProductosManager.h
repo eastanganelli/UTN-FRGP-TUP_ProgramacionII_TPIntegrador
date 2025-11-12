@@ -4,7 +4,6 @@
 #include "Producto.h"
 
 #include <cstdio>
-#include <vector>
 #include <string>
 #include <ctime>
 
@@ -17,6 +16,8 @@ private:
     int Posicion(string codigo, unsigned int& posicion);
     bool Existe(string codigo);
     bool Existe(Producto& producto);
+    Producto* Listar();
+    Producto* Redimensionar(Producto* productos, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
     ProductoManager(string ruta);
@@ -28,8 +29,13 @@ public:
     bool Modificar(string codigo, Producto* productoActualizado);
     bool Modificar(string codigo, Producto& productoActualizado);
     bool Eliminar(string codigo);
-    vector<Producto> Listar();
 
+    Producto* ListarXCodigo();
+    Producto* ListarXPrecio();
+    Producto* ListarXStock();
+    Producto* ConsultaXCodigo(string codigo);
+    Producto* ConsultaXDescripcion(string descripcion);
+    Producto* ConsultaXStockMinimo(unsigned int stockMinimo);
     unsigned int Contar();
     string generarCodigo();
 };

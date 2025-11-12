@@ -1,4 +1,4 @@
-#include "../include/Factura.h"
+#include "Factura.h"
 
 Factura::Factura(unsigned int _id, char _tipoFactura) : Comprobante(_id), tipoFactura(_tipoFactura) {
 

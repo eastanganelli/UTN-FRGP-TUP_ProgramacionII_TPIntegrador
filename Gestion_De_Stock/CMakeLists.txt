@@ -7,8 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Gestor_De_Stock
     main.cpp
-    include/Cliente.h include/ClientesManager.h include/Comprobante.h  include/DatosPersonales.h include/Factura.h include/FacturasManager.h include/Fecha.h  include/Item.h include/Menu.h include/NotaDeCredito.h include/NotaDeCreditosManager.h include/Producto.h include/ProductosManager.h include/Proveedor.h include/ProveedoresManager.h include/TipoResponsable.h src/Cliente.cpp src/ClientesManager.cpp src/Comprobante.cpp  src/DatosPersonales.cpp src/Factura.cpp src/FacturasManager.cpp src/Fecha.cpp  src/Item.cpp src/Menu.cpp src/NotaDeCredito.cpp src/NotaDeCreditosManager.cpp src/Producto.cpp src/ProductosManager.cpp src/Proveedor.cpp src/ProveedoresManager.cpp src/TipoResponsable.cpp
-
+    src/Cliente.cpp src/Cliente.h src/ClientesManager.cpp src/ClientesManager.h src/Comprobante.cpp src/Comprobante.h src/DatosPersonales.cpp src/DatosPersonales.h src/Factura.cpp src/Factura.h   src/Fecha.cpp src/Fecha.h src/Item.cpp src/Item.h src/menu.cpp src/Menu.h src/NotaDeCredito.cpp src/NotaDeCredito.h   src/Producto.cpp src/Producto.h src/ProductosManager.cpp src/ProductosManager.h
+    src/Proveedor.cpp src/Proveedor.h src/ProveedoresManager.cpp src/ProveedoresManager.h
+    Pruebas.h Pruebas.cpp
+    src/VentasManager.h src/VentasManager.cpp
     )
 
 include(GNUInstallDirs)
