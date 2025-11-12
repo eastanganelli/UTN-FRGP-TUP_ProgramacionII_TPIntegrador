@@ -1,0 +1,76 @@
+#include <vector>
+using namespace std;
+
+vector<Producto> productos = {
+    // --- TEXTIL (Rubro 1) ---
+    Producto("T001", "P001", "Tela algodón lisa", 2500.0, 150),
+    Producto("T002", "P001", "Tela estampada floral", 3100.0, 120),
+    Producto("T003", "P007", "Hilo de coser blanco 100m", 480.0, 300),
+    Producto("T004", "P007", "Hilo de coser negro 100m", 500.0, 280),
+    Producto("T005", "P001", "Cinta bies 25mm", 700.0, 180),
+    Producto("T006", "P007", "Bobina hilo poliéster 500m", 1500.0, 90),
+    Producto("T007", "P001", "Cierre reforzado 20cm", 850.0, 200),
+    Producto("T008", "P001", "Tela polar doble ancho", 4200.0, 60),
+    Producto("T009", "P007", "Tijera de modista 8 pulgadas", 5100.0, 45),
+    Producto("T010", "P001", "Tela lino natural", 3700.0, 80),
+
+    // --- CALZADO (Rubro 2) ---
+    Producto("C001", "P002", "Zapatilla deportiva hombre", 18500.0, 40),
+    Producto("C002", "P002", "Zapatilla urbana mujer", 17200.0, 35),
+    Producto("C003", "P002", "Botas de cuero negro", 28500.0, 25),
+    Producto("C004", "P002", "Sandalia de goma", 9600.0, 60),
+    Producto("C005", "P002", "Zapato vestir hombre", 23400.0, 30),
+    Producto("C006", "P002", "Alpargatas clásicas", 8900.0, 50),
+    Producto("C007", "P002", "Plantillas ergonómicas", 2200.0, 120),
+    Producto("C008", "P002", "Cordones redondos 1m", 700.0, 200),
+    Producto("C009", "P002", "Botín de seguridad", 31000.0, 15),
+    Producto("C010", "P002", "Sandalia de cuero mujer", 14900.0, 28),
+
+    // --- GASTRONOMÍA (Rubro 3) ---
+    Producto("G001", "P003", "Set de cuchillos acero", 9800.0, 60),
+    Producto("G002", "P009", "Batidora eléctrica 600W", 23500.0, 20),
+    Producto("G003", "P003", "Olla de acero 24cm", 15900.0, 35),
+    Producto("G004", "P009", "Sartén antiadherente 28cm", 12500.0, 50),
+    Producto("G005", "P003", "Cuchara de madera", 500.0, 200),
+    Producto("G006", "P003", "Tenedor parrillero", 700.0, 150),
+    Producto("G007", "P003", "Espátula de silicona", 1200.0, 180),
+    Producto("G008", "P009", "Procesadora de alimentos", 28900.0, 10),
+    Producto("G009", "P009", "Tostadora doble ranura", 17900.0, 18),
+    Producto("G010", "P003", "Cafetera italiana aluminio", 8900.0, 22),
+
+    // --- AUTOMOTOR (Rubro 4) ---
+    Producto("A001", "P004", "Aceite para motor 10W40", 8900.0, 70),
+    Producto("A002", "P008", "Escobilla limpiaparabrisas", 2500.0, 120),
+    Producto("A003", "P004", "Bujía NGK estándar", 1900.0, 160),
+    Producto("A004", "P004", "Filtro de aire", 5400.0, 40),
+    Producto("A005", "P008", "Kit de pastillas de freno", 13500.0, 25),
+    Producto("A006", "P004", "Lámpara H4 12V", 1500.0, 90),
+    Producto("A007", "P008", "Aceite transmisión manual", 9200.0, 35),
+    Producto("A008", "P004", "Batería 12V 65Ah", 58000.0, 12),
+    Producto("A009", "P008", "Cera para autos 250ml", 3100.0, 60),
+    Producto("A010", "P004", "Anticongelante verde 1L", 4500.0, 50),
+
+    // --- LIBRERÍA (Rubro 5) ---
+    Producto("L001", "P005", "Cuaderno tapa dura A4", 1800.0, 200),
+    Producto("L002", "P010", "Bolígrafo negro", 350.0, 500),
+    Producto("L003", "P005", "Lapicera azul retráctil", 380.0, 450),
+    Producto("L004", "P010", "Resaltador amarillo", 600.0, 250),
+    Producto("L005", "P005", "Carpeta plástica A4", 950.0, 180),
+    Producto("L006", "P005", "Cuaderno espiralado 80 hojas", 2100.0, 160),
+    Producto("L007", "P010", "Corrector líquido", 700.0, 90),
+    Producto("L008", "P010", "Regla 30cm", 550.0, 150),
+    Producto("L009", "P005", "Tijera escolar", 750.0, 130),
+    Producto("L010", "P010", "Marcador permanente negro", 900.0, 200),
+
+    // --- INDUMENTARIA (Rubro 6) ---
+    Producto("I001", "P006", "Remera básica unisex", 7500.0, 90),
+    Producto("I002", "P006", "Campera rompeviento", 19800.0, 40),
+    Producto("I003", "P006", "Pantalón de jean azul", 15500.0, 50),
+    Producto("I004", "P006", "Buzo algodón liviano", 13200.0, 70),
+    Producto("I005", "P006", "Camisa manga larga blanca", 11000.0, 55),
+    Producto("I006", "P006", "Short deportivo", 8900.0, 80),
+    Producto("I007", "P006", "Campera de abrigo corderito", 25600.0, 25),
+    Producto("I008", "P006", "Pantalón cargo", 16300.0, 45),
+    Producto("I009", "P006", "Vestido casual mujer", 14900.0, 60),
+    Producto("I010", "P006", "Gorra de tela bordada", 4200.0, 100)
+};
