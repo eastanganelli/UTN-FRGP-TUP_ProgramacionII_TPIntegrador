@@ -16,6 +16,8 @@ void TestingProveedores();
 
 void TestingProductos();
 
+void TestingAll();
+
 struct DatosCliente {
     std::string nombre;
     std::string apellido;

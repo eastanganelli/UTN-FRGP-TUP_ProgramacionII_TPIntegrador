@@ -3,54 +3,47 @@
 void TestingCliente() {
     ClienteManager clientes("clientes.bin");
 
-
-    Cliente testCliente("Martin", "Fano", "41099122", "20410991226", "Somewhere in Benavidez", "eltincho@capo.com", "15-5768-4547", "15-5768-4547", 4, true);
-
-    bool resultado = clientes.Crear(testCliente);
-    /*if(!resultado)
-        cout << "Ya existe" << endl;
-
-    Cliente testCliente2("Eze", "battousai", "39068858", "20390688572", "213412341234", "", "", "", 1, true);
-
-    bool resultado_2 = clientes.Crear(testCliente2);
-    if(!resultado_2)
-        cout << "Ya existe" << endl;
-
-    Cliente* aux_actualizar = clientes["39068857"];
-    aux_actualizar->setApellido("Stanganelli Di Pasqua");
-
-    clientes.Modificar("39068857", *aux_actualizar);
-
-    Cliente* aux = clientes["39068857"];
-    if(aux != nullptr)
-        cout<<aux->getApellido()<<endl;
-
-    cout<<clientes.Contar();*/
 }
 
 void TestingProveedores() {
     ProveedorManager proveedores("proveedores.bin");
     proveedores.SeleccionarRubro();
-    /*
-    Proveedor dipasqua("10390688572", "dipasqua", 2, "av dr honorio 1915", "-", "1131454150", "", 0, true);
 
-    proveedores.Crear(dipasqua);
-
-    Proveedor* aux_selec = proveedores["10390688572"];
-    aux_selec->setNombreRazon("stanganelli SRL");
-
-    proveedores.Modificar("10390688572", aux_selec);
-
-    if(aux_selec != nullptr)
-        cout << aux_selec->getNombreRazon();
-    */
 }
 
 void TestingProductos() {
     ProductoManager productos("productos.bin");
 
-    string codigo = productos.generarCodigo();
-    Producto alfajor(codigo, "10390688572", "", 12.67, 20);
+    Producto* listarxStock = productos.ListarXStock();
+    for (unsigned int i = 0; i < productos.Contar(); i++) {
+        std::cout << "Producto " << i + 1 << ": " << listarxStock[i].getCodigo()
+                  << " | Stock: " << listarxStock[i].getStock() << std::endl;
+    }
+
+    string codigoBuscado = listarxStock[5].getCodigo();
+    Producto* productosBuscado = productos.ConsultaXCodigo(codigoBuscado);
+    if (productosBuscado != nullptr) {
+            std::cout << "\nProducto buscado por codigo " << codigoBuscado << ": "
+                      << productosBuscado->getCodigo() << " | Descripcion: " << productosBuscado->getDescripcion()
+                      << " | Precio: " << productosBuscado->getPrecio() << " | Stock: " << productosBuscado->getStock() << std::endl;
+    }
+
+    delete[] listarxStock;
+    delete[] productosBuscado;
+
+    Producto* listarxDescripcion = productos.ListarXPrecio();
+    for (unsigned int i = 0; i < productos.Contar(); i++) {
+        std::cout << "Producto " << i + 1 << ": " << listarxDescripcion[i].getCodigo()
+                  << " | Precio: " << listarxDescripcion[i].getPrecio() << std::endl;
+    }
+
+    string descripcionBuscada = listarxDescripcion[3].getDescripcion();
+    Producto* productosBuscadoDesc = productos.ConsultaXDescripcion(descripcionBuscada);
+    if (productosBuscadoDesc != nullptr) {
+            std::cout << "\nProducto buscado por descripcion " << descripcionBuscada << ": "
+                      << productosBuscadoDesc->getCodigo() << " | Descripcion: " << productosBuscadoDesc->getDescripcion()
+                      << " | Precio: " << productosBuscadoDesc->getPrecio() << " | Stock: " << productosBuscadoDesc->getStock() << std::endl;
+    }
 }
 
 
@@ -156,4 +149,12 @@ void loadData() {
         }
         std::cout << "\n-------------------------------------\n" << std::endl;
     }
+}
+
+void TestingAll() {
+    // loadData();
+
+    //TestingCliente();
+    //TestingProveedores();
+    TestingProductos();
 }
