@@ -165,6 +165,127 @@ Producto *ProductoManager::Listar() {
     return productos;
 }
 
+Producto *ProductoManager::Redimensionar(Producto *productos, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
+    Producto* nuevosProductos = new Producto[nuevaCapacidad];
+    unsigned int elementosACopiar = (capacidadActual < nuevaCapacidad) ? capacidadActual : nuevaCapacidad;
+    for (unsigned int i = 0; i < elementosACopiar; i++) {
+        nuevosProductos[i] = productos[i];
+    }
+    delete[] productos;
+    return nuevosProductos;
+}
+
+Producto *ProductoManager::ListarXCodigo() {
+    Producto* misProductos = this->Listar();
+
+    if(misProductos != nullptr) {
+        const unsigned int cantidadProductos = this->Contar();
+        for (unsigned int i = 0; i < cantidadProductos - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProductos - i - 1; j++) {
+                if (misProductos[j].getCodigo() > misProductos[j + 1].getCodigo()) {
+                    Producto temp = misProductos[j];
+                    misProductos[j] = misProductos[j + 1];
+                    misProductos[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProductos;
+}
+
+Producto *ProductoManager::ListarXPrecio() {
+    Producto* misProductos = this->Listar();
+
+    if(misProductos != nullptr) {
+        const unsigned int cantidadProductos = this->Contar();
+        for (unsigned int i = 0; i < cantidadProductos - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProductos - i - 1; j++) {
+                if (misProductos[j].getPrecio() > misProductos[j + 1].getPrecio()) {
+                    Producto temp = misProductos[j];
+                    misProductos[j] = misProductos[j + 1];
+                    misProductos[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProductos;
+}
+
+Producto *ProductoManager::ListarXStock() {
+    Producto* misProductos = this->Listar();
+
+    if(misProductos != nullptr) {
+        const unsigned int cantidadProductos = this->Contar();
+        for (unsigned int i = 0; i < cantidadProductos - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProductos - i - 1; j++) {
+                if (misProductos[j].getStock() > misProductos[j + 1].getStock()) {
+                    Producto temp = misProductos[j];
+                    misProductos[j] = misProductos[j + 1];
+                    misProductos[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProductos;
+}
+
+Producto *ProductoManager::ConsultaXCodigo(string codigo) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Producto* resultados = new Producto[0];
+    unsigned int contador = 0;
+    Producto producto;
+    while (fread(&producto, sizeof(Producto), 1, archivo)) {
+        if (producto.getCodigo() == codigo) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = producto;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Producto *ProductoManager::ConsultaXDescripcion(string descripcion) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Producto* resultados = new Producto[0];
+    unsigned int contador = 0;
+    Producto producto;
+    while (fread(&producto, sizeof(Producto), 1, archivo)) {
+        if (producto.getDescripcion() == descripcion) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = producto;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Producto *ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Producto* resultados = new Producto[0];
+    unsigned int contador = 0;
+    Producto producto;
+    while (fread(&producto, sizeof(Producto), 1, archivo)) {
+        if (producto.getStock() >= stockMinimo) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = producto;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
 unsigned int ProductoManager::Contar() {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
