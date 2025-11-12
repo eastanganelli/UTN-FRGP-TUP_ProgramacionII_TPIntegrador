@@ -12,8 +12,16 @@ char Factura::getTipoFactura() {
     return this->tipoFactura;
 }
 
-float Factura::getTotalIVA() {
-    return this->totalIVA;
+void Factura::TotalSinIVA() {
+
+}
+
+void Factura::TotalConIVA() {
+
+}
+
+void Factura::CantidadItems() {
+
 }
 
 std::ostream& operator<<(std::ostream& os, Factura* obj) {

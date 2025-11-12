@@ -44,8 +44,10 @@ void TestingProductos() {
                       << productosBuscadoDesc->getCodigo() << " | Descripcion: " << productosBuscadoDesc->getDescripcion()
                       << " | Precio: " << productosBuscadoDesc->getPrecio() << " | Stock: " << productosBuscadoDesc->getStock() << std::endl;
     }
-}
 
+    delete[] listarxDescripcion;
+    delete[] productosBuscadoDesc;
+}
 
 std::string generarCodigoAlfaNumerico(int longitud) {
     const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

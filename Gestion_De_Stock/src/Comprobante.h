@@ -5,18 +5,16 @@
 
 #include "Item.h"
 #include "Fecha.h"
-#include "Cliente.h"
 
-#include <iostream>
 #include <cstring>
-#include <string>
 
 using namespace std;
 
 class Comprobante {
 private:
-    const unsigned int id;
+    const unsigned int numero;
     const unsigned int cantidadMaxItems;
+    char clienteDNI[8];
     unsigned int cantidadItems;
     Item items[ITEMS_MAX];
 
@@ -27,11 +25,11 @@ protected:
     float getPrecioTotal();
 
 public:
-    Comprobante(unsigned int _id);
+    Comprobante(unsigned int _numero = 0, string _clienteDNI = "");
     ~Comprobante();
 
     // Getters
-    unsigned int getID();
+    unsigned int getNumero();
     unsigned int getCodigoCliente();
     unsigned int getCantidadItems();
     Fecha& getFecha();

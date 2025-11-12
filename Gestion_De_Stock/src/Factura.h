@@ -17,12 +17,11 @@ private:
     Fecha vencimientoCAE;
 
 public:
-    Factura(unsigned int _id, char _tipoFactura = 'B');
+    Factura(unsigned int _id = 0, char _tipoFactura = 'B');
     ~Factura();
 
     // Getters
     char getTipoFactura();
-    float getTotalIVA();
     const char getCAE();
     Fecha getVencimientoCAE();
 
@@ -31,7 +30,9 @@ public:
     void setTotalIVA(float iva);
 
     // Métodos
-
+    void TotalSinIVA();
+    void TotalConIVA();
+    void CantidadItems();
 };
 
 std::ostream& operator<<(std::ostream& os, Factura* obj);

@@ -12,7 +12,8 @@ private:
     NotaDeCredito* ListarNotasDeCredito();
     bool Existe(Factura& factura);
     bool Existe(NotaDeCredito& notaDeCredito);
-    int Posicion(string dni, unsigned int& posicion);
+    int PosicionFactura(unsigned int numero, unsigned int& posicion);
+    int PosicionNotaDeCredito(unsigned int numero, unsigned int& posicion);
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
@@ -21,11 +22,11 @@ public:
 
     bool CrearFactura(Factura& f);
     bool CrearNotaDeCredito(NotaDeCredito& nc);
-    Factura* ObtenerFactura(string numero);
-    NotaDeCredito* ObtenerNotaDeCredito(string numero);
-    bool Modificar(string numero, Factura& facturaActualizado);
-    bool Modificar(string numero, NotaDeCredito& ndcActualizado);
-    bool Eliminar(string dni);
+    Factura* ObtenerFactura(unsigned int numero);
+    NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);
+    bool Modificar(unsigned int numero, Factura& facturaActualizado);
+    bool Modificar(unsigned int numero, NotaDeCredito& ndcActualizado);
+    bool Eliminar(unsigned int numero);
 
     unsigned int Contar();
 };

@@ -1,6 +1,7 @@
 #include "Comprobante.h"
 
-Comprobante::Comprobante(unsigned int _id) : id(_id), cantidadMaxItems(ITEMS_MAX) {
+Comprobante::Comprobante(unsigned int _numero, string _clienteDNI) : numero(_numero), cantidadMaxItems(ITEMS_MAX) {
+    strcpy(this->clienteDNI, _clienteDNI.c_str());
     this->cantidadItems = 0;
 }
 
@@ -16,8 +17,8 @@ float Comprobante::getPrecioTotal() {
     return total;
 }
 
-unsigned int Comprobante::getID() {
-    return this->id;
+unsigned int Comprobante::getNumero() {
+    return this->numero;
 }
 
 unsigned int Comprobante::getCodigoCliente() {
@@ -69,7 +70,7 @@ Item& Comprobante::operator[](unsigned int index) {
 
 void Comprobante::mostrar() {
     cout << "---------------------------------" << endl;
-    cout << "ID Venta: " << this->id << endl;
+    cout << "ID Venta: " << this->numero << endl;
     // cout << "Cliente: " << this->cliente << endl;
     cout << "Fecha de Comprobante: ";
     //this->fechaComprobante.mostrar();
