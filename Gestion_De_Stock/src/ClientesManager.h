@@ -3,7 +3,6 @@
 
 #include "Cliente.h"
 
-#include <iostream>
 #include <cstdio>
 #include <vector>
 #include <string>
