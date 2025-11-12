@@ -24,6 +24,7 @@ public:
     ~ProveedorManager();
 
     bool Crear(Proveedor& proveedor);
+    Proveedor* SeleccionarRandom();
     Proveedor* Obtener(string cuit);
     Proveedor* operator[](string cuit);
     bool Modificar(string cuit, Proveedor* proveedorActualizado);

@@ -56,6 +56,24 @@ bool ProveedorManager::Crear(Proveedor& proveedor) {
     return true;
 }
 
+Proveedor *ProveedorManager::SeleccionarRandom() {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    unsigned int cantidadProveedores = this->Contar();
+    if (cantidadProveedores == 0) {
+        fclose(archivo);
+        return nullptr;
+    }
+    unsigned int indiceAleatorio = rand() % cantidadProveedores;
+    fseek(archivo, sizeof(Proveedor) * indiceAleatorio, SEEK_SET);
+    Proveedor* proveedorSeleccionado = new Proveedor();
+    fread(proveedorSeleccionado, sizeof(Proveedor), 1, archivo);
+    fclose(archivo);
+    return proveedorSeleccionado;
+}
+
 Proveedor* ProveedorManager::Obtener(string cuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {

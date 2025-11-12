@@ -134,10 +134,13 @@ void loadData() {
     std::cout << "\n-------------------------------------\n" << std::endl;
 
     std::cout << "--- Datos de Productos Generados ---" << std::endl;
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 30; ++i) {
         DatosProducto dp;
-        dp.codigo = productos.generarCodigo();;
+        dp.codigo = productos.generarCodigo();
+        dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit();
         dp.descripcion = "Producto " + generarCodigoAlfaNumerico(5);
+        dp.precio = static_cast<float>((rand() % 10000) / 100.0 + 1.0);
+        dp.stock = rand() % 100 + 1;
 
         Producto dataProducto(dp.codigo, dp.codigoProveedor, dp.descripcion, dp.precio, dp.stock);
         productos.Crear(dataProducto);

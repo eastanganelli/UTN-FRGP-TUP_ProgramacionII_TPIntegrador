@@ -12,6 +12,9 @@ int main() {
     // Menu menu;
     // menu.mostrar();
 
+    loadData();
+
+    /*
     ClienteManager clientes("clientes.bin");
 
     Cliente* misClientes = clientes.ConsultaXDNI("30000001");
@@ -26,6 +29,7 @@ int main() {
     } else {
         cout << "No hay clientes registrados." << endl;
     }
+    */
 
     //TestingCliente();
     //TestingProveedores();
