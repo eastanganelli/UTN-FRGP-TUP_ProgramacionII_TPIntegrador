@@ -8,9 +8,9 @@ using namespace std;
 
 class Producto {
 private:
-    char codigo[9];
-    char codigoProveedor[12];
-    char descripcion[257];
+    char codigo[8];
+    char codigoProveedor[11];
+    char descripcion[256];
     float precio;
     unsigned int stock;
 
@@ -18,7 +18,7 @@ private:
 
 public:
     // Constructor y Desctructor
-    Producto(string codigo = "", string codigoProveedor = "", string descripcion = "", float precio = 0, unsigned int stock = 0);
+    Producto(string _codigo = "", string _codigoProveedor = "", string _descripcion = "", float _precio = 0, unsigned int _stock = 0);
     ~Producto();
 
     // Getters

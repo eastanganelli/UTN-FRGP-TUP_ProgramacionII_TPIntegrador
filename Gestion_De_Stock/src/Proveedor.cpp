@@ -16,7 +16,7 @@ bool Proveedor::getAlta() {
 }
 
 string Proveedor::getCuit() {
-    return string(this->cuit);
+    return string(this->cuit, 11);
 }
 
 unsigned int Proveedor::getRubro() {

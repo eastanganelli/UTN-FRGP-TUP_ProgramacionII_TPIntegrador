@@ -304,11 +304,11 @@ string ProductoManager::generarCodigo() {
     string codigo;
 
     while(true) {
-        for (int i = 0; i < 9; ++i) {
+        for (int i = 0; i < 8; ++i) {
             int indiceAleatorio = rand() % numCaracteresPosibles;
             codigo += caracteresPosibles[indiceAleatorio];
         }
-        codigo += '\0';
+        //codigo += '\0';
         if(!this->Existe(codigo)) {
             break;
         }

@@ -13,7 +13,7 @@ Cliente::~Cliente() {
 }
 
 string Cliente::getDNI() {
-    return string(this->DNI);
+    return string(this->DNI, 8);
 }
 
 string Cliente::getNombre() {
