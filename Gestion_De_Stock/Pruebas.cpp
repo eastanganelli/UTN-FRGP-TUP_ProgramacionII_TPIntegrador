@@ -69,18 +69,26 @@ void loadData() {
     ClienteManager clientes("clientes.bin");
     ProveedorManager proveedores("proveedores.bin");
 
+    string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
+                          "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
+           apellidos[] = {"Perez", "Gomez", "Rodriguez", "Lopez", "Garcia", "Martinez", "Sanchez", "Ramirez", "Torres", "Flores",
+                          "Diaz", "Vargas", "Castro", "Rojas", "Silva", "Molina", "Suarez", "Ortega", "Gutierrez", "Jimenez", "Morales", "Alvarez"},
+           calles[]    = {"Calle Falsa", "Avenida Siempreviva", "Boulevard Central", "Pasaje del Sol", "Camino Real",
+                          "Paseo de las Flores", "Calle del Lago", "Avenida de la Libertad", "Callejón del Beso", "Paseo del Parque",
+                          "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
+
     std::cout << "--- Datos de Clientes Generados ---" << std::endl;
     for (int i = 0; i < 10; ++i) {
         DatosCliente dc;
-        dc.nombre = "Cliente" + std::to_string(i + 1);
-        dc.apellido = "Apellido" + std::to_string(i + 1);
-        dc.DNI = std::to_string(30000000 + i);
-        dc.cuilCuit = "20" + std::to_string(30000000 + i) + "1";
-        dc.direccion = "Calle Falsa " + std::to_string(100 + i);
-        dc.correo = "cliente" + std::to_string(i + 1) + "@example.com";
+        dc.nombre = nombres[rand() % nombres->length()];
+        dc.apellido = apellidos[rand() % apellidos->length()];
+        dc.DNI = std::to_string(rand() % 40000000 + i);
+        dc.cuilCuit = "20" + dc.DNI + "1";
+        dc.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
+        dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
         dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
         dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
-        dc.codigoRazonSocial = 1000 + i;
+        dc.codigoRazonSocial = rand() % 3 + 1;
         dc.alta = (i % 2 == 0);
 
         Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.codigoRazonSocial, dc.alta);
@@ -96,6 +104,31 @@ void loadData() {
     std::cout << "\n-------------------------------------\n" << std::endl;
 
     std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
+    for (int i = 0; i < 5; ++i) {
+        DatosProveedor dp;
+        dp.cuit = "30" + std::to_string(rand() % 40000000 + i) + "9";
+        dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(6);
+        dp.rubro = (i % 6) + 1;
+        dp.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
+        dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com";
+        dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000);
+        dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+        dp.codigoRazonSocial = rand() % 6 + 1;
+        dp.alta = (i % 2 != 0);
+
+        Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, dp.codigoRazonSocial, dp.alta);
+        proveedores.Crear(dataProveedor);
+
+        std::cout << "Proveedor " << i + 1 << ": " << dp.nombreRazon
+                  << " | CUIT: " << dp.cuit << " | Rubro: " << dp.rubro
+                  << " | Dir: " << dp.direccion << " | Correo: " << dp.correo
+                  << " | Tel: " << dp.telefono << " | Cel: " << dp.celular
+                  << " | Cod Razon Soc: " << dp.codigoRazonSocial
+                  << " | Alta: " << (dp.alta ? "Si" : "No") << std::endl;
+    }
+    std::cout << "\n-------------------------------------\n" << std::endl;
+
+    std::cout << "--- Datos de Productos Generados ---" << std::endl;
     for (int i = 0; i < 5; ++i) {
         DatosProveedor dp;
         dp.cuit = "30" + std::to_string(70000000 + i) + "9";

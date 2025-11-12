@@ -1,8 +1,8 @@
 #ifndef PRUEBAS_H
 #define PRUEBAS_H
 
-#include <iostream>
 #include <ctime>
+#include <iostream>
 
 #include "src/ClientesManager.h"
 #include "src/ProveedoresManager.h"
@@ -39,6 +39,14 @@ struct DatosProveedor {
     std::string celular;
     unsigned int codigoRazonSocial;
     bool alta;
+};
+
+struct DatosProducto {
+    std::string codigo;
+    std::string codigoProveedor;
+    std::string descripcion;
+    float precio;
+    unsigned int stock;
 };
 
 std::string generarCodigoAlfaNumerico(int longitud);
