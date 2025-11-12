@@ -11,10 +11,10 @@ using namespace std;
 
 class Cliente : public DatosPersonales {
 private:
-    char DNI[8];
-    char nombre[20];
-    char apellido[20];
-    char cuilCuit[11];
+    char DNI[9];
+    char nombre[21];
+    char apellido[21];
+    char cuilCuit[12];
 
 public:
     Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
@@ -33,9 +33,7 @@ public:
     void setCuilCuit(const string& cuilCuit);
 
     // Métodos
-    //void cargar();
-    //bool escribirDisco(int pos);
-    //bool leerDisco(int pos);
+
 };
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj);

@@ -7,23 +7,19 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <vector>
 
 using namespace std;
 
 class NotaDeCredito : public Comprobante {
 private:
-    int idFacturaOriginal;
-    char motivoAnulacion[256];
+    char motivoAnulacion[257];
 
 public:
     // Getters
-    int getIDFacturaOriginal();
     string getMotivoAnulacion();
 
     // Setters
-    void setIDFacturaOriginal(int id);
-    void setMotivoAnulacion(const string& m);
+    void setMotivoAnulacion(const string m);
 
     // Metodos
     void agregarItem(Producto*& item);

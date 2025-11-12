@@ -10,7 +10,7 @@ using namespace std;
 class Item {
 private:
     unsigned int codigoProducto;
-    char descripcion[100];
+    char descripcion[101];
     unsigned int cantidad;
     float precioUnitario;
 

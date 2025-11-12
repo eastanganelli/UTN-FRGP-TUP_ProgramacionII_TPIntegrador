@@ -1,5 +1,15 @@
 #include "../include/Producto.h"
 
+Producto::Producto(string codigo, string codigoProveedor, string descripcion, float precio, unsigned int stock) {
+    string aux_codigo = "";
+
+
+}
+
+Producto::~Producto() {
+
+}
+
 string Producto::getCodigo() {
     return string(this->codigo);
 }
@@ -18,10 +28,6 @@ float Producto::getPrecio() {
 
 unsigned int Producto::getStock() {
     return this->stock;
-}
-
-void Producto::setCodigo(string c) {
-    strcpy(this->codigo, c.c_str());
 }
 
 void Producto::setPrecio(float p) {

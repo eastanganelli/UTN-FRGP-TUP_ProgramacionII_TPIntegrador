@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <vector>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
     string rutaArchivo;
 
     int Posicion(string codigo, unsigned int& posicion);
+    bool Existe(string codigo);
     bool Existe(Producto& producto);
 
 public:
@@ -29,6 +31,7 @@ public:
     vector<Producto> Listar();
 
     unsigned int Contar();
+    string generarCodigo();
 };
 
 #endif // PRODUCTOMANAGER_H

@@ -63,7 +63,8 @@ Proveedor* ProveedorManager::Obtener(string cuit) {
     }
     Proveedor* proveedor = new Proveedor();
     while (fread(proveedor, sizeof(Proveedor), 1, archivo)) {
-        if (proveedor->getCuit() == cuit) {
+        string cuitProveedor = proveedor->getCuit();
+        if (cuitProveedor == cuit) {
             fclose(archivo);
             return proveedor;
         }
@@ -154,4 +155,21 @@ unsigned int ProveedorManager::Contar() {
     unsigned int size = ftell(archivo);
     fclose(archivo);
     return size / sizeof(Proveedor);
+}
+
+void ProveedorManager::ImprimirRubros() {
+    unsigned int i = 0;
+    cout << "ID | Rubro" << endl << "===========" << endl;
+    for(string rubro: this->rubros) {
+        cout << i << " | " << rubro << endl;
+    }
+}
+
+string ProveedorManager::getNombreRubro(unsigned int cr) {
+    for(unsigned int i = 0; i < this->rubros->length(); i++) {
+        if(i == cr) {
+            return this->rubros[i];
+        }
+    }
+    return "Otros";
 }

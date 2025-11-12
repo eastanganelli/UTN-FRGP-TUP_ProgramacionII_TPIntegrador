@@ -2,35 +2,30 @@
 #define PROVEEDOR_H
 
 #include "DatosPersonales.h"
-#include "TipoResponsable.h"
 
-#include <iostream>
 #include <cstring>
 
 using namespace std;
 
 class Proveedor : public DatosPersonales {
 private:
-    int id;
-    char rubro[15];
     char cuit[11];
     char nombreRazon[35];
+    unsigned int rubro;
 
 public:
-    Proveedor(unsigned int _id = 0, string _cuit = "", string _nombreRazon = "", string _rubro = "", string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
+    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
     ~Proveedor();
 
     // Getters
-    int getID();
     bool getAlta();
     string getCuit();
-    string getRubro();
+    unsigned int getRubro();
     string getNombreRazon();
 
     // Setters
-    void setCuit(string& cuit);
-    void setRubro(string& rubro);
-    void setNombreRazon(string& nombre);
+    void setRubro(unsigned int rubro);
+    void setNombreRazon(string nombre);
 
     // Metodos
 
