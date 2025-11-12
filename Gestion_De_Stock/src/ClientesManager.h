@@ -13,9 +13,10 @@ private:
     string rutaArchivo;
 
     Cliente* Listar();
+    Cliente* Redimensionar(Cliente* clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    void Imprimir(Cliente* misClientes, unsigned int cantidadClientes);
     bool Existe(Cliente& cliente);
     int Posicion(string dni, unsigned int& posicion);
-    Cliente* Redimensionar(Cliente* clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
     ClienteManager(string ruta);
@@ -27,9 +28,9 @@ public:
     bool Modificar(string dni, Cliente* clienteActualizado);
     bool Modificar(string dni, Cliente& clienteActualizado);
     bool Eliminar(string dni);
-    Cliente* ListarXApellido();
-    Cliente* ListarXDNI();
-    Cliente* ListarXcuilcuit();
+    void ListarXApellido();
+    void ListarXDNI();
+    void ListarXcuilcuit();
     Cliente* ConsultaXCUILCuit(string cuilcuit);
     Cliente* ConsultaXDNI(string dni);
     Cliente* ConsultaXNombreApellido(string nombre, string apellido);

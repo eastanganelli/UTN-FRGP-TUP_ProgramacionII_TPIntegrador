@@ -168,12 +168,13 @@ Proveedor* ProveedorManager::Listar() {
     return proveedores;
 }
 
-Proveedor *ProveedorManager::ListarXNombre() {
+void ProveedorManager::ListarXNombre() {
     Proveedor* misProveedores = this->Listar();
 
     if(misProveedores == nullptr) {
-        for (unsigned int i = 0; i < this->Contar() - 1; i++) {
-            for (unsigned int j = 0; j < this->Contar() - i - 1; j++) {
+        const unsigned int cantidadProveedores = this->Contar();
+        for (unsigned int i = 0; i < cantidadProveedores - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProveedores - i - 1; j++) {
                 if (misProveedores[j].getNombreRazon() > misProveedores[j + 1].getNombreRazon()) {
                     Proveedor temp = misProveedores[j];
                     misProveedores[j] = misProveedores[j + 1];
@@ -181,12 +182,11 @@ Proveedor *ProveedorManager::ListarXNombre() {
                 }
             }
         }
+        this->Imprimir(misProveedores, cantidadProveedores);
     }
-
-    return misProveedores;
 }
 
-Proveedor *ProveedorManager::ListarXRubro() {
+void ProveedorManager::ListarXRubro() {
     Proveedor* misProveedores = this->Listar();
 
     if(misProveedores != nullptr) {
@@ -200,12 +200,11 @@ Proveedor *ProveedorManager::ListarXRubro() {
                 }
             }
         }
+        this->Imprimir(misProveedores, cantidadProveedores);
     }
-
-    return misProveedores;
 }
 
-Proveedor *ProveedorManager::ListarXCUIT() {
+void ProveedorManager::ListarXCUIT() {
     Proveedor* misProveedores = this->Listar();
 
     if(misProveedores != nullptr) {
@@ -219,9 +218,8 @@ Proveedor *ProveedorManager::ListarXCUIT() {
                 }
             }
         }
+        this->Imprimir(misProveedores, cantidadProveedores);
     }
-
-    return misProveedores;
 }
 
 Proveedor *ProveedorManager::ConsultarXCUIT(string cuit) {
@@ -304,6 +302,12 @@ Proveedor *ProveedorManager::Redimensionar(Proveedor *proveedores, unsigned int 
     }
     delete[] proveedores;
     return nuevosProveedores;
+}
+
+void ProveedorManager::Imprimir(Proveedor *misProveedores, unsigned int cantidadProveedores) {
+    for (unsigned int i = 0; i < cantidadProveedores; i++) {
+        cout << misProveedores[i].toString() << endl;
+    }
 }
 
 unsigned int ProveedorManager::Contar() {

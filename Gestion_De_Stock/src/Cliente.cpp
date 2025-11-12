@@ -44,6 +44,19 @@ void Cliente::setCuilCuit(const string& c) {
     strcpy(this->cuilCuit, c.c_str());
 }
 
+string Cliente::toString() {
+    string resultado = "Cliente: " + getNombre() + " " + getApellido() +
+                       " | DNI: " + getDNI() +
+                       " | CUIL/CUIT: " + getCuilCuit() +
+                       " | Dir: " + getDireccion() +
+                       " | Correo: " + getCorreo() +
+                       " | Tel: " + getTelefono() +
+                       " | Cel: " + getCelular() +
+                       " | Cod Razon Soc: " + to_string(getCodigoRazonSocial()) +
+                       " | Alta: " + (getAlta() ? "Si" : "No");
+    return resultado;
+}
+
 
 /**void Cliente::cargar() {
     std::cout << "ID Cliente: ";

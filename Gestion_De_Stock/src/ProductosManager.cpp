@@ -175,7 +175,13 @@ Producto *ProductoManager::Redimensionar(Producto *productos, unsigned int capac
     return nuevosProductos;
 }
 
-Producto *ProductoManager::ListarXCodigo() {
+void ProductoManager::Imprimir(Producto *misProductos, unsigned int cantidadProductos) {
+    for (unsigned int i = 0; i < cantidadProductos; i++) {
+        cout << misProductos[i].toString() << endl;
+    }
+}
+
+void ProductoManager::ListarXCodigo() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -189,12 +195,11 @@ Producto *ProductoManager::ListarXCodigo() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
     }
-
-    return misProductos;
 }
 
-Producto *ProductoManager::ListarXPrecio() {
+void ProductoManager::ListarXPrecio() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -208,12 +213,11 @@ Producto *ProductoManager::ListarXPrecio() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
     }
-
-    return misProductos;
 }
 
-Producto *ProductoManager::ListarXStock() {
+void ProductoManager::ListarXStock() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -227,9 +231,8 @@ Producto *ProductoManager::ListarXStock() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
     }
-
-    return misProductos;
 }
 
 Producto *ProductoManager::ConsultaXCodigo(string codigo) {

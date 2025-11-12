@@ -34,3 +34,12 @@ void Proveedor::setRubro(unsigned int rubro) {
 void Proveedor::setNombreRazon(string nombre) {
     strcpy(this->nombreRazon, nombre.c_str());
 }
+
+string Proveedor::toString() {
+    string estadoStr = this->alta ? "Activo" : "Inactivo";
+    return "CUIT: " + getCuit() + " | Nombre/Razon: " + getNombreRazon() + " | Rubro: " + to_string(getRubro()) +
+           " | Direccion: " + this->direccion + " | Correo: " + this->correo +
+           " | Telefono: " + this->telefono + " | Celular: " + this->celular +
+           " | Codigo Razon Social: " + to_string(this->codigoRazonSocial) +
+           " | Estado: " + estadoStr;
+}

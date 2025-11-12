@@ -14,6 +14,7 @@ void TestingProveedores() {
 void TestingProductos() {
     ProductoManager productos("productos.bin");
 
+    /*
     Producto* listarxStock = productos.ListarXStock();
     for (unsigned int i = 0; i < productos.Contar(); i++) {
         std::cout << "Producto " << i + 1 << ": " << listarxStock[i].getCodigo()
@@ -47,6 +48,7 @@ void TestingProductos() {
 
     delete[] listarxDescripcion;
     delete[] productosBuscadoDesc;
+    */
 }
 
 std::string generarCodigoAlfaNumerico(int longitud) {

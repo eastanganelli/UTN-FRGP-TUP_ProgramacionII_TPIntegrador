@@ -33,7 +33,7 @@ public:
     void setCuilCuit(const string& cuilCuit);
 
     // Métodos
-
+    string toString();
 };
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj);

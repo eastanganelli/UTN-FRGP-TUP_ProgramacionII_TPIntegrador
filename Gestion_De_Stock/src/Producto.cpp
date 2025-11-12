@@ -39,3 +39,11 @@ void Producto::setPrecio(float p) {
 void Producto::setStock(unsigned int s) {
     this->stock = s;
 }
+
+string Producto::toString() {
+    return "Codigo: " + this->getCodigo() +
+           " | Codigo Proveedor: " + this->getCodigoProveedor() +
+           " | Descripcion: " + this->getDescripcion() +
+           " | Precio: " + to_string(this->getPrecio()) +
+           " | Stock: " + to_string(this->getStock());
+}

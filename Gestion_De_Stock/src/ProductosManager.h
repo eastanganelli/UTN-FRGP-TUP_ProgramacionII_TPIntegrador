@@ -3,6 +3,7 @@
 
 #include "Producto.h"
 
+#include <iostream>
 #include <cstdio>
 #include <string>
 #include <ctime>
@@ -13,11 +14,12 @@ class ProductoManager {
 private:
     string rutaArchivo;
 
-    int Posicion(string codigo, unsigned int& posicion);
-    bool Existe(string codigo);
-    bool Existe(Producto& producto);
     Producto* Listar();
     Producto* Redimensionar(Producto* productos, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    void Imprimir(Producto* misProductos, unsigned int cantidadProductos);
+    bool Existe(string codigo);
+    bool Existe(Producto& producto);
+    int Posicion(string codigo, unsigned int& posicion);
 
 public:
     ProductoManager(string ruta);
@@ -30,9 +32,9 @@ public:
     bool Modificar(string codigo, Producto& productoActualizado);
     bool Eliminar(string codigo);
 
-    Producto* ListarXCodigo();
-    Producto* ListarXPrecio();
-    Producto* ListarXStock();
+    void ListarXCodigo();
+    void ListarXPrecio();
+    void ListarXStock();
     Producto* ConsultaXCodigo(string codigo);
     Producto* ConsultaXDescripcion(string descripcion);
     Producto* ConsultaXStockMinimo(unsigned int stockMinimo);

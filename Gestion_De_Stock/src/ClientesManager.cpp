@@ -37,6 +37,12 @@ Cliente *ClienteManager::Redimensionar(Cliente *clientes, unsigned int capacidad
     return nuevosClientes;
 }
 
+void ClienteManager::Imprimir(Cliente* misClientes, unsigned int cantidadClientes) {
+    for (unsigned int i = 0; i < cantidadClientes; i++) {
+        cout << misClientes[i].toString() << endl;
+    }
+}
+
 bool ClienteManager::Existe(Cliente& cliente) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
@@ -159,7 +165,7 @@ Cliente* ClienteManager::Listar() {
     return clientes;
 }
 
-Cliente *ClienteManager::ListarXApellido() {
+void ClienteManager::ListarXApellido() {
     Cliente* misClientes = this->Listar();
 
     if(misClientes != nullptr) {
@@ -173,12 +179,11 @@ Cliente *ClienteManager::ListarXApellido() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-
-    return misClientes;
 }
 
-Cliente *ClienteManager::ListarXDNI() {
+void ClienteManager::ListarXDNI() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -191,11 +196,11 @@ Cliente *ClienteManager::ListarXDNI() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-    return misClientes;
 }
 
-Cliente *ClienteManager::ListarXcuilcuit() {
+void ClienteManager::ListarXcuilcuit() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -208,9 +213,8 @@ Cliente *ClienteManager::ListarXcuilcuit() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-    return misClientes;
-
 }
 
 Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {

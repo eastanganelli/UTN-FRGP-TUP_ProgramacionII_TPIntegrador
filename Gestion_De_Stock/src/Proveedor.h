@@ -28,7 +28,7 @@ public:
     void setNombreRazon(string nombre);
 
     // Metodos
-
+    string toString();
 };
 
 #endif // PROVEEDOR_H

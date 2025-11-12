@@ -6,7 +6,7 @@
 
 class VentaManager {
 private:
-    string rutaArchivo;
+    string rutasArchivos[2];
 
     Factura* ListarFacturas();
     NotaDeCredito* ListarNotasDeCredito();
@@ -17,7 +17,7 @@ private:
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
-    VentaManager(string ruta);
+    VentaManager(string _nombreArchivoFactura = "facturas.bin", string _nombreArchivoNotaDeCredito = "notasdecredito.bin");
     ~VentaManager();
 
     bool CrearFactura(Factura& f);

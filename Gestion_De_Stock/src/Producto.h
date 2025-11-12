@@ -34,7 +34,7 @@ public:
     void setStock(unsigned int s);
 
     // Métodos
-    
+    string toString();
 };
 
 #endif // PRODUCTO_H
