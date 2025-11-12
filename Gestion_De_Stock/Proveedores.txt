@@ -1,0 +1,15 @@
+#include <vector>
+using namespace std;
+
+vector<Proveedor> proveedores = {
+    Proveedor("30-71543210-1", "Textiles del Sur S.A.", 1, "Av. Rivadavia 4500, CABA", "contacto@textilessur.com.ar", "011-4588-2233", "11-6677-8899", 1, true),
+    Proveedor("30-70987654-2", "Calzados Andino S.R.L.", 2, "Av. Colón 3210, Córdoba", "ventas@andino.com", "0351-442-5566", "11-7788-9900", 2, true),
+    Proveedor("30-69876543-9", "GastroChef Equipamientos", 3, "San Martín 1220, Rosario", "info@gastrochef.com", "0341-451-2233", "11-5566-7788", 1, true),
+    Proveedor("30-70234567-3", "Autopartes Delta S.A.", 4, "Camino Centenario 800, La Plata", "repuestos@delta.com", "0221-485-9900", "11-8899-1122", 3, true),
+    Proveedor("30-67890123-4", "Librería La Pluma", 5, "Mitre 123, Mar del Plata", "lapluma@gmail.com", "0223-477-6655", "11-5522-7744", 2, true),
+    Proveedor("30-66554433-8", "Moda Urbana S.A.", 6, "Av. Santa Fe 2900, CABA", "ventas@modaurbana.com", "011-4877-2211", "11-7788-3344", 1, true),
+    Proveedor("30-71234567-5", "Textil Neuquén S.R.L.", 1, "Belgrano 890, Neuquén", "textilneuquen@hotmail.com", "0299-442-3344", "11-6677-5566", 3, true),
+    Proveedor("30-69998877-2", "Auto Repuestos Río", 4, "Ruta 3 Km 45, San Justo", "ventas@autorepuestosrio.com", "011-4644-2211", "11-9988-7766", 1, true),
+    Proveedor("30-70112233-6", "Cocina Total", 3, "Moreno 500, Mendoza", "contacto@cocinatotal.com", "0261-420-9911", "11-6655-7788", 2, true),
+    Proveedor("30-70707070-0", "Distribuidora Escolar", 5, "Av. Eva Perón 1550, Lomas de Zamora", "info@distribuidoraescolar.com", "011-4228-4433", "11-7788-2211", 3, true)
+};
