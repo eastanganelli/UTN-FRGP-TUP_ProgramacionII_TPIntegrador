@@ -1,4 +1,4 @@
-#include "../include/TipoResponsable.h"
+#include "TipoResponsable.h"
 
 TipoResponsable::TipoResponsable(unsigned int _id, string _descripcion, float _porcentaje) : id(_id) {
     strcpy(this->descripcion, _descripcion.c_str());

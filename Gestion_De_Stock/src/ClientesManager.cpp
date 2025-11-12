@@ -1,4 +1,4 @@
-#include "../include/ClientesManager.h"
+#include "ClientesManager.h"
 
 ClienteManager::ClienteManager(string ruta) {
     this->rutaArchivo = ruta;

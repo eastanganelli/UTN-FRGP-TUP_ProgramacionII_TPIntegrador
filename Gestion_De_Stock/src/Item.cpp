@@ -1,4 +1,4 @@
-#include "../include/Item.h"
+#include "Item.h"
 
 Item::Item() : codigoProducto(0), cantidad(0), precioUnitario(0.0f) {
     strcpy(this->descripcion, "");

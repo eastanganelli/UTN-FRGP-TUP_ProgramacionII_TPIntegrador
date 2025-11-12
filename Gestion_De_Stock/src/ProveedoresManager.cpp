@@ -1,4 +1,4 @@
-#include "../include/ProveedoresManager.h"
+#include "ProveedoresManager.h"
 
 ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;

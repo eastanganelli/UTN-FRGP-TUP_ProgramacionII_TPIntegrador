@@ -1,4 +1,4 @@
-#include "../include/Cliente.h"
+#include "Cliente.h"
 
 Cliente::Cliente(string _nombre, string _apellido, string _DNI, string _cuilCuit, string direccion, string correo, string _telefono, string _celular, unsigned int _codigoRazonSocial, bool _alta)
     : DatosPersonales(_alta, direccion, correo, _telefono, _celular, _codigoRazonSocial) {

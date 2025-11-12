@@ -1,11 +1,11 @@
 #include <iostream>
-// #include "include/menu.h"
+// #include "menu.h"
 
 #include <ctime>
 
-#include "include/ClientesManager.h"
-#include "include/ProveedoresManager.h"
-#include "include/ProductosManager.h"
+#include "src/ClientesManager.h"
+#include "src/ProveedoresManager.h"
+#include "src/ProductosManager.h"
 
 using namespace std;
 

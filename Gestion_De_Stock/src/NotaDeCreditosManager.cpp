@@ -1,4 +1,4 @@
-#include "../include/NotaDeCreditosManager.h"
+#include "NotaDeCreditosManager.h"
 
 NotaDeCreditoManager::NotaDeCreditoManager(string& ruta) {
     this->rutaArchivo = ruta;
