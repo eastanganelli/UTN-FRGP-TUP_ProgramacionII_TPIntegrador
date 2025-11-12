@@ -27,6 +27,22 @@ int ProductoManager::Posicion(string codigo, unsigned int& posicion) {
     return -1;
 }
 
+bool ProductoManager::Existe(string codigo) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return false;
+    }
+    Producto tempProducto;
+    while (fread(&tempProducto, sizeof(Producto), 1, archivo)) {
+        if (tempProducto.getCodigo() == codigo) {
+            fclose(archivo);
+            return true;
+        }
+    }
+    fclose(archivo);
+    return false;
+}
+
 bool ProductoManager::Existe(Producto& producto) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
@@ -154,4 +170,25 @@ unsigned int ProductoManager::Contar() {
     unsigned int size = ftell(archivo);
     fclose(archivo);
     return size / sizeof(Producto);
+}
+
+string ProductoManager::generarCodigo() {
+    const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const int numCaracteresPosibles = sizeof(caracteresPosibles) - 1;
+
+    string codigo;
+
+    while(true) {
+        for (int i = 0; i < 9; ++i) {
+            int indiceAleatorio = rand() % numCaracteresPosibles;
+            codigo += caracteresPosibles[indiceAleatorio];
+        }
+        codigo += '\0';
+        if(!this->Existe(codigo)) {
+            break;
+        }
+        codigo.clear();
+    }
+
+    return codigo;
 }

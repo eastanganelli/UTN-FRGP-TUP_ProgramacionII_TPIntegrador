@@ -11,20 +11,20 @@ class Proveedor : public DatosPersonales {
 private:
     char cuit[11];
     char nombreRazon[35];
-    char rubro[15];
+    unsigned int rubro;
 
 public:
-    Proveedor(string _cuit = "", string _nombreRazon = "", string _rubro = "", string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
+    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
     ~Proveedor();
 
     // Getters
     bool getAlta();
     string getCuit();
-    string getRubro();
+    unsigned int getRubro();
     string getNombreRazon();
 
     // Setters
-    void setRubro(string rubro);
+    void setRubro(unsigned int rubro);
     void setNombreRazon(string nombre);
 
     // Metodos

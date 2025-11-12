@@ -33,9 +33,7 @@ public:
     void setCuilCuit(const string& cuilCuit);
 
     // Métodos
-    //void cargar();
-    //bool escribirDisco(int pos);
-    //bool leerDisco(int pos);
+
 };
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj);

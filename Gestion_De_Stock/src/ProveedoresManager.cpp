@@ -156,3 +156,20 @@ unsigned int ProveedorManager::Contar() {
     fclose(archivo);
     return size / sizeof(Proveedor);
 }
+
+void ProveedorManager::ImprimirRubros() {
+    unsigned int i = 0;
+    cout << "ID | Rubro" << endl << "===========" << endl;
+    for(string rubro: this->rubros) {
+        cout << i << " | " << rubro << endl;
+    }
+}
+
+string ProveedorManager::getNombreRubro(unsigned int cr) {
+    for(unsigned int i = 0; i < this->rubros->length(); i++) {
+        if(i == cr) {
+            return this->rubros[i];
+        }
+    }
+    return "Otros";
+}

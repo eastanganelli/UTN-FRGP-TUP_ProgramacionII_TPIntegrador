@@ -14,6 +14,8 @@ private:
     float precio;
     unsigned int stock;
 
+    void generarCodigoProducto(char* codigo);
+
 public:
     // Constructor y Desctructor
     Producto(string codigo = "", string codigoProveedor = "", string descripcion = "", float precio = 0, unsigned int stock = 0);

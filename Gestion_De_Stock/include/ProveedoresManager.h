@@ -3,6 +3,7 @@
 
 #include "Proveedor.h"
 
+#include <iostream>
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -11,6 +12,7 @@ using namespace std;
 
 class ProveedorManager {
 private:
+    const string rubros[6] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
     string rutaArchivo;
 
     int Posicion(string cuit, unsigned int& posicion);
@@ -29,6 +31,8 @@ public:
     vector<Proveedor> Listar();
 
     unsigned int Contar();
+    void ImprimirRubros();
+    string getNombreRubro(unsigned int cr);
 };
 
 #endif // PROVEEDORMANAGER_H

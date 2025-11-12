@@ -1,6 +1,8 @@
 #include <iostream>
 // #include "include/menu.h"
 
+#include <ctime>
+
 #include "include/ClientesManager.h"
 #include "include/ProveedoresManager.h"
 #include "include/ProductosManager.h"
@@ -36,7 +38,7 @@ void TestingCliente() {
 void TestingProveedores() {
     ProveedorManager proveedores("proveedores.bin");
 
-    Proveedor dipasqua("10390688572", "dipasqua", "textil", "av dr honorio 1915", "-", "1131454150", "", 0, true);
+    Proveedor dipasqua("10390688572", "dipasqua", 2, "av dr honorio 1915", "-", "1131454150", "", 0, true);
 
     proveedores.Crear(dipasqua);
 
@@ -52,17 +54,18 @@ void TestingProveedores() {
 void TestingProductos() {
     ProductoManager productos("productos.bin");
 
-    Producto alfajor();
+    string codigo = productos.generarCodigo();
+    Producto alfajor(codigo, "10390688572", "", 12.67, 20);
 }
 
 int main() {
-
+    srand(time(NULL));
     // Menu menu;
     // menu.mostrar();
 
     //TestingCliente();
     //TestingProveedores();
-    // TestingProductos();
+    TestingProductos();
 
     return 0;
 }

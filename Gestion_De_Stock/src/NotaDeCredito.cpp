@@ -1,10 +1,12 @@
 #include "../include/NotaDeCredito.h"
 
-int NotaDeCredito::getIDFacturaOriginal() { return this->idFacturaOriginal; }
-string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
+string NotaDeCredito::getMotivoAnulacion() {
+    return this->motivoAnulacion;
+}
 
-void NotaDeCredito::setIDFacturaOriginal(int id) { this->idFacturaOriginal = id; }
-void NotaDeCredito::setMotivoAnulacion(const string& m) { strcpy(this->motivoAnulacion, m.c_str()); }
+void NotaDeCredito::setMotivoAnulacion(const string m) {
+    strcpy(this->motivoAnulacion, m.c_str());
+}
 
 
 std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj) {
