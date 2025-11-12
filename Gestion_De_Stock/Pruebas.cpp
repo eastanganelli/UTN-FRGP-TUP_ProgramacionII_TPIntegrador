@@ -13,7 +13,7 @@ void TestingProveedores() {
 
 void TestingProductos() {
     ProductoManager productos("productos.bin");
-
+    //loadData();
     /*
     Producto* listarxStock = productos.ListarXStock();
     for (unsigned int i = 0; i < productos.Contar(); i++) {
