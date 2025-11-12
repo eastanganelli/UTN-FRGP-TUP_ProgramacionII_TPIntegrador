@@ -68,6 +68,7 @@ void loadData() {
     srand(static_cast<unsigned int>(time(NULL)));
     ClienteManager clientes("clientes.bin");
     ProveedorManager proveedores("proveedores.bin");
+    ProductoManager productos("productos.bin");
 
     string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
                           "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
@@ -75,7 +76,11 @@ void loadData() {
                           "Diaz", "Vargas", "Castro", "Rojas", "Silva", "Molina", "Suarez", "Ortega", "Gutierrez", "Jimenez", "Morales", "Alvarez"},
            calles[]    = {"Calle Falsa", "Avenida Siempreviva", "Boulevard Central", "Pasaje del Sol", "Camino Real",
                           "Paseo de las Flores", "Calle del Lago", "Avenida de la Libertad", "Callejón del Beso", "Paseo del Parque",
-                          "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
+                          "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"},
+            // la descripcion de los productos deberia tener el tipo de producto
+            descripcionProducto[] = {"Laptop", "Smartphone", "Tablet", "Monitor", "Teclado",
+                                     "Ratón", "Impresora", "Cámara", "Auriculares", "Altavoces",
+                                     "Disco Duro", "Memoria USB", "Router", "Smartwatch", "Proyector"};
 
     std::cout << "--- Datos de Clientes Generados ---" << std::endl;
     for (int i = 0; i < 10; ++i) {
@@ -130,26 +135,16 @@ void loadData() {
 
     std::cout << "--- Datos de Productos Generados ---" << std::endl;
     for (int i = 0; i < 5; ++i) {
-        DatosProveedor dp;
-        dp.cuit = "30" + std::to_string(70000000 + i) + "9";
-        dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(3);
-        dp.rubro = (i % 3) + 1;
-        dp.direccion = "Avenida Siempreviva " + std::to_string(500 + i);
-        dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com";
-        dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000);
-        dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
-        dp.codigoRazonSocial = rand() % 6 + 1;
-        dp.alta = (i % 2 != 0);
+        DatosProducto dp;
+        dp.codigo = productos.generarCodigo();;
+        dp.descripcion = "Producto " + generarCodigoAlfaNumerico(5);
 
-        Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, dp.codigoRazonSocial, dp.alta);
-        proveedores.Crear(dataProveedor);
+        Producto dataProducto(dp.codigo, dp.codigoProveedor, dp.descripcion, dp.precio, dp.stock);
+        productos.Crear(dataProducto);
 
-        std::cout << "Proveedor " << i + 1 << ": " << dp.nombreRazon
-                  << " | CUIT: " << dp.cuit << " | Rubro: " << dp.rubro
-                  << " | Dir: " << dp.direccion << " | Correo: " << dp.correo
-                  << " | Tel: " << dp.telefono << " | Cel: " << dp.celular
-                  << " | Cod Razon Soc: " << dp.codigoRazonSocial
-                  << " | Alta: " << (dp.alta ? "Si" : "No") << std::endl;
+        std::cout << "Producto " << i + 1 << ": " << dp.codigo
+                  << " | Codigo Proveedor: " << dp.codigoProveedor << " | Descripcion: " << dp.descripcion
+                  << " | Precio: " << dp.precio << " | Stock: " << dp.stock << std::endl;
     }
     std::cout << "\n-------------------------------------\n" << std::endl;
 }
