@@ -131,18 +131,75 @@ bool ClienteManager::Eliminar(string dni) {
     return encontrado;
 }
 
-vector<Cliente> ClienteManager::Listar() {
-    vector<Cliente> clientes;
-    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) {
-        return clientes;
+Cliente* ClienteManager::Listar() {
+    const unsigned int cantidadClientes = this->Contar();
+    Cliente* clientes = new Cliente[cantidadClientes];
+    if(cantidadClientes > 0 && clientes != nullptr) {
+        FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+        if (archivo == nullptr) {
+            return clientes;
+        }
+        unsigned int i = 0;
+        while (fread(&clientes[i], sizeof(Cliente), 1, archivo)) {
+            i++;
+        }
+        fclose(archivo);
     }
-    Cliente cliente;
-    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        clientes.push_back(cliente);
-    }
-    fclose(archivo);
     return clientes;
+}
+
+Cliente *ClienteManager::ListarXApellido() {
+    Cliente* misClientes = this->Listar();
+
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getApellido() > misClientes[j + 1].getApellido()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misClientes;
+}
+
+Cliente *ClienteManager::ListarXDNI() {
+    Cliente* misClientes = this->Listar();
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getDNI() > misClientes[j + 1].getDNI()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+    return misClientes;
+}
+
+Cliente *ClienteManager::ListarXcuilcuit() {
+    Cliente* misClientes = this->Listar();
+    if(misClientes != nullptr) {
+        const unsigned int cantidadClientes = this->Contar();
+        for (unsigned int i = 0; i < cantidadClientes - 1; i++) {
+            for (unsigned int j = 0; j < cantidadClientes - i - 1; j++) {
+                if (misClientes[j].getCuilCuit() > misClientes[j + 1].getCuilCuit()) {
+                    Cliente temp = misClientes[j];
+                    misClientes[j] = misClientes[j + 1];
+                    misClientes[j + 1] = temp;
+                }
+            }
+        }
+    }
+    return misClientes;
+
 }
 
 unsigned int ClienteManager::Contar() {

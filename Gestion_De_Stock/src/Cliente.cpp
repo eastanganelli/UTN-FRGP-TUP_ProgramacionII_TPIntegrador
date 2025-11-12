@@ -80,6 +80,11 @@ void Cliente::setCuilCuit(const string& c) {
 }**/
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj) {
-    //os << obj.getCuilCuit;
+    os << "Cliente: " << obj->getNombre() << " " << obj->getApellido()
+       << " | DNI: " << obj->getDNI() << " | CUIL/CUIT: " << obj->getCuilCuit()
+       << " | Dir: " << obj->getDireccion() << " | Correo: " << obj->getCorreo()
+       << " | Tel: " << obj->getTelefono() << " | Cel: " << obj->getCelular()
+       << " | Cod Razon Soc: " << obj->getCodigoRazonSocial()
+       << " | Alta: " << (obj->getAlta() ? "Si" : "No") << std::endl;
     return os;
 }

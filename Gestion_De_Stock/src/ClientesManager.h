@@ -13,8 +13,9 @@ class ClienteManager {
 private:
     string rutaArchivo;
 
-    int Posicion(string dni, unsigned int& posicion);
+    Cliente* Listar();
     bool Existe(Cliente& cliente);
+    int Posicion(string dni, unsigned int& posicion);
 
 public:
     ClienteManager(string ruta);
@@ -26,7 +27,9 @@ public:
     bool Modificar(string dni, Cliente* clienteActualizado);
     bool Modificar(string dni, Cliente& clienteActualizado);
     bool Eliminar(string dni);
-    vector<Cliente> Listar();
+    Cliente* ListarXApellido();
+    Cliente* ListarXDNI();
+    Cliente* ListarXcuilcuit();
 
     unsigned int Contar();
 };
