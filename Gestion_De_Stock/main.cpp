@@ -12,7 +12,7 @@ int main() {
     // Menu menu;
     // menu.mostrar();
 
-    loadData();
+    // loadData();
 
     /*
     ClienteManager clientes("clientes.bin");
