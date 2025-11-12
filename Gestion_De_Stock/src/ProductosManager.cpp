@@ -147,17 +147,21 @@ bool ProductoManager::Eliminar(string codigo) {
     return encontrado;
 }
 
-vector<Producto> ProductoManager::Listar() {
-    vector<Producto> productos;
-    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) {
-        return productos;
+Producto *ProductoManager::Listar() {
+    const unsigned int cantidadProductos = this->Contar();
+    Producto* productos = new Producto[cantidadProductos];;
+    if(cantidadProductos == 0 && productos != nullptr) {
+        FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+        if (archivo == nullptr) {
+            delete[] productos;
+            return nullptr;
+        }
+        unsigned int i = 0;
+        while (fread(&productos[i], sizeof(Producto), 1, archivo)) {
+            i++;
+        }
+        fclose(archivo);
     }
-    Producto producto;
-    while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        productos.push_back(producto);
-    }
-    fclose(archivo);
     return productos;
 }
 

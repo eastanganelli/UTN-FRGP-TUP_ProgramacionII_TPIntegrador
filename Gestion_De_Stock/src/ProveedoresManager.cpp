@@ -132,18 +132,160 @@ bool ProveedorManager::Eliminar(string cuit) {
     return encontrado;
 }
 
-vector<Proveedor> ProveedorManager::Listar() {
-    vector<Proveedor> proveedors;
+Proveedor* ProveedorManager::Listar() {
+    const unsigned int cantidadProveedores = this->Contar();
+    Proveedor* proveedores = new Proveedor[cantidadProveedores];;
+    if(cantidadProveedores == 0 && proveedores != nullptr) {
+        FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+        if (archivo == nullptr) {
+            delete[] proveedores;
+            return nullptr;
+        }
+        unsigned int i = 0;
+        while (fread(&proveedores[i], sizeof(Proveedor), 1, archivo)) {
+            i++;
+        }
+        fclose(archivo);
+    }
+    return proveedores;
+}
+
+Proveedor *ProveedorManager::ListarXNombre() {
+    Proveedor* misProveedores = this->Listar();
+
+    if(misProveedores == nullptr) {
+        for (unsigned int i = 0; i < this->Contar() - 1; i++) {
+            for (unsigned int j = 0; j < this->Contar() - i - 1; j++) {
+                if (misProveedores[j].getNombreRazon() > misProveedores[j + 1].getNombreRazon()) {
+                    Proveedor temp = misProveedores[j];
+                    misProveedores[j] = misProveedores[j + 1];
+                    misProveedores[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProveedores;
+}
+
+Proveedor *ProveedorManager::ListarXRubro() {
+    Proveedor* misProveedores = this->Listar();
+
+    if(misProveedores != nullptr) {
+        const unsigned int cantidadProveedores = this->Contar();
+        for (unsigned int i = 0; i < cantidadProveedores - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProveedores - i - 1; j++) {
+                if (misProveedores[j].getRubro() > misProveedores[j + 1].getRubro()) {
+                    Proveedor temp = misProveedores[j];
+                    misProveedores[j] = misProveedores[j + 1];
+                    misProveedores[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProveedores;
+}
+
+Proveedor *ProveedorManager::ListarXCUIT() {
+    Proveedor* misProveedores = this->Listar();
+
+    if(misProveedores != nullptr) {
+        const unsigned int cantidadProveedores = this->Contar();
+        for (unsigned int i = 0; i < cantidadProveedores - 1; i++) {
+            for (unsigned int j = 0; j < cantidadProveedores - i - 1; j++) {
+                if (misProveedores[j].getCuit() > misProveedores[j + 1].getCuit()) {
+                    Proveedor temp = misProveedores[j];
+                    misProveedores[j] = misProveedores[j + 1];
+                    misProveedores[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return misProveedores;
+}
+
+Proveedor *ProveedorManager::ConsultarXCUIT(string cuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return proveedors;
+        return nullptr;
     }
+    Proveedor* resultados = new Proveedor[0];
+    unsigned int contador = 0;
     Proveedor proveedor;
     while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
-        proveedors.push_back(proveedor);
+        if (proveedor.getCuit() == cuit) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = proveedor;
+        }
     }
     fclose(archivo);
-    return proveedors;
+    return resultados;
+}
+
+Proveedor *ProveedorManager::ConsultarXNombre(string nombreRazon) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Proveedor* resultados = new Proveedor[0];
+    unsigned int contador = 0;
+    Proveedor proveedor;
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor.getNombreRazon() == nombreRazon) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = proveedor;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Proveedor *ProveedorManager::ConsultarXRubro(unsigned int rubro) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Proveedor* resultados = new Proveedor[0];
+    unsigned int contador = 0;
+    Proveedor proveedor;
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor.getRubro() == rubro) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = proveedor;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Proveedor *ProveedorManager::ConsultarXEstado(bool estado) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return nullptr;
+    }
+    Proveedor* resultados = new Proveedor[0];
+    unsigned int contador = 0;
+    Proveedor proveedor;
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        if (proveedor.getAlta() == estado) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = proveedor;
+        }
+    }
+    fclose(archivo);
+    return resultados;
+}
+
+Proveedor *ProveedorManager::Redimensionar(Proveedor *proveedores, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
+    Proveedor* nuevosProveedores = new Proveedor[nuevaCapacidad];
+    unsigned int elementosACopiar = (capacidadActual < nuevaCapacidad) ? capacidadActual : nuevaCapacidad;
+    for (unsigned int i = 0; i < elementosACopiar; i++) {
+        nuevosProveedores[i] = proveedores[i];
+    }
+    delete[] proveedores;
+    return nuevosProveedores;
 }
 
 unsigned int ProveedorManager::Contar() {

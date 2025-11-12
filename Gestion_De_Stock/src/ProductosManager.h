@@ -17,6 +17,7 @@ private:
     int Posicion(string codigo, unsigned int& posicion);
     bool Existe(string codigo);
     bool Existe(Producto& producto);
+    Producto* Listar();
 
 public:
     ProductoManager(string ruta);
@@ -28,7 +29,6 @@ public:
     bool Modificar(string codigo, Producto* productoActualizado);
     bool Modificar(string codigo, Producto& productoActualizado);
     bool Eliminar(string codigo);
-    vector<Producto> Listar();
 
     unsigned int Contar();
     string generarCodigo();

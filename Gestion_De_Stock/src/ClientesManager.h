@@ -4,7 +4,6 @@
 #include "Cliente.h"
 
 #include <cstdio>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -16,6 +15,7 @@ private:
     Cliente* Listar();
     bool Existe(Cliente& cliente);
     int Posicion(string dni, unsigned int& posicion);
+    Cliente* Redimensionar(Cliente* clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
     ClienteManager(string ruta);
@@ -30,6 +30,10 @@ public:
     Cliente* ListarXApellido();
     Cliente* ListarXDNI();
     Cliente* ListarXcuilcuit();
+    Cliente* ConsultaXCUILCuit(string cuilcuit);
+    Cliente* ConsultaXDNI(string dni);
+    Cliente* ConsultaXNombreApellido(string nombre, string apellido);
+    Cliente* ConsultaXCorreo(string correo);
 
     unsigned int Contar();
 };

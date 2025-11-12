@@ -14,7 +14,7 @@ int main() {
 
     ClienteManager clientes("clientes.bin");
 
-    Cliente* misClientes = clientes.ListarXDNI();
+    Cliente* misClientes = clientes.ConsultaXDNI("30000001");
 
     if (misClientes != nullptr) {
         const unsigned int cantidadClientes = clientes.Contar();

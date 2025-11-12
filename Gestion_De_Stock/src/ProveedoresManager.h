@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <cstdio>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -17,6 +16,8 @@ private:
 
     int Posicion(string cuit, unsigned int& posicion);
     bool Existe(Proveedor& proveedor);
+    Proveedor* Listar();
+    Proveedor* Redimensionar(Proveedor* proveedores, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
 public:
     ProveedorManager(string ruta);
@@ -28,8 +29,14 @@ public:
     bool Modificar(string cuit, Proveedor* proveedorActualizado);
     bool Modificar(string cuit, Proveedor& proveedorActualizado);
     bool Eliminar(string cuit);
-    vector<Proveedor> Listar();
 
+    Proveedor* ListarXNombre();
+    Proveedor* ListarXRubro();
+    Proveedor* ListarXCUIT();
+    Proveedor* ConsultarXCUIT(string cuit);
+    Proveedor* ConsultarXNombre(string nombreRazon);
+    Proveedor* ConsultarXRubro(unsigned int rubro);
+    Proveedor* ConsultarXEstado(bool estado);
     unsigned int Contar();
     unsigned int SeleccionarRubro();
     string getNombreRubro(unsigned int cr);
