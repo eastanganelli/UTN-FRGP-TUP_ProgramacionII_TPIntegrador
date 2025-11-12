@@ -26,9 +26,11 @@ public:
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);
     bool Modificar(unsigned int numero, Factura& facturaActualizado);
     bool Modificar(unsigned int numero, NotaDeCredito& ndcActualizado);
-    bool Eliminar(unsigned int numero);
+    bool EliminarFactura(unsigned int numero);
+    bool EliminarNotaDeCredito(unsigned int numero);
 
-    unsigned int Contar();
+    unsigned int ContarFacturas();
+    unsigned int ContarNotasDeCreditos();
 };
 
 #endif // VENTASMANAGER_H
