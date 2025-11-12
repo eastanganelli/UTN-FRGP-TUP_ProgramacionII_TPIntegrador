@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <cstring>
-#include <string>
 
 using namespace std;
 
@@ -14,7 +13,7 @@ private:
     char tipoFactura; // 'A', 'B', 'C'
     float total;
     float totalIVA;
-    char cae[14];
+    char cae[15];
     Fecha vencimientoCAE;
 
 public:

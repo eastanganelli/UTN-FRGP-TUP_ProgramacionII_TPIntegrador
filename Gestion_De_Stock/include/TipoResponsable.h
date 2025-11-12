@@ -9,7 +9,7 @@ using namespace std;
 class TipoResponsable {
 private:
     const unsigned int id;
-    char descripcion[50];
+    char descripcion[51];
     float porcentaje;
 
 public:

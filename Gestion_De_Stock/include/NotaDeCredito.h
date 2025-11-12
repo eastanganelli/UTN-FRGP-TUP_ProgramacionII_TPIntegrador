@@ -14,7 +14,7 @@ using namespace std;
 class NotaDeCredito : public Comprobante {
 private:
     int idFacturaOriginal;
-    char motivoAnulacion[256];
+    char motivoAnulacion[257];
 
 public:
     // Getters

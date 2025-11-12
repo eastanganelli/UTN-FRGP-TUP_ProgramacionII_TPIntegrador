@@ -8,9 +8,9 @@ using namespace std;
 
 class Producto {
 private:
-    char codigo[8];
-    char codigoProveedor[11];
-    char descripcion[256];
+    char codigo[9];
+    char codigoProveedor[12];
+    char descripcion[257];
     float precio;
     unsigned int stock;
 
