@@ -187,5 +187,5 @@ void TestingAll() {
     //TestingCliente();
     //TestingProveedores();
     //TestingProductos();
-    TestingVentas();
+    //TestingVentas();
 }

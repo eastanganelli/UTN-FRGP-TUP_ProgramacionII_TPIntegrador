@@ -327,13 +327,58 @@
            if (titulo == "MENU CLIENTES") {
                 opcionSub = renderClientesLC();
                 if (opcionSub == 1) {
-                  //  clientesManager.Crear();
+                  string nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear;
+                  unsigned int codigoRazonSocial;
+                  bool alta;
+                  cout << "Ingrese el nombre del cliente: "; cin >> nombreClienteCrear;
+                  cout << "Ingrese el apellido del cliente: "; cin >> apellidoClienteCrear;
+                  cout << "Ingrese el DNI del cliente: "; cin >> DNIClienteCrear;
+                  cout << "Ingrese el CUIL/CUIT del cliente: "; cin >> cuilCuitClienteCrear;
+                  cout << "Ingrese la direccion del cliente: "; cin >> direccionClienteCrear;
+                  cout << "Ingrese el correo del cliente: "; cin >> correoClienteCrear;
+                  cout << "Ingrese el telefono del cliente: "; cin >> telefonoClienteCrear;
+                  cout << "Ingrese el celular del cliente: "; cin >> celularClienteCrear;
+                  cout << "Ingrese el codigo razon social: "; cin >> codigoRazonSocial;
+                  cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
+                  Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, codigoRazonSocial, alta);
+                  if(clientesManager.Crear(nuevo)) cout << "Cliente creado exitosamente." << endl;
+                  else cout << "Error: El cliente ya existe o hubo un problema." << endl;
+                  system("pause");
                 }
                 if (opcionSub == 2) {
-                  //  clientesManager.Eliminar();
+                 string dniEliminar;
+                 cout << "Ingrese el DNI del cliente a eliminar: ";
+                 cin >> dniEliminar;
+                 if (clientesManager.Eliminar(dniEliminar)) cout << "Cliente eliminado exitosamente." << endl;
+                 else cout << "Error: Cliente no encontrado o no se pudo eliminar." << endl;
+                 system("pause");
                 }
                 if (opcionSub == 3) {
-                  //  clientesManager.Modificar();
+                 string dniModificar;
+                 cout << "Ingrese el DNI del cliente a modificar: ";
+                 cin >> dniModificar;
+                 Cliente* actual = clientesManager.Obtener(dniModificar);
+                 if (actual == nullptr) {
+                     cout << "Error: Cliente no encontrado." << endl;
+                     system("pause");
+                 } else {
+                     string nombre, apellido, cuilCuit, direccion, correo, telefono, celular;
+                     unsigned int codigoRazonSocial;
+                     bool alta;
+                     cout << "Ingrese nuevo nombre: "; cin >> nombre;
+                     cout << "Ingrese nuevo apellido: "; cin >> apellido;
+                     cout << "Ingrese nuevo CUIL/CUIT: "; cin >> cuilCuit;
+                     cout << "Ingrese nueva direccion: "; cin >> direccion;
+                     cout << "Ingrese nuevo correo: "; cin >> correo;
+                     cout << "Ingrese nuevo telefono: "; cin >> telefono;
+                     cout << "Ingrese nuevo celular: "; cin >> celular;
+                     cout << "Ingrese nuevo codigo razon social: "; cin >> codigoRazonSocial;
+                     cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
+                     Cliente modificado(nombre, apellido, dniModificar, cuilCuit, direccion, correo, telefono, celular, codigoRazonSocial, alta);
+                     if (clientesManager.Modificar(dniModificar, modificado)) cout << "Cliente modificado exitosamente." << endl;
+                     else cout << "Error al modificar el cliente." << endl;
+                     system("pause");
+                 }
                 }
                 if (opcionSub == 4) {
                     clientesManager.ListarXApellido();
@@ -424,7 +469,6 @@
             } else if (titulo == "MENU PROVEEDORES") {
                 opcionSub = renderProveedoresLC();
                 if(opcionSub == 1) {
-                  //  proveedoresManager.Crear();
                 }
                 if(opcionSub == 2) {
                   //  proveedoresManager.Eliminar();
@@ -472,13 +516,46 @@
             } else if (titulo == "MENU PRODUCTOS") {
                 opcionSub = renderProductosLC();
                 if (opcionSub == 1) {
-                  //  productosManager.Crear();
+                    string codigoProductoCrear, codigoProveedorCrear, descripcionProductoCrear;
+                    float precioProductoCrear;
+                    unsigned int stockProductoCrear;
+                    cout << "Ingrese código: "; cin >> codigoProductoCrear;
+                    cout << "Ingrese código proveedor: "; cin >> codigoProveedorCrear;
+                    cout << "Ingrese descripción: "; cin >> descripcionProductoCrear;
+                    cout << "Ingrese precio: "; cin >> precioProductoCrear;
+                    cout << "Ingrese stock: "; cin >> stockProductoCrear;
+                    Producto nuevo(codigoProductoCrear, codigoProveedorCrear, descripcionProductoCrear, precioProductoCrear, stockProductoCrear);
+                    if(productosManager.Crear(nuevo)) cout << "Producto creado exitosamente." << endl;
+                    else cout << "Error al crear producto." << endl;
+                    system("pause");
                 }
                 if (opcionSub == 2) {
-                  //  productosManager.Eliminar();
+                    string codigoProductoEliminar;
+                    cout << "Ingrese código del producto a eliminar: "; cin >> codigoProductoEliminar;
+                    if(productosManager.Eliminar(codigoProductoEliminar)) cout << "Producto eliminado exitosamente." << endl;
+                    else cout << "Error al eliminar producto." << endl;
+                    system("pause");
                 }
                 if (opcionSub == 3) {
-                  //  productosManager.Modificacion();
+                    string codigoProductoModificar;
+                    cout << "Ingrese código del producto a modificar: "; cin >> codigoProductoModificar;
+                    Producto* actual = productosManager.Obtener(codigoProductoModificar);
+                    if(actual == nullptr) {
+                        cout << "Producto no encontrado." << endl;
+                        system("pause");
+                    } else {
+                        string codigoProveedorModificar, descripcionProductoModificar;
+                        float precioProductoModificar;
+                        unsigned int stockProductoModificar;
+                        cout << "Ingrese nuevo código proveedor: "; cin >> codigoProveedorModificar;
+                        cout << "Ingrese nueva descripción: "; cin >> descripcionProductoModificar;
+                        cout << "Ingrese nuevo precio: "; cin >> precioProductoModificar;
+                        cout << "Ingrese nuevo stock: "; cin >> stockProductoModificar;
+                        Producto modificado(codigoProductoModificar, codigoProveedorModificar, descripcionProductoModificar, precioProductoModificar, stockProductoModificar);
+                        if(productosManager.Modificar(codigoProductoModificar, modificado)) cout << "Producto modificado exitosamente." << endl;
+                        else cout << "Error al modificar producto." << endl;
+                        system("pause");
+                    }
                 }
                 if (opcionSub == 4) {
                     productosManager.ListarXCodigo();
