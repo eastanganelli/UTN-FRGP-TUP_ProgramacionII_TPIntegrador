@@ -9,8 +9,7 @@ Comprobante::~Comprobante() {
 
 }
 
-void Comprobante::CargarFecha()
-{
+void Comprobante::CargarFecha() {
 
 }
 

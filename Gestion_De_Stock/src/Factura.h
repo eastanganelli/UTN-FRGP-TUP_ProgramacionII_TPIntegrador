@@ -16,6 +16,7 @@ private:
     char cae[15];
     Fecha vencimientoCAE;
 
+
 public:
     Factura(unsigned int _id = 0, string _cliente = "", char _tipoFactura = 'B');
     ~Factura();

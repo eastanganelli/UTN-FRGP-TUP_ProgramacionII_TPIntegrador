@@ -15,6 +15,8 @@ private:
     int PosicionFactura(unsigned int numero, unsigned int& posicion);
     int PosicionNotaDeCredito(unsigned int numero, unsigned int& posicion);
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    bool CrearFactura(Factura& f);
+    bool CrearNotaDeCredito(NotaDeCredito& nc);
 
     void ListarFacturasXFecha();
     void ListarNotasDeCreditoXFecha();
@@ -27,8 +29,7 @@ public:
     VentaManager(string _nombreArchivoFactura = "facturas.bin", string _nombreArchivoNotaDeCredito = "notasdecredito.bin");
     ~VentaManager();
 
-    bool CrearFactura(Factura& f);
-    bool CrearNotaDeCredito(NotaDeCredito& nc);
+    bool Crear(Factura& factura);
     Factura* ObtenerFactura(unsigned int numero);
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);
     bool Modificar(unsigned int numero, Factura& facturaActualizado);

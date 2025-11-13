@@ -17,6 +17,8 @@ void TestingProveedores();
 
 void TestingProductos();
 
+void TestingVentas();
+
 void TestingAll();
 
 struct DatosCliente {

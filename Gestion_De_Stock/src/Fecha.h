@@ -22,9 +22,13 @@ public:
     void setDia(unsigned int d);
     void setMes(unsigned int m);
     void setAnio(unsigned int a);
-};
 
-// Imprisión de fecha
-std::ostream& operator<<(std::ostream& os, const Fecha& obj);
+    // Métodos
+    string toString();
+    bool operator>(const Fecha& fechaComparar);
+    bool operator<(const Fecha& fechaComparar);
+    bool operator==(const Fecha& fechaComparar);
+    bool operator!=(const Fecha& fechaComparar);
+};
 
 #endif // FECHA_H

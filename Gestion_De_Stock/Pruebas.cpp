@@ -52,7 +52,9 @@ void TestingProductos() {
 }
 
 void TestingVentas() {
-    VentaManager misComprobantes();
+    VentaManager misComprobantes;
+
+    Factura factura1();
 }
 
 std::string generarCodigoAlfaNumerico(int longitud) {

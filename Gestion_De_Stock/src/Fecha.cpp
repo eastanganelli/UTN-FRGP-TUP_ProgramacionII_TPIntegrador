@@ -14,6 +14,10 @@ void Fecha::setDia(unsigned int d) { this->dia = d; }
 void Fecha::setMes(unsigned int m) { this->mes = m; }
 void Fecha::setAnio(unsigned int a) { this->anio = a; }
 
+string Fecha::toString() {
+    return std::to_string(this->dia) + "/" + std::to_string(this->mes) + "/" + std::to_string(this->anio);
+}
+
 bool Fecha::operator>(const Fecha &fechaComparar) {
     if (this->anio > fechaComparar.anio) {
         return true;
@@ -48,9 +52,4 @@ bool Fecha::operator==(const Fecha &fechaComparar) {
 
 bool Fecha::operator!=(const Fecha &fechaComparar) {
     return !(*this == fechaComparar);
-}
-
-std::ostream& operator<<(std::ostream& os, Fecha* obj) {
-    os << obj->getDia() << "/" << obj->getMes() << "/" << obj->getAnio();
-    return os;
 }
