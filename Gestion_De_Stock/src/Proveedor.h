@@ -14,16 +14,18 @@ private:
     unsigned int rubro;
 
 public:
-    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
+    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", bool _alta = false);
     ~Proveedor();
 
     // Getters
     bool getAlta();
     string getCuit();
     unsigned int getRubro();
+    string getRubroNombre();
     string getNombreRazon();
 
     // Setters
+    void setAlta(bool alta);
     void setRubro(unsigned int rubro);
     void setNombreRazon(string nombre);
 

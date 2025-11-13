@@ -3,38 +3,61 @@
 
 #include <string>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+
+#include "Cliente.h"
+#include "Proveedor.h"
+#include "Producto.h"
+#include "Factura.h"
+#include "NotaDeCredito.h"
 
 using namespace std;
 
 class Configuracion {
 private:
-    string rutaCopiaSeguridadClientes;
-    string rutaCopiaSeguridadProveedores;
-    string rutaCopiaSeguridadProductos;
-    string rutaCopiaSeguridadFacturas;
-    string rutaCopiaSeguridadNotasDeCredito;
+    string rutaOrigenCopiaSeguridadClientes,
+        rutaOrigenCopiaSeguridadProveedores,
+        rutaOrigenCopiaSeguridadProductos,
+        rutaOrigenCopiaSeguridadFacturas,
+        rutaOrigenCopiaSeguridadNotasDeCredito;
+
+    string rutaDestinoCopiaSeguridadClientes,
+        rutaDestinoCopiaSeguridadProveedores,
+        rutaDestinoCopiaSeguridadProductos,
+        rutaDestinoCopiaSeguridadFacturas,
+        rutaDestinoCopiaSeguridadNotasDeCredito;
+
+    bool copiarArchivo(string origen, string destino);
+    void ImprimirResultado(bool estado, string nombreArchivo);
+    bool VerificarSiArchivoExiste(string rutaArchivo);
 
 public:
-    Configuracion(string _rutaCopiaSeguridadClientes = "", string _rutaCopiaSeguridadProveedores = "", string _rutaCopiaSeguridadProductos = "", string _rutaCopiaSeguridadFacturas = "", string _rutaCopiaSeguridadNotasDeCredito = "");
+    Configuracion(string _rutaDestinoCopiaSeguridadClientes = "", string _rutaDestinoCopiaSeguridadProveedores = "", string _rutaDestinoCopiaSeguridadProductos = "", string _rutaDestinoCopiaSeguridadFacturas = "", string _rutaDestinoCopiaSeguridadNotasDeCredito = "",
+    string _rutaOrigenCopiaSeguridadClientes = "", string _rutaOrigenCopiaSeguridadProveedores = "", string _rutaOrigenCopiaSeguridadProductos = "", string _rutaOrigenCopiaSeguridadFacturas = "", string _rutaOrigenCopiaSeguridadNotasDeCredito = "");
     ~Configuracion();
 
     // Métodos
-    bool cargarCopiaSeguridad();
-    bool guardarCopiaSeguridad();
-    bool cargarCopiaClientes();
-    bool guardarCopiaClientes();
-    bool cargarCopiaProveedores();
-    bool guardarCopiaProveedores();
-    bool cargarCopiaProductos();
-    bool guardarCopiaProductos();
-    bool cargarCopiaVentas();
-    bool guardarCopiaVentas();
+    void guardarCopiaClientes();
+    void cargarCopiaClientes();
+    void guardarCopiaProveedores();
+    void cargarCopiaProveedores();
+    void guardarCopiaProductos();
+    void cargarCopiaProductos();
+    void guardarCopiaVentas();
+    void cargarCopiaVentas();
+    void guardarCopiaNotasDeCredito();
+    void cargarCopiaNotasDeCredito();
+    void guardarCopiaSeguridad();
+    void cargarCopiaSeguridad();
 
-    bool exportarTodoCSV();
-    bool exportarClientesCSV();
-    bool exportarProveedoresCSV();
-    bool exportarProductosCSV();
-    bool exportarVentasCSV();
+    void exportarTodoCSV();
+    void exportarClientesCSV();
+    void exportarProveedoresCSV();
+    void exportarProductosCSV();
+    void exportarVentasCSV();
+    void exportarNotasDeCreditoCSV();
+    void exportarTodo();
 };
 
 #endif // CONFIGURACION_H

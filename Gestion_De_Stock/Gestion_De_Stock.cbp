@@ -42,6 +42,8 @@
 		<Unit filename="src/ClientesManager.h" />
 		<Unit filename="src/Comprobante.cpp" />
 		<Unit filename="src/Comprobante.h" />
+		<Unit filename="src/Configuracion.cpp" />
+		<Unit filename="src/Configuracion.h" />
 		<Unit filename="src/DatosPersonales.cpp" />
 		<Unit filename="src/DatosPersonales.h" />
 		<Unit filename="src/Factura.cpp" />

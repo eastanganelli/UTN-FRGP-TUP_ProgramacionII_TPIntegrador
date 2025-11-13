@@ -30,7 +30,7 @@ public:
 
     // Métodos
     float TotalSinIVA();
-    void TotalConIVA();
+    float TotalConIVA();
     string toString();
 };
 

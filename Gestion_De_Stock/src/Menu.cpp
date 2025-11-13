@@ -69,7 +69,7 @@ void Menu::menuSub(string titulo) {
                   cout << "Ingrese el celular del cliente: "; cin >> celularClienteCrear;
                   cout << "Ingrese el codigo razon social: "; cin >> codigoRazonSocial;
                   cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
-                  Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, codigoRazonSocial, alta);
+                  Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, alta);
                   if(clientesManager.Crear(nuevo)) cout << "Cliente creado exitosamente." << endl;
                   else cout << "Error: El cliente ya existe o hubo un problema." << endl;
                   system("pause");
