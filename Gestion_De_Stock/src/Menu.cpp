@@ -3,9 +3,14 @@
 
 using namespace std;
 
+const int SEC_CLIENTES = 1;
+const int SEC_VENTAS = 2;
+const int SEC_PROVEEDORES = 3;
+const int SEC_PRODUCTOS = 4;
+
 void Menu::mostrar() {
     int opcion;
-system("color 1F");
+    system("color 1F");
 
     do {
         cout << "==========MENU==========" << endl;
@@ -22,38 +27,114 @@ system("color 1F");
         system("cls");
 
         switch (opcion) {
-            case 1: menuSub("MENU CLIENTES"); break;
-            case 2: menuSub("MENU VENTAS"); break;
-            case 3: menuSub("MENU PROVEEDORES"); break;
-            case 4: menuSub("MENU PRODUCTOS"); break;
+            case SEC_CLIENTES:    menuSub(SEC_CLIENTES,    "MENU CLIENTES");    break;
+            case SEC_VENTAS:      menuSub(SEC_VENTAS,      "MENU VENTAS");      break;
+            case SEC_PROVEEDORES: menuSub(SEC_PROVEEDORES, "MENU PROVEEDORES"); break;
+            case SEC_PRODUCTOS:   menuSub(SEC_PRODUCTOS,   "MENU PRODUCTOS");   break;
             case 0: cout << "Saliendo del programa..." << endl; break;
             default: cout << "Opcion invalida" << endl; break;
         }
-
-        if (opcion != 0) {
-            cout << "Presione Enter para volver al menu principal...";
-            cin.ignore();
-            cin.get();
-            system("cls");
-        }
-
+        system("cls");
     } while (opcion != 0);
 }
 
-// Función genérica para todos los submenús
-void Menu::menuSub(const string &titulo) {
+void Menu::menuSub(int seccion, const string &titulo) {
     int opcionSub;
 
     do {
         opcionSub = mostrarSubmenu(titulo);
 
         switch (opcionSub) {
-            case 1: /* Alta */ break;
-            case 2: /* Baja */ break;
-            case 3: /* Modificación */ break;
-            case 4: /* Consulta */ break;
-            case 0: break; // volver al menú principal
-            default: cout << "Opcion invalida" << endl; break;
+            case 1: // Alta
+                switch (seccion) {
+                    case SEC_CLIENTES: {
+                        Cliente c; /* leer datos */ clientes.Crear(c);
+                        break;
+                    }
+                    case SEC_PROVEEDORES: {
+                        Proveedor p; /* leer datos */ proveedores.Crear(p);
+                        break;
+                    }
+                    case SEC_PRODUCTOS: {
+                        Producto pr; /* leer datos */ productos.Crear(pr);
+                        break;
+                    }
+                    case SEC_VENTAS: {
+                        // emitir factura/nota
+                        // ventas.CrearFactura(...);
+                        break;
+                    }
+                }
+                break;
+
+            case 2: // Baja
+                switch (seccion) {
+                    case SEC_CLIENTES: {
+                        string dni; /* leer */ clientes.Eliminar(dni);
+                        break;
+                    }
+                    case SEC_PROVEEDORES: {
+                        string cuit; /* leer */ proveedores.Eliminar(cuit);
+                        break;
+                    }
+                    case SEC_PRODUCTOS: {
+                        string codigo; /* leer */ productos.Eliminar(codigo);
+                        break;
+                    }
+                    case SEC_VENTAS: {
+                        // anular/nota de crÃ©dito
+                        break;
+                    }
+                }
+                break;
+
+            case 3: // Modificacion
+                switch (seccion) {
+                    case SEC_CLIENTES: {
+                        string dni; /* leer */
+                        Cliente actualizado; /* leer */
+                        clientes.Modificar(dni, actualizado);
+                        break;
+                    }
+                    case SEC_PROVEEDORES: {
+                        string cuit; Proveedor actualizado;
+                        proveedores.Modificar(cuit, actualizado);
+                        break;
+                    }
+                    case SEC_PRODUCTOS: {
+                        string codigo; Producto actualizado;
+                        productos.Modificar(codigo, actualizado);
+                        break;
+                    }
+                    case SEC_VENTAS: {
+
+                        break;
+                    }
+                }
+                break;
+
+            case 4: // Consulta/Listado
+                switch (seccion) {
+                    case SEC_CLIENTES:
+                        clientes.ListarXApellido(); // o Listar()
+                        break;
+                    case SEC_PROVEEDORES:
+                        proveedores.ListarXRazonSocial(); // o Listar()
+                        break;
+                    case SEC_PRODUCTOS:
+                        productos.ListarXCodigo(); // o Listar()
+                        break;
+                    case SEC_VENTAS:
+                        ventas.Listar(); // o filtros por fecha/cliente
+                        break;
+                }
+                break;
+
+            case 0: break;
+
+            default:
+                cout << "Opcion invalida" << endl;
+                break;
         }
 
         if (opcionSub != 0) {
@@ -66,7 +147,6 @@ void Menu::menuSub(const string &titulo) {
     } while (opcionSub != 0);
 }
 
-// Muestra el submenú genérico
 int Menu::mostrarSubmenu(const string &titulo) {
     int op;
     cout << "==========" << titulo << "==========" << endl;
