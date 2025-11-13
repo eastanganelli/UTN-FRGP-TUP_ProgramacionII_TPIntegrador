@@ -581,6 +581,24 @@ void VentaManager::ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin) {
     }
 }
 
+void VentaManager::FacturasDeCliente(string dni, unsigned int* cantidad, float* monto) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    *cantidad = 0;
+    *monto = 0.0f;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        string aux = factura.getClienteDNI();
+        if (aux.find(dni) != string::npos) {
+            (*cantidad)++;
+            *monto += factura.TotalSinIVA();
+        }
+    }
+}
+
 unsigned int VentaManager::ContarFacturas() {
     FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {

@@ -37,6 +37,7 @@ public:
     void ConsultaXCodigo(string codigo);
     void ConsultaXDescripcion(string descripcion);
     void ConsultaXStockMinimo(unsigned int stockMinimo);
+
     unsigned int Contar();
     string generarCodigo();
 };
