@@ -539,7 +539,7 @@
 1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
 	"ClientesManager.h"
 
-1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
+1763012566 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
 	<cstdio>
 	<string>
@@ -594,7 +594,7 @@
 1763010063 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
 	"VentasManager.h"
 
-1763010063 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.h
+1763012566 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.h
 	"Factura.h"
 	"NotaDeCredito.h"
 
@@ -615,12 +615,12 @@
 	"src/ProductosManager.h"
 	"src/VentasManager.h"
 
-1763000413 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.h
+1763012566 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.h
 	"Proveedor.h"
 	<cstdio>
 	<string>
 
-1763000413 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.h
+1763012566 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.h
 	"Producto.h"
 	<cstdio>
 	<string>
@@ -640,11 +640,12 @@
 	"ProductosManager.h"
 	<iostream>
 
-1763010063 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
+1763012566 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
 	"ProveedoresManager.h"
 	<iostream>
+	<algorithm>
 
-1763010774 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
+1763012839 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
 	"Menu.h"
 	"ClientesManager.h"
 	"VentasManager.h"
