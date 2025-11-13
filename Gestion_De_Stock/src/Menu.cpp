@@ -1,6 +1,5 @@
 #include "Menu.h"
 #include <iostream>
-#include <vector>
 #include <algorithm>
 #include "rlutil.h"
 
@@ -13,7 +12,7 @@ namespace {
     int centeredOffset(const string &text, int width) {
         int w = width - 4;
         int pad = (w - static_cast<int>(text.size())) / 2;
-       return std::max(0, pad);
+        return std::max(0, pad);
     }
 
     void drawHeader(const string &title, int startY = 2) {
@@ -53,41 +52,104 @@ namespace {
         return v;
     }
 
-    int renderListadosConsultas(const string& titulo,
-                            const vector<string>& listados,
-                            const vector<string>& consultas) {
-    rlutil::cls();
-    rlutil::hidecursor();
-    drawHeader(titulo);
+    int renderClientesLC() {
+        rlutil::cls();
+        rlutil::hidecursor();
+        drawHeader("MENU CLIENTES");
 
-    int y = 6;
-    rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl;
-    y++;
+        int y = 6;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
+        printOption(y++, 1, "Listado de clientes - Ordenado por apellido");
+        printOption(y++, 2, "Listado de clientes - Ordenado por DNI");
+        printOption(y++, 3, "Listado de clientes - Ordenado por CUIL/CUIT");
 
-    int idx = 1;
-    for (const auto& item : listados) {
-        printOption(y++, idx++, item);
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
+        printOption(y++, 4, "Consulta de clientes - Por DNI");
+        printOption(y++, 5, "Consulta de clientes - Por CUIL/CUIT");
+        printOption(y++, 6, "Consulta de clientes - Por nombre y apellido");
+        printOption(y++, 7, "Consulta de clientes - Por correo");
+
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        printOption(y++, 0, "Volver");
+
+        y += 2; rlutil::showcursor();
+        int op = readIntAtPrompt(y);
+        rlutil::cls();
+        return op;
     }
 
-    y++;
-    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
-    rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl;
-    y++;
+    int renderVentasLC() {
+        rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU VENTAS");
+        int y = 6;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
+        printOption(y++, 1, "Listado de ventas - Ordenado por fecha de venta");
+        printOption(y++, 2, "Listado de ventas - Ordenado por CAE");
+        printOption(y++, 3, "Listado de ventas - Ordenado por cliente");
 
-    for (const auto& item : consultas) {
-        printOption(y++, idx++, item);
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
+        printOption(y++, 4, "Consulta de ventas - Por cliente");
+        printOption(y++, 5, "Consulta de ventas - Por CAE");
+        printOption(y++, 6, "Consulta de ventas - Por tipo de comprobante");
+        printOption(y++, 7, "Consulta de ventas - Por rango de fechas");
+
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        printOption(y++, 0, "Volver");
+
+        y += 2; rlutil::showcursor();
+        int op = readIntAtPrompt(y);
+        rlutil::cls();
+        return op;
     }
 
-    y++;
-    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
-    printOption(y++, 0, "Volver");
+    int renderProveedoresLC() {
+        rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU PROVEEDORES");
+        int y = 6;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
+        printOption(y++, 1, "Listado de proveedores - Ordenado por Nombre");
+        printOption(y++, 2, "Listado de proveedores - Ordenado por CUIL");
+        printOption(y++, 3, "Listado de proveedores - Ordenado por Rubro");
 
-    y += 2;
-    rlutil::showcursor();
-    int op = readIntAtPrompt(y);
-    rlutil::cls();
-    return op;
-}
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
+        printOption(y++, 4, "Consulta de proveedores - Por CUIL");
+        printOption(y++, 5, "Consulta de proveedores - Por Nombre");
+        printOption(y++, 6, "Consulta de proveedores - Por Rubro");
+        printOption(y++, 7, "Consulta de proveedores - Por Alta");
+        printOption(y++, 8, "Consulta de Responsables Inscripto - Por Nombre");
+
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        printOption(y++, 0, "Volver");
+
+        y += 2; rlutil::showcursor();
+        int op = readIntAtPrompt(y);
+        rlutil::cls();
+        return op;
+    }
+
+    int renderProductosLC() {
+        rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU PRODUCTOS");
+        int y = 6;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
+        printOption(y++, 1, "Listado de productos - Ordenado por Nombre");
+        printOption(y++, 2, "Listado de productos - Ordenado por Precio");
+        printOption(y++, 3, "Listado de productos - Ordenado por Stock");
+
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
+        printOption(y++, 4, "Consulta de productos - Por Nombre");
+        printOption(y++, 5, "Consulta de productos - Por Descripcion");
+        printOption(y++, 6, "Consulta de productos - Por Stock");
+
+        y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+        printOption(y++, 0, "Volver");
+
+        y += 2; rlutil::showcursor();
+        int op = readIntAtPrompt(y);
+        rlutil::cls();
+        return op;
+    }
 }
 
 
@@ -129,64 +191,15 @@ void Menu::mostrar() {
 
 void Menu::menuSub(const string &titulo) {
     int opcionSub;
-
     do {
         if (titulo == "MENU CLIENTES") {
-            vector<string> listados = {
-                "Listado de clientes - Ordenado por apellido",
-                "Listado de clientes - Ordenado por DNI",
-                "Listado de clientes - Ordenado por CUIL/CUIT"
-            };
-            vector<string> consultas = {
-                "Consulta de clientes - Por DNI",
-                "Consulta de clientes - Por CUIL/CUIT",
-                "Consulta de clientes - Por nombre y apellido",
-                "Consulta de clientes - Por correo"
-            };
-            opcionSub = renderListadosConsultas("MENU CLIENTES", listados, consultas);
-
+            opcionSub = renderClientesLC();
         } else if (titulo == "MENU VENTAS") {
-            vector<string> listados = {
-                "Listado de ventas - Ordenado por fecha de venta",
-                "Listado de ventas - Ordenado por CAE",
-                "Listado de ventas - Ordenado por cliente"
-            };
-            vector<string> consultas = {
-                "Consulta de ventas - Por cliente",
-                "Consulta de ventas - Por CAE",
-                "Consulta de ventas - Por tipo de comprobante",
-                "Consulta de ventas - Por rango de fechas"
-            };
-            opcionSub = renderListadosConsultas("MENU VENTAS", listados, consultas);
-
+            opcionSub = renderVentasLC();
         } else if (titulo == "MENU PROVEEDORES") {
-            vector<string> listados = {
-                "Listado de proveedores - Ordenado por nombre",
-                "Listado de proveedores - Ordenado por CUIL",
-                "Listado de proveedores - Ordenado por rubro"
-            };
-            vector<string> consultas = {
-                "Consulta de proveedores - Por CUIL",
-                "Consulta de proveedores - Por nombre",
-                "Consulta de proveedores - Por rubro",
-                "Consulta de proveedores - Por alta",
-                "Consulta de Responsables Inscripto - Por nombre"
-            };
-            opcionSub = renderListadosConsultas("MENU PROVEEDORES", listados, consultas);
-
+            opcionSub = renderProveedoresLC();
         } else if (titulo == "MENU PRODUCTOS") {
-            vector<string> listados = {
-                "Listado de productos - Ordenado por nombre",
-                "Listado de productos - Ordenado por precio",
-                "Listado de productos - Ordenado por stock"
-            };
-            vector<string> consultas = {
-                "Consulta de productos - Por nombre",
-                "Consulta de productos - Por descripcion",
-                "Consulta de productos - Por stock"
-            };
-            opcionSub = renderListadosConsultas("MENU PRODUCTOS", listados, consultas);
-
+            opcionSub = renderProductosLC();
         } else {
             opcionSub = 0;
         }
@@ -195,7 +208,6 @@ void Menu::menuSub(const string &titulo) {
 
         cout << "Seleccionaste opcion: " << opcionSub << endl;
         rlutil::anykey();
-
     } while (opcionSub != 0);
 }
 
