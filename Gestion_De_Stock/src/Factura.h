@@ -3,7 +3,6 @@
 
 #include "Comprobante.h"
 
-#include <iostream>
 #include <cstring>
 
 using namespace std;
@@ -13,7 +12,7 @@ private:
     char tipoFactura; // 'A', 'B', 'C'
     float total;
     float totalIVA;
-    char cae[15];
+    char cae[16];
     Fecha vencimientoCAE;
 
 
@@ -34,8 +33,7 @@ public:
     void TotalSinIVA();
     void TotalConIVA();
     void CantidadItems();
+    string toString();
 };
-
-std::ostream& operator<<(std::ostream& os, Factura* obj);
 
 #endif // FACTURA_H

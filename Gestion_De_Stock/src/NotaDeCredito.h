@@ -12,14 +12,17 @@ using namespace std;
 
 class NotaDeCredito : public Comprobante {
 private:
-    char motivoAnulacion[257];
+    char motivoAnulacion[256];
 
 public:
+    NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
+    ~NotaDeCredito();
+
     // Getters
     string getMotivoAnulacion();
 
     // Setters
-    void setMotivoAnulacion(const string m);
+    void setMotivoAnulacion(string m);
 
     // Metodos
     void agregarItem(Producto*& item);
@@ -27,7 +30,5 @@ public:
     void eliminarItem(Producto*& item);
     void operator-(Producto*& item);
 };
-
-std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj);
 
 #endif // NOTADECREDITO_H

@@ -1,19 +1,17 @@
 #include "NotaDeCredito.h"
 
+NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, string _motivoAnulacion) : Comprobante(_id, _cliente) {
+    strcpy(this->motivoAnulacion, _motivoAnulacion.c_str());
+}
+
+NotaDeCredito::~NotaDeCredito() {
+
+}
+
 string NotaDeCredito::getMotivoAnulacion() {
     return this->motivoAnulacion;
 }
 
-void NotaDeCredito::setMotivoAnulacion(const string m) {
+void NotaDeCredito::setMotivoAnulacion(string m) {
     strcpy(this->motivoAnulacion, m.c_str());
-}
-
-
-std::ostream& operator<<(std::ostream& os, NotaDeCredito* obj) {
-    /*os << "--- NOTA DE CREDITO ---" << std::endl;
-    // os << static_cast<const Comprobante&>(obj); // Llama al operador del padre
-    os << "Factura Original Afectada: " << obj.getIDFacturaOriginal() << std::endl;
-    os << "Motivo: " << obj.getMotivoAnulacion() << std::endl;
-    os << "---------------------------------" << std::endl;*/
-    return os;
 }

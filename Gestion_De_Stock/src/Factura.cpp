@@ -1,7 +1,10 @@
 #include "Factura.h"
 
+#include <iostream>
+
 Factura::Factura(unsigned int _id, string _cliente, char _tipoFactura) : Comprobante(_id, _cliente) {
     this->tipoFactura = _tipoFactura;
+    this->cae[15] = '\0';
 }
 
 Factura::~Factura() {
@@ -24,9 +27,6 @@ void Factura::CantidadItems() {
 
 }
 
-std::ostream& operator<<(std::ostream& os, Factura* obj) {
-    /*os << "--- FACTURA TIPO " << obj->getTipoFactura() << " ---" << std::endl;
-    os << "Total IVA: $" << obj->getTotalIVA() << std::endl;
-    os << "---------------------------------" << std::endl;*/
-    return os;
+string Factura::toString() {
+    return "";
 }

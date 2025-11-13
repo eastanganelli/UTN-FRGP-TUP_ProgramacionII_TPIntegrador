@@ -10,7 +10,7 @@ using namespace std;
 class Item {
 private:
     unsigned int codigoProducto;
-    char descripcion[101];
+    char descripcion[100];
     unsigned int cantidad;
     float precioUnitario;
 
@@ -36,7 +36,5 @@ public:
     // Métodos
     void operator=(Item& item);
 };
-
-std::ostream& operator<<(std::ostream& os, Item* obj);
 
 #endif // ITEM_H

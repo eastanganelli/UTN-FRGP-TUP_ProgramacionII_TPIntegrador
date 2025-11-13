@@ -6,6 +6,8 @@ Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion,
     strcpy(this->descripcion, _descripcion.c_str());
     this->precio = _precio;
     this->stock = _stock;
+    this->codigo[8] = '\0';
+    this->codigoProveedor[11] = '\0';
 }
 
 Producto::~Producto() {
@@ -13,11 +15,11 @@ Producto::~Producto() {
 }
 
 string Producto::getCodigo() {
-    return string(this->codigo, 8);
+    return string(this->codigo);
 }
 
 string Producto::getCodigoProveedor() {
-    return string(this->codigoProveedor, 11);
+    return string(this->codigoProveedor);
 }
 
 string Producto::getDescripcion() {

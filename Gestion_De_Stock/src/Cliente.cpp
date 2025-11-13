@@ -6,6 +6,8 @@ Cliente::Cliente(string _nombre, string _apellido, string _DNI, string _cuilCuit
     strcpy(this->apellido, _apellido.c_str());
     strcpy(this->DNI, _DNI.c_str());
     strcpy(this->cuilCuit, _cuilCuit.c_str());
+    this->DNI[8] = '\0';
+    this->cuilCuit[11] = '\0';
 }
 
 Cliente::~Cliente() {
@@ -13,7 +15,7 @@ Cliente::~Cliente() {
 }
 
 string Cliente::getDNI() {
-    return string(this->DNI, 8);
+    return string(this->DNI);
 }
 
 string Cliente::getNombre() {
@@ -25,7 +27,7 @@ string Cliente::getApellido() {
 }
 
 string Cliente::getCuilCuit() {
-    return string(this->cuilCuit, 11);
+    return string(this->cuilCuit);
 }
 
 void Cliente::setDNI(const string& dni) {
@@ -55,49 +57,4 @@ string Cliente::toString() {
                        " | Cod Razon Soc: " + to_string(getCodigoRazonSocial()) +
                        " | Alta: " + (getAlta() ? "Si" : "No");
     return resultado;
-}
-
-
-/**void Cliente::cargar() {
-    std::cout << "ID Cliente: ";
-    std::cin >> this->idCliente;
-    std::cout << "Nombre: ";
-    std::cin >> this->nombre;
-    std::cout << "Apellido: ";
-    std::cin >> this->apellido;
-    std::cout << "Correo: ";
-    std::cin >> this->correo;
-    std::cout << "CUIL/CUIT: ";
-    std::cin >> this->cuilCuit;
-    this->alta = true; // Por defecto al cargar
-}**/
-
-/**void Cliente::mostrar() {
-    std::cout << "ID Cliente: " << this->idCliente << std::endl;
-    std::cout << "Nombre: " << this->nombre << " " << this->apellido << std::endl;
-    std::cout << "Correo: " << this->correo << std::endl;
-    std::cout << "CUIL/CUIT: " << this->cuilCuit << std::endl;
-    std::cout << "Estado: " << (this->alta ? "Activo" : "Inactivo") << std::endl;
-}**/
-
-/**bool Cliente::escribirDisco(int pos) {
-    // Implementación de escritura en archivo binario aquí
-    std::cout << "Simulando escritura de Cliente en disco..." << std::endl;
-    return true;
-}**/
-
-/**bool Cliente::leerDisco(int pos) {
-    // Implementación de lectura desde archivo binario aquí
-    std::cout << "Simulando lectura de Cliente desde disco..." << std::endl;
-    return true;
-}**/
-
-std::ostream& operator<<(std::ostream& os, Cliente* obj) {
-    os << "Cliente: " << obj->getNombre() << " " << obj->getApellido()
-       << " | DNI: " << obj->getDNI() << " | CUIL/CUIT: " << obj->getCuilCuit()
-       << " | Dir: " << obj->getDireccion() << " | Correo: " << obj->getCorreo()
-       << " | Tel: " << obj->getTelefono() << " | Cel: " << obj->getCelular()
-       << " | Cod Razon Soc: " << obj->getCodigoRazonSocial()
-       << " | Alta: " << (obj->getAlta() ? "Si" : "No") << std::endl;
-    return os;
 }

@@ -6,6 +6,7 @@
 #include "Item.h"
 #include "Fecha.h"
 
+#include <string>
 #include <cstring>
 
 using namespace std;
@@ -14,7 +15,7 @@ class Comprobante {
 private:
     const unsigned int numero;
     const unsigned int cantidadMaxItems;
-    char clienteDNI[8];
+    char clienteDNI[9];
     unsigned int cantidadItems;
     Item items[ITEMS_MAX];
 
@@ -22,7 +23,6 @@ private:
 
 protected:
     Fecha creado;
-    unsigned int codigoCliente;
 
     float TotalSinIVA();
     unsigned int CantidadItems();
@@ -33,12 +33,12 @@ public:
 
     // Getters
     unsigned int getNumero();
-    unsigned int getCodigoCliente();
+    string getClienteDNI();
     unsigned int getCantidadItems();
     Fecha& getFecha();
 
     // Setters
-    void setCodigoCliente(unsigned int codigo);
+    void setClienteDNI(string dni);
 
     // Métodos
     void operator+(Item& item);

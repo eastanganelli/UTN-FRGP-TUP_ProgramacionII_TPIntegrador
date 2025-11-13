@@ -5,6 +5,7 @@ Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, str
     strcpy(this->cuit, _cuit.c_str());
     strcpy(this->nombreRazon, _nombreRazon.c_str());
     this->rubro = _rubro;
+    this->cuit[11] = '\0';
 }
 
 Proveedor::~Proveedor() {
@@ -16,7 +17,7 @@ bool Proveedor::getAlta() {
 }
 
 string Proveedor::getCuit() {
-    return string(this->cuit, 11);
+    return string(this->cuit);
 }
 
 unsigned int Proveedor::getRubro() {

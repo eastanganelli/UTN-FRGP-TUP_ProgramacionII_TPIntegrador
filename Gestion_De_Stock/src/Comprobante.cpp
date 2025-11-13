@@ -3,6 +3,7 @@
 Comprobante::Comprobante(unsigned int _numero, string _clienteDNI) : numero(_numero), cantidadMaxItems(ITEMS_MAX) {
     strcpy(this->clienteDNI, _clienteDNI.c_str());
     this->cantidadItems = 0;
+    this->clienteDNI[8] = '\0';
 }
 
 Comprobante::~Comprobante() {
@@ -33,8 +34,8 @@ unsigned int Comprobante::getNumero() {
     return this->numero;
 }
 
-unsigned int Comprobante::getCodigoCliente() {
-    return this->codigoCliente;
+string Comprobante::getClienteDNI() {
+    return string(this->clienteDNI);
 }
 
 unsigned int Comprobante::getCantidadItems() {
@@ -45,39 +46,38 @@ Fecha& Comprobante::getFecha() {
     return this->creado;
 }
 
-void Comprobante::setCodigoCliente(unsigned int c) {
-    this->codigoCliente = c;
+void Comprobante::setClienteDNI(string dni) {
+    strcpy(this->clienteDNI, dni.c_str());
 }
 
 void Comprobante::operator+(Item& item) {
     if (this->cantidadItems < this->cantidadMaxItems) {
         this->items[this->cantidadItems] = item;
         this->cantidadItems++;
-    } else {
-        cerr << "No se pueden agregar más items al comprobante." << endl;
+        return;
     }
+    cout << "No se pueden agregar más items al comprobante." << endl;
 }
 
 void Comprobante::operator-(Item& item) {
     for (unsigned int i = 0; i < this->cantidadItems; i++) {
-        // if (this->items[i].g() == item.getID()) {
-        //     for (unsigned int j = i; j < this->cantidadItems - 1; j++) {
-        //         this->items[j] = this->items[j + 1];
-        //     }
-        //     this->cantidadItems--;
-        //     return;
-        // }
+        if (this->items[i].getCodigoProducto() == item.getCodigoProducto()) {
+            for (unsigned int j = i; j < this->cantidadItems - 1; j++) {
+                this->items[j] = this->items[j + 1];
+            }
+            this->cantidadItems--;
+            return;
+        }
     }
-    cerr << "Item no encontrado en el comprobante." << endl;
+    cout << "Item no encontrado en el comprobante." << endl;
 }
 
 Item& Comprobante::operator[](unsigned int index) {
     if (index < this->cantidadItems) {
         return this->items[index];
-    } else {
-        cerr << "Índice fuera de rango." << endl;
-        return this->items[0];
     }
+    cerr << "Índice fuera de rango." << endl;
+    return this->items[0];
 }
 
 void Comprobante::mostrar() {
