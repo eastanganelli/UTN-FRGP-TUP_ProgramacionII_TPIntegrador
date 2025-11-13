@@ -7,10 +7,12 @@ using namespace std;
 
 int main() {
     srand(time(NULL));
-    //Menu menu;
-    //menu.mostrar();
+    
+    //TestingAll();
 
-    TestingAll();
+    Menu menu;
+    menu.mostrar();
+
 
     return 0;
 }
