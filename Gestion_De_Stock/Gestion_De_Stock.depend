@@ -515,3 +515,141 @@
 	"Factura.h"
 	"NotaDeCredito.h"
 
+1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.cpp
+	"Cliente.h"
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
+	"DatosPersonales.h"
+	<iostream>
+	<cstring>
+	<string>
+
+1762989140 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.h
+	<cstring>
+	<string>
+
+1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+	"ClientesManager.h"
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
+	"Cliente.h"
+	<cstdio>
+	<string>
+
+1762989140 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.cpp
+	"DatosPersonales.h"
+
+1762989140 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\fecha.cpp
+	"Fecha.h"
+
+1762989140 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\fecha.h
+	<iostream>
+
+1762989140 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\item.cpp
+	"Item.h"
+
+1762989140 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\item.h
+	<iostream>
+	<cstring>
+	<string>
+
+1762989140 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\notadecredito.cpp
+	"NotaDeCredito.h"
+
+1762989140 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\notadecredito.h
+	"Comprobante.h"
+	"Producto.h"
+	<iostream>
+	<cstring>
+	<string>
+
+1762994360 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.h
+	"Item.h"
+	"Fecha.h"
+	<cstring>
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\producto.h
+	<string>
+	<cstring>
+
+1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\producto.cpp
+	"Producto.h"
+
+1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.cpp
+	"Proveedor.h"
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.h
+	"DatosPersonales.h"
+	<cstring>
+
+1762991611 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
+	"VentasManager.h"
+
+1762994360 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.h
+	"Factura.h"
+	"NotaDeCredito.h"
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.h
+	"Comprobante.h"
+	<iostream>
+	<cstring>
+
+1762994449 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+	<ctime>
+	"Pruebas.h"
+	"src/Menu.h"
+
+1762991611 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+	<ctime>
+	<iostream>
+	"src/ClientesManager.h"
+	"src/ProveedoresManager.h"
+	"src/ProductosManager.h"
+
+1762994360 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.h
+	"Proveedor.h"
+	<cstdio>
+	<string>
+
+1762994360 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.h
+	"Producto.h"
+	<cstdio>
+	<string>
+	<ctime>
+
+1762992927 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.h
+	<string>
+
+1762994360 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.cpp
+	"Comprobante.h"
+
+1762994360 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
+	"Factura.h"
+
+1762994360 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.cpp
+	"ProductosManager.h"
+	<iostream>
+
+1762994360 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
+	"ProveedoresManager.h"
+	<iostream>
+
+1762994425 source:c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
+	"Menu.h"
+	<iostream>
+	"rlutil.h"
+
+1762994360 c:\users\agus_\desktop\proyecto grupal\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
