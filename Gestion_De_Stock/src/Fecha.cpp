@@ -18,7 +18,7 @@ string Fecha::toString() {
     return std::to_string(this->dia) + "/" + std::to_string(this->mes) + "/" + std::to_string(this->anio);
 }
 
-bool Fecha::operator>(const Fecha &fechaComparar) {
+bool Fecha::operator>(Fecha fechaComparar) {
     if (this->anio > fechaComparar.anio) {
         return true;
     } else if (this->anio == fechaComparar.anio) {
@@ -31,7 +31,7 @@ bool Fecha::operator>(const Fecha &fechaComparar) {
     return false;
 }
 
-bool Fecha::operator<(const Fecha &fechaComparar) {
+bool Fecha::operator<(Fecha fechaComparar) {
     if (this->anio < fechaComparar.anio) {
         return true;
     } else if (this->anio == fechaComparar.anio) {
@@ -44,12 +44,12 @@ bool Fecha::operator<(const Fecha &fechaComparar) {
     return false;
 }
 
-bool Fecha::operator==(const Fecha &fechaComparar) {
+bool Fecha::operator==(Fecha fechaComparar) {
     return (this->anio == fechaComparar.anio &&
             this->mes == fechaComparar.mes &&
             this->dia == fechaComparar.dia);
 }
 
-bool Fecha::operator!=(const Fecha &fechaComparar) {
+bool Fecha::operator!=(Fecha fechaComparar) {
     return !(*this == fechaComparar);
 }

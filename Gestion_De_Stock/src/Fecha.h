@@ -25,10 +25,10 @@ public:
 
     // Métodos
     string toString();
-    bool operator>(const Fecha& fechaComparar);
-    bool operator<(const Fecha& fechaComparar);
-    bool operator==(const Fecha& fechaComparar);
-    bool operator!=(const Fecha& fechaComparar);
+    bool operator>(Fecha fechaComparar);
+    bool operator<(Fecha fechaComparar);
+    bool operator==(Fecha fechaComparar);
+    bool operator!=(Fecha fechaComparar);
 };
 
 #endif // FECHA_H
