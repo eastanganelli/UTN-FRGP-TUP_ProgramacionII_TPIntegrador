@@ -69,7 +69,7 @@ void Menu::menuSub(string titulo) {
                   cout << "Ingrese el celular del cliente: "; cin >> celularClienteCrear;
                   cout << "Ingrese el codigo razon social: "; cin >> codigoRazonSocial;
                   cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
-                  Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, codigoRazonSocial, alta);
+                  Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, alta);
                   if(clientesManager.Crear(nuevo)) cout << "Cliente creado exitosamente." << endl;
                   else cout << "Error: El cliente ya existe o hubo un problema." << endl;
                   system("pause");
@@ -103,7 +103,7 @@ void Menu::menuSub(string titulo) {
                      cout << "Ingrese nuevo celular: "; cin >> celular;
                      cout << "Ingrese nuevo codigo razon social: "; cin >> codigoRazonSocial;
                      cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
-                     Cliente modificado(nombre, apellido, dniModificar, cuilCuit, direccion, correo, telefono, celular, codigoRazonSocial, alta);
+                     Cliente modificado(nombre, apellido, dniModificar, cuilCuit, direccion, correo, telefono, celular, alta);
                      if (clientesManager.Modificar(dniModificar, modificado)) cout << "Cliente modificado exitosamente." << endl;
                      else cout << "Error al modificar el cliente." << endl;
                      system("pause");

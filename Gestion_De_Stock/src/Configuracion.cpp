@@ -123,7 +123,8 @@ void Configuracion::exportarClientesCSV() {
     Cliente cliente;
     fprintf(archivoCSV, "DNI,Nombre,Apellido,CUIL/CUIT,Direccion,Telefono,Email\n");
     while (fread(&cliente, sizeof(Cliente), 1, archivoBinario)) {
-        fprintf(archivoCSV, "%s,%s,%s,%s,%s\n", cliente.getDNI().c_str(), cliente.getNombre().c_str(), cliente.getApellido().c_str(), cliente.getCuilCuit().c_str(), cliente.getDireccion().c_str(), cliente.getTelefono().c_str(), cliente.getCorreo().c_str());
+        fprintf(archivoCSV, "%s,%s,%s,%s,%s,%s,%s\n", cliente.getDNI().c_str(), cliente.getNombre().c_str(), cliente.getApellido().c_str(), cliente.getCuilCuit().c_str(),
+        cliente.getDireccion().c_str(), cliente.getTelefono().c_str(), cliente.getCorreo().c_str());
     }
     fclose(archivoBinario);
     fclose(archivoCSV);
@@ -144,9 +145,10 @@ void Configuracion::exportarProveedoresCSV() {
         return;
     }
     Proveedor proveedor;
-    fprintf(archivoCSV, "DNI,Nombre,Apellido,CUIL/CUIT,Direccion\n");
+    fprintf(archivoCSV, "NombreRazon,CUIT,Direccion,Telefono,Email,Rubro\n");
     while (fread(&proveedor, sizeof(Proveedor), 1, archivoBinario)) {
-        fprintf(archivoCSV, "%s,%s,%s,%s,%s\n", proveedor.getNombreRazon().c_str(), proveedor.getCuit().c_str(), proveedor.getDireccion().c_str(), proveedor.getTelefono().c_str(), proveedor.getCorreo().c_str(), proveedor.getRubroNombre().c_str());
+        fprintf(archivoCSV, "%s,%s,%s,%s,%s,%s\n", proveedor.getNombreRazon().c_str(), proveedor.getCuit().c_str(), proveedor.getDireccion().c_str(),
+        proveedor.getTelefono().c_str(), proveedor.getCorreo().c_str(), proveedor.getRubroNombre().c_str());
     }
     fclose(archivoBinario);
     fclose(archivoCSV);

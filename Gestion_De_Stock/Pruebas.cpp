@@ -130,11 +130,10 @@ void loadData() {
             dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
             dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
             dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-            dc.codigoRazonSocial = rand() % 3 + 1;
             dc.alta = (i % 2 == 0);
 
-            Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.codigoRazonSocial, dc.alta);
-            cout << "Proveedor agregado? >> " << (clientes.Crear(dataCliente) ? "Si" : "No") << endl;
+            Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
+            cout << "Cliente agregado? >> " << (clientes.Crear(dataCliente) ? "Si" : "No") << endl;
 
             std::cout << "Cliente " << i + 1 << ": " << dc.nombre << " " << dc.apellido
                       << " | DNI: " << dc.DNI << " | CUIL/CUIT: " << dc.cuilCuit
