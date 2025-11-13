@@ -1,54 +1,91 @@
 #include "Configuracion.h"
 
-Configuracion::Configuracion(string _rutaCopiaSeguridadClientes, string _rutaCopiaSeguridadProveedores, string _rutaCopiaSeguridadProductos, string _rutaCopiaSeguridadFacturas, string _rutaCopiaSeguridadNotasDeCredito) {
-    this->rutaCopiaSeguridadClientes = _rutaCopiaSeguridadClientes;
-    this->rutaCopiaSeguridadProveedores = _rutaCopiaSeguridadProveedores;
-    this->rutaCopiaSeguridadProductos = _rutaCopiaSeguridadProductos;
-    this->rutaCopiaSeguridadFacturas = _rutaCopiaSeguridadFacturas;
-    this->rutaCopiaSeguridadNotasDeCredito = _rutaCopiaSeguridadNotasDeCredito;
+Configuracion::Configuracion(string _rutaDestinoCopiaSeguridadClientes, string _rutaDestinoCopiaSeguridadProveedores, string _rutaDestinoCopiaSeguridadProductos, string _rutaDestinoCopiaSeguridadFacturas, string _rutaDestinoCopiaSeguridadNotasDeCredito,
+    string _rutaOrigenCopiaSeguridadClientes, string _rutaOrigenCopiaSeguridadProveedores, string _rutaOrigenCopiaSeguridadProductos, string _rutaOrigenCopiaSeguridadFacturas, string _rutaOrigenCopiaSeguridadNotasDeCredito) {
+    this->rutaDestinoCopiaSeguridadClientes = _rutaDestinoCopiaSeguridadClientes;
+    this->rutaDestinoCopiaSeguridadProveedores = _rutaDestinoCopiaSeguridadProveedores;
+    this->rutaDestinoCopiaSeguridadProductos = _rutaDestinoCopiaSeguridadProductos;
+    this->rutaDestinoCopiaSeguridadFacturas = _rutaDestinoCopiaSeguridadFacturas;
+    this->rutaDestinoCopiaSeguridadNotasDeCredito = _rutaDestinoCopiaSeguridadNotasDeCredito;
+
+    this->rutaOrigenCopiaSeguridadClientes = _rutaOrigenCopiaSeguridadClientes;
+    this->rutaOrigenCopiaSeguridadProveedores = _rutaOrigenCopiaSeguridadProveedores;
+    this->rutaOrigenCopiaSeguridadProductos = _rutaOrigenCopiaSeguridadProductos;
+    this->rutaOrigenCopiaSeguridadFacturas = _rutaOrigenCopiaSeguridadFacturas;
+    this->rutaOrigenCopiaSeguridadNotasDeCredito = _rutaOrigenCopiaSeguridadNotasDeCredito;
 }
 
 Configuracion::~Configuracion() { }
 
-bool Configuracion::cargarCopiaSeguridad() {
-    return true;
-}
+bool Configuracion::copiarArchivo(string origen, string destino) {
+    ifstream src(origen, ios::binary);
+    ofstream dst(destino, ios::binary);
 
-bool Configuracion::guardarCopiaSeguridad() {
-    return true;
-}
+    if (!src || !dst) return false;
+    dst << src.rdbuf();
+    if (src.fail() || dst.fail()) return false;
 
-bool Configuracion::cargarCopiaClientes() {
-    
     return true;
 }
 
 bool Configuracion::guardarCopiaClientes() {
-    return true;
+    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadClientes, this->rutaDestinoCopiaSeguridadClientes);
 }
 
-bool Configuracion::cargarCopiaProveedores() {
-    return true;
+bool Configuracion::cargarCopiaClientes() {
+    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadClientes, this->rutaOrigenCopiaSeguridadClientes);
 }
 
 bool Configuracion::guardarCopiaProveedores() {
-    return true;
+    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadProveedores, this->rutaDestinoCopiaSeguridadProveedores);
 }
 
-bool Configuracion::cargarCopiaProductos() {
-    return true;
+bool Configuracion::cargarCopiaProveedores() {
+    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadProveedores, this->rutaOrigenCopiaSeguridadProveedores);
 }
 
 bool Configuracion::guardarCopiaProductos() {
-    return true;
+    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadProductos, this->rutaDestinoCopiaSeguridadProductos);
 }
 
-bool Configuracion::cargarCopiaVentas() {
-    return true;
+bool Configuracion::cargarCopiaProductos() {
+    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadProductos, this->rutaOrigenCopiaSeguridadProductos);
 }
 
 bool Configuracion::guardarCopiaVentas() {
-    return true;
+    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadFacturas, this->rutaDestinoCopiaSeguridadFacturas);
+}
+
+bool Configuracion::cargarCopiaVentas() {
+    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadFacturas, this->rutaOrigenCopiaSeguridadFacturas);
+}
+
+bool Configuracion::guardarCopiaNotasDeCredito() {
+    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadNotasDeCredito, this->rutaDestinoCopiaSeguridadNotasDeCredito);
+}
+
+bool Configuracion::cargarCopiaNotasDeCredito() {
+    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadNotasDeCredito, this->rutaOrigenCopiaSeguridadNotasDeCredito);
+}
+
+bool Configuracion::guardarCopiaSeguridad() {
+    bool ok = true;
+    ok &= guardarCopiaClientes();
+    ok &= guardarCopiaProveedores();
+    ok &= guardarCopiaProductos();
+    ok &= guardarCopiaVentas();
+    ok &= guardarCopiaNotasDeCredito();
+    return ok;
+}
+
+bool Configuracion::cargarCopiaSeguridad() {
+    bool ok = true;
+    ok &= cargarCopiaClientes();
+    ok &= cargarCopiaProveedores();
+    ok &= cargarCopiaProductos();
+    ok &= cargarCopiaVentas();
+    ok &= cargarCopiaNotasDeCredito();
+    return ok;
 }
 
 bool Configuracion::exportarClientesCSV() {

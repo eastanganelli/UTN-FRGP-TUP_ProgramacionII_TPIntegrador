@@ -3,32 +3,44 @@
 
 #include <string>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
 
 class Configuracion {
 private:
-    string rutaCopiaSeguridadClientes;
-    string rutaCopiaSeguridadProveedores;
-    string rutaCopiaSeguridadProductos;
-    string rutaCopiaSeguridadFacturas;
-    string rutaCopiaSeguridadNotasDeCredito;
+    string rutaOrigenCopiaSeguridadClientes,
+        rutaOrigenCopiaSeguridadProveedores,
+        rutaOrigenCopiaSeguridadProductos,
+        rutaOrigenCopiaSeguridadFacturas,
+        rutaOrigenCopiaSeguridadNotasDeCredito;
+
+    string rutaDestinoCopiaSeguridadClientes,
+        rutaDestinoCopiaSeguridadProveedores,
+        rutaDestinoCopiaSeguridadProductos,
+        rutaDestinoCopiaSeguridadFacturas,
+        rutaDestinoCopiaSeguridadNotasDeCredito;
+
+    bool copiarArchivo(string origen, string destino);
 
 public:
-    Configuracion(string _rutaCopiaSeguridadClientes = "", string _rutaCopiaSeguridadProveedores = "", string _rutaCopiaSeguridadProductos = "", string _rutaCopiaSeguridadFacturas = "", string _rutaCopiaSeguridadNotasDeCredito = "");
+    Configuracion(string _rutaDestinoCopiaSeguridadClientes = "", string _rutaDestinoCopiaSeguridadProveedores = "", string _rutaDestinoCopiaSeguridadProductos = "", string _rutaDestinoCopiaSeguridadFacturas = "", string _rutaDestinoCopiaSeguridadNotasDeCredito = "",
+    string _rutaOrigenCopiaSeguridadClientes = "", string _rutaOrigenCopiaSeguridadProveedores = "", string _rutaOrigenCopiaSeguridadProductos = "", string _rutaOrigenCopiaSeguridadFacturas = "", string _rutaOrigenCopiaSeguridadNotasDeCredito = "");
     ~Configuracion();
 
     // Métodos
-    bool cargarCopiaSeguridad();
-    bool guardarCopiaSeguridad();
-    bool cargarCopiaClientes();
     bool guardarCopiaClientes();
-    bool cargarCopiaProveedores();
+    bool cargarCopiaClientes();
     bool guardarCopiaProveedores();
-    bool cargarCopiaProductos();
+    bool cargarCopiaProveedores();
     bool guardarCopiaProductos();
-    bool cargarCopiaVentas();
+    bool cargarCopiaProductos();
     bool guardarCopiaVentas();
+    bool cargarCopiaVentas();
+    bool guardarCopiaNotasDeCredito();
+    bool cargarCopiaNotasDeCredito();
+    bool guardarCopiaSeguridad();
+    bool cargarCopiaSeguridad();
 
     bool exportarTodoCSV();
     bool exportarClientesCSV();
