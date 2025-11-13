@@ -128,7 +128,9 @@ void Menu::menuSub(string titulo) {
                     string cuilCuitCliente;
                     cout << "Ingrese el CUIL/CUIT del cliente: ";
                     cin >> cuilCuitCliente;
+
                     clientesManager.ConsultaXCUILCuit(cuilCuitCliente);
+
                 }
                 if (opcionSub == 9) {
                     string nombreCliente;

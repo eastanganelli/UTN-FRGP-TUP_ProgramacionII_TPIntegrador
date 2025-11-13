@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <string>
 
+
 using namespace std;
 
 class ClienteManager {
@@ -32,9 +33,9 @@ public:
     void ListarXDNI();
     void ListarXcuilcuit();
     void ConsultaXCUILCuit(string cuilcuit);
-    Cliente* ConsultaXDNI(string dni);
-    Cliente* ConsultaXNombreApellido(string nombre, string apellido);
-    Cliente* ConsultaXCorreo(string correo);
+    void ConsultaXDNI(string dni);
+    void ConsultaXNombreApellido(string nombre, string apellido);
+    void ConsultaXCorreo(string correo);
 
     unsigned int Contar();
 };

@@ -134,12 +134,14 @@ void VentaManager::Imprimir(Factura *misFacturas, unsigned int cantidad) {
     for (unsigned int i = 0; i < cantidad; i++) {
         cout << misFacturas[i].toString() << endl;
     }
+
 }
 
 void VentaManager::Imprimir(NotaDeCredito *misNotaDeCreditos, unsigned int cantidad) {
     for (unsigned int i = 0; i < cantidad; i++) {
         cout << misNotaDeCreditos[i].toString() << endl;
     }
+
 }
 
 bool VentaManager::CrearFactura(Factura &f) {
