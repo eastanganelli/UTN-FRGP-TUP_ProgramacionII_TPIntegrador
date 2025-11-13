@@ -50,6 +50,7 @@ public:
     void ConsultaXTipoDeComprobante(char tipoComprobante);
     void ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin);
 
+    void FacturasDeCliente(string dni, unsigned int* cantidad, float* monto);
     void RecaudacionTrimestralPorAnio(int anio, float* trimestres);
     float RecaudacionAnualPorAnio(int anio);
     unsigned int ContarFacturas();
