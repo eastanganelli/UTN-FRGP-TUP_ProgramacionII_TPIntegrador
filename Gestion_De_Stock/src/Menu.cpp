@@ -315,9 +315,9 @@
     void Menu::menuSub(const string &titulo) {
         int opcionSub;
 
-        ClienteManager clientesManager("clientes.bin");
+        ClienteManager clientesManager("clientes.dat");
         VentaManager ventasManager("facturas.dat", "notascredito.dat");
-        ProveedorManager proveedoresManager("proveedores.bin");
+        ProveedorManager proveedoresManager("proveedores.dat");
         ProductoManager productosManager("productos.bin");
     //agreegar si no encuentra archivo
     //revisar si existe registro en los delete, en el update y create
@@ -346,13 +346,25 @@
                     string dniCliente;
                     cout << "Ingrese el DNI del cliente: ";
                     cin >> dniCliente;
-                    clientesManager.ConsultaXDNI(dniCliente);
+                    Proveedor temp(dniCliente);
+                    if (!clientesManager.Existe(temp)) {
+                        cout << "No existe un cliente con ese DNI." << endl;
+                        system("pause");
+                    } else {
+                        clientesManager.ConsultaXDNI(dniCliente);
+                    }
                 }
                 if (opcionSub == 8) {
                     string cuilCuitCliente;
                     cout << "Ingrese el CUIL/CUIT del cliente: ";
                     cin >> cuilCuitCliente;
-                    clientesManager.ConsultaXCUILCuit(cuilCuitCliente);
+                    Proveedor temp(cuilCuitCliente);
+                    if (!clientesManager.Existe(temp)) {
+                        cout << "No existe un cliente con ese CUIL/CUIT." << endl;
+                        system("pause");
+                    } else {
+                        clientesManager.ConsultaXCUILCuit(cuilCuitCliente);
+                    }
                 }
                 if (opcionSub == 9) {
                     string nombreCliente;
@@ -361,13 +373,25 @@
                     cin >> nombreCliente;
                     cout << "Ingrese el apellido del cliente: ";
                     cin >> apellidoCliente;
-                    clientesManager.ConsultaXNombreApellido(nombreCliente, apellidoCliente);
+                    Proveedor temp(nombreCliente, apellidoCliente);
+                    if (!clientesManager.Existe(temp)) {
+                        cout << "No existe un cliente con ese nombre y apellido." << endl;
+                        system("pause");
+                    } else {
+                        clientesManager.ConsultaXNombreApellido(nombreCliente, apellidoCliente);
+                    }
                 }
                 if (opcionSub == 10) {
                     string correoCliente;
                     cout << "Ingrese el correo del cliente: ";
                     cin >> correoCliente;
-                    clientesManager.ConsultaXCorreo(correoCliente);
+                    Proveedor temp(correoCliente);
+                    if (!clientesManager.Existe(temp)) {
+                        cout << "No existe un cliente con ese correo." << endl;
+                        system("pause");
+                    } else {
+                        clientesManager.ConsultaXCorreo(correoCliente);
+                    }
                 }
 
                 rlutil::cls();
@@ -428,25 +452,49 @@
                     string cuitProveedor;
                     cout << "Ingrese el CUIT del proveedor: ";
                     cin >> cuitProveedor;
-                    proveedoresManager.ConsultarXCUIT(cuitProveedor);
+                    Proveedor temp(cuitProveedor);
+                    if (!proveedoresManager.Existe(temp)) {
+                        cout << "No existe un proveedor con ese CUIT." << endl;
+                        system("pause");
+                    } else {
+                        proveedoresManager.ConsultarXCUIT(cuitProveedor);
+                    }
                 }
                 if(opcionSub == 8) {
                     string nombreProveedor;
                     cout << "Ingrese el nombre del proveedor: ";
                     cin >> nombreProveedor;
-                    proveedoresManager.ConsultarXNombre(nombreProveedor);
+                    Proveedor temp(nombreProveedor);
+                    if (!proveedoresManager.Existe(temp)) {
+                        cout << "No existe un proveedor con ese nombre." << endl;
+                        system("pause");
+                    } else {
+                        proveedoresManager.ConsultarXNombre(nombreProveedor);
+                    }
                 }
                 if(opcionSub == 9) {
                     int rubroProveedor;
                     cout << "Ingrese el rubro del proveedor: ";
                     cin >> rubroProveedor;
-                    proveedoresManager.ConsultarXRubro(rubroProveedor);
+                    Proveedor temp(rubroProveedor);
+                    if (!proveedoresManager.Existe(temp)) {
+                        cout << "No existe un proveedor con ese rubro." << endl;
+                        system("pause");
+                    } else {
+                        proveedoresManager.ConsultarXRubro(rubroProveedor);
+                    }
                 }
                 if(opcionSub == 10) {
                     bool estadoProveedor;
                     cout << "Ingrese el estado del proveedor: ";
                     cin >> estadoProveedor;
-                    proveedoresManager.ConsultarXEstado(estadoProveedor);
+                    Proveedor temp(estadoProveedor);
+                    if (!proveedoresManager.Existe(temp)) {
+                        cout << "No existe un proveedor con ese estado." << endl;
+                        system("pause");
+                    } else {
+                        proveedoresManager.ConsultarXEstado(estadoProveedor);
+                    }
                 }
                 if(opcionSub == 11) {
                     proveedoresManager.Contar();
@@ -476,19 +524,37 @@
                     string codigoProducto;
                     cout << "Ingrese el codigo del producto: ";
                     cin >> codigoProducto;
-                    productosManager.ConsultaXCodigo(codigoProducto);
+                    Proveedor temp(codigoProducto);
+                    if (!productosManager.Existe(temp)) {
+                        cout << "No existe un producto con ese codigo." << endl;
+                        system("pause");
+                    } else {
+                        productosManager.ConsultaXCodigo(codigoProducto);
+                    }
                 }
                 if (opcionSub == 8) {
                     string descripcionProducto;
                     cout << "Ingrese la descripcion del producto: ";
                     cin >> descripcionProducto;
-                    productosManager.ConsultaXDescripcion(descripcionProducto);
+                    Proveedor temp(descripcionProducto);
+                    if (!productosManager.Existe(temp)) {
+                        cout << "No existe un producto con esa descripcion." << endl;
+                        system("pause");
+                    } else {
+                        productosManager.ConsultaXDescripcion(descripcionProducto);
+                    }
                 }
                 if (opcionSub == 9) {
                     int stockMinimoProducto;
                     cout << "Ingrese el stock minimo del producto: ";
                     cin >> stockMinimoProducto;
-                    productosManager.ConsultaXStockMinimo(stockMinimoProducto);
+                    Proveedor temp(stockMinimoProducto);
+                    if (!productosManager.Existe(temp)) {
+                        cout << "No existe un producto con ese stock minimo." << endl;
+                        system("pause");
+                    } else {
+                        productosManager.ConsultaXStockMinimo(stockMinimoProducto);
+                    }
                 }
             } else if (titulo == "EXTRAS") {
                 opcionSub = renderExtrasLC();
