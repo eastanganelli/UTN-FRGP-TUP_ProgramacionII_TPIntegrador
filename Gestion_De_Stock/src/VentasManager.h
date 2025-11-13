@@ -4,6 +4,8 @@
 #include "Factura.h"
 #include "NotaDeCredito.h"
 
+using namespace std;
+
 class VentaManager {
 private:
     string rutasArchivoFactura;
