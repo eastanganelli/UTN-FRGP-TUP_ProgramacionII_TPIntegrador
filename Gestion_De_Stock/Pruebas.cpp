@@ -65,7 +65,7 @@ void TestingProductos() {
 }
 
 void TestingVentas() {
-    VentaManager misComprobantes("Facturas.dat", "NotaDeCredito.dat");
+    VentaManager misComprobantes("Facturas.dat", "NotaDeCreditos.dat");
 
     bool resultado = misComprobantes.NuevaFactura("39068857", 345.7, 5, 'A');
     std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
@@ -91,7 +91,7 @@ void loadData() {
     srand(static_cast<unsigned int>(time(NULL)));
     ClienteManager clientes("Clientes.dat");
     ProveedorManager proveedores("Proveedores.dat");
-    ProductoManager productos("Productos.bin");
+    ProductoManager productos("Productos.dat");
 
     string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
                           "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},

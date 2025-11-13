@@ -7,10 +7,14 @@ using namespace std;
 
 class Configuracion {
 private:
-
+    string rutaCopiaSeguridadClientes;
+    string rutaCopiaSeguridadProveedores;
+    string rutaCopiaSeguridadProductos;
+    string rutaCopiaSeguridadFacturas;
+    string rutaCopiaSeguridadNotasDeCredito;
 
 public:
-    Configuracion();
+    Configuracion(string _rutaCopiaSeguridadClientes = "", string _rutaCopiaSeguridadProveedores = "", string _rutaCopiaSeguridadProductos = "", string _rutaCopiaSeguridadFacturas = "", string _rutaCopiaSeguridadNotasDeCredito = "");
     ~Configuracion();
 
     // Métodos
