@@ -67,7 +67,6 @@ void Menu::menuSub(string titulo) {
                   cout << "Ingrese el correo del cliente: "; cin >> correoClienteCrear;
                   cout << "Ingrese el telefono del cliente: "; cin >> telefonoClienteCrear;
                   cout << "Ingrese el celular del cliente: "; cin >> celularClienteCrear;
-                  cout << "Ingrese el codigo razon social: "; cin >> codigoRazonSocial;
                   cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
                   Cliente nuevo(nombreClienteCrear, apellidoClienteCrear, DNIClienteCrear, cuilCuitClienteCrear, direccionClienteCrear, correoClienteCrear, telefonoClienteCrear, celularClienteCrear, alta);
                   if(clientesManager.Crear(nuevo)) cout << "Cliente creado exitosamente." << endl;
@@ -92,19 +91,56 @@ void Menu::menuSub(string titulo) {
                      system("pause");
                  } else {
                      string nombreClienteModificar, apellidoClienteModificar, cuilCuitClienteModificar, direccionClienteModificar, correoClienteModificar, telefonoClienteModificar, celularClienteModificar;
-                     unsigned int codigoRazonSocialClienteModificar;
                      bool alta;
-                     cout << "Ingrese nuevo nombre: "; cin >> nombreClienteModificar;
-                     cout << "Ingrese nuevo apellido: "; cin >> apellidoClienteModificar;
-                     cout << "Ingrese nuevo CUIL/CUIT: "; cin >> cuilCuitClienteModificar;
-                     cout << "Ingrese nueva direccion: "; cin >> direccionClienteModificar;
-                     cout << "Ingrese nuevo correo: "; cin >> correoClienteModificar;
-                     cout << "Ingrese nuevo telefono: "; cin >> telefonoClienteModificar;
-                     cout << "Ingrese nuevo celular: "; cin >> celularClienteModificar;
-                     cout << "Ingrese nuevo codigo razon social: "; cin >> codigoRazonSocialClienteModificar;
-                     cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
-                     Cliente modificado(nombreClienteModificar, apellidoClienteModificar, dniClienteModificar, cuilCuitClienteModificar, direccionClienteModificar, correoClienteModificar, telefonoClienteModificar, celularClienteModificar, codigoRazonSocialClienteModificar, alta);
-                     if (clientesManager.Modificar(dniClienteModificar, modificado)) cout << "Cliente modificado exitosamente." << endl;
+                     char res;
+                     cout << "Desea modificar nombre? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo nombre: "; cin >> nombreClienteModificar;
+                        actual->setNombre(nombreClienteModificar);
+                     }
+
+                     cout << "Desea modificar apellido? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo apellido: "; cin >> apellidoClienteModificar;
+                        actual->setApellido(apellidoClienteModificar);
+                     }
+
+                     cout << "Desea modificar CUIL/CUIT? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo CUIL/CUIT: "; cin >> cuilCuitClienteModificar;
+                        actual->setCuilCuit(cuilCuitClienteModificar);
+                     }
+
+                     cout << "Desea modificar direccion? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nueva direccion: "; cin >> direccionClienteModificar;
+                        actual->setDireccion(direccionClienteModificar);
+                     }
+
+                     cout << "Desea modificar correo? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo correo: "; cin >> correoClienteModificar;
+                        actual->setCorreo(correoClienteModificar);
+                     }
+
+                     cout << "Desea modificar telefono? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo telefono: "; cin >> telefonoClienteModificar;
+                        actual->setTelefono(telefonoClienteModificar);
+                     }
+
+                     cout << "Desea modificar celular? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "Ingrese nuevo celular: "; cin >> celularClienteModificar;
+                        actual->setCelular(celularClienteModificar);
+                     }
+
+                     cout << "Desea modificar Alta? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
+                        actual->setAlta(alta);
+                     }
+                     if (clientesManager.Modificar(dniClienteModificar, actual)) cout << "Cliente modificado exitosamente." << endl;
                      else cout << "Error al modificar el cliente." << endl;
                      system("pause");
                  }
@@ -231,7 +267,6 @@ void Menu::menuSub(string titulo) {
                     correoProveedorCrear,
                     telefonoProveedorCrear,
                     celularProveedorCrear,
-                    codigoRazonSocialProveedorCrear,
                     altaProveedorCrear
                 );
 
@@ -266,7 +301,6 @@ void Menu::menuSub(string titulo) {
                     cout << "Ingrese nuevo correo: "; cin >> correoProveedorModificar;
                     cout << "Ingrese nuevo telefono: "; cin >> telefonoProveedorModificar;
                     cout << "Ingrese nuevo celular: "; cin >> celularProveedorModificar;
-                    cout << "Ingrese nuevo codigo de razon social: "; cin >> codigoRazonSocialProveedorModificar;
                     cout << "Alta? (1=Si, 0=No): "; cin >> altaProveedorModificar;
 
                     Proveedor modificado(
@@ -277,7 +311,6 @@ void Menu::menuSub(string titulo) {
                         correoProveedorModificar,
                         telefonoProveedorModificar,
                         celularProveedorModificar,
-                        codigoRazonSocialProveedorModificar,
                         altaProveedorModificar
                     );
 
