@@ -47,11 +47,3 @@ void Item::operator=(Item& item) {
     strcpy(this->descripcion, item.descripcion);
     this->precioUnitario = item.precioUnitario;
 }
-
-std::ostream& operator<<(std::ostream& os, Item* obj) {
-    os << "ID: " << ", Codigo Producto: " << obj->getCodigoProducto()
-       << ", Descripcion: " << ", Cantidad: " << obj->getCantidad()
-       << ", Precio Unitario: " << obj->getPrecioUnitario()
-       << ", Precio Total: " << obj->getPrecioTotal();
-    return os;
-}

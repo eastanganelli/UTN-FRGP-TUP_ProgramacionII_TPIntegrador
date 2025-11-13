@@ -37,6 +37,4 @@ public:
     void operator=(Item& item);
 };
 
-std::ostream& operator<<(std::ostream& os, Item* obj);
-
 #endif // ITEM_H

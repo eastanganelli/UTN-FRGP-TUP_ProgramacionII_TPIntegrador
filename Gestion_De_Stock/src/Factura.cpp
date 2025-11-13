@@ -23,10 +23,3 @@ void Factura::TotalConIVA() {
 void Factura::CantidadItems() {
 
 }
-
-std::ostream& operator<<(std::ostream& os, Factura* obj) {
-    /*os << "--- FACTURA TIPO " << obj->getTipoFactura() << " ---" << std::endl;
-    os << "Total IVA: $" << obj->getTotalIVA() << std::endl;
-    os << "---------------------------------" << std::endl;*/
-    return os;
-}

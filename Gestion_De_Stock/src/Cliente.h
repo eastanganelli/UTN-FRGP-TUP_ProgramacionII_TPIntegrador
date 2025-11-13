@@ -39,12 +39,3 @@ public:
 std::ostream& operator<<(std::ostream& os, Cliente* obj);
 
 #endif // CLIENTE_H
-
-/*
- *     std::cout << "Cliente: " << aux->getNombre() << " " << aux->getApellido()
-              << " | DNI: " << aux->getDNI() << " | CUIL/CUIT: " << aux->getCuilCuit()
-              << " | Dir: " << aux->getDireccion() << " | Correo: " << aux->getCorreo()
-              << " | Tel: " << aux->getTelefono() << " | Cel: " << aux->getCelular()
-              << " | Cod Razon Soc: " << aux->getCodigoRazonSocial()
-              << " | Alta: " << (aux->getAlta() ? "Si" : "No") << std::endl;
- */

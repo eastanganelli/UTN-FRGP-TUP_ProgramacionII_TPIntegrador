@@ -36,6 +36,4 @@ public:
     void CantidadItems();
 };
 
-std::ostream& operator<<(std::ostream& os, Factura* obj);
-
 #endif // FACTURA_H
