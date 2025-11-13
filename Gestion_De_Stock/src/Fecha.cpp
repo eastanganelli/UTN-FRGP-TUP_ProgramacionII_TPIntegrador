@@ -1,18 +1,27 @@
 #include "Fecha.h"
 
-Fecha::Fecha(unsigned int dia, unsigned int mes, unsigned int anio) {
+Fecha::Fecha(int dia, int mes, int anio) {
     this->dia = dia;
     this->mes = mes;
     this->anio = anio;
 }
 
-unsigned int Fecha::getDia() { return this->dia; }
-unsigned int Fecha::getMes() { return this->mes; }
-unsigned int Fecha::getAnio() { return this->anio; }
+int Fecha::getDia() { return this->dia; }
+int Fecha::getMes() { return this->mes; }
+int Fecha::getAnio() { return this->anio; }
 
-void Fecha::setDia(unsigned int d) { this->dia = d; }
-void Fecha::setMes(unsigned int m) { this->mes = m; }
-void Fecha::setAnio(unsigned int a) { this->anio = a; }
+void Fecha::setDia(int d) { this->dia = d; }
+void Fecha::setMes(int m) { this->mes = m; }
+void Fecha::setAnio(int a) { this->anio = a; }
+
+void Fecha::CargarFecha() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    this->dia = ltm->tm_mday;
+    this->mes = ltm->tm_mon + 1;
+    this->anio = ltm->tm_year + 1900;
+}
 
 string Fecha::toString() {
     return std::to_string(this->dia) + "/" + std::to_string(this->mes) + "/" + std::to_string(this->anio);

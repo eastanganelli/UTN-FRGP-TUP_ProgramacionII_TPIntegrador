@@ -79,13 +79,15 @@ void TestingVentas() {
 //
 //    bool result_nota = misComprobantes.NuevaNotaDeCredito(*factura);
 //    std::cout << "Nota creada? >> " << (result_nota ? "Si" : "No") << std::endl;
-    NotaDeCredito* miNota = misComprobantes.ObtenerNotaDeCredito(1);
-    if(miNota != nullptr) {
-        cout << miNota->toString();
-    }
+//    NotaDeCredito* miNota = misComprobantes.ObtenerNotaDeCredito(1);
+//    if(miNota != nullptr) {
+//        cout << miNota->toString();
+//    }
 
     misComprobantes.ListarXCliente();
-    misComprobantes.ListarXFecha();
+//    misComprobantes.ListarXFecha();
+//    misComprobantes.ConsultaXTipoDeComprobante('A');
+    misComprobantes.ConsultaXRangoDeFechas(Fecha(22, 6, 2024), Fecha(31,12,2025));
     system("pause");
 }
 
