@@ -9,6 +9,11 @@ Comprobante::~Comprobante() {
 
 }
 
+void Comprobante::CargarFecha()
+{
+
+}
+
 float Comprobante::TotalSinIVA() {
     float total = 0.0f;
     for (unsigned int i = 0; i < this->cantidadItems; i++) {

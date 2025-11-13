@@ -51,6 +51,10 @@ void TestingProductos() {
     */
 }
 
+void TestingVentas() {
+    VentaManager misComprobantes();
+}
+
 std::string generarCodigoAlfaNumerico(int longitud) {
     const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     const int numCaracteresPosibles = sizeof(caracteresPosibles) - 1;

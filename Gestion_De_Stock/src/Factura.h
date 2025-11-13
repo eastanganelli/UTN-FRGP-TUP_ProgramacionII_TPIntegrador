@@ -17,7 +17,7 @@ private:
     Fecha vencimientoCAE;
 
 public:
-    Factura(unsigned int _id = 0, char _tipoFactura = 'B');
+    Factura(unsigned int _id = 0, string _cliente = "", char _tipoFactura = 'B');
     ~Factura();
 
     // Getters

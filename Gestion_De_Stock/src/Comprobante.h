@@ -18,6 +18,8 @@ private:
     unsigned int cantidadItems;
     Item items[ITEMS_MAX];
 
+    void CargarFecha();
+
 protected:
     Fecha creado;
     unsigned int codigoCliente;

@@ -1,7 +1,7 @@
 #include "Factura.h"
 
-Factura::Factura(unsigned int _id, char _tipoFactura) : Comprobante(_id), tipoFactura(_tipoFactura) {
-
+Factura::Factura(unsigned int _id, string _cliente, char _tipoFactura) : Comprobante(_id, _cliente) {
+    this->tipoFactura = _tipoFactura;
 }
 
 Factura::~Factura() {
