@@ -10,7 +10,7 @@ int main() {
     //Menu menu;
     //menu.mostrar();
 
-    TestingAll();
+    //TestingAll();
 
     return 0;
 }
