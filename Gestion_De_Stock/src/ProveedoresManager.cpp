@@ -1,7 +1,7 @@
 #include "ProveedoresManager.h"
 
 #include <iostream>
-#include <algorithm>
+#include <cctype>
 ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -246,14 +246,17 @@ void ProveedorManager::ConsultarXCUIT(string cuit) {
     delete[] resultados;
 }
 
-
-
 void ProveedorManager::ConsultarXNombre(string nombreRazon) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) return;
+    if (archivo == nullptr) {
+        cout << "No se pudo abrir el archivo de proveedores." << endl;
+        return;
+    }
 
-    // Pasar a minúsculas para comparar sin distinción
-    transform(nombreRazon.begin(), nombreRazon.end(), nombreRazon.begin(), ::tolower);
+    // Convertir a minúsculas el texto ingresado
+    for (size_t i = 0; i < nombreRazon.length(); i++) {
+        nombreRazon[i] = tolower(nombreRazon[i]);
+    }
 
     Proveedor* resultados = new Proveedor[0];
     unsigned int contador = 0;
@@ -261,16 +264,26 @@ void ProveedorManager::ConsultarXNombre(string nombreRazon) {
 
     while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
         string nombreArchivo = proveedor.getNombreRazon();
-        transform(nombreArchivo.begin(), nombreArchivo.end(), nombreArchivo.begin(), ::tolower);
 
-        if (nombreArchivo.find(nombreRazon) != string::npos) { // permite coincidencias parciales
+        // Convertir a minúsculas el texto del archivo
+        for (size_t i = 0; i < nombreArchivo.length(); i++) {
+            nombreArchivo[i] = tolower(nombreArchivo[i]);
+        }
+
+        // Buscar coincidencia parcial
+        if (nombreArchivo.find(nombreRazon) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = proveedor;
         }
     }
 
     fclose(archivo);
-    this->Imprimir(resultados, contador);
+
+    if (contador == 0)
+        cout << "No se encontraron proveedores con ese nombre." << endl;
+    else
+        this->Imprimir(resultados, contador);
+
     delete[] resultados;
 }
 
@@ -290,6 +303,7 @@ void ProveedorManager::ConsultarXNombre(string nombreRazon) {
     }
     fclose(archivo);
     this->Imprimir(resultados, contador);
+
     delete[] resultados;
 }*/
 
