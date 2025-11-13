@@ -5,14 +5,14 @@
 
 class Menu {
 public:
-    // Muestra el menú principal
+    // Muestra el menu principal
     void mostrar();
 
 private:
-    // Función genérica para mostrar un submenú de cualquier sección
+    // Funcion generica para mostrar un submenu de cualquier seccion
     void menuSub(const std::string &titulo);
 
-    // Muestra el submenú genérico y devuelve la opción elegida
+    // Muestra el submenu genÃ©rico y devuelve la opciÃ³n elegida
     int mostrarSubmenu(const std::string &titulo);
 };
 
