@@ -182,7 +182,7 @@ void loadData() {
 }
 
 void TestingAll() {
-    //loadData();
+    loadData();
 
     //TestingCliente();
     //TestingProveedores();
