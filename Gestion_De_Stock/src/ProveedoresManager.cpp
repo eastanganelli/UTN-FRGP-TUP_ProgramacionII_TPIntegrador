@@ -1,5 +1,7 @@
 #include "ProveedoresManager.h"
 
+#include <iostream>
+
 ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -183,6 +185,7 @@ void ProveedorManager::ListarXNombre() {
             }
         }
         this->Imprimir(misProveedores, cantidadProveedores);
+        delete[] misProveedores;
     }
 }
 
@@ -201,6 +204,7 @@ void ProveedorManager::ListarXRubro() {
             }
         }
         this->Imprimir(misProveedores, cantidadProveedores);
+        delete[] misProveedores;
     }
 }
 
@@ -219,13 +223,14 @@ void ProveedorManager::ListarXCUIT() {
             }
         }
         this->Imprimir(misProveedores, cantidadProveedores);
+        delete[] misProveedores;
     }
 }
 
-Proveedor *ProveedorManager::ConsultarXCUIT(string cuit) {
+void ProveedorManager::ConsultarXCUIT(string cuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Proveedor* resultados = new Proveedor[0];
     unsigned int contador = 0;
@@ -237,13 +242,14 @@ Proveedor *ProveedorManager::ConsultarXCUIT(string cuit) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Proveedor *ProveedorManager::ConsultarXNombre(string nombreRazon) {
+void ProveedorManager::ConsultarXNombre(string nombreRazon) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Proveedor* resultados = new Proveedor[0];
     unsigned int contador = 0;
@@ -255,13 +261,14 @@ Proveedor *ProveedorManager::ConsultarXNombre(string nombreRazon) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Proveedor *ProveedorManager::ConsultarXRubro(unsigned int rubro) {
+void ProveedorManager::ConsultarXRubro(unsigned int rubro) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Proveedor* resultados = new Proveedor[0];
     unsigned int contador = 0;
@@ -273,13 +280,14 @@ Proveedor *ProveedorManager::ConsultarXRubro(unsigned int rubro) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Proveedor *ProveedorManager::ConsultarXEstado(bool estado) {
+void ProveedorManager::ConsultarXEstado(bool estado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Proveedor* resultados = new Proveedor[0];
     unsigned int contador = 0;
@@ -291,10 +299,11 @@ Proveedor *ProveedorManager::ConsultarXEstado(bool estado) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Proveedor *ProveedorManager::Redimensionar(Proveedor *proveedores, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
+Proveedor* ProveedorManager::Redimensionar(Proveedor *proveedores, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
     Proveedor* nuevosProveedores = new Proveedor[nuevaCapacidad];
     unsigned int elementosACopiar = (capacidadActual < nuevaCapacidad) ? capacidadActual : nuevaCapacidad;
     for (unsigned int i = 0; i < elementosACopiar; i++) {

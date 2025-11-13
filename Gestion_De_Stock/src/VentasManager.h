@@ -16,6 +16,13 @@ private:
     int PosicionNotaDeCredito(unsigned int numero, unsigned int& posicion);
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
 
+    void ListarFacturasXFecha();
+    void ListarNotasDeCreditoXFecha();
+    void ListarFacturasXCAE();
+    void ListarNotasDeCreditoXCAE();
+    void ListarFacturasXCliente();
+    void ListarNotasDeCreditoXCliente();
+
 public:
     VentaManager(string _nombreArchivoFactura = "facturas.bin", string _nombreArchivoNotaDeCredito = "notasdecredito.bin");
     ~VentaManager();
@@ -28,6 +35,13 @@ public:
     bool Modificar(unsigned int numero, NotaDeCredito& ndcActualizado);
     bool EliminarFactura(unsigned int numero);
     bool EliminarNotaDeCredito(unsigned int numero);
+    void ListarXFecha();
+    void ListarXCAE();
+    void ListarXCliente();
+    void ConsultaXCliente(string dniCliente);
+    void ConsultaXCAE(string cae);
+    void ConsultaXTipoDeComprobante(char tipoComprobante);
+    void ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin);
 
     unsigned int ContarFacturas();
     unsigned int ContarNotasDeCreditos();

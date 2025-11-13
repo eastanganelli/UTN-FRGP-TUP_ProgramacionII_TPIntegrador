@@ -22,7 +22,8 @@ protected:
     Fecha creado;
     unsigned int codigoCliente;
 
-    float getPrecioTotal();
+    float TotalSinIVA();
+    unsigned int CantidadItems();
 
 public:
     Comprobante(unsigned int _numero = 0, string _clienteDNI = "");

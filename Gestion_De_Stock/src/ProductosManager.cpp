@@ -1,5 +1,7 @@
 #include "ProductosManager.h"
 
+#include <iostream>
+
 ProductoManager::ProductoManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -196,6 +198,7 @@ void ProductoManager::ListarXCodigo() {
             }
         }
         this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
 }
 
@@ -214,6 +217,7 @@ void ProductoManager::ListarXPrecio() {
             }
         }
         this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
 }
 
@@ -232,13 +236,14 @@ void ProductoManager::ListarXStock() {
             }
         }
         this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
 }
 
-Producto *ProductoManager::ConsultaXCodigo(string codigo) {
+void ProductoManager::ConsultaXCodigo(string codigo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
@@ -250,13 +255,14 @@ Producto *ProductoManager::ConsultaXCodigo(string codigo) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Producto *ProductoManager::ConsultaXDescripcion(string descripcion) {
+void ProductoManager::ConsultaXDescripcion(string descripcion) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
@@ -268,13 +274,14 @@ Producto *ProductoManager::ConsultaXDescripcion(string descripcion) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Producto *ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
+void ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
@@ -286,7 +293,8 @@ Producto *ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
 unsigned int ProductoManager::Contar() {

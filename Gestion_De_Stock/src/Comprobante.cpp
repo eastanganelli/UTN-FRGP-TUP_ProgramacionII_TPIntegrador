@@ -9,12 +9,20 @@ Comprobante::~Comprobante() {
 
 }
 
-float Comprobante::getPrecioTotal() {
+float Comprobante::TotalSinIVA() {
     float total = 0.0f;
     for (unsigned int i = 0; i < this->cantidadItems; i++) {
         total += this->items[i].getPrecioTotal();
     }
     return total;
+}
+
+unsigned int Comprobante::CantidadItems() {
+    unsigned int totalItems = 0;
+    for (unsigned int i = 0; i < this->cantidadItems; i++) {
+        totalItems += this->items[i].getCantidad();
+    }
+    return totalItems;
 }
 
 unsigned int Comprobante::getNumero() {

@@ -13,7 +13,7 @@ char Factura::getTipoFactura() {
 }
 
 void Factura::TotalSinIVA() {
-
+    this->TotalSinIVA();
 }
 
 void Factura::TotalConIVA() {

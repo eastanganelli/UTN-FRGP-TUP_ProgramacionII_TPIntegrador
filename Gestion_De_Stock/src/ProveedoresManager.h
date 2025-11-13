@@ -3,7 +3,6 @@
 
 #include "Proveedor.h"
 
-#include <iostream>
 #include <cstdio>
 #include <string>
 
@@ -36,10 +35,10 @@ public:
     void ListarXNombre();
     void ListarXRubro();
     void ListarXCUIT();
-    Proveedor* ConsultarXCUIT(string cuit);
-    Proveedor* ConsultarXNombre(string nombreRazon);
-    Proveedor* ConsultarXRubro(unsigned int rubro);
-    Proveedor* ConsultarXEstado(bool estado);
+    void ConsultarXCUIT(string cuit);
+    void ConsultarXNombre(string nombreRazon);
+    void ConsultarXRubro(unsigned int rubro);
+    void ConsultarXEstado(bool estado);
     unsigned int Contar();
     unsigned int SeleccionarRubro();
     string getNombreRubro(unsigned int cr);

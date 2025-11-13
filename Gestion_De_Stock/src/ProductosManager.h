@@ -3,7 +3,6 @@
 
 #include "Producto.h"
 
-#include <iostream>
 #include <cstdio>
 #include <string>
 #include <ctime>
@@ -35,9 +34,9 @@ public:
     void ListarXCodigo();
     void ListarXPrecio();
     void ListarXStock();
-    Producto* ConsultaXCodigo(string codigo);
-    Producto* ConsultaXDescripcion(string descripcion);
-    Producto* ConsultaXStockMinimo(unsigned int stockMinimo);
+    void ConsultaXCodigo(string codigo);
+    void ConsultaXDescripcion(string descripcion);
+    void ConsultaXStockMinimo(unsigned int stockMinimo);
     unsigned int Contar();
     string generarCodigo();
 };
