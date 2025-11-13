@@ -1,4 +1,8 @@
     #include "Menu.h"
+    #include "ClientesManager.h"
+    #include "VentasManager.h"
+    #include "ProveedoresManager.h"
+    #include "ProductosManager.h"
     #include <iostream>
     #include <algorithm>
     #include "rlutil.h"
@@ -132,13 +136,13 @@
             rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU PRODUCTOS");
             int y = 6;
             rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
-            printOption(y++, 1, "Listado de productos - Ordenado por Nombre");
+            printOption(y++, 1, "Listado de productos - Ordenado por Codigo");
             printOption(y++, 2, "Listado de productos - Ordenado por Precio");
             printOption(y++, 3, "Listado de productos - Ordenado por Stock");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
-            printOption(y++, 4, "Consulta de productos - Por Nombre");
+            printOption(y++, 4, "Consulta de productos - Por Codigo");
             printOption(y++, 5, "Consulta de productos - Por Descripcion");
             printOption(y++, 6, "Consulta de productos - Por Stock");
 
@@ -291,22 +295,154 @@
     void Menu::menuSub(const string &titulo) {
         int opcionSub;
 
+        std::string DNI;
+        std::string nombre;
+        std::string apellido;
+        std::string cuilCuit;
+        std::string correo;
+
+        std::string codigo;
+        std::string descripcion;
+        int stockMinimo;
+
+        ClienteManager clientesManager("Clientes.bin");
+        VentaManager ventasManager("Facturas.dat", "NotasCredito.dat");
+        ProveedorManager proveedoresManager("Proveedores.dat");
+        ProductoManager productosManager("Productos.dat");
+    //agreegar si no encuentra archivo
+    //revisar si existe registro en los delete, en el update y create
         do {
-            if (titulo == "MENU CLIENTES") {
+           if (titulo == "MENU CLIENTES") {
                 opcionSub = renderClientesLC();
 
+                if (opcionSub == 1) {
+                    clientesManager.ListarXApellido();
+                }
+                if (opcionSub == 2) {
+                    clientesManager.ListarXDNI();
+                }
+                if (opcionSub == 3) {
+                    clientesManager.ListarXcuilcuit();
+                }
+                if (opcionSub == 4) {
+                    cout << "Ingrese el DNI del cliente: ";
+                    cin >> DNI;
+                    clientesManager.ConsultaXDNI(DNI);
+                }
+                if (opcionSub == 5) {
+                    cout << "Ingrese el CUIL/CUIT del cliente: ";
+                    cin >> cuilCuit;
+                    clientesManager.ConsultaXCUILCuit(cuilCuit);
+                }
+                if (opcionSub == 6) {
+                    cout << "Ingrese el nombre del cliente: ";
+                    cin >> nombre;
+                    cout << "Ingrese el apellido del cliente: ";
+                    cin >> apellido;
+                    clientesManager.ConsultaXNombreApellido(nombre, apellido);
+                }
+                if (opcionSub == 7) {
+                    cout << "Ingrese el correo del cliente: ";
+                    cin >> correo;
+                    clientesManager.ConsultaXCorreo(correo);
+                }
+
+                rlutil::cls();
             } else if (titulo == "MENU VENTAS") {
                 opcionSub = renderVentasLC();
+                if(opcionSub == 1) {
+                 //   ventasManager.ListarFacturas();
+                }
+                if(opcionSub == 2) {
+
+                }
+                if(opcionSub == 3) {
+
+                }
+                if(opcionSub == 4) {
+
+                }
+                if(opcionSub == 5) {
+
+                }
+                if(opcionSub == 6) {
+
+                }
+                if(opcionSub == 7) {
+
+                }
 
             } else if (titulo == "MENU PROVEEDORES") {
                 opcionSub = renderProveedoresLC();
+                if(opcionSub == 1) {
+                    proveedoresManager.ListarXNombre();
+                }
+                if(opcionSub == 2) {
+                    proveedoresManager.ListarXCUIT();
+                }
+                if(opcionSub == 3) {
+                    proveedoresManager.ListarXRubro();
+                }
+                if(opcionSub == 4) {
+
+                }
+                if(opcionSub == 5) {
+
+                }
+                if(opcionSub == 6) {
+
+                }
+                if(opcionSub == 7) {
+
+                }
+                if(opcionSub == 8) {
+                    break;
+                }
 
             } else if (titulo == "MENU PRODUCTOS") {
                 opcionSub = renderProductosLC();
-
+                if (opcionSub == 1) {
+                    productosManager.ListarXCodigo();
+                }
+                if (opcionSub == 2) {
+                    productosManager.ListarXPrecio();
+                }
+                if (opcionSub == 3) {
+                    productosManager.ListarXStock();
+                }
+                if (opcionSub == 4) {
+                    cout << "Ingrese el codigo del producto: ";
+                    cin >> codigo;
+                    productosManager.ConsultaXCodigo(codigo);
+                }
+                if (opcionSub == 5) {
+                    cout << "Ingrese la descripcion del producto: ";
+                    cin >> descripcion;
+                    productosManager.ConsultaXDescripcion(descripcion);
+                }
+                if (opcionSub == 6) {
+                    int stockMinimo;
+                    cout << "Ingrese el stock minimo del producto: ";
+                    cin >> stockMinimo;
+                    productosManager.ConsultaXStockMinimo(stockMinimo);
+                }
             } else if (titulo == "EXTRAS") {
                 opcionSub = renderExtrasLC();
+                if(opcionSub == 1) {
 
+                }
+                if(opcionSub == 2) {
+
+                }
+                if(opcionSub == 3) {
+
+                }
+                if(opcionSub == 4) {
+
+                }
+                if(opcionSub == 5) {
+
+                }
             } else if (titulo == "CONFIGURACIONES") {
                 while (true) {
                     int cfg = renderConfiguracionesLC();
