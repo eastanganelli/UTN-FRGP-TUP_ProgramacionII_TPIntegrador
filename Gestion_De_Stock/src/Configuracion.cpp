@@ -28,78 +28,130 @@ bool Configuracion::copiarArchivo(string origen, string destino) {
     return true;
 }
 
-bool Configuracion::guardarCopiaClientes() {
-    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadClientes, this->rutaDestinoCopiaSeguridadClientes);
+void Configuracion::ImprimirResultado(bool estado, string nombreArchivo) {
+    if (estado) {
+        cout << "Copia de seguridad de " << nombreArchivo << " realizada con exito." << endl;
+    } else {
+        cout << "Error al realizar la copia de seguridad de " << nombreArchivo << "." << endl;
+    }
 }
 
-bool Configuracion::cargarCopiaClientes() {
-    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadClientes, this->rutaOrigenCopiaSeguridadClientes);
+bool Configuracion::VerificarSiArchivoExiste(string rutaArchivo) {
+    ifstream src(rutaArchivo, ios::binary);
+    if (!src) return false;
 }
 
-bool Configuracion::guardarCopiaProveedores() {
-    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadProveedores, this->rutaDestinoCopiaSeguridadProveedores);
+void Configuracion::guardarCopiaClientes() {
+    bool resultado = this->copiarArchivo(this->rutaOrigenCopiaSeguridadClientes, this->rutaDestinoCopiaSeguridadClientes);
+    this->ImprimirResultado(resultado, this->rutaOrigenCopiaSeguridadClientes);
 }
 
-bool Configuracion::cargarCopiaProveedores() {
-    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadProveedores, this->rutaOrigenCopiaSeguridadProveedores);
+void Configuracion::cargarCopiaClientes() {
+    bool resultado = this->copiarArchivo(this->rutaDestinoCopiaSeguridadClientes, this->rutaOrigenCopiaSeguridadClientes);
+    this->ImprimirResultado(resultado, this->rutaDestinoCopiaSeguridadClientes);
 }
 
-bool Configuracion::guardarCopiaProductos() {
-    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadProductos, this->rutaDestinoCopiaSeguridadProductos);
+void Configuracion::guardarCopiaProveedores() {
+    bool resultado = this->copiarArchivo(this->rutaOrigenCopiaSeguridadProveedores, this->rutaDestinoCopiaSeguridadProveedores);
+    this->ImprimirResultado(resultado, this->rutaOrigenCopiaSeguridadProveedores);
 }
 
-bool Configuracion::cargarCopiaProductos() {
-    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadProductos, this->rutaOrigenCopiaSeguridadProductos);
+void Configuracion::cargarCopiaProveedores() {
+    bool resultado = this->copiarArchivo(this->rutaDestinoCopiaSeguridadProveedores, this->rutaOrigenCopiaSeguridadProveedores);
+    this->ImprimirResultado(resultado, this->rutaDestinoCopiaSeguridadProveedores);
 }
 
-bool Configuracion::guardarCopiaVentas() {
-    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadFacturas, this->rutaDestinoCopiaSeguridadFacturas);
+void Configuracion::guardarCopiaProductos() {
+    bool resultado = this->copiarArchivo(this->rutaOrigenCopiaSeguridadProductos, this->rutaDestinoCopiaSeguridadProductos);
+    this->ImprimirResultado(resultado, this->rutaOrigenCopiaSeguridadProductos);
 }
 
-bool Configuracion::cargarCopiaVentas() {
-    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadFacturas, this->rutaOrigenCopiaSeguridadFacturas);
+void Configuracion::cargarCopiaProductos() {
+    bool resultado = this->copiarArchivo(this->rutaDestinoCopiaSeguridadProductos, this->rutaOrigenCopiaSeguridadProductos);
+    this->ImprimirResultado(resultado, this->rutaDestinoCopiaSeguridadProductos);
 }
 
-bool Configuracion::guardarCopiaNotasDeCredito() {
-    return this->copiarArchivo(this->rutaOrigenCopiaSeguridadNotasDeCredito, this->rutaDestinoCopiaSeguridadNotasDeCredito);
+void Configuracion::guardarCopiaVentas() {
+    bool resultado = this->copiarArchivo(this->rutaOrigenCopiaSeguridadFacturas, this->rutaDestinoCopiaSeguridadFacturas);
+    this->ImprimirResultado(resultado, this->rutaOrigenCopiaSeguridadFacturas);
 }
 
-bool Configuracion::cargarCopiaNotasDeCredito() {
-    return this->copiarArchivo(this->rutaDestinoCopiaSeguridadNotasDeCredito, this->rutaOrigenCopiaSeguridadNotasDeCredito);
+void Configuracion::cargarCopiaVentas() {
+    bool resultado = this->copiarArchivo(this->rutaDestinoCopiaSeguridadFacturas, this->rutaOrigenCopiaSeguridadFacturas);
+    this->ImprimirResultado(resultado, this->rutaDestinoCopiaSeguridadFacturas);
 }
 
-bool Configuracion::guardarCopiaSeguridad() {
-    bool ok = true;
-    ok &= guardarCopiaClientes();
-    ok &= guardarCopiaProveedores();
-    ok &= guardarCopiaProductos();
-    ok &= guardarCopiaVentas();
-    ok &= guardarCopiaNotasDeCredito();
-    return ok;
+void Configuracion::guardarCopiaNotasDeCredito() {
+    bool resultado = this->copiarArchivo(this->rutaOrigenCopiaSeguridadNotasDeCredito, this->rutaDestinoCopiaSeguridadNotasDeCredito);
+    this->ImprimirResultado(resultado, this->rutaOrigenCopiaSeguridadNotasDeCredito);
 }
 
-bool Configuracion::cargarCopiaSeguridad() {
-    bool ok = true;
-    ok &= cargarCopiaClientes();
-    ok &= cargarCopiaProveedores();
-    ok &= cargarCopiaProductos();
-    ok &= cargarCopiaVentas();
-    ok &= cargarCopiaNotasDeCredito();
-    return ok;
+void Configuracion::cargarCopiaNotasDeCredito() {
+    bool resultado = this->copiarArchivo(this->rutaDestinoCopiaSeguridadNotasDeCredito, this->rutaOrigenCopiaSeguridadNotasDeCredito);
+    this->ImprimirResultado(resultado, this->rutaDestinoCopiaSeguridadNotasDeCredito);
 }
 
-bool Configuracion::exportarClientesCSV() {
-    return true;
+void Configuracion::guardarCopiaSeguridad() {
+    guardarCopiaClientes();
+    guardarCopiaProveedores();
+    guardarCopiaProductos();
+    guardarCopiaVentas();
+    guardarCopiaNotasDeCredito();
 }
 
-bool Configuracion::exportarProveedoresCSV() {
-    return true;
+void Configuracion::cargarCopiaSeguridad() {
+    cargarCopiaClientes();
+    cargarCopiaProveedores();
+    cargarCopiaProductos();
+    cargarCopiaVentas();
+    cargarCopiaNotasDeCredito();
 }
 
-bool Configuracion::exportarProductosCSV() {
-    return true;
+void Configuracion::exportarClientesCSV() {
+    bool existe = this->VerificarSiArchivoExiste(this->rutaOrigenCopiaSeguridadClientes);
+    if (!existe) {
+        cout << "El archivo de clientes no existe. No se puede exportar a CSV." << endl;
+        return;
+    }
+
 }
 
-bool Configuracion::exportarVentasCSV() {
-    return true;
+void Configuracion::exportarProveedoresCSV() {
+    bool existe = this->VerificarSiArchivoExiste(this->rutaOrigenCopiaSeguridadProveedores);
+    if (!existe) {
+        cout << "El archivo de proveedores no existe. No se puede exportar a CSV." << endl;
+        return;
+    }
+}
+
+void Configuracion::exportarProductosCSV() {
+    bool existe = this->VerificarSiArchivoExiste(this->rutaOrigenCopiaSeguridadProductos);
+    if (!existe) {
+        cout << "El archivo de productos no existe. No se puede exportar a CSV." << endl;
+        return;
+    }
+}
+
+void Configuracion::exportarVentasCSV() {
+    bool existe = this->VerificarSiArchivoExiste(this->rutaOrigenCopiaSeguridadFacturas);
+    if (!existe) {
+        cout << "El archivo de ventas no existe. No se puede exportar a CSV." << endl;
+        return;
+    }
+}
+
+void Configuracion::exportarNotasDeCreditoCSV() {
+    bool existe = this->VerificarSiArchivoExiste(this->rutaOrigenCopiaSeguridadNotasDeCredito);
+    if (!existe) {
+        cout << "El archivo de notas de credito no existe. No se puede exportar a CSV." << endl;
+        return;
+    }
+}
+
+void Configuracion::exportarTodo() {
+    this->exportarClientesCSV();
+    this->exportarProveedoresCSV();
+    this->exportarProductosCSV();
+    this->exportarVentasCSV();
+    this->exportarNotasDeCreditoCSV();
 }
