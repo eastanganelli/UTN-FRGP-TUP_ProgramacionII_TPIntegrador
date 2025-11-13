@@ -217,10 +217,10 @@ void ClienteManager::ListarXcuilcuit() {
     }
 }
 
-Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
+void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
@@ -233,7 +233,7 @@ Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
 }
 
 Cliente *ClienteManager::ConsultaXDNI(string dni) {

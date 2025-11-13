@@ -249,7 +249,8 @@ void ProductoManager::ConsultaXCodigo(string codigo) {
     unsigned int contador = 0;
     Producto producto;
     while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getCodigo() == codigo) {
+            string aux = producto.getCodigo();
+        if (aux.find(codigo) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = producto;
         }
@@ -268,7 +269,8 @@ void ProductoManager::ConsultaXDescripcion(string descripcion) {
     unsigned int contador = 0;
     Producto producto;
     while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getDescripcion() == descripcion) {
+        string aux = producto.getDescripcion();
+        if (aux.find(descripcion) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = producto;
         }
@@ -311,7 +313,6 @@ unsigned int ProductoManager::Contar() {
 string ProductoManager::generarCodigo() {
     const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     const int numCaracteresPosibles = sizeof(caracteresPosibles) - 1;
-
     string codigo;
 
     while(true) {
@@ -319,12 +320,10 @@ string ProductoManager::generarCodigo() {
             int indiceAleatorio = rand() % numCaracteresPosibles;
             codigo += caracteresPosibles[indiceAleatorio];
         }
-        //codigo += '\0';
         if(!this->Existe(codigo)) {
             break;
         }
         codigo.clear();
     }
-
     return codigo;
 }

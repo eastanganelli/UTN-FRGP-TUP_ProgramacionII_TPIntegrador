@@ -469,7 +469,7 @@ void VentaManager::ConsultaXCliente(string dniCliente) {
     bool encontrado = false;
     while (fread(&factura, sizeof(Factura), 1, archivo)) {
         string aux = factura.getClienteDNI();
-        if (aux.find(dniCliente)) {
+        if (aux.find(dniCliente) != string::npos) {
             cout << factura.toString() << endl;
             encontrado = true;
         }
@@ -489,7 +489,7 @@ void VentaManager::ConsultaXCliente(string dniCliente) {
     encontrado = false;
     while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
         string aux = factura.getClienteDNI();
-        if (aux.find(dniCliente)) {
+        if (aux.find(dniCliente) != string::npos) {
             cout << notaDeCredito.toString() << endl;
             encontrado = true;
         }
@@ -507,7 +507,7 @@ void VentaManager::ConsultaXCAE(string cae) {
     bool encontrado = false;
     while (fread(&factura, sizeof(Factura), 1, archivo)) {
         string aux = factura.getCAE();
-        if (aux.find(cae)) {
+        if (aux.find(cae) != string::npos) {
             cout << factura.toString() << endl;
             encontrado = true;
         }

@@ -238,7 +238,8 @@ void ProveedorManager::ConsultarXCUIT(string cuit) {
     unsigned int contador = 0;
     Proveedor proveedor;
     while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
-        if (proveedor.getCuit() == cuit) {
+            string aux = proveedor.getCuit();
+        if (aux.find(cuit) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = proveedor;
         }
@@ -281,33 +282,12 @@ void ProveedorManager::ConsultarXNombre(string nombreRazon) {
 
     fclose(archivo);
 
-    if (contador == 0)
+    if (contador == 0) {
         cout << "No se encontraron proveedores con ese nombre." << endl;
-    else
-        this->Imprimir(resultados, contador);
-
+    }
+    this->Imprimir(resultados, contador);
     delete[] resultados;
 }
-
-/*void ProveedorManager::ConsultarXNombre(string nombreRazon) {
-    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) {
-        return;
-    }
-    Proveedor* resultados = new Proveedor[0];
-    unsigned int contador = 0;
-    Proveedor proveedor;
-    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
-        if (proveedor.getNombreRazon() == nombreRazon) {
-            resultados = this->Redimensionar(resultados, contador, contador + 1);
-            resultados[contador++] = proveedor;
-        }
-    }
-    fclose(archivo);
-    this->Imprimir(resultados, contador);
-
-    delete[] resultados;
-}*/
 
 void ProveedorManager::ConsultarXRubro(unsigned int rubro) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");

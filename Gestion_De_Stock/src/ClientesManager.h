@@ -31,7 +31,7 @@ public:
     void ListarXApellido();
     void ListarXDNI();
     void ListarXcuilcuit();
-    Cliente* ConsultaXCUILCuit(string cuilcuit);
+    void ConsultaXCUILCuit(string cuilcuit);
     Cliente* ConsultaXDNI(string dni);
     Cliente* ConsultaXNombreApellido(string nombre, string apellido);
     Cliente* ConsultaXCorreo(string correo);

@@ -88,7 +88,6 @@ void TestingVentas() {
 //    misComprobantes.ListarXFecha();
 //    misComprobantes.ConsultaXTipoDeComprobante('A');
     misComprobantes.ConsultaXRangoDeFechas(Fecha(22, 6, 2024), Fecha(31,12,2025));
-    system("pause");
 }
 
 std::string generarCodigoAlfaNumerico(int longitud) {
