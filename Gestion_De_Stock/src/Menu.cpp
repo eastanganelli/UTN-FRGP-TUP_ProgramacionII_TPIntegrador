@@ -67,10 +67,13 @@
             printOption(y++, 3, "Modificar");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
-
+            rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
             printOption(y++, 4, "Listado de clientes - Ordenado por apellido");
             printOption(y++, 5, "Listado de clientes - Ordenado por DNI");
             printOption(y++, 6, "Listado de clientes - Ordenado por CUIL/CUIT");
+
+            y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+            rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
             printOption(y++, 7, "Consulta de clientes - Por DNI");
             printOption(y++, 8, "Consulta de clientes - Por CUIL/CUIT");
             printOption(y++, 9, "Consulta de clientes - Por nombre y apellido");
@@ -315,12 +318,11 @@
     void Menu::menuSub(const string &titulo) {
         int opcionSub;
 
-        ClienteManager clientesManager("clientes.bin");
+        ClienteManager clientesManager("clientes.dat");
         VentaManager ventasManager("facturas.dat", "notascredito.dat");
-        ProveedorManager proveedoresManager("proveedores.bin");
+        ProveedorManager proveedoresManager("proveedores.dat");
         ProductoManager productosManager("productos.bin");
-    //agreegar si no encuentra archivo
-    //revisar si existe registro en los delete, en el update y create
+        
         do {
            if (titulo == "MENU CLIENTES") {
                 opcionSub = renderClientesLC();
@@ -383,25 +385,37 @@
                   //  ventasManager.Modificar();
                 }
                 if(opcionSub == 4) {
-
+                    ventasManager.ListarXFecha();
                 }
                 if(opcionSub == 5) {
-
+                    ventasManager.ListarXCAE();
                 }
                 if(opcionSub == 6) {
-
+                    string dniClienteVenta;
+                    cout << "Ingrese el DNI del cliente: ";
+                    cin >> dniClienteVenta;
+                    ventasManager.ListarXCliente(dniClienteVenta);
                 }
                 if(opcionSub == 7) {
-
+                    string caeVenta;
+                    cout << "Ingrese el CAE: ";
+                    cin >> caeVenta;
+                    ventasManager.ConsultaXCAE(caeVenta);
                 }
                 if(opcionSub == 8) {
-
+                    char tipoComprobanteVenta;
+                    cout << "Ingrese el tipo de comprobante: ";
+                    cin >> tipoComprobanteVenta;
+                    ventasManager.ConsultaXTipoDeComprobante(tipoComprobanteVenta);
                 }
                 if(opcionSub == 9) {
-
-                }
-                if(opcionSub == 10) {
-
+                    //Fecha fechaInicioVenta;
+                    //Fecha fechaFinVenta;
+                    //cout << "Ingrese la fecha de inicio: ";
+                    //cin >> fechaInicioVenta;
+                    //cout << "Ingrese la fecha de fin: ";
+                    //cin >> fechaFinVenta;
+                    //ventasManager.ConsultaXRangoDeFechas(fechaInicioVenta, fechaFinVenta);
                 }
 
             } else if (titulo == "MENU PROVEEDORES") {
