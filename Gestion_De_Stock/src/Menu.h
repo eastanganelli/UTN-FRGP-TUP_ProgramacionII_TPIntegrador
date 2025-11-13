@@ -1,24 +1,19 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <iostream>
-#include <cstring>
 #include <string>
-
-using namespace std;
 
 class Menu {
 public:
-    //  Menu principal
+    // Muestra el menú principal
     void mostrar();
-    
-    //  Menus
-    void menuClientes();
-    void menuVentas();
-    void menuProveedores();
-    void menuProductos();
+
 private:
-    int mostrarSubmenu(const string &titulo);
+    // Función genérica para mostrar un submenú de cualquier sección
+    void menuSub(const std::string &titulo);
+
+    // Muestra el submenú genérico y devuelve la opción elegida
+    int mostrarSubmenu(const std::string &titulo);
 };
 
 #endif // MENU_H

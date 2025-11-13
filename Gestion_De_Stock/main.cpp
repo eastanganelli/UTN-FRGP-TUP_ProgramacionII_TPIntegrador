@@ -2,14 +2,14 @@
 
 #include "Pruebas.h"
 
-// #include "menu.h"
+#include "src/Menu.h"
 
 using namespace std;
 
 int main() {
     srand(time(NULL));
-    // Menu menu;
-    // menu.mostrar();
+     Menu menu;
+     menu.mostrar();
 
     TestingAll();
 
