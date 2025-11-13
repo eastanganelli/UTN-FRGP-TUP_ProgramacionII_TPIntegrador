@@ -11,10 +11,10 @@ using namespace std;
 
 class Cliente : public DatosPersonales {
 private:
-    char DNI[8];
+    char DNI[9];
     char nombre[20];
     char apellido[20];
-    char cuilCuit[11];
+    char cuilCuit[12];
 
 public:
     Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);

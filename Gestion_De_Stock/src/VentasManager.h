@@ -28,7 +28,7 @@ private:
     void ListarNotasDeCreditoXCliente();
 
 public:
-    VentaManager(string _nombreArchivoFactura = "facturas.bin", string _nombreArchivoNotaDeCredito = "notasdecredito.bin");
+    VentaManager(string _nombreArchivoFactura = "Facturas.dat", string _nombreArchivoNotaDeCredito = "NotasDeCredito.dat");
     ~VentaManager();
 
     bool NuevaFactura(string _clienteDNI, char _tipoFactura);

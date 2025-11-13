@@ -152,7 +152,7 @@ bool ProductoManager::Eliminar(string codigo) {
 Producto *ProductoManager::Listar() {
     const unsigned int cantidadProductos = this->Contar();
     Producto* productos = new Producto[cantidadProductos];;
-    if(cantidadProductos != 0 && productos != nullptr) {
+    if(cantidadProductos > 0 && productos != nullptr) {
         FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
         if (archivo == nullptr) {
             delete[] productos;

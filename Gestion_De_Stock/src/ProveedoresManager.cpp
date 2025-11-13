@@ -154,8 +154,8 @@ bool ProveedorManager::Eliminar(string cuit) {
 
 Proveedor* ProveedorManager::Listar() {
     const unsigned int cantidadProveedores = this->Contar();
-    Proveedor* proveedores = new Proveedor[cantidadProveedores];;
-    if(cantidadProveedores == 0 && proveedores != nullptr) {
+    Proveedor* proveedores = new Proveedor[cantidadProveedores];
+    if(cantidadProveedores > 0 && proveedores != nullptr) {
         FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
         if (archivo == nullptr) {
             delete[] proveedores;
@@ -173,7 +173,7 @@ Proveedor* ProveedorManager::Listar() {
 void ProveedorManager::ListarXNombre() {
     Proveedor* misProveedores = this->Listar();
 
-    if(misProveedores == nullptr) {
+    if(misProveedores != nullptr) {
         const unsigned int cantidadProveedores = this->Contar();
         for (unsigned int i = 0; i < cantidadProveedores - 1; i++) {
             for (unsigned int j = 0; j < cantidadProveedores - i - 1; j++) {

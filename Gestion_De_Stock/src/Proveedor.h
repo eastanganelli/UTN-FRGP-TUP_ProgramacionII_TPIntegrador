@@ -9,7 +9,7 @@ using namespace std;
 
 class Proveedor : public DatosPersonales {
 private:
-    char cuit[11];
+    char cuit[12];
     char nombreRazon[35];
     unsigned int rubro;
 

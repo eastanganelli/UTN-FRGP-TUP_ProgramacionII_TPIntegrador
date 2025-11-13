@@ -12,7 +12,7 @@ using namespace std;
 
 class NotaDeCredito : public Comprobante {
 private:
-    char motivoAnulacion[257];
+    char motivoAnulacion[256];
 
 public:
     NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");

@@ -11,6 +11,9 @@ VentaManager::~VentaManager() {
 
 Factura *VentaManager::ListarFacturas() {
     const unsigned int cantidadFacturas = this->ContarFacturas();
+    if(cantidadFacturas == 0) {
+        return nullptr;
+    }
     Factura* misFacturas = new Factura[cantidadFacturas];
     unsigned int contador = 0;
     FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
@@ -125,9 +128,18 @@ bool VentaManager::CrearFactura(Factura &f) {
 }
 
 bool VentaManager::NuevaFactura(string _clienteDNI, char _tipoFactura) {
-    unsigned int nuevoNumero = this->ultimaFacturaID() + 1;;
-    Factura nuevaFactura(nuevoNumero, _clienteDNI, _tipoFactura);
-    return this->CrearFactura(nuevaFactura);
+    const unsigned int ultimoID = this->ultimaFacturaID();
+    if (ultimoID == -1) {
+        return false;
+    }
+    Factura auxFactura(ultimoID + 1, _clienteDNI, _tipoFactura);
+    bool resultado = this->CrearFactura(auxFactura);
+    if (resultado) {
+        cout << "Factura creada con exito. Nro: " << ultimoID + 1 << endl;
+    } else {
+        cout << "Error al crear la factura." << endl;
+    }
+    return resultado;
 }
 
 bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
@@ -144,22 +156,40 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
 }
 
 bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion) {
-    unsigned int nuevoNumero = this->ultimaNotaDeCreditoID() + 1;
-    NotaDeCredito nuevaNotaDeCredito(nuevoNumero, _clienteDNI, _motivoAnulacion);
-    return this->CrearNotaDeCredito(nuevaNotaDeCredito);
+    const unsigned int ultimoID = this->ultimaNotaDeCreditoID();
+    if (ultimoID == -1) {
+        return false;
+    }
+    NotaDeCredito auxNotaDeCredito(ultimoID + 1, _clienteDNI, _motivoAnulacion);
+    bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
+    if (resultado) {
+        cout << "Nota de credito creada con exito. Nro: " << ultimoID + 1 << endl;
+    } else {
+        cout << "Error al crear la nota de credito." << endl;
+    }
+    return resultado;
 }
 
 bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
-    unsigned int nuevoNumero = this->ultimaNotaDeCreditoID() + 1;
+    const unsigned int ultimoID = this->ultimaNotaDeCreditoID();
+    if (ultimoID == -1) {
+        return false;
+    }
     string motivo = "Anulacion de factura nro " + to_string(factura.getNumero());
-    NotaDeCredito nuevaNotaDeCredito(nuevoNumero, factura.getClienteDNI(), motivo);
-    return this->CrearNotaDeCredito(nuevaNotaDeCredito);
+    NotaDeCredito auxNotaDeCredito(ultimoID + 1, factura.getClienteDNI(), motivo);
+    bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
+    if (resultado) {
+        cout << "Nota de credito creada con exito. Nro: " << ultimoID + 1 << endl;
+    } else {
+        cout << "Error al crear la nota de credito." << endl;
+    }
+    return resultado;
 }
 
 int VentaManager::ultimaFacturaID() {
     Factura* facturas = this->ListarFacturas();
     if (facturas == nullptr) {
-        return -1;
+        return 0;
     }
     unsigned int ultimaID = 0;
     for (unsigned int i = 0; i < this->ContarFacturas(); i++) {
@@ -192,7 +222,7 @@ Factura *VentaManager::ObtenerFactura(unsigned int numero) {
         return nullptr;
     }
     Factura* factura = new Factura();
-    while (fread(factura, sizeof(Factura), 1, archivo)) {
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
         if (factura->getNumero() == numero) {
             fclose(archivo);
             return factura;

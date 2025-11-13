@@ -3,6 +3,7 @@
 Comprobante::Comprobante(unsigned int _numero, string _clienteDNI) : numero(_numero), cantidadMaxItems(ITEMS_MAX) {
     strcpy(this->clienteDNI, _clienteDNI.c_str());
     this->cantidadItems = 0;
+    this->clienteDNI[8] = '\0';
 }
 
 Comprobante::~Comprobante() {

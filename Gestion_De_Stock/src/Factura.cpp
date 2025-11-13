@@ -4,6 +4,7 @@
 
 Factura::Factura(unsigned int _id, string _cliente, char _tipoFactura) : Comprobante(_id, _cliente) {
     this->tipoFactura = _tipoFactura;
+    this->cae[15] = '\0';
 }
 
 Factura::~Factura() {

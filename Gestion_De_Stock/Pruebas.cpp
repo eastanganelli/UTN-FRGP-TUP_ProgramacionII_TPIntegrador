@@ -1,18 +1,31 @@
 #include "Pruebas.h"
 
 void TestingCliente() {
-    ClienteManager clientes("clientes.bin");
+    ClienteManager clientes("Clientes.dat");
 
+    clientes.ListarXApellido();
+    clientes.ListarXDNI();
+    clientes.ListarXcuilcuit();
 }
 
 void TestingProveedores() {
-    ProveedorManager proveedores("proveedores.bin");
-    proveedores.SeleccionarRubro();
+    ProveedorManager proveedores("Proveedores.dat");
+    //proveedores.SeleccionarRubro();
 
+    cout << "----- Listados de Proveedores -----" << endl;
+
+    proveedores.ListarXNombre();
 }
 
 void TestingProductos() {
-    ProductoManager productos("productos.bin");
+    ProductoManager productos("Productos.dat");
+
+    cout << "----- Listados de Productos -----" << endl;
+
+    productos.ListarXCodigo();
+
+    string descripcionBuscada = "Monitor";
+
     //loadData();
     /*
     Producto* listarxStock = productos.ListarXStock();
@@ -54,7 +67,14 @@ void TestingProductos() {
 void TestingVentas() {
     VentaManager misComprobantes;
 
-    Factura factura1();
+    //bool resultado = misComprobantes.NuevaFactura("39068857", 'A');
+    //std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
+
+    Factura* factura = misComprobantes.ObtenerFactura(0);
+    if(factura != nullptr) {
+        cout << factura->toString() << endl;
+    }
+
 }
 
 std::string generarCodigoAlfaNumerico(int longitud) {
@@ -69,9 +89,9 @@ std::string generarCodigoAlfaNumerico(int longitud) {
 
 void loadData() {
     srand(static_cast<unsigned int>(time(NULL)));
-    ClienteManager clientes("clientes.bin");
-    ProveedorManager proveedores("proveedores.bin");
-    ProductoManager productos("productos.bin");
+    ClienteManager clientes("Clientes.dat");
+    ProveedorManager proveedores("Proveedores.dat");
+    ProductoManager productos("Productos.bin");
 
     string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
                           "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
@@ -91,12 +111,12 @@ void loadData() {
             DatosCliente dc;
             dc.nombre = nombres[rand() % nombres->length()];
             dc.apellido = apellidos[rand() % apellidos->length()];
-            dc.DNI = std::to_string(rand() % 40000000 + i);
-            dc.cuilCuit = "20" + dc.DNI + "1";
+            dc.DNI = std::to_string(rand() % 40000000 + i) + "\0";
+            dc.cuilCuit = "20" + dc.DNI + "1" + "\0";
             dc.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
             dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
-            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
-            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
+            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
             dc.codigoRazonSocial = rand() % 3 + 1;
             dc.alta = (i % 2 == 0);
 
@@ -117,13 +137,13 @@ void loadData() {
         std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
         for (int i = 0; i < 5; ++i) {
             DatosProveedor dp;
-            dp.cuit = "30" + std::to_string(rand() % 40000000 + i) + "9";
-            dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(6);
+            dp.cuit = "30" + std::to_string(rand() % 40000000 + i) + "9" + "\0";
+            dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(6) + "\0";
             dp.rubro = (i % 6) + 1;
-            dp.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
-            dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com";
-            dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000);
-            dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+            dp.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1) + "\0";
+            dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com" + "\0";
+            dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000) + "\0";
+            dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
             dp.codigoRazonSocial = rand() % 6 + 1;
             dp.alta = (i % 2 != 0);
 
@@ -144,9 +164,9 @@ void loadData() {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;
         for (int i = 0; i < 30; ++i) {
             DatosProducto dp;
-            dp.codigo = productos.generarCodigo();
-            dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit();
-            dp.descripcion = "Producto " + dp.codigo;
+            dp.codigo = productos.generarCodigo() + "\0";
+            dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit() + "\0";
+            dp.descripcion = "Producto " + dp.codigo + "\0";
             dp.precio = static_cast<float>((rand() % 10000) / 100.0 + 1.0);
             dp.stock = rand() % 100 + 1;
 
@@ -162,7 +182,7 @@ void loadData() {
 }
 
 void TestingAll() {
-    // loadData();
+    //loadData();
 
     //TestingCliente();
     //TestingProveedores();
