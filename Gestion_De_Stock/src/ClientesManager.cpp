@@ -37,6 +37,13 @@ Cliente *ClienteManager::Redimensionar(Cliente *clientes, unsigned int capacidad
     return nuevosClientes;
 }
 
+void ClienteManager::Imprimir(Cliente* misClientes, unsigned int cantidadClientes) {
+    for (unsigned int i = 0; i < cantidadClientes; i++) {
+        cout << misClientes[i].toString() << endl;
+    }
+    system ("pause");
+}
+
 bool ClienteManager::Existe(Cliente& cliente) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
@@ -159,7 +166,7 @@ Cliente* ClienteManager::Listar() {
     return clientes;
 }
 
-Cliente *ClienteManager::ListarXApellido() {
+void ClienteManager::ListarXApellido() {
     Cliente* misClientes = this->Listar();
 
     if(misClientes != nullptr) {
@@ -173,12 +180,11 @@ Cliente *ClienteManager::ListarXApellido() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-
-    return misClientes;
 }
 
-Cliente *ClienteManager::ListarXDNI() {
+void ClienteManager::ListarXDNI() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -191,11 +197,11 @@ Cliente *ClienteManager::ListarXDNI() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-    return misClientes;
 }
 
-Cliente *ClienteManager::ListarXcuilcuit() {
+void ClienteManager::ListarXcuilcuit() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -208,81 +214,92 @@ Cliente *ClienteManager::ListarXcuilcuit() {
                 }
             }
         }
+        this->Imprimir(misClientes, cantidadClientes);
     }
-    return misClientes;
-
 }
 
-Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
+void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
+        return;
     }
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getCuilCuit() == cuilcuit) {
+        string aux = cliente.getCuilCuit();
+        if (aux.find(cuilcuit )!= string::npos){
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
 }
 
-Cliente *ClienteManager::ConsultaXDNI(string dni) {
+void ClienteManager::ConsultaXDNI(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;}
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        string aux = cliente.getDNI();
+        if (aux.find(dni)!= string::npos) {
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
+    }
+    fclose(archivo);
+     this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
+}
+
+void ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return;}
+    Cliente* resultados = new Cliente[0];
+    unsigned int contador = 0;
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
+        string aux = cliente.getNombre(), aux2 = cliente.getApellido();
+        if ((aux.find(nombre)!= string::npos)  && (aux2.find(apellido)!= string::npos) ) {
+
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = cliente;
+        }
+    }
+    fclose(archivo);
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
+}
+
+void ClienteManager::ConsultaXCorreo(string correo) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) {
+        return;
     }
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getDNI() == dni) {
-            resultados = this->Redimensionar(resultados, contador, contador + 1);
-            resultados[contador++] = cliente;
-        }
-    }
-    fclose(archivo);
-    return resultados;
-}
+        string aux = cliente.getCorreo();
+        if (aux.find(correo)!= string ::npos) {
 
-Cliente *ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
-    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) {
-        return nullptr;
-    }
-    Cliente* resultados = new Cliente[0];
-    unsigned int contador = 0;
-    Cliente cliente;
-    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getNombre() == nombre && cliente.getApellido() == apellido) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
-}
-
-Cliente *ClienteManager::ConsultaXCorreo(string correo) {
-    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
-    if (archivo == nullptr) {
-        return nullptr;
-    }
-    Cliente* resultados = new Cliente[0];
-    unsigned int contador = 0;
-    Cliente cliente;
-    while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getCorreo() == correo) {
-            resultados = this->Redimensionar(resultados, contador, contador + 1);
-            resultados[contador++] = cliente;
-        }
-    }
-    fclose(archivo);
-    return resultados;
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
 }
 
 unsigned int ClienteManager::Contar() {

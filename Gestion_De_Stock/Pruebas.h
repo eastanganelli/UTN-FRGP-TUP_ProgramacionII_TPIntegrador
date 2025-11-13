@@ -7,6 +7,7 @@
 #include "src/ClientesManager.h"
 #include "src/ProveedoresManager.h"
 #include "src/ProductosManager.h"
+#include "src/VentasManager.h"
 
 using namespace std;
 
@@ -15,6 +16,10 @@ void TestingCliente();
 void TestingProveedores();
 
 void TestingProductos();
+
+void TestingVentas();
+
+void TestingAll();
 
 struct DatosCliente {
     std::string nombre;

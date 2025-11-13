@@ -3,7 +3,6 @@
 
 #include "Proveedor.h"
 
-#include <iostream>
 #include <cstdio>
 #include <string>
 
@@ -14,10 +13,12 @@ private:
     const string rubros[6] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
     string rutaArchivo;
 
-    int Posicion(string cuit, unsigned int& posicion);
-    bool Existe(Proveedor& proveedor);
     Proveedor* Listar();
     Proveedor* Redimensionar(Proveedor* proveedores, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    void Imprimir(Proveedor* misProveedores, unsigned int cantidadProveedores);
+    bool Existe(Proveedor& proveedor);
+    int Posicion(string cuit, unsigned int& posicion);
+
 
 public:
     ProveedorManager(string ruta);
@@ -31,13 +32,13 @@ public:
     bool Modificar(string cuit, Proveedor& proveedorActualizado);
     bool Eliminar(string cuit);
 
-    Proveedor* ListarXNombre();
-    Proveedor* ListarXRubro();
-    Proveedor* ListarXCUIT();
-    Proveedor* ConsultarXCUIT(string cuit);
-    Proveedor* ConsultarXNombre(string nombreRazon);
-    Proveedor* ConsultarXRubro(unsigned int rubro);
-    Proveedor* ConsultarXEstado(bool estado);
+    void ListarXNombre();
+    void ListarXRubro();
+    void ListarXCUIT();
+    void ConsultarXCUIT(string cuit);
+    void ConsultarXNombre(string nombreRazon);
+    void ConsultarXRubro(unsigned int rubro);
+    void ConsultarXEstado(bool estado);
     unsigned int Contar();
     unsigned int SeleccionarRubro();
     string getNombreRubro(unsigned int cr);

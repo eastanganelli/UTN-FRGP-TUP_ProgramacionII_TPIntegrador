@@ -8,8 +8,8 @@ using namespace std;
 
 class Producto {
 private:
-    char codigo[8];
-    char codigoProveedor[11];
+    char codigo[9];
+    char codigoProveedor[12];
     char descripcion[256];
     float precio;
     unsigned int stock;
@@ -34,7 +34,7 @@ public:
     void setStock(unsigned int s);
 
     // Métodos
-    
+    string toString();
 };
 
 #endif // PRODUCTO_H

@@ -1,77 +1,45 @@
 #include "Comprobante.h"
 
-Comprobante::Comprobante(unsigned int _id) : id(_id), cantidadMaxItems(ITEMS_MAX) {
-    this->cantidadItems = 0;
+Comprobante::Comprobante(unsigned int _numero, string _clienteDNI, float _monto, unsigned int _cantidadItems) : numero(_numero) {
+    strcpy(this->clienteDNI, _clienteDNI.c_str());
+    this->fechaEmision.CargarFecha();
+    this->monto = _monto;
+    this->cantidadItems = _cantidadItems;
+    this->clienteDNI[8] = '\0';
 }
 
 Comprobante::~Comprobante() {
 
 }
 
-float Comprobante::getPrecioTotal() {
-    float total = 0.0f;
-    for (unsigned int i = 0; i < this->cantidadItems; i++) {
-        total += this->items[i].getPrecioTotal();
-    }
-    return total;
+unsigned int Comprobante::getNumero() {
+    return this->numero;
 }
 
-unsigned int Comprobante::getID() {
-    return this->id;
+string Comprobante::getClienteDNI() {
+    return string(this->clienteDNI);
 }
 
-unsigned int Comprobante::getCodigoCliente() {
-    return this->codigoCliente;
+Fecha &Comprobante::getFechaEmision() {
+    return this->fechaEmision;
+}
+
+float Comprobante::Total() {
+    return this->monto;
 }
 
 unsigned int Comprobante::getCantidadItems() {
     return this->cantidadItems;
 }
 
-Fecha& Comprobante::getFecha() {
-    return this->creado;
+void Comprobante::setClienteDNI(string dni) {
+    strcpy(this->clienteDNI, dni.c_str());
 }
 
-void Comprobante::setCodigoCliente(unsigned int c) {
-    this->codigoCliente = c;
+void Comprobante::setMonto(float m) {
+    this->monto = m;
 }
 
-void Comprobante::operator+(Item& item) {
-    if (this->cantidadItems < this->cantidadMaxItems) {
-        this->items[this->cantidadItems] = item;
-        this->cantidadItems++;
-    } else {
-        cerr << "No se pueden agregar más items al comprobante." << endl;
-    }
-}
-
-void Comprobante::operator-(Item& item) {
-    for (unsigned int i = 0; i < this->cantidadItems; i++) {
-        // if (this->items[i].g() == item.getID()) {
-        //     for (unsigned int j = i; j < this->cantidadItems - 1; j++) {
-        //         this->items[j] = this->items[j + 1];
-        //     }
-        //     this->cantidadItems--;
-        //     return;
-        // }
-    }
-    cerr << "Item no encontrado en el comprobante." << endl;
-}
-
-Item& Comprobante::operator[](unsigned int index) {
-    if (index < this->cantidadItems) {
-        return this->items[index];
-    } else {
-        cerr << "Índice fuera de rango." << endl;
-        return this->items[0];
-    }
-}
-
-void Comprobante::mostrar() {
-    cout << "---------------------------------" << endl;
-    cout << "ID Venta: " << this->id << endl;
-    // cout << "Cliente: " << this->cliente << endl;
-    cout << "Fecha de Comprobante: ";
-    //this->fechaComprobante.mostrar();
-    cout << endl;
+void Comprobante::setCantidadItems(unsigned int c) {
+    this->cantidadItems = c;
 }

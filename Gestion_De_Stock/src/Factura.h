@@ -3,7 +3,6 @@
 
 #include "Comprobante.h"
 
-#include <iostream>
 #include <cstring>
 
 using namespace std;
@@ -11,19 +10,18 @@ using namespace std;
 class Factura : public Comprobante {
 private:
     char tipoFactura; // 'A', 'B', 'C'
-    float total;
-    float totalIVA;
-    char cae[15];
+    char cae[16];
     Fecha vencimientoCAE;
 
+    void ObtenerCAE();
+
 public:
-    Factura(unsigned int _id, char _tipoFactura = 'B');
+    Factura(unsigned int _id = 0, string _cliente = "", float _monto = 0.0f, unsigned int _cantidadItems = 0, char _tipoFactura = 'B');
     ~Factura();
 
     // Getters
     char getTipoFactura();
-    float getTotalIVA();
-    const char getCAE();
+    string getCAE();
     Fecha getVencimientoCAE();
 
     // Setters
@@ -31,9 +29,9 @@ public:
     void setTotalIVA(float iva);
 
     // Métodos
-
+    float TotalSinIVA();
+    float TotalConIVA();
+    string toString();
 };
-
-std::ostream& operator<<(std::ostream& os, Factura* obj);
 
 #endif // FACTURA_H

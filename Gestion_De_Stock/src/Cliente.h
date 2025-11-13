@@ -7,17 +7,18 @@
 #include <cstring>
 #include <string>
 
+
 using namespace std;
 
 class Cliente : public DatosPersonales {
 private:
-    char DNI[8];
+    char DNI[9];
     char nombre[20];
     char apellido[20];
-    char cuilCuit[11];
+    char cuilCuit[12];
 
 public:
-    Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", unsigned int _codigoRazonSocial = 0, bool _alta = false);
+    Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", bool _alta = true);
     ~Cliente();
 
     // Getters
@@ -33,18 +34,9 @@ public:
     void setCuilCuit(const string& cuilCuit);
 
     // Métodos
-
+    string toString();
 };
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj);
 
 #endif // CLIENTE_H
-
-/*
- *     std::cout << "Cliente: " << aux->getNombre() << " " << aux->getApellido()
-              << " | DNI: " << aux->getDNI() << " | CUIL/CUIT: " << aux->getCuilCuit()
-              << " | Dir: " << aux->getDireccion() << " | Correo: " << aux->getCorreo()
-              << " | Tel: " << aux->getTelefono() << " | Cel: " << aux->getCelular()
-              << " | Cod Razon Soc: " << aux->getCodigoRazonSocial()
-              << " | Alta: " << (aux->getAlta() ? "Si" : "No") << std::endl;
- */

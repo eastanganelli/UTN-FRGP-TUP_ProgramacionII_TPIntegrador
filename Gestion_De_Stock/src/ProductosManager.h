@@ -13,11 +13,12 @@ class ProductoManager {
 private:
     string rutaArchivo;
 
-    int Posicion(string codigo, unsigned int& posicion);
-    bool Existe(string codigo);
-    bool Existe(Producto& producto);
     Producto* Listar();
     Producto* Redimensionar(Producto* productos, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    void Imprimir(Producto* misProductos, unsigned int cantidadProductos);
+    bool Existe(string codigo);
+    bool Existe(Producto& producto);
+    int Posicion(string codigo, unsigned int& posicion);
 
 public:
     ProductoManager(string ruta);
@@ -30,12 +31,13 @@ public:
     bool Modificar(string codigo, Producto& productoActualizado);
     bool Eliminar(string codigo);
 
-    Producto* ListarXCodigo();
-    Producto* ListarXPrecio();
-    Producto* ListarXStock();
-    Producto* ConsultaXCodigo(string codigo);
-    Producto* ConsultaXDescripcion(string descripcion);
-    Producto* ConsultaXStockMinimo(unsigned int stockMinimo);
+    void ListarXCodigo();
+    void ListarXPrecio();
+    void ListarXStock();
+    void ConsultaXCodigo(string codigo);
+    void ConsultaXDescripcion(string descripcion);
+    void ConsultaXStockMinimo(unsigned int stockMinimo);
+
     unsigned int Contar();
     string generarCodigo();
 };

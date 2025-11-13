@@ -1,5 +1,7 @@
 #include "ProductosManager.h"
 
+#include <iostream>
+
 ProductoManager::ProductoManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -150,7 +152,7 @@ bool ProductoManager::Eliminar(string codigo) {
 Producto *ProductoManager::Listar() {
     const unsigned int cantidadProductos = this->Contar();
     Producto* productos = new Producto[cantidadProductos];;
-    if(cantidadProductos == 0 && productos != nullptr) {
+    if(cantidadProductos > 0 && productos != nullptr) {
         FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
         if (archivo == nullptr) {
             delete[] productos;
@@ -175,7 +177,13 @@ Producto *ProductoManager::Redimensionar(Producto *productos, unsigned int capac
     return nuevosProductos;
 }
 
-Producto *ProductoManager::ListarXCodigo() {
+void ProductoManager::Imprimir(Producto *misProductos, unsigned int cantidadProductos) {
+    for (unsigned int i = 0; i < cantidadProductos; i++) {
+        cout << misProductos[i].toString() << endl;
+    }
+}
+
+void ProductoManager::ListarXCodigo() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -189,12 +197,12 @@ Producto *ProductoManager::ListarXCodigo() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
-
-    return misProductos;
 }
 
-Producto *ProductoManager::ListarXPrecio() {
+void ProductoManager::ListarXPrecio() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -208,12 +216,12 @@ Producto *ProductoManager::ListarXPrecio() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
-
-    return misProductos;
 }
 
-Producto *ProductoManager::ListarXStock() {
+void ProductoManager::ListarXStock() {
     Producto* misProductos = this->Listar();
 
     if(misProductos != nullptr) {
@@ -227,51 +235,55 @@ Producto *ProductoManager::ListarXStock() {
                 }
             }
         }
+        this->Imprimir(misProductos, cantidadProductos);
+        delete[] misProductos;
     }
-
-    return misProductos;
 }
 
-Producto *ProductoManager::ConsultaXCodigo(string codigo) {
+void ProductoManager::ConsultaXCodigo(string codigo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
     Producto producto;
     while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getCodigo() == codigo) {
+            string aux = producto.getCodigo();
+        if (aux.find(codigo) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = producto;
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Producto *ProductoManager::ConsultaXDescripcion(string descripcion) {
+void ProductoManager::ConsultaXDescripcion(string descripcion) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
     Producto producto;
     while (fread(&producto, sizeof(Producto), 1, archivo)) {
-        if (producto.getDescripcion() == descripcion) {
+        string aux = producto.getDescripcion();
+        if (aux.find(descripcion) != string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = producto;
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
-Producto *ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
+void ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Producto* resultados = new Producto[0];
     unsigned int contador = 0;
@@ -283,7 +295,8 @@ Producto *ProductoManager::ConsultaXStockMinimo(unsigned int stockMinimo) {
         }
     }
     fclose(archivo);
-    return resultados;
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
 }
 
 unsigned int ProductoManager::Contar() {
@@ -300,7 +313,6 @@ unsigned int ProductoManager::Contar() {
 string ProductoManager::generarCodigo() {
     const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     const int numCaracteresPosibles = sizeof(caracteresPosibles) - 1;
-
     string codigo;
 
     while(true) {
@@ -308,12 +320,10 @@ string ProductoManager::generarCodigo() {
             int indiceAleatorio = rand() % numCaracteresPosibles;
             codigo += caracteresPosibles[indiceAleatorio];
         }
-        //codigo += '\0';
         if(!this->Existe(codigo)) {
             break;
         }
         codigo.clear();
     }
-
     return codigo;
 }
