@@ -493,7 +493,7 @@
             } else if (titulo == "EXTRAS") {
                 opcionSub = renderExtrasLC();
                 if(opcionSub == 1) {
-                
+
                 }
                 if(opcionSub == 2) {
 

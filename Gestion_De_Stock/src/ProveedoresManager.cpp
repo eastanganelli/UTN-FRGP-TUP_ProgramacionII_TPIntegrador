@@ -1,7 +1,9 @@
 #include "ProveedoresManager.h"
 
 #include <iostream>
+#include <cstdio>
 #include <cctype>
+
 ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -325,6 +327,9 @@ void ProveedorManager::ConsultarXRubro(unsigned int rubro) {
     this->Imprimir(resultados, contador);
     delete[] resultados;
 }
+
+
+//REVISAR ESTADO
 
 void ProveedorManager::ConsultarXEstado(bool estado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");

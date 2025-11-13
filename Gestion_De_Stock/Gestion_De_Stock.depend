@@ -512,10 +512,11 @@
 	"Comprobante.h"
 	<cstring>
 
-1763011684 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
+1763014662 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
 	"ProveedoresManager.h"
 	<iostream>
-	<algorithm>
+	<cstdio>
+	<cctype>
 
 1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
 	"VentasManager.h"
