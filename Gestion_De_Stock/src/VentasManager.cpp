@@ -127,16 +127,13 @@ bool VentaManager::CrearFactura(Factura &f) {
     return true;
 }
 
-bool VentaManager::NuevaFactura(string _clienteDNI, char _tipoFactura) {
+bool VentaManager::NuevaFactura(string _clienteDNI, float _monto, unsigned int _cantidadItems, char _tipoFactura) {
     const unsigned int ultimoID = this->ultimaFacturaID();
     if (ultimoID == -1) {
         return false;
     }
     unsigned int nuevoID = ultimoID + 1;
-    Factura auxFactura(nuevoID, _clienteDNI, _tipoFactura);
-    if(this->Existe(auxFactura)) {
-        return false;
-    }
+    Factura auxFactura(nuevoID, _clienteDNI, _monto, _cantidadItems, _tipoFactura);
     bool resultado = this->CrearFactura(auxFactura);
     if (resultado) {
         cout << "Factura creada con exito. Nro: " << nuevoID << endl;
@@ -159,13 +156,13 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
     return true;
 }
 
-bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion) {
+bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion) {
     const unsigned int ultimoID = this->ultimaNotaDeCreditoID();
     if (ultimoID == -1) {
         return false;
     }
     unsigned int nuevoID = ultimoID + 1;
-    NotaDeCredito auxNotaDeCredito(nuevoID, _clienteDNI, _motivoAnulacion);
+    NotaDeCredito auxNotaDeCredito(nuevoID, _clienteDNI, _monto, _cantidadItems, _motivoAnulacion);
     bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
     if (resultado) {
         cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;
@@ -182,7 +179,7 @@ bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
     }
     unsigned int nuevoID = ultimoID + 1;
     string motivo = "Anulacion de factura nro " + to_string(factura.getNumero());
-    NotaDeCredito auxNotaDeCredito(nuevoID, factura.getClienteDNI(), motivo);
+    NotaDeCredito auxNotaDeCredito(nuevoID, factura.getClienteDNI(), factura.TotalSinIVA(), factura.getCantidadItems(), motivo);
     bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
     if (resultado) {
         cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;

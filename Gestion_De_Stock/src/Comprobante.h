@@ -3,7 +3,6 @@
 
 #define ITEMS_MAX 20
 
-#include "Item.h"
 #include "Fecha.h"
 
 #include <string>
@@ -13,37 +12,36 @@ using namespace std;
 
 class Comprobante {
 private:
-    unsigned int numero;
-    unsigned int cantidadMaxItems;
+    const unsigned int numero;
     char clienteDNI[9];
+    float monto;
     unsigned int cantidadItems;
-    Item items[ITEMS_MAX];
+    Fecha fechaEmision;
 
     void CargarFecha();
 
 protected:
     Fecha creado;
 
-    float TotalSinIVA();
+    float Total();
     unsigned int CantidadItems();
 
 public:
-    Comprobante(unsigned int _numero = 0, string _clienteDNI = "");
+    Comprobante(unsigned int _numero = 0, string _clienteDNI = "", float _monto = 0.0f, unsigned int _cantidadItems = 0);
     ~Comprobante();
 
     // Getters
     unsigned int getNumero();
     string getClienteDNI();
+    Fecha& getFechaEmision();
     unsigned int getCantidadItems();
-    Fecha& getFecha();
 
     // Setters
     void setClienteDNI(string dni);
+    void setMonto(float m);
+    void setCantidadItems(unsigned int c);
 
     // Métodos
-    void operator+(Item& item);
-    void operator-(Item& item);
-    Item& operator[](unsigned int index);
     void mostrar();
 };
 

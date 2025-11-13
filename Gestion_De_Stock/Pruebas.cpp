@@ -67,7 +67,7 @@ void TestingProductos() {
 void TestingVentas() {
     VentaManager misComprobantes("Facturas.dat", "NotaDeCredito.dat");
 
-    bool resultado = misComprobantes.NuevaFactura("39068857", 'A');
+    bool resultado = misComprobantes.NuevaFactura("39068857", 345.7, 5, 'A');
     std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
 
     Factura* factura = misComprobantes.ObtenerFactura(1);

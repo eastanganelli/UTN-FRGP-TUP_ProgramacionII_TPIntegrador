@@ -15,7 +15,7 @@ private:
 
 
 public:
-    Factura(unsigned int _id = 0, string _cliente = "", char _tipoFactura = 'B');
+    Factura(unsigned int _id = 0, string _cliente = "", float _monto = 0.0f, unsigned int _cantidadItems = 0, char _tipoFactura = 'B');
     ~Factura();
 
     // Getters
@@ -28,9 +28,8 @@ public:
     void setTotalIVA(float iva);
 
     // Métodos
-    void TotalSinIVA();
+    float TotalSinIVA();
     void TotalConIVA();
-    void CantidadItems();
     string toString();
 };
 

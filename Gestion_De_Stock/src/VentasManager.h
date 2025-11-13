@@ -32,8 +32,8 @@ public:
     VentaManager(string _nombreArchivoFactura = "Facturas.dat", string _nombreArchivoNotaDeCredito = "NotasDeCredito.dat");
     ~VentaManager();
 
-    bool NuevaFactura(string _clienteDNI, char _tipoFactura);
-    bool NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion);
+    bool NuevaFactura(string _clienteDNI, float _monto, unsigned int _cantidadItems, char _tipoFactura);
+    bool NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion);
     bool NuevaNotaDeCredito(Factura& factura);
     Factura* ObtenerFactura(unsigned int numero);
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);
