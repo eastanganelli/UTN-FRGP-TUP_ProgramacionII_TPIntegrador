@@ -62,17 +62,19 @@
             drawHeader("MENU CLIENTES");
 
             int y = 6;
-            rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
-            printOption(y++, 1, "Listado de clientes - Ordenado por apellido");
-            printOption(y++, 2, "Listado de clientes - Ordenado por DNI");
-            printOption(y++, 3, "Listado de clientes - Ordenado por CUIL/CUIT");
+            printOption(y++, 1, "Crear");
+            printOption(y++, 2, "Eliminar");
+            printOption(y++, 3, "Modificar");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
-            rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
-            printOption(y++, 4, "Consulta de clientes - Por DNI");
-            printOption(y++, 5, "Consulta de clientes - Por CUIL/CUIT");
-            printOption(y++, 6, "Consulta de clientes - Por nombre y apellido");
-            printOption(y++, 7, "Consulta de clientes - Por correo");
+
+            printOption(y++, 4, "Listado de clientes - Ordenado por apellido");
+            printOption(y++, 5, "Listado de clientes - Ordenado por DNI");
+            printOption(y++, 6, "Listado de clientes - Ordenado por CUIL/CUIT");
+            printOption(y++, 7, "Consulta de clientes - Por DNI");
+            printOption(y++, 8, "Consulta de clientes - Por CUIL/CUIT");
+            printOption(y++, 9, "Consulta de clientes - Por nombre y apellido");
+            printOption(y++, 10, "Consulta de clientes - Por correo");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             printOption(y++, 0, "Volver");
@@ -86,17 +88,23 @@
         int renderVentasLC() {
             rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU VENTAS");
             int y = 6;
+            printOption(y++, 1, "Crear");
+            printOption(y++, 2, "Eliminar");
+            printOption(y++, 3, "Modificar");
+
+            y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+
             rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
-            printOption(y++, 1, "Listado de ventas - Ordenado por fecha de venta");
-            printOption(y++, 2, "Listado de ventas - Ordenado por CAE");
-            printOption(y++, 3, "Listado de ventas - Ordenado por cliente");
+            printOption(y++, 4, "Listado de ventas - Ordenado por fecha de venta");
+            printOption(y++, 5, "Listado de ventas - Ordenado por CAE");
+            printOption(y++, 6, "Listado de ventas - Ordenado por cliente");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
-            printOption(y++, 4, "Consulta de ventas - Por cliente");
-            printOption(y++, 5, "Consulta de ventas - Por CAE");
-            printOption(y++, 6, "Consulta de ventas - Por tipo de comprobante");
-            printOption(y++, 7, "Consulta de ventas - Por rango de fechas");
+            printOption(y++, 7, "Consulta de ventas - Por cliente");
+            printOption(y++, 8, "Consulta de ventas - Por CAE");
+            printOption(y++, 9, "Consulta de ventas - Por tipo de comprobante");
+            printOption(y++, 10, "Consulta de ventas - Por rango de fechas");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             printOption(y++, 0, "Volver");
@@ -110,18 +118,24 @@
         int renderProveedoresLC() {
             rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU PROVEEDORES");
             int y = 6;
+            printOption(y++, 1, "Crear");
+            printOption(y++, 2, "Eliminar");
+            printOption(y++, 3, "Modificar");
+
+            y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+
             rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
-            printOption(y++, 1, "Listado de proveedores - Ordenado por Nombre");
-            printOption(y++, 2, "Listado de proveedores - Ordenado por CUIL");
-            printOption(y++, 3, "Listado de proveedores - Ordenado por Rubro");
+            printOption(y++, 4, "Listado de proveedores - Ordenado por Nombre");
+            printOption(y++, 5, "Listado de proveedores - Ordenado por CUIL");
+            printOption(y++, 6, "Listado de proveedores - Ordenado por Rubro");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
-            printOption(y++, 4, "Consulta de proveedores - Por CUIL");
-            printOption(y++, 5, "Consulta de proveedores - Por Nombre");
-            printOption(y++, 6, "Consulta de proveedores - Por Rubro");
-            printOption(y++, 7, "Consulta de proveedores - Por Alta");
-            printOption(y++, 8, "Consulta de Responsables Inscripto - Por Nombre");
+            printOption(y++, 7, "Consulta de proveedores - Por CUIL");
+            printOption(y++, 8, "Consulta de proveedores - Por Nombre");
+            printOption(y++, 9, "Consulta de proveedores - Por Rubro");
+            printOption(y++, 10, "Consulta de proveedores - Por Alta");
+            printOption(y++, 11, "Consulta de Responsables Inscripto - Por Nombre");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             printOption(y++, 0, "Volver");
@@ -135,16 +149,22 @@
         int renderProductosLC() {
             rlutil::cls(); rlutil::hidecursor(); drawHeader("MENU PRODUCTOS");
             int y = 6;
+            printOption(y++, 1, "Crear");
+            printOption(y++, 2, "Eliminar");
+            printOption(y++, 3, "Modificar");
+
+            y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+
             rlutil::locate(MARGIN_X + 2, y++); cout << "LISTADOS" << endl; y++;
-            printOption(y++, 1, "Listado de productos - Ordenado por Codigo");
-            printOption(y++, 2, "Listado de productos - Ordenado por Precio");
-            printOption(y++, 3, "Listado de productos - Ordenado por Stock");
+            printOption(y++, 4, "Listado de productos - Ordenado por Codigo");
+            printOption(y++, 5, "Listado de productos - Ordenado por Precio");
+            printOption(y++, 6, "Listado de productos - Ordenado por Stock");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             rlutil::locate(MARGIN_X + 2, y++); cout << "CONSULTAS" << endl; y++;
-            printOption(y++, 4, "Consulta de productos - Por Codigo");
-            printOption(y++, 5, "Consulta de productos - Por Descripcion");
-            printOption(y++, 6, "Consulta de productos - Por Stock");
+            printOption(y++, 7, "Consulta de productos - Por Codigo");
+            printOption(y++, 8, "Consulta de productos - Por Descripcion");
+            printOption(y++, 9, "Consulta de productos - Por Stock");
 
             y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
             printOption(y++, 0, "Volver");
@@ -295,93 +315,72 @@
     void Menu::menuSub(const string &titulo) {
         int opcionSub;
 
-        std::string DNI;
-        std::string nombre;
-        std::string apellido;
-        std::string cuilCuit;
-        std::string correo;
-
-        std::string codigo;
-        std::string descripcion;
-        int stockMinimo;
-
-        ClienteManager clientesManager("Clientes.bin");
-        VentaManager ventasManager("Facturas.dat", "NotasCredito.dat");
-        ProveedorManager proveedoresManager("Proveedores.dat");
-        ProductoManager productosManager("Productos.dat");
+        ClienteManager clientesManager("clientes.bin");
+        VentaManager ventasManager("facturas.dat", "notascredito.dat");
+        ProveedorManager proveedoresManager("proveedores.bin");
+        ProductoManager productosManager("productos.bin");
     //agreegar si no encuentra archivo
     //revisar si existe registro en los delete, en el update y create
         do {
            if (titulo == "MENU CLIENTES") {
                 opcionSub = renderClientesLC();
-
                 if (opcionSub == 1) {
-                    clientesManager.ListarXApellido();
+                  //  clientesManager.Crear();
                 }
                 if (opcionSub == 2) {
-                    clientesManager.ListarXDNI();
+                  //  clientesManager.Eliminar();
                 }
                 if (opcionSub == 3) {
-                    clientesManager.ListarXcuilcuit();
+                  //  clientesManager.Modificar();
                 }
                 if (opcionSub == 4) {
-                    cout << "Ingrese el DNI del cliente: ";
-                    cin >> DNI;
-                    clientesManager.ConsultaXDNI(DNI);
+                    clientesManager.ListarXApellido();
                 }
                 if (opcionSub == 5) {
-                    cout << "Ingrese el CUIL/CUIT del cliente: ";
-                    cin >> cuilCuit;
-                    clientesManager.ConsultaXCUILCuit(cuilCuit);
+                    clientesManager.ListarXDNI();
                 }
                 if (opcionSub == 6) {
-                    cout << "Ingrese el nombre del cliente: ";
-                    cin >> nombre;
-                    cout << "Ingrese el apellido del cliente: ";
-                    cin >> apellido;
-                    clientesManager.ConsultaXNombreApellido(nombre, apellido);
+                    clientesManager.ListarXcuilcuit();
                 }
                 if (opcionSub == 7) {
+                    string dniCliente;
+                    cout << "Ingrese el DNI del cliente: ";
+                    cin >> dniCliente;
+                    clientesManager.ConsultaXDNI(dniCliente);
+                }
+                if (opcionSub == 8) {
+                    string cuilCuitCliente;
+                    cout << "Ingrese el CUIL/CUIT del cliente: ";
+                    cin >> cuilCuitCliente;
+                    clientesManager.ConsultaXCUILCuit(cuilCuitCliente);
+                }
+                if (opcionSub == 9) {
+                    string nombreCliente;
+                    string apellidoCliente;
+                    cout << "Ingrese el nombre del cliente: ";
+                    cin >> nombreCliente;
+                    cout << "Ingrese el apellido del cliente: ";
+                    cin >> apellidoCliente;
+                    clientesManager.ConsultaXNombreApellido(nombreCliente, apellidoCliente);
+                }
+                if (opcionSub == 10) {
+                    string correoCliente;
                     cout << "Ingrese el correo del cliente: ";
-                    cin >> correo;
-                    clientesManager.ConsultaXCorreo(correo);
+                    cin >> correoCliente;
+                    clientesManager.ConsultaXCorreo(correoCliente);
                 }
 
                 rlutil::cls();
             } else if (titulo == "MENU VENTAS") {
                 opcionSub = renderVentasLC();
                 if(opcionSub == 1) {
-                 //   ventasManager.ListarFacturas();
+                  //  ventasManager.Crear();
                 }
                 if(opcionSub == 2) {
-
+                  //  ventasManager.Eliminar();
                 }
                 if(opcionSub == 3) {
-
-                }
-                if(opcionSub == 4) {
-
-                }
-                if(opcionSub == 5) {
-
-                }
-                if(opcionSub == 6) {
-
-                }
-                if(opcionSub == 7) {
-
-                }
-
-            } else if (titulo == "MENU PROVEEDORES") {
-                opcionSub = renderProveedoresLC();
-                if(opcionSub == 1) {
-                    proveedoresManager.ListarXNombre();
-                }
-                if(opcionSub == 2) {
-                    proveedoresManager.ListarXCUIT();
-                }
-                if(opcionSub == 3) {
-                    proveedoresManager.ListarXRubro();
+                  //  ventasManager.Modificar();
                 }
                 if(opcionSub == 4) {
 
@@ -396,40 +395,105 @@
 
                 }
                 if(opcionSub == 8) {
-                    break;
+
+                }
+                if(opcionSub == 9) {
+
+                }
+                if(opcionSub == 10) {
+
+                }
+
+            } else if (titulo == "MENU PROVEEDORES") {
+                opcionSub = renderProveedoresLC();
+                if(opcionSub == 1) {
+                  //  proveedoresManager.Crear();
+                }
+                if(opcionSub == 2) {
+                  //  proveedoresManager.Eliminar();
+                }
+                if(opcionSub == 3) {
+                  //  proveedoresManager.Modificar();
+                }
+                if(opcionSub == 4) {
+                    proveedoresManager.ListarXNombre();
+                }
+                if(opcionSub == 5) {
+                    proveedoresManager.ListarXCUIT();
+                }
+                if(opcionSub == 6) {
+                    proveedoresManager.ListarXRubro();
+                }
+                if(opcionSub == 7) {
+                    string cuitProveedor;
+                    cout << "Ingrese el CUIT del proveedor: ";
+                    cin >> cuitProveedor;
+                    proveedoresManager.ConsultarXCUIT(cuitProveedor);
+                }
+                if(opcionSub == 8) {
+                    string nombreProveedor;
+                    cout << "Ingrese el nombre del proveedor: ";
+                    cin >> nombreProveedor;
+                    proveedoresManager.ConsultarXNombre(nombreProveedor);
+                }
+                if(opcionSub == 9) {
+                    int rubroProveedor;
+                    cout << "Ingrese el rubro del proveedor: ";
+                    cin >> rubroProveedor;
+                    proveedoresManager.ConsultarXRubro(rubroProveedor);
+                }
+                if(opcionSub == 10) {
+                    bool estadoProveedor;
+                    cout << "Ingrese el estado del proveedor: ";
+                    cin >> estadoProveedor;
+                    proveedoresManager.ConsultarXEstado(estadoProveedor);
+                }
+                if(opcionSub == 11) {
+                    proveedoresManager.Contar();
                 }
 
             } else if (titulo == "MENU PRODUCTOS") {
                 opcionSub = renderProductosLC();
                 if (opcionSub == 1) {
-                    productosManager.ListarXCodigo();
+                  //  productosManager.Crear();
                 }
                 if (opcionSub == 2) {
-                    productosManager.ListarXPrecio();
+                  //  productosManager.Eliminar();
                 }
                 if (opcionSub == 3) {
-                    productosManager.ListarXStock();
+                  //  productosManager.Modificacion();
                 }
                 if (opcionSub == 4) {
-                    cout << "Ingrese el codigo del producto: ";
-                    cin >> codigo;
-                    productosManager.ConsultaXCodigo(codigo);
+                    productosManager.ListarXCodigo();
                 }
                 if (opcionSub == 5) {
-                    cout << "Ingrese la descripcion del producto: ";
-                    cin >> descripcion;
-                    productosManager.ConsultaXDescripcion(descripcion);
+                    productosManager.ListarXPrecio();
                 }
                 if (opcionSub == 6) {
-                    int stockMinimo;
+                    productosManager.ListarXStock();
+                }
+                if (opcionSub == 7) {
+                    string codigoProducto;
+                    cout << "Ingrese el codigo del producto: ";
+                    cin >> codigoProducto;
+                    productosManager.ConsultaXCodigo(codigoProducto);
+                }
+                if (opcionSub == 8) {
+                    string descripcionProducto;
+                    cout << "Ingrese la descripcion del producto: ";
+                    cin >> descripcionProducto;
+                    productosManager.ConsultaXDescripcion(descripcionProducto);
+                }
+                if (opcionSub == 9) {
+                    int stockMinimoProducto;
                     cout << "Ingrese el stock minimo del producto: ";
-                    cin >> stockMinimo;
-                    productosManager.ConsultaXStockMinimo(stockMinimo);
+                    cin >> stockMinimoProducto;
+                    productosManager.ConsultaXStockMinimo(stockMinimoProducto);
                 }
             } else if (titulo == "EXTRAS") {
                 opcionSub = renderExtrasLC();
                 if(opcionSub == 1) {
-
+                
                 }
                 if(opcionSub == 2) {
 
@@ -483,7 +547,6 @@
         printOption(y++, 1, "Alta");
         printOption(y++, 2, "Baja");
         printOption(y++, 3, "Modificacion");
-        printOption(y++, 4, "Consulta");
         y++;
         rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
         printOption(y++, 0, "Volver");
