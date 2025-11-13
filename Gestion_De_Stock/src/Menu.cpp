@@ -391,24 +391,27 @@
                     ventasManager.ListarXCAE();
                 }
                 if(opcionSub == 6) {
+                    ventasManager.ListarXCliente();
+                }
+                if(opcionSub == 7) {
                     string dniClienteVenta;
                     cout << "Ingrese el DNI del cliente: ";
                     cin >> dniClienteVenta;
-                    ventasManager.ListarXCliente(dniClienteVenta);
+                    ventasManager.ConsultaXCliente(dniClienteVenta);
                 }
-                if(opcionSub == 7) {
+                if(opcionSub == 8) {
                     string caeVenta;
                     cout << "Ingrese el CAE: ";
                     cin >> caeVenta;
                     ventasManager.ConsultaXCAE(caeVenta);
                 }
-                if(opcionSub == 8) {
+                if(opcionSub == 9) {
                     char tipoComprobanteVenta;
                     cout << "Ingrese el tipo de comprobante: ";
                     cin >> tipoComprobanteVenta;
-                    ventasManager.ConsultaXTipoDeComprobante(tipoComprobanteVenta);
+                    ventasManager.ConsultaXTipoDeComprobante(tipoComprobanteVenta);    
                 }
-                if(opcionSub == 9) {
+                if(opcionSub == 10) {
                     //Fecha fechaInicioVenta;
                     //Fecha fechaFinVenta;
                     //cout << "Ingrese la fecha de inicio: ";
