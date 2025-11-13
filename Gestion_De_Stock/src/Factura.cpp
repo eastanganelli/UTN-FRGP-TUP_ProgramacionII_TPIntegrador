@@ -1,5 +1,7 @@
 #include "Factura.h"
 
+#include <iostream>
+
 Factura::Factura(unsigned int _id, string _cliente, char _tipoFactura) : Comprobante(_id, _cliente) {
     this->tipoFactura = _tipoFactura;
 }
@@ -22,4 +24,8 @@ void Factura::TotalConIVA() {
 
 void Factura::CantidadItems() {
 
+}
+
+string Factura::toString() {
+    return "";
 }

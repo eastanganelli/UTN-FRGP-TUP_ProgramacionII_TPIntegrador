@@ -119,9 +119,15 @@ bool VentaManager::CrearFactura(Factura &f) {
     if (archivo == nullptr) {
         return false;
     }
-    fwrite(&f, sizeof(Factura), 1, archivo);
+    fwrite(&f, sizeof(Producto), 1, archivo);
     fclose(archivo);
     return true;
+}
+
+bool VentaManager::NuevaFactura(string _clienteDNI, char _tipoFactura) {
+    unsigned int nuevoNumero = this->ultimaFacturaID() + 1;;
+    Factura nuevaFactura(nuevoNumero, _clienteDNI, _tipoFactura);
+    return this->CrearFactura(nuevaFactura);
 }
 
 bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
@@ -135,6 +141,49 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
     fwrite(&nc, sizeof(NotaDeCredito), 1, archivo);
     fclose(archivo);
     return true;
+}
+
+bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion) {
+    unsigned int nuevoNumero = this->ultimaNotaDeCreditoID() + 1;
+    NotaDeCredito nuevaNotaDeCredito(nuevoNumero, _clienteDNI, _motivoAnulacion);
+    return this->CrearNotaDeCredito(nuevaNotaDeCredito);
+}
+
+bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
+    unsigned int nuevoNumero = this->ultimaNotaDeCreditoID() + 1;
+    string motivo = "Anulacion de factura nro " + to_string(factura.getNumero());
+    NotaDeCredito nuevaNotaDeCredito(nuevoNumero, factura.getClienteDNI(), motivo);
+    return this->CrearNotaDeCredito(nuevaNotaDeCredito);
+}
+
+int VentaManager::ultimaFacturaID() {
+    Factura* facturas = this->ListarFacturas();
+    if (facturas == nullptr) {
+        return -1;
+    }
+    unsigned int ultimaID = 0;
+    for (unsigned int i = 0; i < this->ContarFacturas(); i++) {
+        if (facturas[i].getNumero() > ultimaID) {
+            ultimaID = facturas[i].getNumero();
+        }
+    }
+    delete[] facturas;
+    return ultimaID;
+}
+
+int VentaManager::ultimaNotaDeCreditoID() {
+    NotaDeCredito* notasDeCredito = this->ListarNotasDeCredito();
+    if (notasDeCredito == nullptr) {
+        return -1;
+    }
+    unsigned int ultimaID = 0;
+    for (unsigned int i = 0; i < this->ContarNotasDeCreditos(); i++) {
+        if (notasDeCredito[i].getNumero() > ultimaID) {
+            ultimaID = notasDeCredito[i].getNumero();
+        }
+    }
+    delete[] notasDeCredito;
+    return ultimaID;
 }
 
 Factura *VentaManager::ObtenerFactura(unsigned int numero) {

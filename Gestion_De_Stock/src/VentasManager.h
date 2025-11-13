@@ -17,6 +17,8 @@ private:
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
     bool CrearFactura(Factura& f);
     bool CrearNotaDeCredito(NotaDeCredito& nc);
+    int ultimaFacturaID();
+    int ultimaNotaDeCreditoID();
 
     void ListarFacturasXFecha();
     void ListarNotasDeCreditoXFecha();
@@ -29,7 +31,9 @@ public:
     VentaManager(string _nombreArchivoFactura = "facturas.bin", string _nombreArchivoNotaDeCredito = "notasdecredito.bin");
     ~VentaManager();
 
-    bool Crear(Factura& factura);
+    bool NuevaFactura(string _clienteDNI, char _tipoFactura);
+    bool NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion);
+    bool NuevaNotaDeCredito(Factura& factura);
     Factura* ObtenerFactura(unsigned int numero);
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);
     bool Modificar(unsigned int numero, Factura& facturaActualizado);

@@ -3,7 +3,6 @@
 
 #include "Comprobante.h"
 
-#include <iostream>
 #include <cstring>
 
 using namespace std;
@@ -34,6 +33,7 @@ public:
     void TotalSinIVA();
     void TotalConIVA();
     void CantidadItems();
+    string toString();
 };
 
 #endif // FACTURA_H

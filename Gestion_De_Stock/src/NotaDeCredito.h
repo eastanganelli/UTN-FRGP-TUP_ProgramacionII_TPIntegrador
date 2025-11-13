@@ -15,11 +15,14 @@ private:
     char motivoAnulacion[257];
 
 public:
+    NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
+    ~NotaDeCredito();
+
     // Getters
     string getMotivoAnulacion();
 
     // Setters
-    void setMotivoAnulacion(const string m);
+    void setMotivoAnulacion(string m);
 
     // Metodos
     void agregarItem(Producto*& item);

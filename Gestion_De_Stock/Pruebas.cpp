@@ -166,11 +166,6 @@ void TestingAll() {
 
     //TestingCliente();
     //TestingProveedores();
-    // TestingProductos();
-
-    Fecha fecha1(15, 3, 2023);
-    Fecha fecha2(10, 5, 2022);
-    Fecha fecha3(15, 3, 2023);
-
-    cout << "Fecha1 == Fecha3 >> " << (fecha1 == fecha3 ? "Si" : "No") << endl;
+    //TestingProductos();
+    TestingVentas();
 }
