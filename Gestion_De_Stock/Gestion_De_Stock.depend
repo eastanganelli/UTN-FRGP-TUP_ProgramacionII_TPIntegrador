@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1763053103 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1763066629 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
 	"src/Menu.h"
@@ -12,12 +12,12 @@
 	"src/ProductosManager.h"
 	"src/VentasManager.h"
 
-1763058721 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
+1763066629 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
 	<cstdio>
 	<string>
 
-1763064458 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
+1763066629 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
 	"DatosPersonales.h"
 	<iostream>
 	<cstring>
@@ -364,7 +364,7 @@
 	<cstring>
 	<string>
 
-1763058825 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+1763066661 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
 	"ClientesManager.h"
 
 1763056929 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.cpp
@@ -373,7 +373,7 @@
 1763064479 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.cpp
 	"DatosPersonales.h"
 
-1763066158 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
+1763066461 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
 	"Factura.h"
 	<iostream>
 
@@ -386,10 +386,10 @@
 	<cstdio>
 	<cctype>
 
-1763064357 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1763066629 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
-1763064496 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
+1763066629 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
 	"Menu.h"
 
 1763066390 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\configuracion.cpp
@@ -406,6 +406,6 @@
 	"Factura.h"
 	"NotaDeCredito.h"
 
-1763059316 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
+1763066629 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
 	"VentasManager.h"
 

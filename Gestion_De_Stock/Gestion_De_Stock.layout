@@ -2,49 +2,169 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="src\Cliente.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\VentasManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="440" topLine="24" />
+			<Cursor1 position="19970" topLine="183" />
+		</Cursor>
+		<Folding>
+			<Collapse line="2" />
+			<Collapse line="7" />
+			<Collapse line="11" />
+			<Collapse line="19" />
+			<Collapse line="27" />
+			<Collapse line="46" />
+			<Collapse line="62" />
+			<Collapse line="78" />
+			<Collapse line="94" />
+			<Collapse line="113" />
+			<Collapse line="132" />
+			<Collapse line="138" />
+			<Collapse line="144" />
+			<Collapse line="157" />
+			<Collapse line="173" />
+			<Collapse line="186" />
+			<Collapse line="208" />
+			<Collapse line="226" />
+			<Collapse line="240" />
+			<Collapse line="255" />
+			<Collapse line="272" />
+			<Collapse line="289" />
+			<Collapse line="303" />
+			<Collapse line="317" />
+			<Collapse line="343" />
+			<Collapse line="369" />
+			<Collapse line="405" />
+		</Folding>
+	</File>
+	<File name="src\Fecha.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="502" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Factura.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="679" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Factura.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1203" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ProductosManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10512" topLine="270" />
+		</Cursor>
+	</File>
+	<File name="src\DatosPersonales.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="518" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\DatosPersonales.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1464" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="Pruebas.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6666" topLine="33" />
+		</Cursor>
+		<Folding>
+			<Collapse line="2" />
+			<Collapse line="10" />
+			<Collapse line="19" />
+			<Collapse line="92" />
+		</Folding>
+	</File>
+	<File name="src\NotaDeCredito.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="718" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Proveedor.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1488" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="src\Menu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="837" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Configuracion.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10067" topLine="145" />
+		</Cursor>
+	</File>
+	<File name="src\Menu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5548" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="src\ClientesManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7087" topLine="219" />
 		</Cursor>
 	</File>
 	<File name="src\VentasManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="12" />
+			<Cursor1 position="233" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\ClientesManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\Proveedor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="862" topLine="7" />
+			<Cursor1 position="564" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\Fecha.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="148" topLine="0" />
+			<Cursor1 position="130" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\Cliente.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\Cliente.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="210" topLine="6" />
+			<Cursor1 position="500" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\VentasManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\Comprobante.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3878" topLine="6" />
+			<Cursor1 position="342" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Pruebas.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ProveedoresManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="234" topLine="0" />
+			<Cursor1 position="9784" topLine="263" />
 		</Cursor>
 	</File>
-	<File name="src\ClientesManager.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7338" topLine="206" />
+			<Cursor1 position="195" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\Menu.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\Configuracion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1931" topLine="0" />
+			<Cursor1 position="130" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Cliente.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1588" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\NotaDeCredito.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="663" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ClientesManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="923" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="src\Comprobante.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="245" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

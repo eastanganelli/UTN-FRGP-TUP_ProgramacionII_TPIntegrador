@@ -220,7 +220,7 @@ void Configuracion::exportarNotasDeCreditoCSV() {
     fprintf(archivoCSV, "Numero_Nota,Fecha_Emision,Monto,DNI_Cliente\n");
     while (fread(&nota, sizeof(NotaDeCredito), 1, archivoBinario)) {
         fprintf(archivoCSV, "%d,%s,%.2f,%s\n", nota.getNumero(), nota.getFechaEmision().toString().c_str(),
-        nota.getMonto(), nota.getClienteDNI().c_str());
+        nota.TotalSinIVA(), nota.getClienteDNI().c_str());
     }
     fclose(archivoBinario);
     fclose(archivoCSV);
