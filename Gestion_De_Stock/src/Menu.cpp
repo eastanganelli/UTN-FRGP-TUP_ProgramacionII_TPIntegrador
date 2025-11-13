@@ -1,10 +1,11 @@
-#include <iostream>
-#include "Menu.h"
-#include "ClientesManager.h"
-#include "VentasManager.h"
-#include "ProveedoresManager.h"
-#include "ProductosManager.h"
-#include "./rlutil.h"
+    #include "Menu.h"
+    #include "ClientesManager.h"
+    #include "VentasManager.h"
+    #include "ProveedoresManager.h"
+    #include "ProductosManager.h"
+    #include <iostream>
+    #include <algorithm>
+    #include "rlutil.h"
 
     using namespace std;
 
