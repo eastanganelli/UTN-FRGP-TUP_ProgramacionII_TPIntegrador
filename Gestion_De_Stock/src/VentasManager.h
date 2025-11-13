@@ -6,7 +6,8 @@
 
 class VentaManager {
 private:
-    string rutasArchivos[2];
+    string rutasArchivoFactura;
+    string rutasArchivosNotaDeCredito;
 
     Factura* ListarFacturas();
     NotaDeCredito* ListarNotasDeCredito();
@@ -14,25 +15,21 @@ private:
     bool Existe(NotaDeCredito& notaDeCredito);
     int PosicionFactura(unsigned int numero, unsigned int& posicion);
     int PosicionNotaDeCredito(unsigned int numero, unsigned int& posicion);
+    void Imprimir(Factura* misFacturas, unsigned int cantidad);
+    void Imprimir(NotaDeCredito* misNotaDeCreditos, unsigned int cantidad);
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    Factura* Redimensionar(NotaDeCredito* notaDeCreditos, unsigned int capacidadActual, unsigned int nuevaCapacidad);
     bool CrearFactura(Factura& f);
     bool CrearNotaDeCredito(NotaDeCredito& nc);
     int ultimaFacturaID();
     int ultimaNotaDeCreditoID();
 
-    void ListarFacturasXFecha();
-    void ListarNotasDeCreditoXFecha();
-    void ListarFacturasXCAE();
-    void ListarNotasDeCreditoXCAE();
-    void ListarFacturasXCliente();
-    void ListarNotasDeCreditoXCliente();
-
 public:
     VentaManager(string _nombreArchivoFactura = "Facturas.dat", string _nombreArchivoNotaDeCredito = "NotasDeCredito.dat");
     ~VentaManager();
 
-    bool NuevaFactura(string _clienteDNI, char _tipoFactura);
-    bool NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion);
+    bool NuevaFactura(string _clienteDNI, float _monto, unsigned int _cantidadItems, char _tipoFactura);
+    bool NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion);
     bool NuevaNotaDeCredito(Factura& factura);
     Factura* ObtenerFactura(unsigned int numero);
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);

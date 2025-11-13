@@ -15,20 +15,19 @@ private:
     char motivoAnulacion[256];
 
 public:
-    NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
+    NotaDeCredito(unsigned int _id = 0, string _cliente = "", float _monto = 0.0f, unsigned int _cantidadItems = 0, string _motivoAnulacion = "");
     ~NotaDeCredito();
 
     // Getters
     string getMotivoAnulacion();
+    float TotalSinIVA();
+    unsigned int CantidadItems();
 
     // Setters
     void setMotivoAnulacion(string m);
 
     // Metodos
-    void agregarItem(Producto*& item);
-    void operator+(Producto*& item);
-    void eliminarItem(Producto*& item);
-    void operator-(Producto*& item);
+    string toString();
 };
 
 #endif // NOTADECREDITO_H

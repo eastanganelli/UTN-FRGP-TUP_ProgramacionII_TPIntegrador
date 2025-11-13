@@ -65,12 +65,12 @@ void TestingProductos() {
 }
 
 void TestingVentas() {
-    VentaManager misComprobantes;
+    VentaManager misComprobantes("Facturas.dat", "NotaDeCredito.dat");
 
-    //bool resultado = misComprobantes.NuevaFactura("39068857", 'A');
-    //std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
+    bool resultado = misComprobantes.NuevaFactura("39068857", 345.7, 5, 'A');
+    std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
 
-    Factura* factura = misComprobantes.ObtenerFactura(0);
+    Factura* factura = misComprobantes.ObtenerFactura(1);
     if(factura != nullptr) {
         cout << factura->toString() << endl;
     }

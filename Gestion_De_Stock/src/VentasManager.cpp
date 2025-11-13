@@ -1,8 +1,8 @@
 #include "VentasManager.h"
 
 VentaManager::VentaManager(string _nombreArchivoFactura, string _nombreArchivoNotaDeCredito) {
-    this->rutasArchivos[0] = _nombreArchivoFactura;
-    this->rutasArchivos[1] = _nombreArchivoNotaDeCredito;;
+    this->rutasArchivoFactura = _nombreArchivoFactura;
+    this->rutasArchivosNotaDeCredito = _nombreArchivoNotaDeCredito;
 }
 
 VentaManager::~VentaManager() {
@@ -16,7 +16,7 @@ Factura *VentaManager::ListarFacturas() {
     }
     Factura* misFacturas = new Factura[cantidadFacturas];
     unsigned int contador = 0;
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
     }
@@ -32,7 +32,7 @@ NotaDeCredito *VentaManager::ListarNotasDeCredito() {
     const unsigned int cantidadNotasDeCredito = this->ContarNotasDeCreditos();
     NotaDeCredito* misNotasDeCredito = new NotaDeCredito[cantidadNotasDeCredito];
     unsigned int contador = 0;
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
     }
@@ -45,7 +45,7 @@ NotaDeCredito *VentaManager::ListarNotasDeCredito() {
 }
 
 bool VentaManager::Existe(Factura &factura) {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
     }
@@ -61,7 +61,7 @@ bool VentaManager::Existe(Factura &factura) {
 }
 
 bool VentaManager::Existe(NotaDeCredito &notaDeCredito) {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
     }
@@ -77,7 +77,7 @@ bool VentaManager::Existe(NotaDeCredito &notaDeCredito) {
 }
 
 int VentaManager::PosicionFactura(unsigned int numero, unsigned int &posicion) {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return -1;
     }
@@ -96,7 +96,7 @@ int VentaManager::PosicionFactura(unsigned int numero, unsigned int &posicion) {
 }
 
 int VentaManager::PosicionNotaDeCredito(unsigned int numero, unsigned int &posicion) {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return -1;
     }
@@ -114,11 +114,23 @@ int VentaManager::PosicionNotaDeCredito(unsigned int numero, unsigned int &posic
     return -1;
 }
 
+void VentaManager::Imprimir(Factura *misFacturas, unsigned int cantidad) {
+    for (unsigned int i = 0; i < cantidad; i++) {
+        cout << misFacturas[i].toString() << endl;
+    }
+}
+
+void VentaManager::Imprimir(NotaDeCredito *misNotaDeCreditos, unsigned int cantidad) {
+    for (unsigned int i = 0; i < cantidad; i++) {
+        cout << misNotaDeCreditos[i].toString() << endl;
+    }
+}
+
 bool VentaManager::CrearFactura(Factura &f) {
     if (Existe(f)) {
         return false;
     }
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "ab");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "ab");
     if (archivo == nullptr) {
         return false;
     }
@@ -127,15 +139,16 @@ bool VentaManager::CrearFactura(Factura &f) {
     return true;
 }
 
-bool VentaManager::NuevaFactura(string _clienteDNI, char _tipoFactura) {
+bool VentaManager::NuevaFactura(string _clienteDNI, float _monto, unsigned int _cantidadItems, char _tipoFactura) {
     const unsigned int ultimoID = this->ultimaFacturaID();
     if (ultimoID == -1) {
         return false;
     }
-    Factura auxFactura(ultimoID + 1, _clienteDNI, _tipoFactura);
+    unsigned int nuevoID = ultimoID + 1;
+    Factura auxFactura(nuevoID, _clienteDNI, _monto, _cantidadItems, _tipoFactura);
     bool resultado = this->CrearFactura(auxFactura);
     if (resultado) {
-        cout << "Factura creada con exito. Nro: " << ultimoID + 1 << endl;
+        cout << "Factura creada con exito. Nro: " << nuevoID << endl;
     } else {
         cout << "Error al crear la factura." << endl;
     }
@@ -146,7 +159,7 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
     if (Existe(nc)) {
         return false;
     }
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "ab");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "ab");
     if (archivo == nullptr) {
         return false;
     }
@@ -155,15 +168,16 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
     return true;
 }
 
-bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, const string _motivoAnulacion) {
+bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion) {
     const unsigned int ultimoID = this->ultimaNotaDeCreditoID();
     if (ultimoID == -1) {
         return false;
     }
-    NotaDeCredito auxNotaDeCredito(ultimoID + 1, _clienteDNI, _motivoAnulacion);
+    unsigned int nuevoID = ultimoID + 1;
+    NotaDeCredito auxNotaDeCredito(nuevoID, _clienteDNI, _monto, _cantidadItems, _motivoAnulacion);
     bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
     if (resultado) {
-        cout << "Nota de credito creada con exito. Nro: " << ultimoID + 1 << endl;
+        cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;
     } else {
         cout << "Error al crear la nota de credito." << endl;
     }
@@ -175,11 +189,12 @@ bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
     if (ultimoID == -1) {
         return false;
     }
+    unsigned int nuevoID = ultimoID + 1;
     string motivo = "Anulacion de factura nro " + to_string(factura.getNumero());
-    NotaDeCredito auxNotaDeCredito(ultimoID + 1, factura.getClienteDNI(), motivo);
+    NotaDeCredito auxNotaDeCredito(nuevoID, factura.getClienteDNI(), factura.TotalSinIVA(), factura.getCantidadItems(), motivo);
     bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
     if (resultado) {
-        cout << "Nota de credito creada con exito. Nro: " << ultimoID + 1 << endl;
+        cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;
     } else {
         cout << "Error al crear la nota de credito." << endl;
     }
@@ -217,12 +232,12 @@ int VentaManager::ultimaNotaDeCreditoID() {
 }
 
 Factura *VentaManager::ObtenerFactura(unsigned int numero) {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
     }
     Factura* factura = new Factura();
-    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+    while (fread(factura, sizeof(Factura), 1, archivo)) {
         if (factura->getNumero() == numero) {
             fclose(archivo);
             return factura;
@@ -234,7 +249,7 @@ Factura *VentaManager::ObtenerFactura(unsigned int numero) {
 }
 
 NotaDeCredito *VentaManager::ObtenerNotaDeCredito(unsigned int numero) {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
     }
@@ -251,7 +266,7 @@ NotaDeCredito *VentaManager::ObtenerNotaDeCredito(unsigned int numero) {
 }
 
 bool VentaManager::Modificar(unsigned int numero, Factura &facturaActualizado) {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "r+b");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
 
@@ -265,7 +280,7 @@ bool VentaManager::Modificar(unsigned int numero, Factura &facturaActualizado) {
 }
 
 bool VentaManager::Modificar(unsigned int numero, NotaDeCredito &ndcActualizado) {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "r+b");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
 
@@ -279,7 +294,7 @@ bool VentaManager::Modificar(unsigned int numero, NotaDeCredito &ndcActualizado)
 }
 
 bool VentaManager::EliminarFactura(unsigned int numero) {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
     }
@@ -299,13 +314,13 @@ bool VentaManager::EliminarFactura(unsigned int numero) {
     }
     fclose(archivo);
     fclose(tempArchivo);
-    remove(this->rutasArchivos[0].c_str());
-    rename("temp.dat", this->rutasArchivos[0].c_str());
+    remove(this->rutasArchivoFactura.c_str());
+    rename("temp.dat", this->rutasArchivoFactura.c_str());
     return encontrado;
 }
 
 bool VentaManager::EliminarNotaDeCredito(unsigned int numero) {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
     }
@@ -325,13 +340,222 @@ bool VentaManager::EliminarNotaDeCredito(unsigned int numero) {
     }
     fclose(archivo);
     fclose(tempArchivo);
-    remove(this->rutasArchivos[1].c_str());
-    rename("temp.dat", this->rutasArchivos[1].c_str());
+    remove(this->rutasArchivosNotaDeCredito.c_str());
+    rename("temp.dat", this->rutasArchivosNotaDeCredito.c_str());
     return encontrado;
 }
 
+void VentaManager::ListarXFecha() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getFechaEmision() > misFacturas[j + 1].getFechaEmision()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+
+    NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
+
+    if(misNotaDeCreditos != nullptr) {
+        const unsigned int cantidad = this->ContarNotasDeCreditos();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misNotaDeCreditos[j].getFechaEmision() > misNotaDeCreditos[j + 1].getFechaEmision()) {
+                    NotaDeCredito temp = misNotaDeCreditos[j];
+                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                    misNotaDeCreditos[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Notas de Credito -----" << endl;
+        this->Imprimir(misNotaDeCreditos, cantidad);
+    }
+}
+
+void VentaManager::ListarXCAE() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getCAE() > misFacturas[j + 1].getCAE()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+}
+
+void VentaManager::ListarXCliente() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getClienteDNI() > misFacturas[j + 1].getClienteDNI()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+
+    NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
+
+    if(misNotaDeCreditos != nullptr) {
+        const unsigned int cantidad = this->ContarNotasDeCreditos();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misNotaDeCreditos[j].getClienteDNI() > misNotaDeCreditos[j + 1].getClienteDNI()) {
+                    NotaDeCredito temp = misNotaDeCreditos[j];
+                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                    misNotaDeCreditos[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Notas de Credito -----" << endl;
+        this->Imprimir(misNotaDeCreditos, cantidad);
+    }
+}
+
+void VentaManager::ConsultaXCliente(string dniCliente) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas del cliente " << dniCliente << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getClienteDNI() == dniCliente) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas para el cliente " << dniCliente << "." << endl;
+    }
+
+    archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las notas de credito." << endl;
+        return;
+    }
+    NotaDeCredito notaDeCredito;
+    cout << "----- Notas de Credito del cliente " << dniCliente << " -----" << endl;
+    encontrado = false;
+    while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
+        if (notaDeCredito.getClienteDNI() == dniCliente) {
+            cout << notaDeCredito.toString() << endl;
+            encontrado = true;
+        }
+    }
+}
+
+void VentaManager::ConsultaXCAE(string cae) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas con CAE " << cae << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getCAE() == cae) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas con CAE " << cae << "." << endl;
+    }
+}
+
+void VentaManager::ConsultaXTipoDeComprobante(char tipoComprobante) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas del tipo " << tipoComprobante << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getTipoFactura() == tipoComprobante) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas del tipo " << tipoComprobante << "." << endl;
+    }
+}
+
+void VentaManager::ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas entre " << fechaInicio.toString() << " y " << fechaFin.toString() << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getFechaEmision() >= fechaInicio && factura.getFechaEmision() <= fechaFin) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas en el rango de fechas especificado." << endl;
+    }
+
+    archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las notas de credito." << endl;
+        return;
+    }
+    NotaDeCredito notaDeCredito;
+    cout << "----- Notas de Credito entre " << fechaInicio.toString() << " y " << fechaFin.toString() << " -----" << endl;
+    encontrado = false;
+    while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
+        if (notaDeCredito.getFechaEmision() >= fechaInicio && notaDeCredito.getFechaEmision() <= fechaFin) {
+            cout << notaDeCredito.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron notas de credito en el rango de fechas especificado." << endl;
+    }
+}
+
 unsigned int VentaManager::ContarFacturas() {
-    FILE* archivo = fopen(this->rutasArchivos[0].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
         return 0;
     }
@@ -342,7 +566,7 @@ unsigned int VentaManager::ContarFacturas() {
 }
 
 unsigned int VentaManager::ContarNotasDeCreditos() {
-    FILE* archivo = fopen(this->rutasArchivos[1].c_str(), "rb");
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
         return 0;
     }

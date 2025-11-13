@@ -26,7 +26,9 @@ public:
     // Métodos
     string toString();
     bool operator>(Fecha fechaComparar);
+    bool operator>=(Fecha fechaComparar);
     bool operator<(Fecha fechaComparar);
+    bool operator<=(Fecha fechaComparar);
     bool operator==(Fecha fechaComparar);
     bool operator!=(Fecha fechaComparar);
 };
