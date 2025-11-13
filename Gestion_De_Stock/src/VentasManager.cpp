@@ -9,6 +9,22 @@ VentaManager::~VentaManager() {
 
 }
 
+void VentaManager::iniciarArchivoFactura() {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "wb");
+    if (archivo == nullptr) {
+        return;
+    }
+    fclose(archivo);
+}
+
+void VentaManager::iniciarArchivoNotaDeCredito() {
+    FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "wb");
+    if (archivo == nullptr) {
+        return;
+    }
+    fclose(archivo);
+}
+
 Factura *VentaManager::ListarFacturas() {
     const unsigned int cantidadFacturas = this->ContarFacturas();
     if(cantidadFacturas == 0) {
@@ -37,7 +53,7 @@ NotaDeCredito *VentaManager::ListarNotasDeCredito() {
         return nullptr;
     }
     unsigned int i = 0;
-    while (fread(&misNotasDeCredito[i], sizeof(Factura), 1, archivo)) {
+    while (fread(&misNotasDeCredito[i], sizeof(NotaDeCredito), 1, archivo)) {
         i++;
     }
     fclose(archivo);
@@ -134,7 +150,7 @@ bool VentaManager::CrearFactura(Factura &f) {
     if (archivo == nullptr) {
         return false;
     }
-    fwrite(&f, sizeof(Producto), 1, archivo);
+    fwrite(&f, sizeof(Factura), 1, archivo);
     fclose(archivo);
     return true;
 }
@@ -168,20 +184,26 @@ bool VentaManager::CrearNotaDeCredito(NotaDeCredito &nc) {
     return true;
 }
 
-bool VentaManager::NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion) {
+bool VentaManager::NuevaNotaDeCredito(unsigned int _nroFactura, string _motivoAnulacion) {
+    Factura* miFactura = this->ObtenerFactura(_nroFactura);
+    if(miFactura == nullptr) {
+        cout << "Numero de factura indicado, no se encuentra" << endl;
+    }
     const unsigned int ultimoID = this->ultimaNotaDeCreditoID();
     if (ultimoID == -1) {
         return false;
     }
     unsigned int nuevoID = ultimoID + 1;
-    NotaDeCredito auxNotaDeCredito(nuevoID, _clienteDNI, _monto, _cantidadItems, _motivoAnulacion);
-    bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
-    if (resultado) {
+    NotaDeCredito auxNotaDeCredito(nuevoID, miFactura->getClienteDNI(), miFactura->TotalSinIVA(), miFactura->getCantidadItems(), _motivoAnulacion);
+    bool creado = this->CrearNotaDeCredito(auxNotaDeCredito),
+        eliminado = this->EliminarFactura(_nroFactura);
+    if (creado && eliminado) {
         cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;
     } else {
         cout << "Error al crear la nota de credito." << endl;
     }
-    return resultado;
+    delete miFactura;
+    return creado && eliminado;
 }
 
 bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
@@ -192,13 +214,14 @@ bool VentaManager::NuevaNotaDeCredito(Factura &factura) {
     unsigned int nuevoID = ultimoID + 1;
     string motivo = "Anulacion de factura nro " + to_string(factura.getNumero());
     NotaDeCredito auxNotaDeCredito(nuevoID, factura.getClienteDNI(), factura.TotalSinIVA(), factura.getCantidadItems(), motivo);
-    bool resultado = this->CrearNotaDeCredito(auxNotaDeCredito);
-    if (resultado) {
+    bool creado = this->CrearNotaDeCredito(auxNotaDeCredito),
+        eliminado = this->EliminarFactura(factura.getNumero());
+    if (creado && eliminado) {
         cout << "Nota de credito creada con exito. Nro: " << nuevoID << endl;
     } else {
         cout << "Error al crear la nota de credito." << endl;
     }
-    return resultado;
+    return creado && eliminado;
 }
 
 int VentaManager::ultimaFacturaID() {
@@ -207,10 +230,9 @@ int VentaManager::ultimaFacturaID() {
         return 0;
     }
     unsigned int ultimaID = 0;
-    for (unsigned int i = 0; i < this->ContarFacturas(); i++) {
-        if (facturas[i].getNumero() > ultimaID) {
-            ultimaID = facturas[i].getNumero();
-        }
+    const unsigned int cantidad = this->ContarFacturas();
+    if (cantidad > 0) {
+        ultimaID = facturas[cantidad - 1].getNumero();
     }
     delete[] facturas;
     return ultimaID;
@@ -446,7 +468,8 @@ void VentaManager::ConsultaXCliente(string dniCliente) {
     cout << "----- Facturas del cliente " << dniCliente << " -----" << endl;
     bool encontrado = false;
     while (fread(&factura, sizeof(Factura), 1, archivo)) {
-        if (factura.getClienteDNI() == dniCliente) {
+        string aux = factura.getClienteDNI();
+        if (aux.find(dniCliente)) {
             cout << factura.toString() << endl;
             encontrado = true;
         }
@@ -465,7 +488,8 @@ void VentaManager::ConsultaXCliente(string dniCliente) {
     cout << "----- Notas de Credito del cliente " << dniCliente << " -----" << endl;
     encontrado = false;
     while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
-        if (notaDeCredito.getClienteDNI() == dniCliente) {
+        string aux = factura.getClienteDNI();
+        if (aux.find(dniCliente)) {
             cout << notaDeCredito.toString() << endl;
             encontrado = true;
         }
@@ -482,7 +506,8 @@ void VentaManager::ConsultaXCAE(string cae) {
     cout << "----- Facturas con CAE " << cae << " -----" << endl;
     bool encontrado = false;
     while (fread(&factura, sizeof(Factura), 1, archivo)) {
-        if (factura.getCAE() == cae) {
+        string aux = factura.getCAE();
+        if (aux.find(cae)) {
             cout << factura.toString() << endl;
             encontrado = true;
         }
@@ -557,6 +582,7 @@ void VentaManager::ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin) {
 unsigned int VentaManager::ContarFacturas() {
     FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
     if (archivo == nullptr) {
+            this->iniciarArchivoFactura();
         return 0;
     }
     fseek(archivo, 0, SEEK_END);
@@ -568,6 +594,7 @@ unsigned int VentaManager::ContarFacturas() {
 unsigned int VentaManager::ContarNotasDeCreditos() {
     FILE* archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
     if (archivo == nullptr) {
+            this->iniciarArchivoNotaDeCredito();
         return 0;
     }
     fseek(archivo, 0, SEEK_END);

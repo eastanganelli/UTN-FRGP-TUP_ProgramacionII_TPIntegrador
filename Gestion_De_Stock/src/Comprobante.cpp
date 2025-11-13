@@ -2,6 +2,8 @@
 
 Comprobante::Comprobante(unsigned int _numero, string _clienteDNI, float _monto, unsigned int _cantidadItems) : numero(_numero) {
     strcpy(this->clienteDNI, _clienteDNI.c_str());
+    this->monto = _monto;
+    this->cantidadItems = _cantidadItems;
     this->clienteDNI[8] = '\0';
 }
 

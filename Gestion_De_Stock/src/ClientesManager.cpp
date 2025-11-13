@@ -226,7 +226,8 @@ Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getCuilCuit() == cuilcuit) {
+        string aux = cliente.getCuilCuit();
+        if (aux.find(cuilcuit)) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }

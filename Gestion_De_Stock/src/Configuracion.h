@@ -1,6 +1,7 @@
 #ifndef CONFIGURACION_H
 #define CONFIGURACION_H
 
+#include <string>
 #include <cstring>
 
 using namespace std;
