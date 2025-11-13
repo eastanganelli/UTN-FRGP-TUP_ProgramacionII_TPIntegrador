@@ -4,6 +4,7 @@
 #include <string>
 #include <cstring>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -22,6 +23,8 @@ private:
         rutaDestinoCopiaSeguridadNotasDeCredito;
 
     bool copiarArchivo(string origen, string destino);
+    void ImprimirResultado(bool estado, string nombreArchivo);
+    bool VerificarSiArchivoExiste(string rutaArchivo);
 
 public:
     Configuracion(string _rutaDestinoCopiaSeguridadClientes = "", string _rutaDestinoCopiaSeguridadProveedores = "", string _rutaDestinoCopiaSeguridadProductos = "", string _rutaDestinoCopiaSeguridadFacturas = "", string _rutaDestinoCopiaSeguridadNotasDeCredito = "",
@@ -29,24 +32,26 @@ public:
     ~Configuracion();
 
     // Métodos
-    bool guardarCopiaClientes();
-    bool cargarCopiaClientes();
-    bool guardarCopiaProveedores();
-    bool cargarCopiaProveedores();
-    bool guardarCopiaProductos();
-    bool cargarCopiaProductos();
-    bool guardarCopiaVentas();
-    bool cargarCopiaVentas();
-    bool guardarCopiaNotasDeCredito();
-    bool cargarCopiaNotasDeCredito();
-    bool guardarCopiaSeguridad();
-    bool cargarCopiaSeguridad();
+    void guardarCopiaClientes();
+    void cargarCopiaClientes();
+    void guardarCopiaProveedores();
+    void cargarCopiaProveedores();
+    void guardarCopiaProductos();
+    void cargarCopiaProductos();
+    void guardarCopiaVentas();
+    void cargarCopiaVentas();
+    void guardarCopiaNotasDeCredito();
+    void cargarCopiaNotasDeCredito();
+    void guardarCopiaSeguridad();
+    void cargarCopiaSeguridad();
 
-    bool exportarTodoCSV();
-    bool exportarClientesCSV();
-    bool exportarProveedoresCSV();
-    bool exportarProductosCSV();
-    bool exportarVentasCSV();
+    void exportarTodoCSV();
+    void exportarClientesCSV();
+    void exportarProveedoresCSV();
+    void exportarProductosCSV();
+    void exportarVentasCSV();
+    void exportarNotasDeCreditoCSV();
+    void exportarTodo();
 };
 
 #endif // CONFIGURACION_H
