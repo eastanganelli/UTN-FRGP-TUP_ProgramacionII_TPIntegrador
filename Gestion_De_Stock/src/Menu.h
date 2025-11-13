@@ -35,7 +35,9 @@ private:
     int renderModelosCopiaSeguridad(string ruta);
     int renderModelosRestaurarCopiaSeguridad(string ruta);
     int renderModelosExportarCSV(string ruta);
-
+    void renderRecaudacionTrimestral(VentaManager& ventasManager);
+    void renderRecaudacionAnual(VentaManager& ventasManager);
+    
 public:
     // Muestra el menu principal
     void mostrar();

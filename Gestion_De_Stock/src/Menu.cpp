@@ -40,12 +40,12 @@ void Menu::mostrar() {
 }
 
 void Menu::menuSub(string titulo) {
-    int opcionSub;
-   const string archivoCliente = "Clientes.dat",
-   archivoFactura  = "Facturas.dat",
-   archivoNotasDeCredito = "NotasDeCreditos.dat",
-   archivoProveedor = "Proveedores.dat",
-   archivoProducto = "Productos.dat";
+        int opcionSub;
+        const string archivoCliente = "Clientes.dat",
+        archivoFactura  = "Facturas.dat",
+        archivoNotasDeCredito = "NotasDeCreditos.dat",
+        archivoProveedor = "Proveedores.dat",
+        archivoProducto = "Productos.dat";
 
         ClienteManager clientesManager(archivoCliente);
         VentaManager ventasManager(archivoFactura, archivoNotasDeCredito);
@@ -75,36 +75,36 @@ void Menu::menuSub(string titulo) {
                   system("pause");
                 }
                 if (opcionSub == 2) {
-                 string dniEliminar;
+                 string dniClienteEliminar;
                  cout << "Ingrese el DNI del cliente a eliminar: ";
-                 cin >> dniEliminar;
-                 if (clientesManager.Eliminar(dniEliminar)) cout << "Cliente eliminado exitosamente." << endl;
+                 cin >> dniClienteEliminar;
+                 if (clientesManager.Eliminar(dniClienteEliminar)) cout << "Cliente eliminado exitosamente." << endl;
                  else cout << "Error: Cliente no encontrado o no se pudo eliminar." << endl;
                  system("pause");
                 }
                 if (opcionSub == 3) {
-                 string dniModificar;
+                 string dniClienteModificar;
                  cout << "Ingrese el DNI del cliente a modificar: ";
-                 cin >> dniModificar;
-                 Cliente* actual = clientesManager.Obtener(dniModificar);
+                 cin >> dniClienteModificar;
+                 Cliente* actual = clientesManager.Obtener(dniClienteModificar);
                  if (actual == nullptr) {
                      cout << "Error: Cliente no encontrado." << endl;
                      system("pause");
                  } else {
-                     string nombre, apellido, cuilCuit, direccion, correo, telefono, celular;
-                     unsigned int codigoRazonSocial;
+                     string nombreClienteModificar, apellidoClienteModificar, cuilCuitClienteModificar, direccionClienteModificar, correoClienteModificar, telefonoClienteModificar, celularClienteModificar;
+                     unsigned int codigoRazonSocialClienteModificar;
                      bool alta;
-                     cout << "Ingrese nuevo nombre: "; cin >> nombre;
-                     cout << "Ingrese nuevo apellido: "; cin >> apellido;
-                     cout << "Ingrese nuevo CUIL/CUIT: "; cin >> cuilCuit;
-                     cout << "Ingrese nueva direccion: "; cin >> direccion;
-                     cout << "Ingrese nuevo correo: "; cin >> correo;
-                     cout << "Ingrese nuevo telefono: "; cin >> telefono;
-                     cout << "Ingrese nuevo celular: "; cin >> celular;
-                     cout << "Ingrese nuevo codigo razon social: "; cin >> codigoRazonSocial;
+                     cout << "Ingrese nuevo nombre: "; cin >> nombreClienteModificar;
+                     cout << "Ingrese nuevo apellido: "; cin >> apellidoClienteModificar;
+                     cout << "Ingrese nuevo CUIL/CUIT: "; cin >> cuilCuitClienteModificar;
+                     cout << "Ingrese nueva direccion: "; cin >> direccionClienteModificar;
+                     cout << "Ingrese nuevo correo: "; cin >> correoClienteModificar;
+                     cout << "Ingrese nuevo telefono: "; cin >> telefonoClienteModificar;
+                     cout << "Ingrese nuevo celular: "; cin >> celularClienteModificar;
+                     cout << "Ingrese nuevo codigo razon social: "; cin >> codigoRazonSocialClienteModificar;
                      cout << "¿Alta? (1=Si, 0=No): "; cin >> alta;
-                     Cliente modificado(nombre, apellido, dniModificar, cuilCuit, direccion, correo, telefono, celular, codigoRazonSocial, alta);
-                     if (clientesManager.Modificar(dniModificar, modificado)) cout << "Cliente modificado exitosamente." << endl;
+                     Cliente modificado(nombreClienteModificar, apellidoClienteModificar, dniClienteModificar, cuilCuitClienteModificar, direccionClienteModificar, correoClienteModificar, telefonoClienteModificar, celularClienteModificar, codigoRazonSocialClienteModificar, alta);
+                     if (clientesManager.Modificar(dniClienteModificar, modificado)) cout << "Cliente modificado exitosamente." << endl;
                      else cout << "Error al modificar el cliente." << endl;
                      system("pause");
                  }
@@ -119,33 +119,33 @@ void Menu::menuSub(string titulo) {
                     clientesManager.ListarXcuilcuit();
                 }
                 if (opcionSub == 7) {
-                    string dniCliente;
+                    string dniClienteConsultar;
                     cout << "Ingrese el DNI del cliente: ";
-                    cin >> dniCliente;
-                    clientesManager.ConsultaXDNI(dniCliente);
+                    cin >> dniClienteConsultar;
+                    clientesManager.ConsultaXDNI(dniClienteConsultar);
                 }
                 if (opcionSub == 8) {
-                    string cuilCuitCliente;
+                    string cuilCuitClienteConsultar;
                     cout << "Ingrese el CUIL/CUIT del cliente: ";
-                    cin >> cuilCuitCliente;
+                    cin >> cuilCuitClienteConsultar;
 
-                    clientesManager.ConsultaXCUILCuit(cuilCuitCliente);
+                    clientesManager.ConsultaXCUILCuit(cuilCuitClienteConsultar);
 
                 }
                 if (opcionSub == 9) {
-                    string nombreCliente;
-                    string apellidoCliente;
+                    string nombreClienteConsultar;
+                    string apellidoClienteConsultar;
                     cout << "Ingrese el nombre del cliente: ";
-                    cin >> nombreCliente;
+                    cin >> nombreClienteConsultar;
                     cout << "Ingrese el apellido del cliente: ";
-                    cin >> apellidoCliente;
-                    clientesManager.ConsultaXNombreApellido(nombreCliente, apellidoCliente);
+                    cin >> apellidoClienteConsultar;
+                    clientesManager.ConsultaXNombreApellido(nombreClienteConsultar, apellidoClienteConsultar);
                 }
                 if (opcionSub == 10) {
-                    string correoCliente;
+                    string correoClienteConsultar;
                     cout << "Ingrese el correo del cliente: ";
-                    cin >> correoCliente;
-                    clientesManager.ConsultaXCorreo(correoCliente);
+                    cin >> correoClienteConsultar;
+                    clientesManager.ConsultaXCorreo(correoClienteConsultar);
                 }
 
             rlutil::cls();
@@ -188,25 +188,103 @@ void Menu::menuSub(string titulo) {
                 ventasManager.ConsultaXTipoDeComprobante(tipoComprobanteVenta);
             }
             if(opcionSub == 10) {
-                //Fecha fechaInicioVenta;
-                //Fecha fechaFinVenta;
-                //cout << "Ingrese la fecha de inicio: ";
-                //cin >> fechaInicioVenta;
-                //cout << "Ingrese la fecha de fin: ";
-                //cin >> fechaFinVenta;
-                //ventasManager.ConsultaXRangoDeFechas(fechaInicioVenta, fechaFinVenta);
+              //  Fecha fechaInicioVenta;
+              //  Fecha fechaFinVenta;
+              //  cout << "Ingrese la fecha de inicio: ";
+              //  cin >> fechaInicioVenta;
+              //  cout << "Ingrese la fecha de fin: ";
+              //  cin >> fechaFinVenta;
+              //  ventasManager.ConsultaXRangoDeFechas(fechaInicioVenta, fechaFinVenta);
             }
 
         } else if (titulo == "MENU PROVEEDORES") {
             opcionSub = renderProveedoresLC();
             if(opcionSub == 1) {
-            //  proveedoresManager.Crear();
+                string nombreProveedorCrear, cuitProveedorCrear, direccionProveedorCrear, telefonoProveedorCrear, correoProveedorCrear, celularProveedorCrear;
+                unsigned int rubroProveedorCrear, codigoRazonSocialProveedorCrear;
+                bool altaProveedorCrear;
+
+                cout << "Ingrese el nombre/razon social del proveedor: ";
+                cin >> nombreProveedorCrear;
+                cout << "Ingrese el CUIT del proveedor: ";
+                cin >> cuitProveedorCrear;
+                cout << "Ingrese el rubro (numero): ";
+                cin >> rubroProveedorCrear;
+                cout << "Ingrese la direccion del proveedor: ";
+                cin >> direccionProveedorCrear;
+                cout << "Ingrese el correo del proveedor: ";
+                cin >> correoProveedorCrear;
+                cout << "Ingrese el telefono del proveedor: ";
+                cin >> telefonoProveedorCrear;
+                cout << "Ingrese el celular del proveedor: ";
+                cin >> celularProveedorCrear;
+                cout << "Ingrese el codigo de razon social: ";
+                cin >> codigoRazonSocialProveedorCrear;
+                cout << "Alta? (1=Si, 0=No): ";
+                cin >> altaProveedorCrear;
+
+                Proveedor proveedor(
+                    cuitProveedorCrear,
+                    nombreProveedorCrear,
+                    rubroProveedorCrear,
+                    direccionProveedorCrear,
+                    correoProveedorCrear,
+                    telefonoProveedorCrear,
+                    celularProveedorCrear,
+                    codigoRazonSocialProveedorCrear,
+                    altaProveedorCrear
+                );
+
+                if (proveedoresManager.Crear(proveedor)) cout << "Proveedor creado exitosamente." << endl;
+                else cout << "Error al crear el proveedor." << endl;
+                system("pause");
             }
             if(opcionSub == 2) {
-            //  proveedoresManager.Eliminar();
+                string cuitProveedorEliminar;
+                cout << "Ingrese el CUIT del proveedor a eliminar: ";
+                cin >> cuitProveedorEliminar;
+                if (proveedoresManager.Eliminar(cuitProveedorEliminar)) cout << "Proveedor eliminado exitosamente." << endl;
+                else cout << "Error: Proveedor no encontrado o no se pudo eliminar." << endl;
+                system("pause");
             }
             if(opcionSub == 3) {
-            //  proveedoresManager.Modificar();
+                string cuitProveedorModificar;
+                cout << "Ingrese el CUIT del proveedor a modificar: ";
+                cin >> cuitProveedorModificar;
+                Proveedor* actual = proveedoresManager.Obtener(cuitProveedorModificar);
+                if (actual == nullptr) {
+                    cout << "Error: Proveedor no encontrado." << endl;
+                    system("pause");
+                } else {
+                    string nombreProveedorModificar, direccionProveedorModificar, telefonoProveedorModificar, correoProveedorModificar, celularProveedorModificar;
+                    unsigned int rubroProveedorModificar, codigoRazonSocialProveedorModificar;
+                    bool altaProveedorModificar;
+
+                    cout << "Ingrese nuevo nombre/razon social: "; cin >> nombreProveedorModificar;
+                    cout << "Ingrese nuevo rubro (numero): "; cin >> rubroProveedorModificar;
+                    cout << "Ingrese nueva direccion: "; cin >> direccionProveedorModificar;
+                    cout << "Ingrese nuevo correo: "; cin >> correoProveedorModificar;
+                    cout << "Ingrese nuevo telefono: "; cin >> telefonoProveedorModificar;
+                    cout << "Ingrese nuevo celular: "; cin >> celularProveedorModificar;
+                    cout << "Ingrese nuevo codigo de razon social: "; cin >> codigoRazonSocialProveedorModificar;
+                    cout << "Alta? (1=Si, 0=No): "; cin >> altaProveedorModificar;
+
+                    Proveedor modificado(
+                        cuitProveedorModificar,
+                        nombreProveedorModificar,
+                        rubroProveedorModificar,
+                        direccionProveedorModificar,
+                        correoProveedorModificar,
+                        telefonoProveedorModificar,
+                        celularProveedorModificar,
+                        codigoRazonSocialProveedorModificar,
+                        altaProveedorModificar
+                    );
+
+                    if (proveedoresManager.Modificar(cuitProveedorModificar, modificado)) cout << "Proveedor modificado exitosamente." << endl;
+                    else cout << "Error al modificar el proveedor." << endl;
+                    system("pause");
+                }
             }
             if(opcionSub == 4) {
                 proveedoresManager.ListarXNombre();
@@ -218,22 +296,22 @@ void Menu::menuSub(string titulo) {
                 proveedoresManager.ListarXRubro();
             }
             if(opcionSub == 7) {
-                string cuitProveedor;
+                string cuitProveedorConsultar;
                 cout << "Ingrese el CUIT del proveedor: ";
-                cin >> cuitProveedor;
-                proveedoresManager.ConsultarXCUIT(cuitProveedor);
+                cin >> cuitProveedorConsultar;
+                proveedoresManager.ConsultarXCUIT(cuitProveedorConsultar);
             }
             if(opcionSub == 8) {
-                string nombreProveedor;
+                string nombreProveedorConsultar;
                 cout << "Ingrese el nombre del proveedor: ";
-                cin >> nombreProveedor;
-                proveedoresManager.ConsultarXNombre(nombreProveedor);
+                cin >> nombreProveedorConsultar;
+                proveedoresManager.ConsultarXNombre(nombreProveedorConsultar);
             }
             if(opcionSub == 9) {
-                int rubroProveedor;
+                int rubroProveedorConsultar;
                 cout << "Ingrese el rubro del proveedor: ";
-                cin >> rubroProveedor;
-                proveedoresManager.ConsultarXRubro(rubroProveedor);
+                cin >> rubroProveedorConsultar;
+                proveedoresManager.ConsultarXRubro(rubroProveedorConsultar);
             }
             if(opcionSub == 10) {
                 bool estadoProveedor;
@@ -283,8 +361,8 @@ void Menu::menuSub(string titulo) {
                         cout << "Ingrese nueva descripción: "; cin >> descripcionProductoModificar;
                         cout << "Ingrese nuevo precio: "; cin >> precioProductoModificar;
                         cout << "Ingrese nuevo stock: "; cin >> stockProductoModificar;
-                        Producto modificado(codigoProductoModificar, codigoProveedorModificar, descripcionProductoModificar, precioProductoModificar, stockProductoModificar);
-                        if(productosManager.Modificar(codigoProductoModificar, modificado)) cout << "Producto modificado exitosamente." << endl;
+                        Producto modificar(codigoProductoModificar, codigoProveedorModificar, descripcionProductoModificar, precioProductoModificar, stockProductoModificar);
+                        if(productosManager.Modificar(codigoProductoModificar, modificar)) cout << "Producto modificado exitosamente." << endl;
                         else cout << "Error al modificar producto." << endl;
                         system("pause");
                     }
@@ -318,27 +396,27 @@ void Menu::menuSub(string titulo) {
                 }
             } else if (titulo == "EXTRAS") {
                 opcionSub = renderExtrasLC();
-                if(opcionSub == 1) {
+                if (opcionSub == 1) {
+                    renderRecaudacionTrimestral(ventasManager);
+                    continue;
+                }
+                if (opcionSub == 2) {
+                    renderRecaudacionAnual(ventasManager);
+                    continue;
+                }
+                if (opcionSub == 3) {
 
-            }
-            if(opcionSub == 2) {
+                }
+                if(opcionSub == 4) {
 
-            }
-            if(opcionSub == 3) {
+                }
 
-            }
-            if(opcionSub == 4) {
-
-            }
-            if(opcionSub == 5) {
-
-            }
-        } else if (titulo == "CONFIGURACIONES") {
-            while (true) {
-                int cfg = renderConfiguracionesLC();
-                if (cfg == 0) {
-                    opcionSub = 0;
-                    break;
+            } else if (titulo == "CONFIGURACIONES") {
+                while (true) {
+                    int cfg = renderConfiguracionesLC();
+                    if (cfg == 0) {
+                        opcionSub = 0;
+                        break;
                 }
                 if (cfg == 1) {
                     int r = renderModelosCopiaSeguridad("./data");
@@ -578,9 +656,8 @@ int Menu::renderExtrasLC() {
     rlutil::locate(MARGIN_X + 2, y++); cout << "Informacion extra" << endl; y++;
     printOption(y++, 1, "Informe de recaudacion trimestral");
     printOption(y++, 2, "Informe de recaudacion anual");
-    printOption(y++, 3, "Listado de los 10 productos mas vendidos y recaudacion");
-    printOption(y++, 4, "Listado de las 5 fechas con mas ventas y cantidad vendida");
-    printOption(y++, 5, "Consultar cliente que mas compras realizo en el año");
+    printOption(y++, 3, "Listado de las 5 fechas con mas ventas y cantidad vendida");
+    printOption(y++, 4, "Consultar cliente que mas compras realizo en el anio");
 
     y++; rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
     printOption(y++, 0, "Volver");
@@ -675,3 +752,47 @@ int Menu::renderModelosExportarCSV(string ruta) {
     rlutil::cls();
     return op;
 }
+
+void Menu::renderRecaudacionTrimestral(VentaManager& ventasManager) {
+    rlutil::cls();
+    int anio;
+    int y = 4;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "INFORME DE RECAUDACION TRIMESTRAL" << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "Ingrese el anio a consultar: ";
+    cin >> anio;
+    float trimestres[4] = {0};
+    ventasManager.RecaudacionTrimestralPorAnio(anio, trimestres);
+    y++;
+    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "* Primer Trimestre (Ene-Mar):  $ " << trimestres[0] << " ARS" << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "* Segundo Trimestre (Abr-Jun): $ " << trimestres[1] << " ARS" << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "* Tercer Trimestre (Jul-Sep):  $ " << trimestres[2] << " ARS" << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "* Cuarto Trimestre (Oct-Dic):  $ " << trimestres[3] << " ARS" << endl;
+    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+    y += 2;
+    rlutil::locate(MARGIN_X + 2, y++); system("pause");
+    rlutil::cls();
+    return;
+}
+
+
+void Menu::renderRecaudacionAnual(VentaManager& ventasManager) {
+    rlutil::cls();
+    int anio;
+    int y = 4;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "INFORME DE RECAUDACION ANUAL" << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "Ingrese el anio a consultar: ";
+    cin >> anio;
+
+    float anioRecaudacion = ventasManager.RecaudacionAnualPorAnio(anio);
+
+    y++;
+    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+    rlutil::locate(MARGIN_X + 2, y++); cout << "Recaudacion total: $ " << anioRecaudacion << " ARS" << endl;
+    rlutil::locate(MARGIN_X, y++); cout << string(HEADER_WIDTH, '=') << endl;
+    y += 2;
+    rlutil::locate(MARGIN_X + 2, y++); system("pause");
+    rlutil::cls();
+    return;
+}
+

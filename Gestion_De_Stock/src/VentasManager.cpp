@@ -604,3 +604,38 @@ unsigned int VentaManager::ContarNotasDeCreditos() {
     fclose(archivo);
     return tamanioArchivo / sizeof(NotaDeCredito);
 }
+
+void VentaManager::RecaudacionTrimestralPorAnio(int anio, float* trimestres) {
+    for (int i = 0; i < 4; ++i) trimestres[i] = 0.0f;
+    unsigned int cantidad = this->ContarFacturas();
+    Factura* facturas = this->ListarFacturas();
+    if (!facturas) return;
+    for (unsigned int i = 0; i < cantidad; ++i) {
+        Fecha f = facturas[i].getFechaEmision();
+        int y = f.getAnio();
+        if (y == anio) {
+            int mes = f.getMes();
+            int trimestre = (mes - 1) / 3;
+            if (trimestre >= 0 && trimestre < 4) {
+                trimestres[trimestre] += facturas[i].TotalSinIVA();
+            }
+        }
+    }
+    delete[] facturas;
+}
+
+float VentaManager::RecaudacionAnualPorAnio(int anio) {
+    float recaudacion = 0.0f;
+    unsigned int cantidad = this->ContarFacturas();
+    Factura* facturas = this->ListarFacturas();
+    if (!facturas) return recaudacion;
+    for (unsigned int i = 0; i < cantidad; ++i) {
+        Fecha f = facturas[i].getFechaEmision();
+        int y = f.getAnio();
+        if (y == anio) {
+            recaudacion += facturas[i].TotalSinIVA();
+        }
+    }
+    delete[] facturas;
+    return recaudacion;
+}
