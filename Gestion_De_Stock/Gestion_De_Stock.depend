@@ -212,7 +212,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763050478 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1763061129 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
 	"src/Menu.h"
@@ -225,12 +225,12 @@
 	"src/ProductosManager.h"
 	"src/VentasManager.h"
 
-1762988969 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
+1763061076 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
 	<cstdio>
 	<string>
 
-1763050235 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
+1763054650 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
 	"DatosPersonales.h"
 	<iostream>
 	<cstring>
@@ -305,13 +305,13 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763048959 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1763061129 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.cpp
 	"Cliente.h"
 
-1763048955 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+1763061076 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
 	"ClientesManager.h"
 
 1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.cpp
@@ -346,9 +346,9 @@
 	<cstdio>
 	<cctype>
 
-1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
+1763054924 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
 	"VentasManager.h"
 
-1763051130 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
+1763056805 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
 	"Menu.h"
 

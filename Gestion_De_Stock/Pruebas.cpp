@@ -3,9 +3,14 @@
 void TestingCliente() {
     ClienteManager clientes("Clientes.dat");
 
-    clientes.ListarXApellido();
-    clientes.ListarXDNI();
-    clientes.ListarXcuilcuit();
+    //clientes.ListarXApellido();
+    //clientes.ListarXDNI();
+    //clientes.ListarXcuilcuit();
+    //clientes.ConsultaXCorreo("Garcia.Carlos@example.com");
+    //clientes.ConsultaXCUILCuit("20259731");
+    //clientes.ConsultaXDNI("25973");
+    //clientes.ConsultaXNombreApellido("Carlos","Garcia");
+    system ("pause");
 }
 
 void TestingProveedores() {
@@ -182,7 +187,8 @@ void loadData() {
 }
 
 void TestingAll() {
-    loadData();
+
+    //loadData();
 
     //TestingCliente();
     //TestingProveedores();

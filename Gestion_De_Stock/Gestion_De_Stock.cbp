@@ -32,7 +32,36 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Pruebas.cpp" />
+		<Unit filename="Pruebas.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="rlutil.h" />
+		<Unit filename="src/Cliente.cpp" />
+		<Unit filename="src/Cliente.h" />
+		<Unit filename="src/ClientesManager.cpp" />
+		<Unit filename="src/ClientesManager.h" />
+		<Unit filename="src/Comprobante.cpp" />
+		<Unit filename="src/Comprobante.h" />
+		<Unit filename="src/DatosPersonales.cpp" />
+		<Unit filename="src/DatosPersonales.h" />
+		<Unit filename="src/Factura.cpp" />
+		<Unit filename="src/Factura.h" />
+		<Unit filename="src/Fecha.cpp" />
+		<Unit filename="src/Fecha.h" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Menu.h" />
+		<Unit filename="src/NotaDeCredito.cpp" />
+		<Unit filename="src/NotaDeCredito.h" />
+		<Unit filename="src/Producto.cpp" />
+		<Unit filename="src/Producto.h" />
+		<Unit filename="src/ProductosManager.cpp" />
+		<Unit filename="src/ProductosManager.h" />
+		<Unit filename="src/Proveedor.cpp" />
+		<Unit filename="src/Proveedor.h" />
+		<Unit filename="src/ProveedoresManager.cpp" />
+		<Unit filename="src/ProveedoresManager.h" />
+		<Unit filename="src/VentasManager.cpp" />
+		<Unit filename="src/VentasManager.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -41,6 +41,7 @@ void ClienteManager::Imprimir(Cliente* misClientes, unsigned int cantidadCliente
     for (unsigned int i = 0; i < cantidadClientes; i++) {
         cout << misClientes[i].toString() << endl;
     }
+    system ("pause");
 }
 
 bool ClienteManager::Existe(Cliente& cliente) {
@@ -217,76 +218,87 @@ void ClienteManager::ListarXcuilcuit() {
     }
 }
 
-Cliente *ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
+void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getCuilCuit() == cuilcuit) {
+        string aux = cliente.getCuilCuit();
+        if (aux.find(cuilcuit )!= string::npos){
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
 }
 
-Cliente *ClienteManager::ConsultaXDNI(string dni) {
+void ClienteManager::ConsultaXDNI(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
-    }
+        return;}
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getDNI() == dni) {
+        string aux = cliente.getDNI();
+        if (aux.find(dni)!= string::npos) {
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
+     this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
 }
 
-Cliente *ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
+void ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
-    }
+        return;}
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getNombre() == nombre && cliente.getApellido() == apellido) {
+        string aux = cliente.getNombre(), aux2 = cliente.getApellido();
+        if ((aux.find(nombre)!= string::npos)  && (aux2.find(apellido)!= string::npos) ) {
+
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
+
 }
 
-Cliente *ClienteManager::ConsultaXCorreo(string correo) {
+void ClienteManager::ConsultaXCorreo(string correo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
-        return nullptr;
+        return;
     }
     Cliente* resultados = new Cliente[0];
     unsigned int contador = 0;
     Cliente cliente;
     while (fread(&cliente, sizeof(Cliente), 1, archivo)) {
-        if (cliente.getCorreo() == correo) {
+        string aux = cliente.getCorreo();
+        if (aux.find(correo)!= string ::npos) {
+
             resultados = this->Redimensionar(resultados, contador, contador + 1);
             resultados[contador++] = cliente;
         }
     }
     fclose(archivo);
-    return resultados;
+    this ->Imprimir(resultados,contador);
+    delete [] resultados;
 }
 
 unsigned int ClienteManager::Contar() {
