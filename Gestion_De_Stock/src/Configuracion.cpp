@@ -162,6 +162,21 @@ void Configuracion::exportarProductosCSV() {
         return;
     }
     string nombreCSV = "productos_exportados.csv";
+    FILE* archivoBinario = fopen(this->rutaOrigenCopiaSeguridadProductos.c_str(), "rb"),
+        * archivoCSV = fopen(nombreCSV.c_str(), "w+");
+    if (archivoBinario == nullptr && archivoCSV == nullptr) {
+        cout << "Error al abrir los archivos para exportacion." << endl;
+        return;
+    }
+    Producto prod;
+    fprintf(archivoCSV, "Codigo,Descripcion,ProveedorCodigo,Precio,CantidadStock\n");
+    while (fread(&prod, sizeof(Producto), 1, archivoBinario)) {
+        fprintf(archivoCSV, "%s,%s,%s,%.2f,%d\n", prod.getCodigo().c_str(), prod.getCodigoProveedor().c_str(), prod.getDescripcion().c_str(),
+        prod.getPrecio(), prod.getStock());
+    }
+    fclose(archivoBinario);
+    fclose(archivoCSV);
+    cout << "Exportacion de productos a CSV realizada con exito." << endl;
 }
 
 void Configuracion::exportarVentasCSV() {
@@ -171,6 +186,21 @@ void Configuracion::exportarVentasCSV() {
         return;
     }
     string nombreCSV = "ventas_exportadas.csv";
+    FILE* archivoBinario = fopen(this->rutaOrigenCopiaSeguridadFacturas.c_str(), "rb"),
+        * archivoCSV = fopen(nombreCSV.c_str(), "w+");
+    if (archivoBinario == nullptr && archivoCSV == nullptr) {
+        cout << "Error al abrir los archivos para exportacion." << endl;
+        return;
+    }
+    Factura fact;
+    fprintf(archivoCSV, "Numero_Factura,Tipo,Fecha_Emision,CAE,Vencimiento_CAE,DNI_Cliente,Cantidad_Items,Total,Total_Con_IVA\n");
+    while (fread(&fact, sizeof(Factura), 1, archivoBinario)) {
+        fprintf(archivoCSV, "%d,%c,%s,%s,%s,%s,%d,%.2f,%.2f\n", fact.getNumero(),fact.getTipoFactura(), fact.getFechaEmision().toString().c_str(), fact.getCAE().c_str(),
+                fact.getVencimientoCAE().toString().c_str(), fact.getClienteDNI().c_str(), fact.getCantidadItems(),fact.TotalSinIVA(),fact.TotalConIVA());
+    }
+    fclose(archivoBinario);
+    fclose(archivoCSV);
+    cout << "Exportacion de ventas a CSV realizada con exito." << endl;
 }
 
 void Configuracion::exportarNotasDeCreditoCSV() {
@@ -180,6 +210,21 @@ void Configuracion::exportarNotasDeCreditoCSV() {
         return;
     }
     string nombreCSV = "notas_de_credito_exportadas.csv";
+    FILE* archivoBinario = fopen(this->rutaOrigenCopiaSeguridadNotasDeCredito.c_str(), "rb"),
+        * archivoCSV = fopen(nombreCSV.c_str(), "w+");
+    if (archivoBinario == nullptr && archivoCSV == nullptr) {
+        cout << "Error al abrir los archivos para exportacion." << endl;
+        return;
+    }
+    NotaDeCredito nota;
+    fprintf(archivoCSV, "Numero_Nota,Fecha_Emision,Monto,DNI_Cliente\n");
+    while (fread(&nota, sizeof(NotaDeCredito), 1, archivoBinario)) {
+        fprintf(archivoCSV, "%d,%s,%.2f,%s\n", nota.getNumero(), nota.getFechaEmision().toString().c_str(),
+        nota.getMonto(), nota.getClienteDNI().c_str());
+    }
+    fclose(archivoBinario);
+    fclose(archivoCSV);
+    cout << "Exportacion de notas de credito a CSV realizada con exito." << endl;
 }
 
 void Configuracion::exportarTodo() {

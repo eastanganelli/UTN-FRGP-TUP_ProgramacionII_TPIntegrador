@@ -50,7 +50,7 @@
 	"Factura.h"
 	"NotaDeCredito.h"
 
-1763055997 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.h
+1763066158 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.h
 	"Comprobante.h"
 	<cstring>
 
@@ -373,7 +373,7 @@
 1763064479 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.cpp
 	"DatosPersonales.h"
 
-1763058011 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
+1763066158 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
 	"Factura.h"
 	<iostream>
 
@@ -392,7 +392,7 @@
 1763064496 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
 	"Menu.h"
 
-1763063945 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\configuracion.cpp
+1763066390 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\configuracion.cpp
 	"Configuracion.h"
 
 1763063204 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\configuracion.h

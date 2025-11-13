@@ -31,12 +31,27 @@ string Factura::getCAE() {
     return string(this->cae);
 }
 
+Fecha Factura::getVencimientoCAE() {
+    return this->vencimientoCAE;
+}
+
 float Factura::TotalSinIVA() {
     return this->Total();
 }
 
-void Factura::TotalConIVA() {
+float Factura::TotalConIVA() {
+    switch(this->tipoFactura) {
+    case 'A':
+    case 'a':
+        return this->Total();
+    case 'B':
+    case 'b':
+        return this->Total() * 1.21f;
+    case 'C':
+    case 'c':
+        return this->Total() * 1.10f;
 
+    }
 }
 
 string Factura::toString() {
