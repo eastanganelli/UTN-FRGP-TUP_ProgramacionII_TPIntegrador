@@ -13,8 +13,8 @@ using namespace std;
 
 class Comprobante {
 private:
-    const unsigned int numero;
-    const unsigned int cantidadMaxItems;
+    unsigned int numero;
+    unsigned int cantidadMaxItems;
     char clienteDNI[9];
     unsigned int cantidadItems;
     Item items[ITEMS_MAX];

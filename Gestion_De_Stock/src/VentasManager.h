@@ -6,7 +6,8 @@
 
 class VentaManager {
 private:
-    string rutasArchivos[2];
+    string rutasArchivoFactura;
+    string rutasArchivosNotaDeCredito;
 
     Factura* ListarFacturas();
     NotaDeCredito* ListarNotasDeCredito();

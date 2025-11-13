@@ -10,8 +10,6 @@ using namespace std;
 class Factura : public Comprobante {
 private:
     char tipoFactura; // 'A', 'B', 'C'
-    float total;
-    float totalIVA;
     char cae[16];
     Fecha vencimientoCAE;
 
