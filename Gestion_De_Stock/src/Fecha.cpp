@@ -31,6 +31,10 @@ bool Fecha::operator>(Fecha fechaComparar) {
     return false;
 }
 
+bool Fecha::operator>=(Fecha fechaComparar) {
+    return (*this > fechaComparar) || (*this == fechaComparar);
+}
+
 bool Fecha::operator<(Fecha fechaComparar) {
     if (this->anio < fechaComparar.anio) {
         return true;
@@ -42,6 +46,10 @@ bool Fecha::operator<(Fecha fechaComparar) {
         }
     }
     return false;
+}
+
+bool Fecha::operator<=(Fecha fechaComparar) {
+    return (*this < fechaComparar) || (*this == fechaComparar);
 }
 
 bool Fecha::operator==(Fecha fechaComparar) {

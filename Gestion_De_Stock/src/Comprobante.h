@@ -12,7 +12,7 @@ using namespace std;
 
 class Comprobante {
 private:
-    const unsigned int numero;
+    unsigned int numero;
     char clienteDNI[9];
     float monto;
     unsigned int cantidadItems;

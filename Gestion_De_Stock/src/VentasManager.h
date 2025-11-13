@@ -15,18 +15,14 @@ private:
     bool Existe(NotaDeCredito& notaDeCredito);
     int PosicionFactura(unsigned int numero, unsigned int& posicion);
     int PosicionNotaDeCredito(unsigned int numero, unsigned int& posicion);
+    void Imprimir(Factura* misFacturas, unsigned int cantidad);
+    void Imprimir(NotaDeCredito* misNotaDeCreditos, unsigned int cantidad);
     Factura* Redimensionar(Factura* facturas, unsigned int capacidadActual, unsigned int nuevaCapacidad);
+    Factura* Redimensionar(NotaDeCredito* notaDeCreditos, unsigned int capacidadActual, unsigned int nuevaCapacidad);
     bool CrearFactura(Factura& f);
     bool CrearNotaDeCredito(NotaDeCredito& nc);
     int ultimaFacturaID();
     int ultimaNotaDeCreditoID();
-
-    void ListarFacturasXFecha();
-    void ListarNotasDeCreditoXFecha();
-    void ListarFacturasXCAE();
-    void ListarNotasDeCreditoXCAE();
-    void ListarFacturasXCliente();
-    void ListarNotasDeCreditoXCliente();
 
 public:
     VentaManager(string _nombreArchivoFactura = "Facturas.dat", string _nombreArchivoNotaDeCredito = "NotasDeCredito.dat");

@@ -16,6 +16,10 @@ char Factura::getTipoFactura() {
     return this->tipoFactura;
 }
 
+string Factura::getCAE() {
+    return string(this->cae);
+}
+
 float Factura::TotalSinIVA() {
     return this->Total();
 }

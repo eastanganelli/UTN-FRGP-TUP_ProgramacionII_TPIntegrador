@@ -114,6 +114,18 @@ int VentaManager::PosicionNotaDeCredito(unsigned int numero, unsigned int &posic
     return -1;
 }
 
+void VentaManager::Imprimir(Factura *misFacturas, unsigned int cantidad) {
+    for (unsigned int i = 0; i < cantidad; i++) {
+        cout << misFacturas[i].toString() << endl;
+    }
+}
+
+void VentaManager::Imprimir(NotaDeCredito *misNotaDeCreditos, unsigned int cantidad) {
+    for (unsigned int i = 0; i < cantidad; i++) {
+        cout << misNotaDeCreditos[i].toString() << endl;
+    }
+}
+
 bool VentaManager::CrearFactura(Factura &f) {
     if (Existe(f)) {
         return false;
@@ -331,6 +343,215 @@ bool VentaManager::EliminarNotaDeCredito(unsigned int numero) {
     remove(this->rutasArchivosNotaDeCredito.c_str());
     rename("temp.dat", this->rutasArchivosNotaDeCredito.c_str());
     return encontrado;
+}
+
+void VentaManager::ListarXFecha() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getFechaEmision() > misFacturas[j + 1].getFechaEmision()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+
+    NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
+
+    if(misNotaDeCreditos != nullptr) {
+        const unsigned int cantidad = this->ContarNotasDeCreditos();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misNotaDeCreditos[j].getFechaEmision() > misNotaDeCreditos[j + 1].getFechaEmision()) {
+                    NotaDeCredito temp = misNotaDeCreditos[j];
+                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                    misNotaDeCreditos[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Notas de Credito -----" << endl;
+        this->Imprimir(misNotaDeCreditos, cantidad);
+    }
+}
+
+void VentaManager::ListarXCAE() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getCAE() > misFacturas[j + 1].getCAE()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+}
+
+void VentaManager::ListarXCliente() {
+    Factura* misFacturas = this->ListarFacturas();
+
+    if(misFacturas != nullptr) {
+        const unsigned int cantidad = this->ContarFacturas();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misFacturas[j].getClienteDNI() > misFacturas[j + 1].getClienteDNI()) {
+                    Factura temp = misFacturas[j];
+                    misFacturas[j] = misFacturas[j + 1];
+                    misFacturas[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Facturas -----" << endl;
+        this->Imprimir(misFacturas, cantidad);
+    }
+
+    NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
+
+    if(misNotaDeCreditos != nullptr) {
+        const unsigned int cantidad = this->ContarNotasDeCreditos();
+        for (unsigned int i = 0; i < cantidad - 1; i++) {
+            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                if (misNotaDeCreditos[j].getClienteDNI() > misNotaDeCreditos[j + 1].getClienteDNI()) {
+                    NotaDeCredito temp = misNotaDeCreditos[j];
+                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                    misNotaDeCreditos[j + 1] = temp;
+                }
+            }
+        }
+        cout << "----- Notas de Credito -----" << endl;
+        this->Imprimir(misNotaDeCreditos, cantidad);
+    }
+}
+
+void VentaManager::ConsultaXCliente(string dniCliente) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas del cliente " << dniCliente << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getClienteDNI() == dniCliente) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas para el cliente " << dniCliente << "." << endl;
+    }
+
+    archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las notas de credito." << endl;
+        return;
+    }
+    NotaDeCredito notaDeCredito;
+    cout << "----- Notas de Credito del cliente " << dniCliente << " -----" << endl;
+    encontrado = false;
+    while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
+        if (notaDeCredito.getClienteDNI() == dniCliente) {
+            cout << notaDeCredito.toString() << endl;
+            encontrado = true;
+        }
+    }
+}
+
+void VentaManager::ConsultaXCAE(string cae) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas con CAE " << cae << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getCAE() == cae) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas con CAE " << cae << "." << endl;
+    }
+}
+
+void VentaManager::ConsultaXTipoDeComprobante(char tipoComprobante) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas del tipo " << tipoComprobante << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getTipoFactura() == tipoComprobante) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas del tipo " << tipoComprobante << "." << endl;
+    }
+}
+
+void VentaManager::ConsultaXRangoDeFechas(Fecha fechaInicio, Fecha fechaFin) {
+    FILE* archivo = fopen(this->rutasArchivoFactura.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las facturas." << endl;
+        return;
+    }
+    Factura factura;
+    cout << "----- Facturas entre " << fechaInicio.toString() << " y " << fechaFin.toString() << " -----" << endl;
+    bool encontrado = false;
+    while (fread(&factura, sizeof(Factura), 1, archivo)) {
+        if (factura.getFechaEmision() >= fechaInicio && factura.getFechaEmision() <= fechaFin) {
+            cout << factura.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron facturas en el rango de fechas especificado." << endl;
+    }
+
+    archivo = fopen(this->rutasArchivosNotaDeCredito.c_str(), "rb");
+    if (archivo == nullptr) {
+        cout << "No se pudieron abrir las notas de credito." << endl;
+        return;
+    }
+    NotaDeCredito notaDeCredito;
+    cout << "----- Notas de Credito entre " << fechaInicio.toString() << " y " << fechaFin.toString() << " -----" << endl;
+    encontrado = false;
+    while (fread(&notaDeCredito, sizeof(NotaDeCredito), 1, archivo)) {
+        if (notaDeCredito.getFechaEmision() >= fechaInicio && notaDeCredito.getFechaEmision() <= fechaFin) {
+            cout << notaDeCredito.toString() << endl;
+            encontrado = true;
+        }
+    }
+    fclose(archivo);
+    if (!encontrado) {
+        cout << "No se encontraron notas de credito en el rango de fechas especificado." << endl;
+    }
 }
 
 unsigned int VentaManager::ContarFacturas() {

@@ -20,7 +20,7 @@ public:
 
     // Getters
     char getTipoFactura();
-    const char getCAE();
+    string getCAE();
     Fecha getVencimientoCAE();
 
     // Setters
