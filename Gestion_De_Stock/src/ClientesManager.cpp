@@ -219,8 +219,10 @@ void ClienteManager::ListarXcuilcuit() {
 }
 
 void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
+void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
+        return;
         return;
     }
     Cliente* resultados = new Cliente[0];

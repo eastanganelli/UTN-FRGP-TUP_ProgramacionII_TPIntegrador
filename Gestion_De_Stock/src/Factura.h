@@ -13,6 +13,7 @@ private:
     char cae[16];
     Fecha vencimientoCAE;
 
+    void ObtenerCAE();
 
 public:
     Factura(unsigned int _id = 0, string _cliente = "", float _monto = 0.0f, unsigned int _cantidadItems = 0, char _tipoFactura = 'B');

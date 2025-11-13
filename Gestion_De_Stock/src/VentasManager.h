@@ -11,6 +11,9 @@ private:
     string rutasArchivoFactura;
     string rutasArchivosNotaDeCredito;
 
+    void iniciarArchivoFactura();
+    void iniciarArchivoNotaDeCredito();
+
     Factura* ListarFacturas();
     NotaDeCredito* ListarNotasDeCredito();
     bool Existe(Factura& factura);
@@ -31,7 +34,7 @@ public:
     ~VentaManager();
 
     bool NuevaFactura(string _clienteDNI, float _monto, unsigned int _cantidadItems, char _tipoFactura);
-    bool NuevaNotaDeCredito(string _clienteDNI, float _monto, unsigned int _cantidadItems, string _motivoAnulacion);
+    bool NuevaNotaDeCredito(unsigned int _nroFactura, string _motivoAnulacion);
     bool NuevaNotaDeCredito(Factura& factura);
     Factura* ObtenerFactura(unsigned int numero);
     NotaDeCredito* ObtenerNotaDeCredito(unsigned int numero);

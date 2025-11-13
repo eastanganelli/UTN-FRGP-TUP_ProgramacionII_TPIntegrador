@@ -72,14 +72,27 @@ void TestingProductos() {
 void TestingVentas() {
     VentaManager misComprobantes("Facturas.dat", "NotaDeCreditos.dat");
 
-    bool resultado = misComprobantes.NuevaFactura("39068857", 345.7, 5, 'A');
-    std::cout << "Factura creada? >> " << (resultado ? "Si" : "No") << std::endl;
+//    bool resultado_1 = misComprobantes.NuevaFactura("39068857", 345.7, 5, 'A'),
+//         resultado_2 = misComprobantes.NuevaFactura("39068857", 23045, 20, 'B');
+//    std::cout << "Factura 1 creada? >> " << (resultado_1 ? "Si" : "No") << std::endl;
+//    std::cout << "Factura 2 creada? >> " << (resultado_2 ? "Si" : "No") << std::endl;
+//
+//    Factura* factura = misComprobantes.ObtenerFactura(2);
+//    if(factura != nullptr) {
+//        cout << factura->toString() << endl;
+//    }
+//
+//    bool result_nota = misComprobantes.NuevaNotaDeCredito(*factura);
+//    std::cout << "Nota creada? >> " << (result_nota ? "Si" : "No") << std::endl;
+//    NotaDeCredito* miNota = misComprobantes.ObtenerNotaDeCredito(1);
+//    if(miNota != nullptr) {
+//        cout << miNota->toString();
+//    }
 
-    Factura* factura = misComprobantes.ObtenerFactura(1);
-    if(factura != nullptr) {
-        cout << factura->toString() << endl;
-    }
-
+    misComprobantes.ListarXCliente();
+//    misComprobantes.ListarXFecha();
+//    misComprobantes.ConsultaXTipoDeComprobante('A');
+    misComprobantes.ConsultaXRangoDeFechas(Fecha(22, 6, 2024), Fecha(31,12,2025));
 }
 
 std::string generarCodigoAlfaNumerico(int longitud) {
@@ -193,5 +206,5 @@ void TestingAll() {
     //TestingCliente();
     //TestingProveedores();
     //TestingProductos();
-    //TestingVentas();
+    TestingVentas();
 }

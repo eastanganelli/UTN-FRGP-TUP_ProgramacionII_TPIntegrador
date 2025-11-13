@@ -5,11 +5,22 @@
 Factura::Factura(unsigned int _id, string _cliente, float _monto, unsigned int _cantidadItems, char _tipoFactura) : Comprobante(_id, _cliente, _monto, _cantidadItems) {
     this->tipoFactura = _tipoFactura;
     this->cae[0] = '\0';
-    this->vencimientoCAE = Fecha();
+    this->vencimientoCAE.CargarFecha();
+    this->ObtenerCAE();
 }
 
 Factura::~Factura() {
 
+}
+
+void Factura::ObtenerCAE() {
+    const char caracteres[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    int num_caracteres = sizeof(caracteres) - 1;
+    srand(static_cast<unsigned int>(time(0)));
+    for (int i = 0; i < 15; ++i) {
+        this->cae[i] = caracteres[rand() % num_caracteres];
+    }
+    this->cae[15] = '\0';
 }
 
 char Factura::getTipoFactura() {
@@ -29,5 +40,12 @@ void Factura::TotalConIVA() {
 }
 
 string Factura::toString() {
-    return "";
+    string msj = "Factura ID: " + to_string(this->getNumero()) +
+                 "\nCliente: " + this->getClienteDNI() +
+                 "\Fecha Emision: " + this->getFechaEmision().toString() +
+                 "\nMonto: " + to_string(this->TotalSinIVA()) +
+                 "\nCantidad de Items: " + to_string(this->getCantidadItems()) +
+                 "\nTipo de Factura: " + this->getTipoFactura() +
+                 "\nCAE: " + this->getCAE() + "\nVencimiento CAE:" + this->vencimientoCAE.toString() + "\n";
+    return msj;
 }
