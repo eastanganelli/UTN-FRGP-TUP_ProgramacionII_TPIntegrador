@@ -35,6 +35,10 @@ Fecha Factura::getVencimientoCAE() {
     return this->vencimientoCAE;
 }
 
+void Factura::setTipoFactura(char t) {
+    this->tipoFactura = t;
+}
+
 float Factura::TotalSinIVA() {
     return this->Total();
 }

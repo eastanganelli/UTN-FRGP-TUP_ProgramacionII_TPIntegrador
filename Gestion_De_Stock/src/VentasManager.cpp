@@ -374,34 +374,42 @@ void VentaManager::ListarXFecha() {
 
     if(misFacturas != nullptr) {
         const unsigned int cantidad = this->ContarFacturas();
-        for (unsigned int i = 0; i < cantidad - 1; i++) {
-            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
-                if (misFacturas[j].getFechaEmision() > misFacturas[j + 1].getFechaEmision()) {
-                    Factura temp = misFacturas[j];
-                    misFacturas[j] = misFacturas[j + 1];
-                    misFacturas[j + 1] = temp;
+        if(cantidad > 0) {
+            for (unsigned int i = 0; i < cantidad - 1; i++) {
+                for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                    if (misFacturas[j].getFechaEmision() > misFacturas[j + 1].getFechaEmision()) {
+                        Factura temp = misFacturas[j];
+                        misFacturas[j] = misFacturas[j + 1];
+                        misFacturas[j + 1] = temp;
+                    }
                 }
             }
+            cout << "----- Facturas -----" << endl;
+            this->Imprimir(misFacturas, cantidad);
+        } else {
+            cout << "No hay facturas.";
         }
-        cout << "----- Facturas -----" << endl;
-        this->Imprimir(misFacturas, cantidad);
     }
 
     NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
 
     if(misNotaDeCreditos != nullptr) {
         const unsigned int cantidad = this->ContarNotasDeCreditos();
-        for (unsigned int i = 0; i < cantidad - 1; i++) {
-            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
-                if (misNotaDeCreditos[j].getFechaEmision() > misNotaDeCreditos[j + 1].getFechaEmision()) {
-                    NotaDeCredito temp = misNotaDeCreditos[j];
-                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
-                    misNotaDeCreditos[j + 1] = temp;
+        if(cantidad > 0) {
+            for (unsigned int i = 0; i < cantidad - 1; i++) {
+                for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                    if (misNotaDeCreditos[j].getFechaEmision() > misNotaDeCreditos[j + 1].getFechaEmision()) {
+                        NotaDeCredito temp = misNotaDeCreditos[j];
+                        misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                        misNotaDeCreditos[j + 1] = temp;
+                    }
                 }
             }
+            cout << "----- Notas de Credito -----" << endl;
+            this->Imprimir(misNotaDeCreditos, cantidad);
+        } else {
+            cout << "No hay facturas.";
         }
-        cout << "----- Notas de Credito -----" << endl;
-        this->Imprimir(misNotaDeCreditos, cantidad);
     }
 }
 
@@ -410,17 +418,21 @@ void VentaManager::ListarXCAE() {
 
     if(misFacturas != nullptr) {
         const unsigned int cantidad = this->ContarFacturas();
-        for (unsigned int i = 0; i < cantidad - 1; i++) {
-            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
-                if (misFacturas[j].getCAE() > misFacturas[j + 1].getCAE()) {
-                    Factura temp = misFacturas[j];
-                    misFacturas[j] = misFacturas[j + 1];
-                    misFacturas[j + 1] = temp;
+        if(cantidad > 0) {
+            for (unsigned int i = 0; i < cantidad - 1; i++) {
+                for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                    if (misFacturas[j].getCAE() > misFacturas[j + 1].getCAE()) {
+                        Factura temp = misFacturas[j];
+                        misFacturas[j] = misFacturas[j + 1];
+                        misFacturas[j + 1] = temp;
+                    }
                 }
             }
+            cout << "----- Facturas -----" << endl;
+            this->Imprimir(misFacturas, cantidad);
+        } else {
+            cout << "No hay facturas.";
         }
-        cout << "----- Facturas -----" << endl;
-        this->Imprimir(misFacturas, cantidad);
     }
 }
 
@@ -429,34 +441,42 @@ void VentaManager::ListarXCliente() {
 
     if(misFacturas != nullptr) {
         const unsigned int cantidad = this->ContarFacturas();
-        for (unsigned int i = 0; i < cantidad - 1; i++) {
-            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
-                if (misFacturas[j].getClienteDNI() > misFacturas[j + 1].getClienteDNI()) {
-                    Factura temp = misFacturas[j];
-                    misFacturas[j] = misFacturas[j + 1];
-                    misFacturas[j + 1] = temp;
+        if(cantidad > 0) {
+            for (unsigned int i = 0; i < cantidad - 1; i++) {
+                for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                    if (misFacturas[j].getClienteDNI() > misFacturas[j + 1].getClienteDNI()) {
+                        Factura temp = misFacturas[j];
+                        misFacturas[j] = misFacturas[j + 1];
+                        misFacturas[j + 1] = temp;
+                    }
                 }
             }
+            cout << "----- Facturas -----" << endl;
+            this->Imprimir(misFacturas, cantidad);
+        } else {
+            cout << "No hay facturas.";
         }
-        cout << "----- Facturas -----" << endl;
-        this->Imprimir(misFacturas, cantidad);
     }
 
     NotaDeCredito* misNotaDeCreditos = this->ListarNotasDeCredito();
 
     if(misNotaDeCreditos != nullptr) {
         const unsigned int cantidad = this->ContarNotasDeCreditos();
-        for (unsigned int i = 0; i < cantidad - 1; i++) {
-            for (unsigned int j = 0; j < cantidad - i - 1; j++) {
-                if (misNotaDeCreditos[j].getClienteDNI() > misNotaDeCreditos[j + 1].getClienteDNI()) {
-                    NotaDeCredito temp = misNotaDeCreditos[j];
-                    misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
-                    misNotaDeCreditos[j + 1] = temp;
+        if(cantidad > 0) {
+            for (unsigned int i = 0; i < cantidad - 1; i++) {
+                for (unsigned int j = 0; j < cantidad - i - 1; j++) {
+                    if (misNotaDeCreditos[j].getClienteDNI() > misNotaDeCreditos[j + 1].getClienteDNI()) {
+                        NotaDeCredito temp = misNotaDeCreditos[j];
+                        misNotaDeCreditos[j] = misNotaDeCreditos[j + 1];
+                        misNotaDeCreditos[j + 1] = temp;
+                    }
                 }
             }
+            cout << "----- Notas de Credito -----" << endl;
+            this->Imprimir(misNotaDeCreditos, cantidad);
+        } else {
+            cout << "No hay notas de creditos.";
         }
-        cout << "----- Notas de Credito -----" << endl;
-        this->Imprimir(misNotaDeCreditos, cantidad);
     }
 }
 

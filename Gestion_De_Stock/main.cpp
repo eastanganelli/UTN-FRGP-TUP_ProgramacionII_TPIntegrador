@@ -7,8 +7,8 @@ using namespace std;
 
 int main() {
     srand(time(NULL));
-//loadData();
-    //TestingAll();
+
+    //loadData();
 
     Menu menu;
     menu.mostrar();

@@ -26,7 +26,6 @@ public:
 
     // Setters
     void setTipoFactura(char t);
-    void setTotalIVA(float iva);
 
     // Métodos
     float TotalSinIVA();

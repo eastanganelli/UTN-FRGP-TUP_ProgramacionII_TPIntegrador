@@ -188,13 +188,141 @@ void Menu::menuSub(string titulo) {
         } else if (titulo == "MENU VENTAS") {
             opcionSub = renderVentasLC();
             if(opcionSub == 1) {
-            //  ventasManager.Crear();
+                string _dniCliente;
+                char _tipoFactura = '\0';
+                float _monto = 0.0f;
+                int cantidadItems = 0;
+
+                do {
+                    cout << "Ingresar DNI del cliente: "; cin >> _dniCliente;
+                    Cliente* aux = clientesManager[_dniCliente];
+                    if(aux != nullptr) {
+                        delete aux;
+                        break;
+                    }
+                    rlutil::cls();
+                } while(true);
+                do {
+                    cout << "[A] Factura A | [B] Factura B | [C] Factura C"
+                         << "Ingresar nro de Tipo de Factura: "; cin >> _tipoFactura;
+                     if((_tipoFactura >= 'A' && _tipoFactura <= 'C') ||
+                            (_tipoFactura >= 'a' && _tipoFactura <= 'c')) {
+                        break;
+                     }
+                }while(true);
+                do {
+                    cout << "Ingresar monto sin IVA de la factura >> "; cin >> _monto;
+                    if(_monto > 0) {
+                        break;
+                    }
+                }while(true);
+                do {
+                    cout << "Ingresar cantidad de Items: "; cin >> cantidadItems;
+                    if(cantidadItems > 0) {
+                        break;
+                    }
+                }while(true);
+                ventasManager.NuevaFactura(_dniCliente, _monto, cantidadItems, _tipoFactura);
             }
             if(opcionSub == 2) {
-            //  ventasManager.Eliminar();
+                int nroFactura = 0;
+              do {
+                    cout << "Ingresar numero de factura a eliminar >> "; cin >> nroFactura;
+                    if(nroFactura > 0) {
+                        break;
+                    }
+                }while(true);
+              bool respuesta = ventasManager.EliminarFactura(nroFactura);
+              if(respuesta) {
+                    cout << "Factura " << nroFactura << " eliminada correctamente!";
+              } else {
+                    cout << "Se produjo un error en eliminar la factura nro: " << nroFactura;
+              }
             }
             if(opcionSub == 3) {
-            //  ventasManager.Modificar();
+
+                    int nroFactura = -1;
+                     do {
+                        cout << "Ingrese el Nro de Factura a modificar: ";
+                        cin >> nroFactura;
+                        if(nroFactura > 0) {
+                           break;
+                        }
+                        cout << "Nro de factura incorrecto";
+                     } while(true);
+
+                     Factura* aModificar = ventasManager.ObtenerFactura(nroFactura);
+
+                 if (aModificar == nullptr) {
+                     cout << "Error: Factura no encontrada." << endl;
+                     system("pause");
+                 } else {
+                     string _dni;
+                     int _cantidadItems = 0;
+                     char _tipoFactura = '\0';
+                     float _monto = 0.0f;
+                     char res;
+
+                     cout << "Desea modificar Tipo de Factura? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        do {
+                            cout << "[A] Factura A | [B] Factura B | [C] Factura C"
+                             << "Ingresar nro de Tipo de Factura >> "; cin >> _tipoFactura;
+                             if((_tipoFactura >= 'A' && _tipoFactura <= 'C') ||
+                                (_tipoFactura >= 'a' && _tipoFactura <= 'c')) {
+                                aModificar->setTipoFactura(_tipoFactura);
+                                break;
+                             }
+                            rlutil::cls();
+                            cout << "Tipo de Factura seleccionado incorrecto.";
+                        }while(true);
+                     }
+
+                     cout << "Desea modificar DNI Cliente? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        do {
+                            cout << "Ingresar nuevo DNI del cliente >> "; cin >> _dni;
+                            Cliente* aux = clientesManager[_dni];
+                            if(aux != nullptr) {
+                                aModificar->setClienteDNI(_dni);
+                                delete aux;
+                                break;
+                            }
+                            rlutil::cls();
+                            cout << "No se encuentra al cliente seleccionado";
+                        }while(true);
+                     }
+
+                     cout << "Desea modificar Monto? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        do {
+                            cout << "Ingresar nuevo Monto >> "; cin >> _monto;
+                            if(_monto > 0) {
+                                aModificar->setMonto(_monto);
+                                break;
+                            }
+                            rlutil::cls();
+                            cout << "No se puede ingresar una cantidad menor a cero.";
+                        }while(true);
+                     }
+
+                     cout << "Desea modificar Cantidad de Items? [S] SI | [N] NO :>"; cin >> res;
+                     if(res == 's' || res == 'S') {
+                        do {
+                            cout << "Ingresar nueva Cantidad de Items >> "; cin >> _cantidadItems;
+                            if(_cantidadItems > 0) {
+                                aModificar->setCantidadItems(_cantidadItems);
+                                break;
+                            }
+                            rlutil::cls();
+                            cout << "No se puede ingresar una cantidad menor a cero.";
+                        }while(true);
+                     }
+
+                     if (ventasManager.Modificar(nroFactura, *aModificar)) cout << "Factura modificada exitosamente." << endl;
+                     else cout << "Error al modificar la factura." << endl;
+                     system("pause");
+                 }
             }
             if(opcionSub == 4) {
                 ventasManager.ListarXFecha();
@@ -210,18 +338,21 @@ void Menu::menuSub(string titulo) {
                 cout << "Ingrese el DNI del cliente: ";
                 cin >> dniClienteVenta;
                 ventasManager.ConsultaXCliente(dniClienteVenta);
+                rlutil::anykey();
             }
             if(opcionSub == 8) {
                 string caeVenta;
                 cout << "Ingrese el CAE: ";
                 cin >> caeVenta;
                 ventasManager.ConsultaXCAE(caeVenta);
+                rlutil::anykey();
             }
             if(opcionSub == 9) {
                 char tipoComprobanteVenta;
                 cout << "Ingrese el tipo de comprobante: ";
                 cin >> tipoComprobanteVenta;
                 ventasManager.ConsultaXTipoDeComprobante(tipoComprobanteVenta);
+                rlutil::anykey();
             }
             if(opcionSub == 10) {
               //  Fecha fechaInicioVenta;
