@@ -1,7 +1,7 @@
 #include "ProveedoresManager.h"
 
 #include <iostream>
-
+#include <algorithm>
 ProveedorManager::ProveedorManager(string ruta) {
     this->rutaArchivo = ruta;
 }
@@ -246,7 +246,35 @@ void ProveedorManager::ConsultarXCUIT(string cuit) {
     delete[] resultados;
 }
 
+
+
 void ProveedorManager::ConsultarXNombre(string nombreRazon) {
+    FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
+    if (archivo == nullptr) return;
+
+    // Pasar a minúsculas para comparar sin distinción
+    transform(nombreRazon.begin(), nombreRazon.end(), nombreRazon.begin(), ::tolower);
+
+    Proveedor* resultados = new Proveedor[0];
+    unsigned int contador = 0;
+    Proveedor proveedor;
+
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivo)) {
+        string nombreArchivo = proveedor.getNombreRazon();
+        transform(nombreArchivo.begin(), nombreArchivo.end(), nombreArchivo.begin(), ::tolower);
+
+        if (nombreArchivo.find(nombreRazon) != string::npos) { // permite coincidencias parciales
+            resultados = this->Redimensionar(resultados, contador, contador + 1);
+            resultados[contador++] = proveedor;
+        }
+    }
+
+    fclose(archivo);
+    this->Imprimir(resultados, contador);
+    delete[] resultados;
+}
+
+/*void ProveedorManager::ConsultarXNombre(string nombreRazon) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return;
@@ -263,7 +291,7 @@ void ProveedorManager::ConsultarXNombre(string nombreRazon) {
     fclose(archivo);
     this->Imprimir(resultados, contador);
     delete[] resultados;
-}
+}*/
 
 void ProveedorManager::ConsultarXRubro(unsigned int rubro) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
