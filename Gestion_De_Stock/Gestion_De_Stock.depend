@@ -212,3 +212,143 @@
 	<sys/types.h>
 	<sys/time.h>
 
+1763050478 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+	<ctime>
+	"Pruebas.h"
+	"src/Menu.h"
+
+1763000409 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+	<ctime>
+	<iostream>
+	"src/ClientesManager.h"
+	"src/ProveedoresManager.h"
+	"src/ProductosManager.h"
+	"src/VentasManager.h"
+
+1762988969 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
+	"Cliente.h"
+	<cstdio>
+	<string>
+
+1763050235 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.h
+	"DatosPersonales.h"
+	<iostream>
+	<cstring>
+	<string>
+
+1762917486 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.h
+	<cstring>
+	<string>
+
+1762992344 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.h
+	"Proveedor.h"
+	<cstdio>
+	<string>
+
+1763007734 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.h
+	"DatosPersonales.h"
+	<cstring>
+
+1762992344 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.h
+	"Producto.h"
+	<cstdio>
+	<string>
+	<ctime>
+
+1763007734 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\producto.h
+	<string>
+	<cstring>
+
+1763048959 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.h
+	"Factura.h"
+	"NotaDeCredito.h"
+
+1763043350 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.h
+	"Comprobante.h"
+	<cstring>
+
+1763043350 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.h
+	"Fecha.h"
+	<string>
+	<cstring>
+
+1763043350 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\fecha.h
+	<iostream>
+
+1763043350 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\notadecredito.h
+	"Comprobante.h"
+	"Producto.h"
+	<iostream>
+	<cstring>
+	<string>
+
+1763048959 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.h
+	<string>
+	<iostream>
+	"ClientesManager.h"
+	"VentasManager.h"
+	"ProveedoresManager.h"
+	"ProductosManager.h"
+	"../rlutil.h"
+
+1763048959 c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1763048959 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+	"Pruebas.h"
+
+1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente.cpp
+	"Cliente.h"
+
+1763048955 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.cpp
+	"ClientesManager.h"
+
+1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\comprobante.cpp
+	"Comprobante.h"
+
+1762917486 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\datospersonales.cpp
+	"DatosPersonales.h"
+
+1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\factura.cpp
+	"Factura.h"
+	<iostream>
+
+1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\fecha.cpp
+	"Fecha.h"
+
+1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\notadecredito.cpp
+	"NotaDeCredito.h"
+
+1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\producto.cpp
+	"Producto.h"
+
+1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\productosmanager.cpp
+	"ProductosManager.h"
+	<iostream>
+
+1763007734 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.cpp
+	"Proveedor.h"
+
+1763014662 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
+	"ProveedoresManager.h"
+	<iostream>
+	<cstdio>
+	<cctype>
+
+1763043350 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\ventasmanager.cpp
+	"VentasManager.h"
+
+1763051130 source:c:\users\martin\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
+	"Menu.h"
+

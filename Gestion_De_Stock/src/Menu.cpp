@@ -41,12 +41,17 @@ void Menu::mostrar() {
 
 void Menu::menuSub(string titulo) {
     int opcionSub;
+   const string archivoCliente = "Clientes.dat",
+   archivoFactura  = "Facturas.dat",
+   archivoNotasDeCredito = "NotasDeCreditos.dat",
+   archivoProveedor = "Proveedores.dat",
+   archivoProducto = "Productos.dat";
 
-        ClienteManager clientesManager("clientes.dat");
-        VentaManager ventasManager("facturas.dat", "notascredito.dat");
-        ProveedorManager proveedoresManager("proveedores.dat");
-        ProductoManager productosManager("productos.bin");
-        
+        ClienteManager clientesManager(archivoCliente);
+        VentaManager ventasManager(archivoFactura, archivoNotasDeCredito);
+        ProveedorManager proveedoresManager(archivoProveedor);
+        ProductoManager productosManager(archivoProducto);
+
         do {
            if (titulo == "MENU CLIENTES") {
                 opcionSub = renderClientesLC();
