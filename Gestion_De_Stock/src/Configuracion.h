@@ -6,6 +6,12 @@
 #include <fstream>
 #include <iostream>
 
+#include "Cliente.h"
+#include "Proveedor.h"
+#include "Producto.h"
+#include "Factura.h"
+#include "NotaDeCredito.h"
+
 using namespace std;
 
 class Configuracion {

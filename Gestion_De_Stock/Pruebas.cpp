@@ -157,10 +157,9 @@ void loadData() {
             dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com" + "\0";
             dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000) + "\0";
             dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-            dp.codigoRazonSocial = rand() % 6 + 1;
             dp.alta = (i % 2 != 0);
 
-            Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, dp.codigoRazonSocial, dp.alta);
+            Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, dp.alta);
             cout << "Proveedor agregado? >> " << (proveedores.Crear(dataProveedor) ? "Si" : "No") << endl;
 
             std::cout << "Proveedor " << i + 1 << ": " << dp.nombreRazon

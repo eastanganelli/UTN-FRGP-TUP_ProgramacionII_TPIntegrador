@@ -32,7 +32,7 @@
 	<cstdio>
 	<string>
 
-1763044356 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.h
+1763063739 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.h
 	"DatosPersonales.h"
 	<cstring>
 
@@ -377,7 +377,7 @@
 	"Factura.h"
 	<iostream>
 
-1763044356 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.cpp
+1763063774 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedor.cpp
 	"Proveedor.h"
 
 1763059418 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\proveedoresmanager.cpp
@@ -386,7 +386,7 @@
 	<cstdio>
 	<cctype>
 
-1763058288 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1763063690 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763051260 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp

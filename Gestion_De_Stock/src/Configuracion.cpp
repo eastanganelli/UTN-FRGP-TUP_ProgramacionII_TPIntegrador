@@ -113,7 +113,21 @@ void Configuracion::exportarClientesCSV() {
         cout << "El archivo de clientes no existe. No se puede exportar a CSV." << endl;
         return;
     }
-
+    string nombreCSV = "clientes_exportados.csv";
+    FILE* archivoBinario = fopen(this->rutaOrigenCopiaSeguridadClientes.c_str(), "rb"),
+        * archivoCSV = fopen(nombreCSV.c_str(), "w+");
+    if (archivoBinario == nullptr && archivoCSV == nullptr) {
+        cout << "Error al abrir los archivos para exportacion." << endl;
+        return;
+    }
+    Cliente cliente;
+    fprintf(archivoCSV, "DNI,Nombre,Apellido,CUIL/CUIT,Direccion,Telefono,Email\n");
+    while (fread(&cliente, sizeof(Cliente), 1, archivoBinario)) {
+        fprintf(archivoCSV, "%s,%s,%s,%s,%s\n", cliente.getDNI().c_str(), cliente.getNombre().c_str(), cliente.getApellido().c_str(), cliente.getCuilCuit().c_str(), cliente.getDireccion().c_str(), cliente.getTelefono().c_str(), cliente.getCorreo().c_str());
+    }
+    fclose(archivoBinario);
+    fclose(archivoCSV);
+    cout << "Exportacion de clientes a CSV realizada con exito." << endl;
 }
 
 void Configuracion::exportarProveedoresCSV() {
@@ -122,6 +136,21 @@ void Configuracion::exportarProveedoresCSV() {
         cout << "El archivo de proveedores no existe. No se puede exportar a CSV." << endl;
         return;
     }
+    string nombreCSV = "proveedores_exportados.csv";
+    FILE* archivoBinario = fopen(this->rutaOrigenCopiaSeguridadClientes.c_str(), "rb"),
+        * archivoCSV = fopen(nombreCSV.c_str(), "w+");
+    if (archivoBinario == nullptr && archivoCSV == nullptr) {
+        cout << "Error al abrir los archivos para exportacion." << endl;
+        return;
+    }
+    Proveedor proveedor;
+    fprintf(archivoCSV, "DNI,Nombre,Apellido,CUIL/CUIT,Direccion\n");
+    while (fread(&proveedor, sizeof(Proveedor), 1, archivoBinario)) {
+        fprintf(archivoCSV, "%s,%s,%s,%s,%s\n", proveedor.getNombreRazon().c_str(), proveedor.getCuit().c_str(), proveedor.getDireccion().c_str(), proveedor.getTelefono().c_str(), proveedor.getCorreo().c_str(), proveedor.getRubroNombre().c_str());
+    }
+    fclose(archivoBinario);
+    fclose(archivoCSV);
+    cout << "Exportacion de clientes a CSV realizada con exito." << endl;
 }
 
 void Configuracion::exportarProductosCSV() {
@@ -130,6 +159,7 @@ void Configuracion::exportarProductosCSV() {
         cout << "El archivo de productos no existe. No se puede exportar a CSV." << endl;
         return;
     }
+    string nombreCSV = "productos_exportados.csv";
 }
 
 void Configuracion::exportarVentasCSV() {
@@ -138,6 +168,7 @@ void Configuracion::exportarVentasCSV() {
         cout << "El archivo de ventas no existe. No se puede exportar a CSV." << endl;
         return;
     }
+    string nombreCSV = "ventas_exportadas.csv";
 }
 
 void Configuracion::exportarNotasDeCreditoCSV() {
@@ -146,6 +177,7 @@ void Configuracion::exportarNotasDeCreditoCSV() {
         cout << "El archivo de notas de credito no existe. No se puede exportar a CSV." << endl;
         return;
     }
+    string nombreCSV = "notas_de_credito_exportadas.csv";
 }
 
 void Configuracion::exportarTodo() {
