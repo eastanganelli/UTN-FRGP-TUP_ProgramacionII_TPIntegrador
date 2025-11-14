@@ -226,18 +226,31 @@ void Menu::menuSub(string titulo) {
             }
             if(opcionSub == 2) {
                 int nroFactura = 0;
-              do {
+                string motivo;
+                do {
                     cout << "Ingresar numero de factura a eliminar >> "; cin >> nroFactura;
-                    if(nroFactura > 0) {
+                    Factura* aux = ventasManager.ObtenerFactura(nroFactura);
+                    if(nroFactura > 0 && aux != nullptr) {
+                        delete aux;
                         break;
                     }
+                    rlutil::cls();
+                    cout << "Nro de factura ingresado es incorrecto o no existe.";
                 }while(true);
-              bool respuesta = ventasManager.EliminarFactura(nroFactura);
-              if(respuesta) {
-                    cout << "Factura " << nroFactura << " eliminada correctamente!";
-              } else {
-                    cout << "Se produjo un error en eliminar la factura nro: " << nroFactura;
-              }
+                do {
+                    cout << "Motivo de Nota de Credito >> "; cin >> motivo;
+                    if(motivo != "") {
+                        break;
+                    }
+                    rlutil::cls();
+                    cout << "Por favor, informar motivo de nota de credito.";
+                }while(true);
+                  bool respuesta = ventasManager.NuevaNotaDeCredito(nroFactura, motivo);
+                  if(respuesta) {
+                        cout << "Factura " << nroFactura << " eliminada correctamente!";
+                  } else {
+                        cout << "Se produjo un error en eliminar la factura nro: " << nroFactura;
+                  }
             }
             if(opcionSub == 3) {
 
