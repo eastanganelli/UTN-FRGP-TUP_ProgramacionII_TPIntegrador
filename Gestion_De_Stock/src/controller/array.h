@@ -22,11 +22,18 @@ private:
     T* elements;
 
     /**
+     * @brief Verifica si el índice está dentro del rango válido.
+     * @param index Índice a verificar.
+     * @return true si el índice es válido, false en caso contrario.
+     */
+    bool CheckIndex(unsigned int index);
+
+    /**
      * @brief Crea un nuevo registro a partir de @p node (uso interno).
      * @param node Referencia al objeto que se desea crear/copiar.
      * @return true si la creación fue exitosa, false en caso contrario.
      */
-    bool CreateRecord(T& node);
+    bool CreateNode(T* node);
 
     /**
      * @brief Devuelve una copia del elemento ubicado en @p index.
@@ -35,7 +42,7 @@ private:
      * @note La firma actual usa un marcador <T> que puede ser sintácticamente inválido;
      *       conservar según la implementación existente.
      */
-    <T> ReadRecord(unsigned int index);
+    <T>* ReadNode(unsigned int index);
 
     /**
      * @brief Actualiza el registro en la posición @p index con los datos de @p node.
@@ -43,14 +50,14 @@ private:
      * @param node Referencia con los nuevos datos.
      * @return true si la actualización fue exitosa.
      */
-    bool UpdateRecord(unsigned int index, T& node);
+    bool UpdateNode(unsigned int index, T* node);
 
     /**
      * @brief Elimina el registro en la posición @p index.
      * @param index Índice del elemento a eliminar.
      * @return true si la eliminación fue exitosa.
      */
-    bool DeleteRecord(unsigned int index);
+    bool DeleteNode(unsigned int index);
 
     /**
      * @brief Redimensiona la estructura a @p newSize elementos.
@@ -71,14 +78,21 @@ public:
      * @param node Referencia al nodo a comparar.
      * @return true si existe una coincidencia, false en caso contrario.
      */
-    bool operator==(T& node);
+    bool operator==(T* node);
 
     /**
      * @brief Inserta o combina @p node con la estructura (comportamiento según implementación).
      * @param node Referencia al nodo a insertar o combinar.
      * @return true si la operación tuvo éxito.
      */
-    bool operator+(T& node);
+    bool operator+(T* node);
+
+    /**
+     * @brief Elimina o resta @p node de la estructura (comportamiento según implementación).
+     * @param node Referencia al nodo a eliminar.
+     * @return true si la operación fue exitosa.
+     */
+    bool operator-(T* node);
 
     /**
      * @brief Acceso por índice: devuelve referencia al elemento en @p index.
@@ -87,21 +101,14 @@ public:
      * @note La firma actual usa un marcador <T>& que puede ser sintácticamente inválido;
      *       conservar según la implementación existente.
      */
-    <T>& operator[](unsigned int index);
+    <T>* operator[](unsigned int index);
 
     /**
      * @brief Asignación o reemplazo mediante operador '=' (detalles en implementación).
      * @param node Referencia al nodo a asignar.
      * @return true si la operación fue exitosa.
      */
-    bool operator=(T& node);
-
-    /**
-     * @brief Elimina o resta @p node de la estructura (comportamiento según implementación).
-     * @param node Referencia al nodo a eliminar.
-     * @return true si la operación fue exitosa.
-     */
-    bool operator-(T& node);
+    bool operator=(T* node);
 
     /**
      * @brief Devuelve la cantidad de elementos actualmente almacenados.
@@ -122,20 +129,26 @@ public:
      * @param node Referencia al nodo a insertar.
      * @return true si la inserción tuvo éxito.
      */
-    bool InsertAt(unsigned int index, T& node);
+    bool InsertAt(unsigned int index, T* node);
 
     /**
      * @brief Agrega @p node al final del array.
      * @param node Referencia al nodo a agregar.
      * @return true si se agregó correctamente.
      */
-    bool Append(T& node);
+    bool Append(T* node);
 
     /**
      * @brief Limpia todos los elementos del array y libera la memoria asociada.
      * @return true si la operación fue exitosa.
      */
     bool Clear();
+
+    /**
+     * @brief Verifica si el array está vacío.
+     * @return true si no hay elementos en el array; false en caso contrario.
+     */
+    bool IsEmpty();
 };
 
 #endif // ARRAY_H
