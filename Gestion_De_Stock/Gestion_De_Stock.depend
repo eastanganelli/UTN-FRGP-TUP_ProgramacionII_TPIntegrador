@@ -1,16 +1,12 @@
 # depslib dependency file v1.0
-1763077376 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1763531242 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
-	"src/Menu.h"
 
-1763044356 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+1763529547 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
 	<ctime>
 	<iostream>
-	"src/ClientesManager.h"
-	"src/ProveedoresManager.h"
-	"src/ProductosManager.h"
-	"src/VentasManager.h"
+	"src/controller/generic_array.h"
 
 1763066629 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
@@ -392,7 +388,7 @@
 	<cstdio>
 	<cctype>
 
-1763066629 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1763531463 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763078804 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
@@ -470,4 +466,23 @@
 	<sys/ioctl.h>
 	<sys/types.h>
 	<sys/time.h>
+
+1763218631 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.cpp
+	"validation.h"
+	<cctype>
+
+1763218908 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
+	<string>
+
+1763529317 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.cpp
+	"array.h"
+
+1763529167 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.h
+	<iostream>
+
+1763531344 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.h
+	<iostream>
+
+1763530727 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.cpp
+	"generic_array.h"
 
