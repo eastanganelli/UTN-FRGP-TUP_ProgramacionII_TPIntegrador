@@ -16,7 +16,8 @@ int main() {
 //    Menu menu;
 //    menu.mostrar();
 
-    Testing::TestingArray();
+    //Testing::TestingArray();
+    Testing::TestingFile();
 
     return 0;
 }

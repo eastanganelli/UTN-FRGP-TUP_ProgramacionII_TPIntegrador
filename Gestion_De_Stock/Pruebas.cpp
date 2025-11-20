@@ -37,6 +37,37 @@ void Testing::TestingArray() {
     misNumeros[99];
 }
 
+void Testing::TestingFile() {
+    FileSystem<int> miArchivo("mi_archivo_prueba.dat");
+
+//    int aux_value = -99;
+//    bool resultado = miArchivo.New(aux_value);
+
+    cout << "Pre Update/Delete" << endl;
+    for(unsigned int i; i < miArchivo.Count(); i++) {
+        cout << "[" << i << "] : " << *miArchivo.At(i) << endl;
+    }
+
+    cout << "Post Update/" << endl;
+    int aux = 235;
+    miArchivo.Update(1, aux);
+//    int newValue = 23;
+//    miArchivo.New(newValue);
+//    newValue = 1995;
+//    miArchivo.New(newValue);
+    for(unsigned int i; i < miArchivo.Count(); i++) {
+        cout << "[" << i << "] : " << *miArchivo.At(i) << endl;
+    }
+
+    cout << "Post Delete" << endl;
+    miArchivo.Delete(2);
+    for(unsigned int i; i < miArchivo.Count(); i++) {
+        cout << "[" << i << "] : " << *miArchivo.At(i) << endl;
+    }
+
+    miArchivo.Backup("archivo_backup.dat");
+}
+
 //void TestingCliente() {
 //    ClienteManager clientes("Clientes.dat");
 //

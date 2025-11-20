@@ -40,7 +40,7 @@ public:
      * @param record Referencia al registro a crear.
      * @return true si la creación fue exitosa.
      */
-    bool CreateRecord(T& record);
+    bool New(T& record);
 
     /**
      * @brief Lee y devuelve el registro en la posición @p index.
@@ -49,7 +49,7 @@ public:
      * @note La firma actual utiliza un marcador ` T` que puede no ser sintácticamente
      *       estándar en C++; se conserva aquí según la implementación existente.
      */
-    T* ReadRecord(unsigned int index);
+    T* At(unsigned int index);
 
     /**
      * @brief Actualiza el registro en la posición @p index con los datos de @p record.
@@ -57,14 +57,14 @@ public:
      * @param record Referencia con los nuevos datos.
      * @return true si la actualización fue exitosa.
      */
-    bool UpdateRecord(unsigned int index, T& record);
+    bool Update(unsigned int index, T& record);
 
     /**
      * @brief Elimina el registro en la posición @p index.
      * @param index Índice del registro a eliminar.
      * @return true si la eliminación fue exitosa.
      */
-    bool DeleteRecord(unsigned int index);
+    bool Delete(unsigned int index);
 
     /**
      * @brief Realiza una copia de seguridad del archivo gestionado a @p backupFilePath.
@@ -130,7 +130,7 @@ bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
 }
 
 template <typename T>
-bool FileSystem<T>::CreateRecord(T& record) {
+bool FileSystem<T>::New(T& record) {
     FILE* file = fopen(this->filePath.c_str(), "ab");
     if(file == nullptr) {
         cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
@@ -142,7 +142,7 @@ bool FileSystem<T>::CreateRecord(T& record) {
 }
 
 template <typename T>
-T* FileSystem<T>::ReadRecord(unsigned int index) {
+T* FileSystem<T>::At(unsigned int index) {
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
         cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
@@ -161,7 +161,7 @@ T* FileSystem<T>::ReadRecord(unsigned int index) {
 }
 
 template <typename T>
-bool FileSystem<T>::UpdateRecord(unsigned int index, T& record) {
+bool FileSystem<T>::Update(unsigned int index, T& record) {
     FILE* file = fopen(this->filePath.c_str(), "r+b");
     if(file == nullptr) {
         cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
@@ -174,7 +174,11 @@ bool FileSystem<T>::UpdateRecord(unsigned int index, T& record) {
 }
 
 template <typename T>
-bool FileSystem<T>::DeleteRecord(unsigned int index) {
+bool FileSystem<T>::Delete(unsigned int index) {
+    if(index >= this->Count()) {
+        cerr << "Error: Posicion a eliminar incorrecta o no existe" << endl;
+        return false;
+    }
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
         cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;

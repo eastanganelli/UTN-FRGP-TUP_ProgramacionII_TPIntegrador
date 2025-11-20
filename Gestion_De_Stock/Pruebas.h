@@ -11,6 +11,8 @@ using namespace std;
 
 namespace Testing {
     void TestingArray();
+
+    void TestingFile();
 }
 
 //void TestingCliente();
