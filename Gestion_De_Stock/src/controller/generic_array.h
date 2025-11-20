@@ -146,7 +146,6 @@ public:
     bool IsEmpty();
 };
 
-// Template implementation
 template <typename T>
 GenericArray<T>::GenericArray() {
     this->elements = nullptr;
