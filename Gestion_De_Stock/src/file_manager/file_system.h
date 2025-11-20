@@ -116,13 +116,14 @@ bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
     }
     bool found = false;
     T tempRecord;
-    unsigned int index = 0;
+    unsigned int current = 0;
     while(fread(&tempRecord, sizeof(T), 1, file)) {
         if(tempRecord == record) {
-            break;
             found = true;
+            index = current;
+            break;
         }
-        index++;
+        current++;
     }
     fclose(file);
     return found;
@@ -198,24 +199,6 @@ bool FileSystem<T>::DeleteRecord(unsigned int index) {
     remove(this->filePath.c_str());
     rename("temp.dat", this->filePath.c_str());
     return true;
-}
-
-template <typename T>
-T FileSystem<T>::LastRegistry() {
-    FILE* file = fopen(this->filePath.c_str(), "rb");
-    if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
-        return T();
-    }
-    fseek(file, -static_cast<long>(sizeof(T)), SEEK_END);
-    T lastRecord;
-    bool result = fread(&lastRecord, sizeof(T), 1, file);
-    fclose(file);
-    if(!result) {
-        cerr << "Error: No se pudo leer el último registro" << endl;
-        return T();  // Retorna un objeto por defecto de tipo T
-    }
-    return lastRecord;
 }
 
 template <typename T>

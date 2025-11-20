@@ -3,10 +3,11 @@
 	<ctime>
 	"Pruebas.h"
 
-1763529547 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+1763610635 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
 	<ctime>
 	<iostream>
 	"src/controller/generic_array.h"
+	"src/file_manager/file_system.h"
 
 1763066629 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
@@ -480,9 +481,12 @@
 1763529167 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.h
 	<iostream>
 
-1763531344 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.h
+1763588871 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.h
 	<iostream>
 
 1763530727 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.cpp
 	"generic_array.h"
+
+1763610711 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\file_manager\file_system.h
+	<iostream>
 

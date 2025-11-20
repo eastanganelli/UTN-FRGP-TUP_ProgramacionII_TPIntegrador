@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "src/controller/generic_array.h"
+#include "src/file_manager/file_system.h"
 
 using namespace std;
 
