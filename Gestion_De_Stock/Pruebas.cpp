@@ -1,6 +1,6 @@
 #include "Pruebas.h"
 
-void Testing::TestingArray() {
+void Testing::Array() {
     GenericArray<int> misNumeros;
     int num1 = 1, num2 = 2, num3 = 3, num4 = 4;
     bool resultado = misNumeros+num1;
@@ -37,7 +37,7 @@ void Testing::TestingArray() {
     misNumeros[99];
 }
 
-void Testing::TestingFile() {
+void Testing::File() {
     FileSystem<int> miArchivo("mi_archivo_prueba.dat");
 
 //    int aux_value = -99;
@@ -68,18 +68,14 @@ void Testing::TestingFile() {
     miArchivo.Backup("archivo_backup.dat");
 }
 
-//void TestingCliente() {
-//    ClienteManager clientes("Clientes.dat");
-//
-//    clientes.ListarXApellido();
-//    clientes.ListarXDNI();
-//    clientes.ListarXcuilcuit();
-//    clientes.ConsultaXCorreo("Garcia.Carlos@example.com");
-//    clientes.ConsultaXCUILCuit("20259731");
-//    clientes.ConsultaXDNI("25973");
-//    clientes.ConsultaXNombreApellido("Carlos","Garcia");
-//    system ("pause");
-//}
+void Testing::Cliente() {
+    ClienteManager misClientes("clientes.dat");
+
+    misClientes.ListarPorCuil_Cuit();
+    misClientes.ListarPorDNI();
+    misClientes.ListarPorApellido();
+}
+
 //
 //void TestingProveedores() {
 //    ProveedorManager proveedores("Proveedores.dat");

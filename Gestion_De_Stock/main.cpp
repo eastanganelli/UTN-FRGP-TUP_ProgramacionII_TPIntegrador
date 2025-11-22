@@ -16,8 +16,10 @@ int main() {
 //    Menu menu;
 //    menu.mostrar();
 
-    //Testing::TestingArray();
-    Testing::TestingFile();
+//    Testing::TestingArray();
+//    Testing::File();
+    cout << "Iniciando pruebas de Cliente..." << endl;
+    Testing::Cliente();
 
     return 0;
 }

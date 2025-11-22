@@ -34,6 +34,8 @@ public:
     void setCuilCuit(const string& cuilCuit);
 
     // Métodos
+    bool operator==(Cliente& cliente);
+    bool IsEmpty();
     string toString();
 };
 

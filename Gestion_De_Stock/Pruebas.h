@@ -6,13 +6,14 @@
 
 #include "src/controller/generic_array.h"
 #include "src/file_manager/file_system.h"
+#include "src/manager/cliente_manager.h"
 
 using namespace std;
 
 namespace Testing {
-    void TestingArray();
-
-    void TestingFile();
+    void Array();
+    void File();
+    void Cliente();
 }
 
 //void TestingCliente();

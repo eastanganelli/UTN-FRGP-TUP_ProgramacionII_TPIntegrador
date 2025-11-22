@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/class_manager" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/class_manager" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,11 +38,17 @@
 		<Unit filename="Pruebas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h" />
+		<Unit filename="src/class_manager/cliente_manager.h" />
 		<Unit filename="src/controller/generic_array.h" />
 		<Unit filename="src/controller/validation.cpp" />
 		<Unit filename="src/controller/validation.h" />
 		<Unit filename="src/file_manager/file_system.h" />
+		<Unit filename="src/main_classes/Cliente.cpp" />
 		<Unit filename="src/main_classes/Cliente.h" />
+		<Unit filename="src/main_classes/DatosPersonales.cpp" />
+		<Unit filename="src/main_classes/DatosPersonales.h" />
+		<Unit filename="src/manager/cliente_manager.cpp" />
+		<Unit filename="src/manager/cliente_manager.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

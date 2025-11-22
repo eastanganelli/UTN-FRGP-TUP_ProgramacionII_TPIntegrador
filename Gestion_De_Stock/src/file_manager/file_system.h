@@ -36,6 +36,13 @@ public:
     bool IndexOf(T& record, unsigned int& index);
 
     /**
+     * @brief Sobrecarga del operador de indexación para acceder a registros.
+     * @param index Índice del registro a acceder.
+     * @return Puntero al registro en la posición @p index.
+     */
+    T* operator[](unsigned int index);
+
+    /**
      * @brief Crea un nuevo registro en el almacenamiento a partir de @p record.
      * @param record Referencia al registro a crear.
      * @return true si la creación fue exitosa.
@@ -127,6 +134,11 @@ bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
     }
     fclose(file);
     return found;
+}
+
+template <typename T>
+T* FileSystem<T>::operator[](unsigned int index) {
+    return At(index);
 }
 
 template <typename T>

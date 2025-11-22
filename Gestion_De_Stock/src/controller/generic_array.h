@@ -35,7 +35,7 @@ private:
      * @param node Referencia al objeto que se desea crear/copiar.
      * @return true si la creacion fue exitosa, false en caso contrario.
      */
-    bool CreateNode(T& node);
+    bool Create(T& node);
 
     /**
      * @brief Devuelve una copia del elemento ubicado en @p index.
@@ -44,7 +44,7 @@ private:
      * @note La firma actual usa un marcador <T> que puede ser sintácticamente inválido;
      *       conservar según la implementacion existente.
      */
-    T* ReadNode(unsigned int index);
+    T* Read(unsigned int index);
 
     /**
      * @brief Actualiza el registro en la posicion @p index con los datos de @p node.
@@ -52,14 +52,14 @@ private:
      * @param node Referencia con los nuevos datos.
      * @return true si la actualizacion fue exitosa.
      */
-    bool UpdateNode(unsigned int index, T& node);
+    bool Update(unsigned int index, T& node);
 
     /**
      * @brief Elimina el registro en la posicion @p index.
      * @param index Indice del elemento a eliminar.
      * @return true si la eliminacion fue exitosa.
      */
-    bool DeleteNode(unsigned int index);
+    bool Delete(unsigned int index);
 
     /**
      * @brief Redimensiona la estructura a @p newSize elementos.
@@ -134,6 +134,13 @@ public:
     bool Append(T& node);
 
     /**
+     * @brief Intercambia los contenidos de @p a y @p b.
+     * @param a Puntero al primer elemento.
+     * @param b Puntero al segundo elemento.
+     */
+    void Swap(T* a, T* b);
+
+    /**
      * @brief Limpia todos los elementos del array y libera la memoria asociada.
      * @return true si la operacion fue exitosa.
      */
@@ -165,7 +172,7 @@ bool GenericArray<T>::CheckIndex(unsigned int index) {
 }
 
 template <typename T>
-bool GenericArray<T>::CreateNode(T& node) {
+bool GenericArray<T>::Create(T& node) {
     const unsigned int newSize = this->size + 1;
     if(!this->ReSizing(newSize)) {
         return false;
@@ -175,7 +182,7 @@ bool GenericArray<T>::CreateNode(T& node) {
 }
 
 template <typename T>
-T* GenericArray<T>::ReadNode(unsigned int index) {
+T* GenericArray<T>::Read(unsigned int index) {
     if(this->CheckIndex(index)) {
         cerr << "Error: Indice fuera de rango" << endl;
         return nullptr;
@@ -184,7 +191,7 @@ T* GenericArray<T>::ReadNode(unsigned int index) {
 }
 
 template <typename T>
-bool GenericArray<T>::UpdateNode(unsigned int index, T& node) {
+bool GenericArray<T>::Update(unsigned int index, T& node) {
     if(this->CheckIndex(index)) {
         cerr << "Error: Indice fuera de rango" << endl;
         return false;
@@ -194,7 +201,7 @@ bool GenericArray<T>::UpdateNode(unsigned int index, T& node) {
 }
 
 template <typename T>
-bool GenericArray<T>::DeleteNode(unsigned int index) {
+bool GenericArray<T>::Delete(unsigned int index) {
     if(this->CheckIndex(index)) {
         cerr << "Error: Indice fuera de rango" << endl;
         return false;
@@ -236,14 +243,14 @@ bool GenericArray<T>::operator==(T& node) {
 
 template <typename T>
 bool GenericArray<T>::operator+(T& node) {
-    return this->CreateNode(node);
+    return this->Create(node);
 }
 
 template <typename T>
 bool GenericArray<T>::operator-(T& node) {
     for(unsigned int i = 0; i < this->size; i++) {
         if(this->elements[i] == node) {
-            return this->DeleteNode(i);
+            return this->Delete(i);
         }
     }
     return false;
@@ -251,7 +258,7 @@ bool GenericArray<T>::operator-(T& node) {
 
 template <typename T>
 T* GenericArray<T>::operator[](unsigned int index) {
-    return this->ReadNode(index);
+    return this->Read(index);
 }
 
 template <typename T>
@@ -265,7 +272,7 @@ bool GenericArray<T>::RemoveAt(unsigned int index) {
         cerr << "Error: Indice fuera de rango para eliminacion" << endl;
         return false;
     }
-    return this->DeleteNode(index);
+    return this->Delete(index);
 }
 
 template <typename T>
@@ -293,6 +300,13 @@ bool GenericArray<T>::Append(T& node) {
     }
     this->elements[this->size - 1] = node;
     return true;
+}
+
+template <typename T>
+void GenericArray<T>::Swap(T* a, T* b) {
+    T temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 template <typename T>

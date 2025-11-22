@@ -46,6 +46,14 @@ void Cliente::setCuilCuit(const string& c) {
     strcpy(this->cuilCuit, c.c_str());
 }
 
+bool Cliente::operator==(Cliente& cliente) {
+    return strcmp(this->DNI, cliente.DNI) && strcmp(this->cuilCuit, cliente.cuilCuit)
+        && strcmp(this->apellido, cliente.apellido) && strcmp(this->nombre, cliente.nombre)
+        && strcmp(this->correo, cliente.correo) && strcmp(this->direccion, cliente.direccion)
+        && strcmp(this->celular, cliente.celular) && strcmp(this->telefono, cliente.telefono)
+        && this->codigoRazonSocial == cliente.codigoRazonSocial && this->alta == cliente.alta;
+}
+
 string Cliente::toString() {
     string resultado = "Cliente: " + getNombre() + " " + getApellido() +
                        " | DNI: " + getDNI() +

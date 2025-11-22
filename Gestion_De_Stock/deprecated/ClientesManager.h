@@ -6,7 +6,6 @@
 #include <cstdio>
 #include <string>
 
-
 using namespace std;
 
 class ClienteManager {
