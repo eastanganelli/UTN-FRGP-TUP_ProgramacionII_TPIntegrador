@@ -15,6 +15,11 @@ DatosPersonales::~DatosPersonales() {
     this->direccion[0] = '\0';
 }
 
+bool DatosPersonales::IsEmpty() {
+    return Validation::IsEmpty(this->correo) && Validation::IsEmpty(this->direccion)
+        && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular);
+}
+
 bool DatosPersonales::getAlta() {
     return this->alta;
 }

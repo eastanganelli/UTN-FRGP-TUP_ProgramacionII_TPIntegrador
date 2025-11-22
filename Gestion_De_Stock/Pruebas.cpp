@@ -1,5 +1,10 @@
 #include "Pruebas.h"
 
+void Testing::Modals() {
+    Informational information("Hola Mundo", "mensaje");
+    information.Show();
+}
+
 void Testing::Array() {
     GenericArray<int> misNumeros;
     int num1 = 1, num2 = 2, num3 = 3, num4 = 4;
@@ -71,7 +76,7 @@ void Testing::File() {
 void Testing::Cliente() {
     ClienteManager misClientes("clientes.dat");
 
-//    misClientes.ListarPorCuil_Cuit();
+    misClientes.ListarPorCuil_Cuit();
 //    misClientes.ListarPorDNI();
 //    misClientes.ListarPorApellido();
 }

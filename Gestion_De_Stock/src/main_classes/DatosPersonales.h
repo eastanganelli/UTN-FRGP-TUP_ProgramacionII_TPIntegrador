@@ -1,6 +1,8 @@
 #ifndef DATOSPERSONALES_H
 #define DATOSPERSONALES_H
 
+#include "../controller/validation.h"
+
 #include <cstring>
 #include <string>
 
@@ -16,6 +18,8 @@ protected:
     unsigned int codigoRazonSocial;
 
     DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "");
+    bool IsEmpty();
+
 public:
     ~DatosPersonales();
 

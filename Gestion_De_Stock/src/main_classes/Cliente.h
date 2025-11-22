@@ -2,6 +2,7 @@
 #define CLIENTE_H
 
 #include "DatosPersonales.h"
+#include "../controller/validation.h"
 
 #include <iostream>
 #include <cstring>
@@ -36,7 +37,6 @@ public:
     // Métodos
     bool operator==(Cliente& cliente);
     bool IsEmpty();
-    string toString();
 };
 
 std::ostream& operator<<(std::ostream& os, Cliente* obj);

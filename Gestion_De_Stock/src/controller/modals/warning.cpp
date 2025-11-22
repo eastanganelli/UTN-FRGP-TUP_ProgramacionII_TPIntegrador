@@ -7,8 +7,8 @@ Warning::~Warning() {}
 void Warning::Show() {
     this->ClearScreen();
     rlutil::saveDefaultColor();
-    rlutil::setBackgroundColor(rlutil::BLUE);
-    rlutil::setColor(rlutil::LIGHTBLUE);
+    rlutil::setBackgroundColor(rlutil::YELLOW);
+    rlutil::setColor(rlutil::LIGHTCYAN);
     cout << "=== " << this->title << " ===" << endl;
     rlutil::resetColor();
     cout << this->message << endl;

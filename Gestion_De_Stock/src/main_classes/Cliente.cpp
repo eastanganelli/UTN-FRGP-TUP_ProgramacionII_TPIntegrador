@@ -54,14 +54,8 @@ bool Cliente::operator==(Cliente& cliente) {
         && this->codigoRazonSocial == cliente.codigoRazonSocial && this->alta == cliente.alta;
 }
 
-string Cliente::toString() {
-    string resultado = "Cliente: " + getNombre() + " " + getApellido() +
-                       " | DNI: " + getDNI() +
-                       " | CUIL/CUIT: " + getCuilCuit() +
-                       " | Dir: " + getDireccion() +
-                       " | Correo: " + getCorreo() +
-                       " | Tel: " + getTelefono() +
-                       " | Cel: " + getCelular() +
-                       " | Alta: " + (getAlta() ? "Si" : "No");
-    return resultado;
+bool Cliente::IsEmpty() {
+    return Validation::IsEmpty(this->DNI) && Validation::IsEmpty(this->nombre)
+        && Validation::IsEmpty(this->apellido) && Validation::IsEmpty(this->cuilCuit)
+        && DatosPersonales::IsEmpty();
 }

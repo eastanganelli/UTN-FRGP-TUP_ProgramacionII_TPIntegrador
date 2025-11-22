@@ -2,7 +2,7 @@
 
 #include "../../rlutil.h"
 
-ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(clientePath) {
+ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(clientePath)/*, CondicionIVAManager(nullptr)*/ {
 
 }
 
@@ -160,7 +160,36 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
 }
 
 void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+
+    const int wDNI = 12,
+            wNombre = 20,
+            wApellido = 20,
+            wCuil = 18,
+            wCorreo = 30;
+
+    rlutil::saveDefaultColor();
+    rlutil::setBackgroundColor(rlutil::BLUE);
+    rlutil::setColor(rlutil::WHITE);
+    printf("%-*s%-*s%-*s%-*s%-*s\n", wDNI, "DNI", wApellido, "Apellido", wNombre, "Nombre", wCuil, "CUIL/CUIT", wCorreo, "Correo");
+    rlutil::resetColor();
+
+    const int totalWidth = wDNI + wNombre + wApellido + wCuil + wCorreo;
+    for(int s = 0; s < totalWidth; s++) putchar('-');
+    putchar('\n');
+
+    // Rows (use C-style printing, converting std::string to C-string)
     for(unsigned int i = 0; i < clientes.Size(); i++) {
-        cout << clientes[i]->toString() << endl;
+        Cliente* c = clientes[i];
+        printf("%-*s%-*s%-*s%-*s%-*s\n",
+               wDNI, c->getDNI().c_str(),
+               wApellido, c->getApellido().c_str(),
+               wNombre, c->getNombre().c_str(),
+               wCuil, c->getCuilCuit().c_str(),
+               wCorreo, c->getCorreo().c_str());
     }
 }

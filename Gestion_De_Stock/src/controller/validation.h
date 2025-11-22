@@ -35,6 +35,13 @@ namespace Validation {
     bool IsEmpty(const string& str);
 
     /**
+     * @brief Comprueba si una cadena está vacía (sin caracteres o solo espacios).
+     * @param str Cadena a evaluar.
+     * @return true si la cadena está vacía o contiene solo espacios; false en caso contrario.
+     */
+    bool IsEmpty(const char* str);
+
+    /**
      * @brief Comprueba si una cadena representa un número (solo dígitos).
      * @param str Cadena a evaluar.
      * @return true si la cadena contiene únicamente caracteres numéricos; false en caso contrario.

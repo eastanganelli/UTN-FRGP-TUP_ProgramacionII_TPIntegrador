@@ -4,11 +4,13 @@
 #include "../main_classes/Cliente.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
+#include "../controller/modals/warning.h"
 
 using namespace std;
 
 class ClienteManager : public FileSystem<Cliente> {
 private:
+    // const CondicionIVAManager* condicionesIVA;
     GenericArray<Cliente> Listar();
     bool Existe(Cliente& cliente);
 
@@ -27,7 +29,6 @@ public:
     GenericArray<Cliente> BuscarPorCorreo(string correo);
 
     static void Imprimir(GenericArray<Cliente>& clientes);
-
 };
 
 #endif // CLIENTEMANAGER_H

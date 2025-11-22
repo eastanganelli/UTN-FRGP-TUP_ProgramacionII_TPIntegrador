@@ -17,6 +17,19 @@ namespace Validation {
         return str.empty();
     }
 
+    bool IsEmpty(const char* str) {
+        if (str == nullptr) {
+            return true;
+        }
+        while (*str != '\0') {
+            if (!isspace(*str)) {
+                return false;
+            }
+            str++;
+        }
+        return true;
+    }
+
     bool IsNumeric(const string& str) {
         for (char c : str) {
             if (!isdigit(c)) {

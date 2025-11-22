@@ -3,7 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "../../rlutil.h"
+
+#include "../../../rlutil.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class Modal {
 protected:
     const string title,
                  message;
-                 
+
     void ClearScreen();
     bool IsYes(char key);
     bool IsNo(char key);

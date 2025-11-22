@@ -18,8 +18,8 @@ int main() {
 
 //    Testing::TestingArray();
 //    Testing::File();
-    cout << "Iniciando pruebas de Cliente..." << endl;
-    Testing::Cliente();
+    Testing::Modals();
+//    Testing::Cliente();
 
     return 0;
 }
