@@ -71,9 +71,9 @@ void Testing::File() {
 void Testing::Cliente() {
     ClienteManager misClientes("clientes.dat");
 
-    misClientes.ListarPorCuil_Cuit();
-    misClientes.ListarPorDNI();
-    misClientes.ListarPorApellido();
+//    misClientes.ListarPorCuil_Cuit();
+//    misClientes.ListarPorDNI();
+//    misClientes.ListarPorApellido();
 }
 
 //

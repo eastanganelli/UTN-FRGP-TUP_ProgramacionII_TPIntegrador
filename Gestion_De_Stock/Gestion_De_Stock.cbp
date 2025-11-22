@@ -40,6 +40,14 @@
 		<Unit filename="rlutil.h" />
 		<Unit filename="src/class_manager/cliente_manager.h" />
 		<Unit filename="src/controller/generic_array.h" />
+		<Unit filename="src/controller/modals/error.cpp" />
+		<Unit filename="src/controller/modals/error.h" />
+		<Unit filename="src/controller/modals/informational.cpp" />
+		<Unit filename="src/controller/modals/informational.h" />
+		<Unit filename="src/controller/modals/modal.cpp" />
+		<Unit filename="src/controller/modals/modal.h" />
+		<Unit filename="src/controller/modals/warning.cpp" />
+		<Unit filename="src/controller/modals/warning.h" />
 		<Unit filename="src/controller/validation.cpp" />
 		<Unit filename="src/controller/validation.h" />
 		<Unit filename="src/file_manager/file_system.h" />
