@@ -1,14 +1,10 @@
-#include "ClientesManager.h"
+#include "clientes.h"
 
-ClienteManager::ClienteManager(string ruta) {
-    this->rutaArchivo = ruta;
-}
+Clientes::Clientes(string ruta) : rutaArchivo(ruta) { }
 
-ClienteManager::~ClienteManager() {
+Clientes::~Clientes() { }
 
-}
-
-int ClienteManager::Posicion(string dni, unsigned int& posicion) {
+int Clientes::Posicion(string dni, unsigned int& posicion) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return -1;
@@ -27,7 +23,7 @@ int ClienteManager::Posicion(string dni, unsigned int& posicion) {
     return -1;
 }
 
-Cliente *ClienteManager::Redimensionar(Cliente *clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
+Cliente *Clientes::Redimensionar(Cliente *clientes, unsigned int capacidadActual, unsigned int nuevaCapacidad) {
     Cliente* nuevosClientes = new Cliente[nuevaCapacidad];
     unsigned int elementosACopiar = (capacidadActual < nuevaCapacidad) ? capacidadActual : nuevaCapacidad;
     for (unsigned int i = 0; i < elementosACopiar; i++) {
@@ -37,14 +33,14 @@ Cliente *ClienteManager::Redimensionar(Cliente *clientes, unsigned int capacidad
     return nuevosClientes;
 }
 
-void ClienteManager::Imprimir(Cliente* misClientes, unsigned int cantidadClientes) {
+void Clientes::Imprimir(Cliente* misClientes, unsigned int cantidadClientes) {
     for (unsigned int i = 0; i < cantidadClientes; i++) {
-        cout << misClientes[i].toString() << endl;
+        // cout << misClientes[i].toString() << endl;
     }
     system ("pause");
 }
 
-bool ClienteManager::Existe(Cliente& cliente) {
+bool Clientes::Existe(Cliente& cliente) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
@@ -60,7 +56,7 @@ bool ClienteManager::Existe(Cliente& cliente) {
     return false;
 }
 
-bool ClienteManager::Crear(Cliente& cliente) {
+bool Clientes::Crear(Cliente& cliente) {
     if (Existe(cliente)) {
         return false;
     }
@@ -73,7 +69,7 @@ bool ClienteManager::Crear(Cliente& cliente) {
     return true;
 }
 
-Cliente* ClienteManager::Obtener(string dni) {
+Cliente* Clientes::Obtener(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return nullptr;
@@ -90,11 +86,11 @@ Cliente* ClienteManager::Obtener(string dni) {
     return nullptr;
 }
 
-Cliente* ClienteManager::operator[](string dni) {
+Cliente* Clientes::operator[](string dni) {
     return Obtener(dni);
 }
 
-bool ClienteManager::Modificar(string dni, Cliente* clienteActualizado) {
+bool Clientes::Modificar(string dni, Cliente* clienteActualizado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
@@ -108,7 +104,7 @@ bool ClienteManager::Modificar(string dni, Cliente* clienteActualizado) {
     return resultado;
 }
 
-bool ClienteManager::Modificar(string dni, Cliente& clienteActualizado) {
+bool Clientes::Modificar(string dni, Cliente& clienteActualizado) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "r+b");
     bool resultado = false;
     unsigned int pos = 0;
@@ -122,7 +118,7 @@ bool ClienteManager::Modificar(string dni, Cliente& clienteActualizado) {
     return resultado;
 }
 
-bool ClienteManager::Eliminar(string dni) {
+bool Clientes::Eliminar(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return false;
@@ -148,7 +144,7 @@ bool ClienteManager::Eliminar(string dni) {
     return encontrado;
 }
 
-Cliente* ClienteManager::Listar() {
+Cliente* Clientes::Listar() {
     const unsigned int cantidadClientes = this->Contar();
     Cliente* clientes = new Cliente[cantidadClientes];
     if(cantidadClientes > 0 && clientes != nullptr) {
@@ -166,7 +162,7 @@ Cliente* ClienteManager::Listar() {
     return clientes;
 }
 
-void ClienteManager::ListarXApellido() {
+void Clientes::ListarXApellido() {
     Cliente* misClientes = this->Listar();
 
     if(misClientes != nullptr) {
@@ -184,7 +180,7 @@ void ClienteManager::ListarXApellido() {
     }
 }
 
-void ClienteManager::ListarXDNI() {
+void Clientes::ListarXDNI() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -201,7 +197,7 @@ void ClienteManager::ListarXDNI() {
     }
 }
 
-void ClienteManager::ListarXcuilcuit() {
+void Clientes::ListarXcuilcuit() {
     Cliente* misClientes = this->Listar();
     if(misClientes != nullptr) {
         const unsigned int cantidadClientes = this->Contar();
@@ -218,7 +214,7 @@ void ClienteManager::ListarXcuilcuit() {
     }
 }
 
-void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
+void Clientes::ConsultaXCUILCuit(string cuilcuit) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return;
@@ -240,7 +236,7 @@ void ClienteManager::ConsultaXCUILCuit(string cuilcuit) {
 
 }
 
-void ClienteManager::ConsultaXDNI(string dni) {
+void Clientes::ConsultaXDNI(string dni) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return;}
@@ -260,7 +256,7 @@ void ClienteManager::ConsultaXDNI(string dni) {
 
 }
 
-void ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
+void Clientes::ConsultaXNombreApellido(string nombre, string apellido) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return;}
@@ -281,7 +277,7 @@ void ClienteManager::ConsultaXNombreApellido(string nombre, string apellido) {
 
 }
 
-void ClienteManager::ConsultaXCorreo(string correo) {
+void Clientes::ConsultaXCorreo(string correo) {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return;
@@ -302,7 +298,7 @@ void ClienteManager::ConsultaXCorreo(string correo) {
     delete [] resultados;
 }
 
-unsigned int ClienteManager::Contar() {
+unsigned int Clientes::Contar() {
     FILE* archivo = fopen(this->rutaArchivo.c_str(), "rb");
     if (archivo == nullptr) {
         return 0;

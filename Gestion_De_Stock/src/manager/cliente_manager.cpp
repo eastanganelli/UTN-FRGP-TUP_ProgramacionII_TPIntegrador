@@ -175,7 +175,8 @@ void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
     rlutil::saveDefaultColor();
     rlutil::setBackgroundColor(rlutil::BLUE);
     rlutil::setColor(rlutil::WHITE);
-    printf("%-*s%-*s%-*s%-*s%-*s\n", wDNI, "DNI", wApellido, "Apellido", wNombre, "Nombre", wCuil, "CUIL/CUIT", wCorreo, "Correo");
+    printf("%-*s%-*s%-*s%-*s%-*s\n", wDNI, "DNI", wApellido, "Apellido", wNombre, "Nombre",
+            wCuil, "CUIL/CUIT", wCorreo, "Correo");
     rlutil::resetColor();
 
     const int totalWidth = wDNI + wNombre + wApellido + wCuil + wCorreo;
