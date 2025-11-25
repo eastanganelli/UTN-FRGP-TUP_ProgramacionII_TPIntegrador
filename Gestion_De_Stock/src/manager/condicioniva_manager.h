@@ -4,7 +4,8 @@
 #include "../main_classes/condicion_iva.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
-#include "../controller/modals/warning.h"
+
+#include "../controller/modals.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ public:
     CondicionIVAManager(const string& condicion_ivaPath = "condicion_ivas.dat");
     ~CondicionIVAManager();
     unsigned int Cantidad();
-    bool Modificar(string dni, CondicionIVA* condicion_iva);
+    bool Modificar(unsigned int codigo, CondicionIVA* condicion_iva);
     void ListarPorDescripcion();
     void ListarPorPorcentaje();
     CondicionIVA* operator[](unsigned int codigo);

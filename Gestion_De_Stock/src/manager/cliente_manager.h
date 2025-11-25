@@ -4,7 +4,8 @@
 #include "../main_classes/Cliente.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
-#include "../controller/modals/warning.h"
+
+#include "../controller/modals.h"
 
 using namespace std;
 
@@ -28,7 +29,9 @@ public:
     GenericArray<Cliente> BuscarPorNombreApellido(string nombre, string Apellido);
     GenericArray<Cliente> BuscarPorCorreo(string correo);
 
+    static void ImprimirHeader();
     static void Imprimir(GenericArray<Cliente>& clientes);
+    static void SplitterLength(char Separator = '-');
 };
 
 #endif // CLIENTEMANAGER_H

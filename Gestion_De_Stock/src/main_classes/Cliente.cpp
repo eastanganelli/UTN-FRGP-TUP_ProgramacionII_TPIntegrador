@@ -30,6 +30,22 @@ string Cliente::getCuilCuit() {
     return string(this->cuilCuit);
 }
 
+unsigned int Cliente::GetDniSize() {
+    return DNI_SIZE;
+}
+
+unsigned int Cliente::GetNombreSize() {
+    return NOMBRE_SIZE;
+}
+
+unsigned int Cliente::GetApellidoSize() {
+    return APELLIDO_SIZE;
+}
+
+unsigned int Cliente::GetCuilCuitSize() {
+    return CUIL_CUIT_SIZE;
+}
+
 void Cliente::setDNI(const string& dni) {
     strcpy(this->DNI, dni.c_str());
 }
@@ -58,4 +74,17 @@ bool Cliente::IsEmpty() {
     return Validation::IsEmpty(this->DNI) && Validation::IsEmpty(this->nombre)
         && Validation::IsEmpty(this->apellido) && Validation::IsEmpty(this->cuilCuit)
         && DatosPersonales::IsEmpty();
+}
+
+void Cliente::Print() {
+     printf("%-*s%-*s%-*s%-*s%-*s%-*s%-*s%-*s%-*s\n",
+               Cliente::GetDniSize(), this->getDNI().c_str(),
+               Cliente::GetApellidoSize(), this->getApellido().c_str(),
+               Cliente::GetNombreSize(), this->getNombre().c_str(),
+               Cliente::GetCuilCuitSize(), this->getCuilCuit().c_str(),
+               DatosPersonales::GetCorreoSize(), this->getCorreo().c_str(),
+               DatosPersonales::GetTelefonoSize(), this->getTelefono().c_str(),
+               DatosPersonales::GetCelularSize(), this->getCelular().c_str(),
+               DatosPersonales::GetDireccionSize(), this->getDireccion().c_str(),
+               DatosPersonales::GetEstadoSize(), this->Estado().c_str());
 }

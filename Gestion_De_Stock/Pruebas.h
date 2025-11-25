@@ -17,7 +17,7 @@ namespace Testing {
     void Modals();
     void Array();
     void File();
-    void Cliente();
+    void ClientePrueba();
 }
 
 //void TestingCliente();

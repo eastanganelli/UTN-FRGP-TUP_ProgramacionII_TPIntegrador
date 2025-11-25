@@ -19,7 +19,7 @@ int main() {
 //    Testing::TestingArray();
 //    Testing::File();
 //    Testing::Modals();
-    Testing::Cliente();
+    Testing::ClientePrueba();
 
     return 0;
 }

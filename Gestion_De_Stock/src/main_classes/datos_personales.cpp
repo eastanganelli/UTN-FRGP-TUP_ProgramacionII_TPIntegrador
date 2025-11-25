@@ -1,4 +1,4 @@
-#include "DatosPersonales.h"
+#include "datos_personales.h"
 
 DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular) {
     this->alta = _alta;
@@ -42,6 +42,26 @@ string DatosPersonales::getTelefono() {
 
 string DatosPersonales::getCelular() {
     return string(this->celular);
+}
+
+unsigned int DatosPersonales::GetCorreoSize() {
+    return CORREO_SIZE;
+}
+
+unsigned int DatosPersonales::GetDireccionSize() {
+    return DIRECCION_SIZE;
+}
+
+unsigned int DatosPersonales::GetTelefonoSize() {
+    return TELEFONO_SIZE;
+}
+
+unsigned int DatosPersonales::GetCelularSize() {
+    return CELULAR_SIZE;
+}
+
+unsigned int DatosPersonales::GetEstadoSize() {
+    return ESTADO_SIZE;
 }
 
 void DatosPersonales::setAlta(bool a) {
