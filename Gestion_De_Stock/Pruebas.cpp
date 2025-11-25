@@ -96,7 +96,9 @@ void Testing::ClientePrueba() {
 
     if(miCliente != nullptr) {
         ClienteManager::ImprimirHeader();
+        ClienteManager::Splitter("=");
         miCliente->Print();
+        ClienteManager::Splitter("=");
     }
 }
 

@@ -205,7 +205,7 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
     return resultados;
 }
 
-void ClienteManager::SplitterLength(char Separator) {
+void ClienteManager::Splitter(char Separator) {
     const int totalWidth = Cliente::GetDniSize() + Cliente::GetNombreSize() + Cliente::GetApellidoSize() + Cliente::GetCuilCuitSize()
                         + DatosPersonales::GetCorreoSize() + DatosPersonales::GetTelefonoSize() + DatosPersonales::GetCelularSize()
                         + DatosPersonales::GetDireccionSize() + DatosPersonales::GetEstadoSize();
@@ -236,9 +236,9 @@ void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
     }
 
     ClienteManager::ImprimirHeader();
-    ClienteManager::SplitterLength('=');
+    ClienteManager::Splitter('=');
     for(unsigned int i = 0; i < clientes.Size(); i++) {
         clientes[i]->Print();
     }
-    ClienteManager::SplitterLength('=');
+    ClienteManager::Splitter('=');
 }

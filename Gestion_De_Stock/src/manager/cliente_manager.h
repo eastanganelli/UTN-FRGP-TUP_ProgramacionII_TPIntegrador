@@ -31,7 +31,7 @@ public:
 
     static void ImprimirHeader();
     static void Imprimir(GenericArray<Cliente>& clientes);
-    static void SplitterLength(char Separator = '-');
+    static void Splitter(char Separator = '-');
 };
 
 #endif // CLIENTEMANAGER_H
