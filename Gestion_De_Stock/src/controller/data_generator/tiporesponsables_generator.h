@@ -6,10 +6,11 @@ using namespace std;
 #include "../../manager/tiporesponsables_manager.h"
 
 namespace DataGenerator {
-    struct DatosCondicionIVA {
-        unsigned int codigo;
+    struct DatosTipoResponsable {
+        string codigo;
         std::string descripcion;
         float porcentaje;
+        char tipoFacturacion;
     };
-    std::string GenerateTipoResponsable(unsigned int count = 0);
+    void GenerateTipoResponsable(unsigned int count = 0);
 }
