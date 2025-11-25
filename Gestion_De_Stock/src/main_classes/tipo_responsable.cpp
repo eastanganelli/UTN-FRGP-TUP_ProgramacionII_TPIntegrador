@@ -1,38 +1,38 @@
-#include "condicion_iva.h"
+#include "tipo_responsable.h"
 
-CondicionIVA::CondicionIVA(const unsigned int codigo, const string descripcion, const float porcentaje) {
+TipoResponsable::TipoResponsable(const unsigned int codigo, const string descripcion, const float porcentaje) {
     this->codigo = codigo;
     strcpy(this->descripcion, descripcion.c_str());
     this->descripcion[sizeof(this->descripcion) - 1] = '\0';
     this->porcentaje = porcentaje;
 }
 
-CondicionIVA::~CondicionIVA() { }
+TipoResponsable::~TipoResponsable() { }
 
-unsigned int CondicionIVA::getCodigo() const {
+unsigned int TipoResponsable::getCodigo() const {
     return this->codigo;
 }
 
-string CondicionIVA::getDescripcion() const {
+string TipoResponsable::getDescripcion() const {
     return string(this->descripcion);
 }
 
-float CondicionIVA::getPorcentaje() const {
+float TipoResponsable::getPorcentaje() const {
     return this->porcentaje;
 }
 
-bool CondicionIVA::operator==(const CondicionIVA& otra) const {
+bool TipoResponsable::operator==(const TipoResponsable& otra) const {
     return this->codigo == otra.codigo &&
            strcmp(this->descripcion, otra.descripcion) == 0 &&
            this->porcentaje == otra.porcentaje;
 }
 
-bool CondicionIVA::IsEmpty() const {
+bool TipoResponsable::IsEmpty() const {
     return this->codigo == 0 &&
            strlen(this->descripcion) == 0 &&
            this->porcentaje == 0.0f;
 }
 
-void CondicionIVA::Print() {
+void TipoResponsable::Print() {
     printf("%-5u%-30s%5.2f%%\n", this->codigo, this->descripcion, this->porcentaje);
 }

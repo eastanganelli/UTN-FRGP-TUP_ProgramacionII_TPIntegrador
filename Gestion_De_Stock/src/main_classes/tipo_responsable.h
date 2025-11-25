@@ -1,12 +1,12 @@
-#ifndef CONDICIONIVA_H
-#define CONDICIONIVA_H
+#ifndef TIPORESPONSABLE_H
+#define TIPORESPONSABLE_H
 
 #include <string>
 #include <cstring>
 
 using namespace std;
 
-class CondicionIVA {
+class TipoResponsable {
 private:
     static const unsigned int CODIGO_SIZE = 5;
     static const unsigned int DESCRIPCION_SIZE = 31;
@@ -18,8 +18,8 @@ private:
 
 public:
     // Constructor
-    CondicionIVA(const unsigned int codigo = 0, const string descripcion = "", const float porcentaje = 0.0f);
-    ~CondicionIVA();
+    TipoResponsable(const unsigned int codigo = 0, const string descripcion = "", const float porcentaje = 0.0f);
+    ~TipoResponsable();
 
     // Getters
     unsigned int getCodigo() const;
@@ -27,9 +27,9 @@ public:
     float getPorcentaje() const;
 
     // Métodos
-    bool operator==(const CondicionIVA& otra) const;
+    bool operator==(const TipoResponsable& otra) const;
     bool IsEmpty() const;
     void Print();
 };
 
-#endif // CONDICIONIVA_Hd
+#endif // TIPORESPONSABLE_H

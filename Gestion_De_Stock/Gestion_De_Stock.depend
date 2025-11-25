@@ -498,7 +498,7 @@
 	"../controller/generic_array.h"
 	"../file_manager/file_system.h"
 
-1764045989 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.h
+1764046856 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.h
 	"datos_personales.h"
 	"../controller/validation.h"
 	<iostream>

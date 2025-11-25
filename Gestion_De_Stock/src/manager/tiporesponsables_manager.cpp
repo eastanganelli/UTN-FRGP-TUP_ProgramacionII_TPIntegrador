@@ -1,15 +1,15 @@
 #include "condicioniva_manager.h"
 
-CondicionIVAManager::CondicionIVAManager(const string& condicion_ivaPath)
-    : FileSystem<CondicionIVA>(condicion_ivaPath) { }
+TipoResponsableManager::TipoResponsableManager(const string& condicion_ivaPath)
+    : FileSystem<TipoResponsable>(condicion_ivaPath) { }
 
-CondicionIVAManager::~CondicionIVAManager() { }
+TipoResponsableManager::~TipoResponsableManager() { }
 
-bool CondicionIVAManager::Existe(CondicionIVA& condicion_iva) {
+bool TipoResponsableManager::Existe(TipoResponsable& condicion_iva) {
     const unsigned int cantidad = this->Count();
     unsigned int i = 0;
     while(i < cantidad) {
-        CondicionIVA* aux = this->At(i);
+        TipoResponsable* aux = this->At(i);
         if(*aux == condicion_iva) {
             return true;
         }
@@ -18,11 +18,11 @@ bool CondicionIVAManager::Existe(CondicionIVA& condicion_iva) {
     return false;
 }
 
-unsigned int CondicionIVAManager::Cantidad() {
+unsigned int TipoResponsableManager::Cantidad() {
     return this->Count();
 }
 
-bool CondicionIVAManager::Modificar(unsigned int codigo, CondicionIVA* condicion_iva) {
+bool TipoResponsableManager::Modificar(unsigned int codigo, TipoResponsable* condicion_iva) {
     unsigned int index = 0;
     if(!this->IndexOf(*condicion_iva, index)) {
         Error mi_error("Modificacion de Condicion IVA", "Condicion IVA con codigo " + to_string(codigo) + " no encontrada.");
@@ -32,8 +32,8 @@ bool CondicionIVAManager::Modificar(unsigned int codigo, CondicionIVA* condicion
     return this->Update(index, *condicion_iva);
 }
 
-void CondicionIVAManager::ListarPorDescripcion() {
-    GenericArray<CondicionIVA> condicion_ivas = this->Listar();
+void TipoResponsableManager::ListarPorDescripcion() {
+    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
     if(condicion_ivas.Size() == 0) {
         Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
         mi_warning.Show();
@@ -46,11 +46,11 @@ void CondicionIVAManager::ListarPorDescripcion() {
             }
         }
     }
-    CondicionIVAManager::Imprimir(condicion_ivas);
+    TipoResponsableManager::Imprimir(condicion_ivas);
 }
 
-void CondicionIVAManager::ListarPorPorcentaje() {
-    GenericArray<CondicionIVA> condicion_ivas = this->Listar();
+void TipoResponsableManager::ListarPorPorcentaje() {
+    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
     if(condicion_ivas.Size() == 0) {
         Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
         mi_warning.Show();
@@ -63,11 +63,11 @@ void CondicionIVAManager::ListarPorPorcentaje() {
             }
         }
     }
-    CondicionIVAManager::Imprimir(condicion_ivas);
+    TipoResponsableManager::Imprimir(condicion_ivas);
 }
 
-CondicionIVA* CondicionIVAManager::operator[](unsigned int codigo) {
-    CondicionIVA* condicion_iva = this->At(codigo);
+TipoResponsable* TipoResponsableManager::operator[](unsigned int codigo) {
+    TipoResponsable* condicion_iva = this->At(codigo);
     if(condicion_iva == nullptr || condicion_iva->IsEmpty()) {
         Warning mi_warning("Busqueda de Condicion IVA", "No se encontro condicion IVA con codigo " + to_string(codigo) + ".");
         mi_warning.Show();
@@ -76,8 +76,8 @@ CondicionIVA* CondicionIVAManager::operator[](unsigned int codigo) {
     return condicion_iva;
 }
 
-GenericArray<CondicionIVA> CondicionIVAManager::PorcentajeMayorA(float minimo) {
-    GenericArray<CondicionIVA> resultados;
+GenericArray<TipoResponsable> TipoResponsableManager::PorcentajeMayorA(float minimo) {
+    GenericArray<TipoResponsable> resultados;
     const unsigned int cantidad = this->Count();
     if(cantidad == 0) {
         Warning mi_warning("Busqueda de Condiciones IVA", "No hay condiciones IVA registradas.");
@@ -85,7 +85,7 @@ GenericArray<CondicionIVA> CondicionIVAManager::PorcentajeMayorA(float minimo) {
         return resultados;
     }
     for(unsigned int i = 0; i < cantidad; i++) {
-        CondicionIVA* aux = this->At(i);
+        TipoResponsable* aux = this->At(i);
         if(aux->getPorcentaje() > minimo) {
             resultados + (*aux);
         }

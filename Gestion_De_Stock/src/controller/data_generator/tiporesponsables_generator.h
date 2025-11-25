@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "../../manager/condicioniva_manager.h"
+#include "../../manager/tiporesponsables_manager.h"
 
 namespace DataGenerator {
     struct DatosCondicionIVA {
@@ -11,5 +11,5 @@ namespace DataGenerator {
         std::string descripcion;
         float porcentaje;
     };
-    std::string GenerateIVACondition(unsigned int count = 0);
+    std::string GenerateTipoResponsable(unsigned int count = 0);
 }
