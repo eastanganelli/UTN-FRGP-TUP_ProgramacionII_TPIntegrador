@@ -1,8 +1,13 @@
 #include "product_generator.h"
 
 void DataGenerator::GenerateProduct(unsigned int count) {
-    srand(static_cast<unsigned int>(time(NULL)));    
+    srand(static_cast<unsigned int>(time(NULL)));
+    ProveedorManager proveedores("Proveedores.dat");  
     ProductoManager productos("Productos.dat");
+
+    string descripcionProducto[] = {"Laptop", "Smartphone", "Tablet", "Monitor", "Teclado",
+                                     "Ratón", "Impresora", "Cámara", "Auriculares", "Altavoces",
+                                     "Disco Duro", "Memoria USB", "Router", "Smartwatch", "Proyector"};
 
     if(productos.Contar() == 0 || count > 0) {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;

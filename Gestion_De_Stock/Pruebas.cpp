@@ -185,75 +185,8 @@ void Testing::ClientePrueba() {
 //    misComprobantes.ConsultaXRangoDeFechas(Fecha(22, 6, 2024), Fecha(31,12,2025));
 //}
 //
-//void loadData() {
-//    srand(static_cast<unsigned int>(time(NULL)));
-//    ProveedorManager proveedores("Proveedores.dat");
-//    ProductoManager productos("Productos.dat");
-//
-//    string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
-//                          "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
-//           apellidos[] = {"Perez", "Gomez", "Rodriguez", "Lopez", "Garcia", "Martinez", "Sanchez", "Ramirez", "Torres", "Flores",
-//                          "Diaz", "Vargas", "Castro", "Rojas", "Silva", "Molina", "Suarez", "Ortega", "Gutierrez", "Jimenez", "Morales", "Alvarez"},
-//           calles[]    = {"Calle Falsa", "Avenida Siempreviva", "Boulevard Central", "Pasaje del Sol", "Camino Real",
-//                          "Paseo de las Flores", "Calle del Lago", "Avenida de la Libertad", "Callejón del Beso", "Paseo del Parque",
-//                          "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"},
-//             la descripcion de los productos deberia tener el tipo de producto
-//            descripcionProducto[] = {"Laptop", "Smartphone", "Tablet", "Monitor", "Teclado",
-//                                     "Ratón", "Impresora", "Cámara", "Auriculares", "Altavoces",
-//                                     "Disco Duro", "Memoria USB", "Router", "Smartwatch", "Proyector"};
-//
-//
-//    if(proveedores.Contar() == 0) {
-//        std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
-//        for (int i = 0; i < 5; ++i) {
-//            DatosProveedor dp;
-//            dp.cuit = "30" + std::to_string(rand() % 40000000 + i) + "9" + "\0";
-//            dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(6) + "\0";
-//            dp.rubro = (i % 6) + 1;
-//            dp.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1) + "\0";
-//            dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com" + "\0";
-//            dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000) + "\0";
-//            dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-//            dp.alta = (i % 2 != 0);
-//
-//            Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, dp.alta);
-//            cout << "Proveedor agregado? >> " << (proveedores.Crear(dataProveedor) ? "Si" : "No") << endl;
-//
-//            std::cout << "Proveedor " << i + 1 << ": " << dp.nombreRazon
-//                      << " | CUIT: " << dp.cuit << " | Rubro: " << dp.rubro
-//                      << " | Dir: " << dp.direccion << " | Correo: " << dp.correo
-//                      << " | Tel: " << dp.telefono << " | Cel: " << dp.celular
-//                      << " | Cod Razon Soc: " << dp.codigoRazonSocial
-//                      << " | Alta: " << (dp.alta ? "Si" : "No") << std::endl;
-//        }
-//        std::cout << "\n-------------------------------------\n" << std::endl;
-//    }
-//
-//    if(productos.Contar() == 0) {
-//        std::cout << "--- Datos de Productos Generados ---" << std::endl;
-//        for (int i = 0; i < 30; ++i) {
-//            DatosProducto dp;
-//            dp.codigo = productos.generarCodigo() + "\0";
-//            dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit() + "\0";
-//            dp.descripcion = "Producto " + dp.codigo + "\0";
-//            dp.precio = static_cast<float>((rand() % 10000) / 100.0 + 1.0);
-//            dp.stock = rand() % 100 + 1;
-//
-//            Producto dataProducto(dp.codigo, dp.codigoProveedor, dp.descripcion, dp.precio, dp.stock);
-//            cout << "Producto agregado? >> " << (productos.Crear(dataProducto) ? "Si" : "No") << endl;
-//
-//            std::cout << "Producto " << i + 1 << ": " << dp.codigo
-//                      << " | Codigo Proveedor: " << dp.codigoProveedor << " | Descripcion: " << dp.descripcion
-//                      << " | Precio: " << dp.precio << " | Stock: " << dp.stock << std::endl;
-//        }
-//        std::cout << "\n-------------------------------------\n" << std::endl;
-//    }
-//}
 //
 //void TestingAll() {
-//
-//    loadData();
-//
 //    TestingCliente();
 //    TestingProveedores();
 //    TestingProductos();

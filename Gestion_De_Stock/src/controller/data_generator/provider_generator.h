@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-
+#include "generator.h"
 #include "../../manager/proveedor_manager.h"
 
 namespace DataGenerator {
