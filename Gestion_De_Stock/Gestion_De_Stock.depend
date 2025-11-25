@@ -568,11 +568,11 @@
 	"DatosPersonales.h"
 	<cstring>
 
-1764046367 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
+1764046648 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
 	"cliente_manager.h"
 	"../../rlutil.h"
 
-1764046253 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.h
+1764046644 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.h
 	"../main_classes/Cliente.h"
 	"../controller/generic_array.h"
 	"../file_manager/file_system.h"

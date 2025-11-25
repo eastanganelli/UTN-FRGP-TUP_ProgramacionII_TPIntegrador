@@ -75,3 +75,25 @@ CondicionIVA* CondicionIVAManager::operator[](unsigned int codigo) {
     }
     return condicion_iva;
 }
+
+GenericArray<CondicionIVA> CondicionIVAManager::PorcentajeMayorA(float minimo) {
+    GenericArray<CondicionIVA> resultados;
+    const unsigned int cantidad = this->Count();
+    if(cantidad == 0) {
+        Warning mi_warning("Busqueda de Condiciones IVA", "No hay condiciones IVA registradas.");
+        mi_warning.Show();
+        return resultados;
+    }
+    for(unsigned int i = 0; i < cantidad; i++) {
+        CondicionIVA* aux = this->At(i);
+        if(aux->getPorcentaje() > minimo) {
+            resultados + (*aux);
+        }
+        delete aux;
+    }
+    if(resultados.Size() == 0) {
+        Warning mi_warning("Busqueda de Condiciones IVA", "No se encontraron condiciones IVA con porcentaje mayor a " + to_string(minimo) + "%.");
+        mi_warning.Show();
+    }
+    return resultados;
+}

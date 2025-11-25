@@ -32,3 +32,7 @@ bool CondicionIVA::IsEmpty() const {
            strlen(this->descripcion) == 0 &&
            this->porcentaje == 0.0f;
 }
+
+void CondicionIVA::Print() {
+    printf("%-5u%-30s%5.2f%%\n", this->codigo, this->descripcion, this->porcentaje);
+}

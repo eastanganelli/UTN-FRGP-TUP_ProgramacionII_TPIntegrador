@@ -88,7 +88,7 @@ void Testing::File() {
 void Testing::ClientePrueba() {
     ClienteManager misClientes("clientes.dat");
 
-    misClientes.ListarPorCuil_Cuit();
+//    misClientes.ListarPorCuil_Cuit();
 //    misClientes.ListarPorDNI();
 //    misClientes.ListarPorApellido();
 
@@ -96,9 +96,9 @@ void Testing::ClientePrueba() {
 
     if(miCliente != nullptr) {
         ClienteManager::ImprimirHeader();
-        ClienteManager::Splitter("=");
+        ClienteManager::Splitter('=');
         miCliente->Print();
-        ClienteManager::Splitter("=");
+        ClienteManager::Splitter('=');
     }
 }
 
@@ -185,19 +185,8 @@ void Testing::ClientePrueba() {
 //    misComprobantes.ConsultaXRangoDeFechas(Fecha(22, 6, 2024), Fecha(31,12,2025));
 //}
 //
-//std::string generarCodigoAlfaNumerico(int longitud) {
-//    const char caracteresPosibles[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-//    const int numCaracteresPosibles = sizeof(caracteresPosibles) - 1;
-//    std::string codigoGenerado = "";
-//    for (int i = 0; i < longitud; ++i) {
-//        codigoGenerado += caracteresPosibles[rand() % numCaracteresPosibles];
-//    }
-//    return codigoGenerado;
-//}
-//
 //void loadData() {
 //    srand(static_cast<unsigned int>(time(NULL)));
-//    ClienteManager clientes("Clientes.dat");
 //    ProveedorManager proveedores("Proveedores.dat");
 //    ProductoManager productos("Productos.dat");
 //
@@ -213,32 +202,6 @@ void Testing::ClientePrueba() {
 //                                     "Ratón", "Impresora", "Cámara", "Auriculares", "Altavoces",
 //                                     "Disco Duro", "Memoria USB", "Router", "Smartwatch", "Proyector"};
 //
-//    if(clientes.Contar() == 0) {
-//        std::cout << "--- Datos de Clientes Generados ---" << std::endl;
-//        for (int i = 0; i < 10; ++i) {
-//            DatosCliente dc;
-//            dc.nombre = nombres[rand() % nombres->length()];
-//            dc.apellido = apellidos[rand() % apellidos->length()];
-//            dc.DNI = std::to_string(rand() % 40000000 + i) + "\0";
-//            dc.cuilCuit = "20" + dc.DNI + "1" + "\0";
-//            dc.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
-//            dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
-//            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-//            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-//            dc.alta = (i % 2 == 0);
-//
-//            Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
-//            cout << "Cliente agregado? >> " << (clientes.Crear(dataCliente) ? "Si" : "No") << endl;
-//
-//            std::cout << "Cliente " << i + 1 << ": " << dc.nombre << " " << dc.apellido
-//                      << " | DNI: " << dc.DNI << " | CUIL/CUIT: " << dc.cuilCuit
-//                      << " | Dir: " << dc.direccion << " | Correo: " << dc.correo
-//                      << " | Tel: " << dc.telefono << " | Cel: " << dc.celular
-//                      << " | Cod Razon Soc: " << dc.codigoRazonSocial
-//                      << " | Alta: " << (dc.alta ? "Si" : "No") << std::endl;
-//        }
-//        std::cout << "\n-------------------------------------\n" << std::endl;
-//    }
 //
 //    if(proveedores.Contar() == 0) {
 //        std::cout << "--- Datos de Proveedores Generados ---" << std::endl;

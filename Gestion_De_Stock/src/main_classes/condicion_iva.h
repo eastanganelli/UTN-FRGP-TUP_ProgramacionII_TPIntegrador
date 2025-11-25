@@ -8,8 +8,12 @@ using namespace std;
 
 class CondicionIVA {
 private:
+    static const unsigned int CODIGO_SIZE = 5;
+    static const unsigned int DESCRIPCION_SIZE = 31;
+    static const unsigned int PORCENTAJE_SIZE = 6;
+
     unsigned int codigo;
-    char descripcion[31];
+    char descripcion[DESCRIPCION_SIZE];
     float porcentaje;
 
 public:
@@ -25,6 +29,7 @@ public:
     // Métodos
     bool operator==(const CondicionIVA& otra) const;
     bool IsEmpty() const;
+    void Print();
 };
 
 #endif // CONDICIONIVA_Hd
