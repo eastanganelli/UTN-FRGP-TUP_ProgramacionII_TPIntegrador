@@ -9,6 +9,9 @@
 using namespace std;
 
 class Warning : public Modal {
+private:
+    void PrintHeader();
+    void PrintFooter();
 
 public:
     Warning(const string& title, const string& message);

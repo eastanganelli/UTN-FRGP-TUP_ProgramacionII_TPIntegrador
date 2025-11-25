@@ -13,6 +13,8 @@ protected:
     const string title,
                  message;
 
+    virtual void PrintHeader() = 0;
+    virtual void PrintFooter() = 0;
     void ClearScreen();
     bool IsYes(char key);
     bool IsNo(char key);

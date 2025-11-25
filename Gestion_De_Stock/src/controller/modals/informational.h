@@ -9,6 +9,9 @@
 using namespace std;
 
 class Informational : public Modal {
+private:
+    void PrintHeader();
+    void PrintFooter();
 
 public:
     Informational(const string& title, const string& message);

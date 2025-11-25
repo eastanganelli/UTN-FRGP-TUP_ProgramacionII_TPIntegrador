@@ -9,6 +9,9 @@
 using namespace std;
 
 class Error : public Modal {
+private:
+    void PrintHeader();
+    void PrintFooter();
 
 public:
     Error(const string& title, const string& message);

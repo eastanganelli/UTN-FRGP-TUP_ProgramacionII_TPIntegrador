@@ -11,15 +11,15 @@ using namespace std;
 int main() {
     srand(time(NULL));
 
-    //loadData();
+//    loadData();
 
 //    Menu menu;
 //    menu.mostrar();
 
 //    Testing::TestingArray();
 //    Testing::File();
-    Testing::Modals();
-//    Testing::Cliente();
+//    Testing::Modals();
+    Testing::Cliente();
 
     return 0;
 }

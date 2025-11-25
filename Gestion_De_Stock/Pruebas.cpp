@@ -1,8 +1,20 @@
 #include "Pruebas.h"
 
 void Testing::Modals() {
-    Informational information("Hola Mundo", "mensaje");
-    information.Show();
+//    Informational information("Hola Mundo", "mensaje");
+//    information.Show();
+//    cout << endl;
+//    information.ShowYesNo();
+
+//    Warning alerta("Hola Mundo", "mensaje");
+//    alerta.Show();
+//    cout << endl;
+//    alerta.ShowYesNo();
+
+//    Error error("Hola Mundo", "mensaje");
+//    error.Show();
+//    cout << endl;
+//    error.ShowYesNo();
 }
 
 void Testing::Array() {

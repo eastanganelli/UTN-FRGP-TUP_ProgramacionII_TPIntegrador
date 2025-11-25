@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1763786196 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1764027310 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
 
@@ -389,7 +389,7 @@
 	<cstdio>
 	<cctype>
 
-1763786115 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1764027288 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763078804 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
@@ -568,7 +568,7 @@
 	"DatosPersonales.h"
 	<cstring>
 
-1763785520 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
+1763937292 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
 	"cliente_manager.h"
 	"../../rlutil.h"
 
@@ -578,35 +578,42 @@
 	"../file_manager/file_system.h"
 	"../controller/modals/warning.h"
 
-1763784102 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\error.cpp
+1764026304 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\error.cpp
 	"error.h"
 
-1763785118 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\error.h
+1764025301 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\error.h
 	<string>
 	<iostream>
 	"modal.h"
 
-1763785149 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\modal.h
+1764025262 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\modal.h
 	<string>
 	<iostream>
 	"../../../rlutil.h"
 
-1763783831 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\informational.cpp
+1764026086 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\informational.cpp
 	"informational.h"
 
-1763785116 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\informational.h
+1764025274 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\informational.h
 	<string>
 	<iostream>
 	"modal.h"
 
-1763783825 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\modal.cpp
+1764022378 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\modal.cpp
 	"modal.h"
 
-1763785473 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\warning.cpp
+1764026159 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\warning.cpp
 	"warning.h"
 
-1763785128 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\warning.h
+1764025287 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\modals\warning.h
 	<string>
 	<iostream>
 	"modal.h"
+
+1763940071 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\condicion_iva.cpp
+	"condicion_iva.h"
+
+1763939630 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\condicion_iva.h
+	<string>
+	<cstring>
 

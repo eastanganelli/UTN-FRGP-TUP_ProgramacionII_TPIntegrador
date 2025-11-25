@@ -3,7 +3,6 @@
 Modal::Modal(const string& title, const string& message) : title(title), message(message) {}
 
 Modal::~Modal() {
-    this->ClearScreen();
 }
 
 void Modal::ClearScreen() {
