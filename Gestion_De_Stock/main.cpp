@@ -1,6 +1,7 @@
 #include <ctime>
 
 #include "Pruebas.h"
+#include "src/controller/data_generator/tiporesponsables_generator.h"
 //#include "src/Menu.h"
 
 //https://pastebin.com/J4hm7rb5
@@ -17,7 +18,9 @@ int main() {
 //    Testing::TestingArray();
 //    Testing::File();
 //    Testing::Modals();
-    Testing::ClientePrueba();
+//    Testing::ClientePrueba();
+
+    DataGenerator::GenerateTipoResponsable();
 
     return 0;
 }

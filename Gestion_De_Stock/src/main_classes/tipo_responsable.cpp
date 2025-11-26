@@ -1,17 +1,18 @@
 #include "tipo_responsable.h"
+#include <cctype>
 
-TipoResponsable::TipoResponsable(const unsigned int codigo, const string descripcion, const float _porcentaje, const char _tipoFacturacion) {
-    this->codigo = codigo;
+TipoResponsable::TipoResponsable(const string codigo, const string descripcion, const float _porcentaje, const char _tipoFacturacion) {
+    strcpy(this->codigo, codigo.c_str());
     strcpy(this->descripcion, descripcion.c_str());
     this->descripcion[sizeof(this->descripcion) - 1] = '\0';
-    this->porcentaje = porcentaje;
+    this->porcentaje = _porcentaje;
     this->tipoFacturacion = _tipoFacturacion;
 }
 
 TipoResponsable::~TipoResponsable() { }
 
-unsigned int TipoResponsable::getCodigo() const {
-    return this->codigo;
+string TipoResponsable::getCodigo() const {
+    return string(this->codigo);
 }
 
 string TipoResponsable::getDescripcion() const {
@@ -20,6 +21,22 @@ string TipoResponsable::getDescripcion() const {
 
 float TipoResponsable::getPorcentaje() const {
     return this->porcentaje;
+}
+
+unsigned int TipoResponsable::GetCodigoLength() {
+    return TipoResponsable::CODIGO_SIZE;
+}
+
+unsigned int TipoResponsable::GetDescripcionLength() {
+    return TipoResponsable::DESCRIPCION_SIZE;
+}
+
+unsigned int TipoResponsable::GetPorcentajeLength() {
+    return TipoResponsable::PORCENTAJE_SIZE;
+}
+
+unsigned int TipoResponsable::GetTipoFacturacionLength() {
+    return TipoResponsable::TIPOFACTURACION_SIZE;
 }
 
 bool TipoResponsable::operator==(const TipoResponsable& otra) const {
@@ -35,5 +52,9 @@ bool TipoResponsable::IsEmpty() const {
 }
 
 void TipoResponsable::Print() {
-    printf("%-5u%-30s%5.2f%%\n", this->codigo, this->descripcion, this->porcentaje);
+    printf("%-*s%-*s%-*.1f%-*c\n",
+           TipoResponsable::GetCodigoLength(), this->codigo,
+           TipoResponsable::GetDescripcionLength(), this->descripcion,
+           TipoResponsable::GetPorcentajeLength(), this->porcentaje,
+           TipoResponsable::GetTipoFacturacionLength(), (int)toupper(this->tipoFacturacion));
 }

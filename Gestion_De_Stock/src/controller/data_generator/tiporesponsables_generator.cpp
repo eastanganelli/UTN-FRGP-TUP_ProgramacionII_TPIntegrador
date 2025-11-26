@@ -1,9 +1,8 @@
 #include "tiporesponsables_generator.h"
 
 void DataGenerator::GenerateTipoResponsable(unsigned int count) {
-    srand(static_cast<unsigned int>(time(NULL)));
-    TipoResponsable condicion_ivaManager("tipo_responsable.dat");
-    
+    TipoResponsableManager tipos_responsables("tipo_responsable.dat");
+
     DatosTipoResponsable datos_ejemplo[] = {
         {"1A4", "IVA Responsable Inscripto", 10.5f, 'A'},
         {"1A5", "IVA Responsable Inscripto", 21.0f, 'A'},
@@ -15,4 +14,14 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count) {
         {"6B5", "Responsable Monotributo", 21.0f, 'B'},
         {"9E3", "Cliente del Exterior", 0.0f, 'E'}
     };
+
+    for(const auto& datos : datos_ejemplo) {
+        TipoResponsable nuevo_tipo(datos.codigo, datos.descripcion, datos.porcentaje, datos.tipoFacturacion);
+        tipos_responsables.New(nuevo_tipo);
+
+        TipoResponsableManager::ImprimirHeader();
+        TipoResponsableManager::Splitter();
+        nuevo_tipo.Print();
+        TipoResponsableManager::Splitter();
+    }
 }

@@ -60,6 +60,8 @@
 		<Unit filename="src/main_classes/datos_personales.h" />
 		<Unit filename="src/manager/cliente_manager.cpp" />
 		<Unit filename="src/manager/cliente_manager.h" />
+		<Unit filename="src/manager/tiporesponsables_manager.cpp" />
+		<Unit filename="src/manager/tiporesponsables_manager.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -1,9 +1,20 @@
-#include "condicioniva_manager.h"
+#include "tiporesponsables_manager.h"
 
 TipoResponsableManager::TipoResponsableManager(const string& condicion_ivaPath)
     : FileSystem<TipoResponsable>(condicion_ivaPath) { }
 
 TipoResponsableManager::~TipoResponsableManager() { }
+
+GenericArray<TipoResponsable> TipoResponsableManager::Listar() {
+    GenericArray<TipoResponsable> condicion_ivas;
+    const unsigned int cantidad = this->Count();
+    for(unsigned int i = 0; i < cantidad; i++) {
+        TipoResponsable* aux = this->At(i);
+        condicion_ivas + (*aux);
+        delete aux;
+    }
+    return condicion_ivas;
+}
 
 bool TipoResponsableManager::Existe(TipoResponsable& condicion_iva) {
     const unsigned int cantidad = this->Count();
@@ -96,4 +107,33 @@ GenericArray<TipoResponsable> TipoResponsableManager::PorcentajeMayorA(float min
         mi_warning.Show();
     }
     return resultados;
+}
+
+void TipoResponsableManager::ImprimirHeader() {
+    rlutil::saveDefaultColor();
+    rlutil::setBackgroundColor(rlutil::BLUE);
+    rlutil::setColor(rlutil::WHITE);
+    printf("%-*s%-*s%-*s%-*s\n",
+           TipoResponsable::GetCodigoLength(), "Cod.",
+           TipoResponsable::GetDescripcionLength(), "Descripcion",
+           TipoResponsable::GetPorcentajeLength(), "IVA %",
+           TipoResponsable::GetTipoFacturacionLength(), "Tipo");
+    rlutil::resetColor();
+}
+
+void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& condicion_ivas) {
+    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
+        condicion_ivas[i]->Print();
+    }
+}
+
+void TipoResponsableManager::Splitter(char Separator) {
+    const unsigned int totalLength = TipoResponsable::GetCodigoLength() +
+                                        TipoResponsable::GetDescripcionLength() +
+                                        TipoResponsable::GetPorcentajeLength() +
+                                        TipoResponsable::GetTipoFacturacionLength();
+    for(unsigned int i = 0; i < totalLength; i++) {
+        printf("%c", Separator);
+    }
+    printf("\n");
 }

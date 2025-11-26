@@ -18,6 +18,7 @@ namespace Testing {
     void Array();
     void File();
     void ClientePrueba();
+    void TipoResponsablePrueba();
 }
 
 //void TestingCliente();

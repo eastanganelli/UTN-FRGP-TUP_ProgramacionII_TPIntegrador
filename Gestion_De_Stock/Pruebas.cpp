@@ -102,6 +102,10 @@ void Testing::ClientePrueba() {
     }
 }
 
+void Testing::TipoResponsablePrueba() {
+
+}
+
 //
 //void TestingProveedores() {
 //    ProveedorManager proveedores("Proveedores.dat");

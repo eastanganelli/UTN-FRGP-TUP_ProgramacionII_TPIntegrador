@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1764043250 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1764108704 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
+	"src/controller/data_generator/tiporesponsables_generator.h"
 
-1764043250 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+1764108150 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
 	<ctime>
 	<iostream>
 	"src/controller/modals/informational.h"
@@ -389,7 +390,7 @@
 	<cstdio>
 	<cctype>
 
-1764043554 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1764108528 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763078804 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
@@ -515,7 +516,7 @@
 1763751854 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\class_manager\cliente_manager.cpp
 	"cliente_manager.h"
 
-1764046026 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.cpp
+1764046854 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.cpp
 	"Cliente.h"
 
 1763785959 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\datospersonales.cpp
@@ -629,4 +630,45 @@
 
 1764045242 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\datos_personales.cpp
 	"datos_personales.h"
+
+1764048196 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\client_generator.cpp
+	"client_generator.h"
+
+1764047790 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\client_generator.h
+	<ctime>
+	<string>
+	<iostream>
+	"../../manager/cliente_manager.h"
+
+1764048067 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\generator.cpp
+	"generator.h"
+
+1764047995 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\generator.h
+	<ctime>
+	<string>
+
+1764108660 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\tiporesponsables_generator.cpp
+	"tiporesponsables_generator.h"
+
+1764106302 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\tiporesponsables_generator.h
+	<ctime>
+	<string>
+	"../../manager/tiporesponsables_manager.h"
+
+1764107387 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\tiporesponsables_manager.h
+	"../main_classes/tipo_responsable.h"
+	"../controller/generic_array.h"
+	"../file_manager/file_system.h"
+	"../controller/modals.h"
+
+1764109069 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.h
+	<string>
+	<cstring>
+
+1764119932 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.cpp
+	"tipo_responsable.h"
+	<cctype>
+
+1764111362 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\tiporesponsables_manager.cpp
+	"tiporesponsables_manager.h"
 

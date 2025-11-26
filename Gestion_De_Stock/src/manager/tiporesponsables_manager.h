@@ -15,7 +15,7 @@ private:
     bool Existe(TipoResponsable& condicion_iva);
 
 public:
-    TipoResponsableManager(const string& condicion_ivaPath = "condicion_ivas.dat");
+    TipoResponsableManager(const string& condicion_ivaPath = "tipo_responsable.dat");
     ~TipoResponsableManager();
     unsigned int Cantidad();
     bool Modificar(unsigned int codigo, TipoResponsable* condicion_iva);
@@ -24,7 +24,9 @@ public:
     TipoResponsable* operator[](unsigned int codigo);
     GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
 
+    static void ImprimirHeader();
     static void Imprimir(GenericArray<TipoResponsable>& condicion_ivas);
+    static void Splitter(char Separator = '-');
 };
 
 #endif // TIPORESPONSABLEMANAGER_H
