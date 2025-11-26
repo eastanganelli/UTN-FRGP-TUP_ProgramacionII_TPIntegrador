@@ -73,4 +73,15 @@ namespace Validation {
         }
         return true;
     }
+
+    bool IsEqual(const string& str1, const string& str2) {
+        return str1.find(str2) != string::npos;
+    }
+
+    bool IsEqual(const char* str1, const char* str2) {
+        if (str1 == nullptr || str2 == nullptr) {
+            return str1 == str2;
+        }
+        return string(str1).find(string(str2)) != string::npos;
+    }
 }

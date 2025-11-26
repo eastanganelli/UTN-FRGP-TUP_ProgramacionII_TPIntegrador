@@ -96,6 +96,21 @@ namespace Validation {
      */
     bool IsAlphanumeric(const string& str);
 
+    /**
+     * @brief Comprueba si dos cadenas son iguales.
+     * @param str1 Primera cadena.
+     * @param str2 Segunda cadena.
+     * @return true si las cadenas son iguales; false en caso contrario.
+     */
+    bool IsEqual(const string& str1, const string& str2);
+
+    /**
+     * @brief Comprueba si dos cadenas son iguales.
+     * @param str1 Primera cadena.
+     * @param str2 Segunda cadena.
+     * @return true si las cadenas son iguales; false en caso contrario.
+     */
+    bool IsEqual(const char* str1, const char* str2);
 } // namespace Validation
 
 #endif // VALIDATION_H

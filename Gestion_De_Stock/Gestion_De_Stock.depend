@@ -469,11 +469,11 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763785859 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.cpp
+1764123137 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.cpp
 	"validation.h"
 	<cctype>
 
-1764122126 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
+1764122664 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
 	<string>
 
 1763529317 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.cpp
@@ -516,7 +516,7 @@
 1763751854 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\class_manager\cliente_manager.cpp
 	"cliente_manager.h"
 
-1764046854 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.cpp
+1764121218 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\cliente.cpp
 	"Cliente.h"
 
 1763785959 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\datospersonales.cpp
@@ -628,7 +628,7 @@
 	<cstring>
 	<string>
 
-1764045242 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\datos_personales.cpp
+1764121434 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\datos_personales.cpp
 	"datos_personales.h"
 
 1764048196 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\client_generator.cpp
