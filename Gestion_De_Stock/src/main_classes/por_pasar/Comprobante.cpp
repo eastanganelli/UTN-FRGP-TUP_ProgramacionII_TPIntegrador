@@ -43,3 +43,43 @@ void Comprobante::setMonto(float m) {
 void Comprobante::setCantidadItems(unsigned int c) {
     this->cantidadItems = c;
 }
+
+bool Comprobante::AddItem(const Item& it) {
+    unsigned int count = this->getCantidadItems();
+    for (unsigned int i = 0; i < count; i++) {
+        if (strncmp(this->items[i].codigo, it.codigo, 9) == 0) {
+            return false; // duplicate
+        }
+    }
+    if (count >= ITEMS_MAX) return false;
+    this->items[count] = it;
+    this->setCantidadItems(count + 1);
+    return true;
+}
+
+bool Comprobante::RemoveItem(const char* codigo) {
+    unsigned int count = this->getCantidadItems();
+    for (unsigned int i = 0; i < count; i++) {
+        if (strncmp(this->items[i].codigo, codigo, 9) == 0) {
+            for (unsigned int j = i; j + 1 < count; j++) {
+                this->items[j] = this->items[j+1];
+            }
+            this->setCantidadItems(count - 1);
+            return true;
+        }
+    }
+    return false;
+}
+
+unsigned int Comprobante::GetItemsCount() {
+    return this->getCantidadItems();
+}
+
+const Item* Comprobante::GetItem(unsigned int index) const {
+    if (index >= this->getCantidadItems()) return nullptr;
+    return &this->items[index];
+}
+
+void Comprobante::ClearItems() {
+    this->setCantidadItems(0);
+}
