@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#include "../../manager/cliente_manager.h"
+#include "../../manager/manager_cliente.h"
 
 namespace DataGenerator {
     struct DatosCliente {

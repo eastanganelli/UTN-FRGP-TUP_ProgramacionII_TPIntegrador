@@ -18,14 +18,10 @@ private:
 
 protected:
     bool alta;
-    char correo[121];
-    char direccion[121];
-    char telefono[16];
-    char celular[16];
-    // char correo[CORREO_SIZE];
-    // char direccion[DIRECCION_SIZE];
-    // char telefono[TELEFONO_SIZE];
-    // char celular[TELEFONO_SIZE];
+    char correo[CORREO_SIZE];
+    char direccion[DIRECCION_SIZE];
+    char telefono[TELEFONO_SIZE];
+    char celular[CELULAR_SIZE];
     unsigned int codigoRazonSocial;
 
     DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "");

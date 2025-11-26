@@ -1,4 +1,5 @@
-#include "tiporesponsables_manager.h"
+#include "manager_tiporesponsables.h"
+#include <iomanip>
 
 TipoResponsableManager::TipoResponsableManager(const string& condicion_ivaPath)
     : FileSystem<TipoResponsable>(condicion_ivaPath) { }
@@ -109,39 +110,37 @@ GenericArray<TipoResponsable> TipoResponsableManager::PorcentajeMayorA(float min
     return resultados;
 }
 
-void TipoResponsableManager::ImprimirHeader() {
-    rlutil::saveDefaultColor();
-    rlutil::setBackgroundColor(rlutil::BLUE);
-    rlutil::setColor(rlutil::WHITE);
-    printf("%-*s%-*s%-*s%-*s\n",
-           TipoResponsable::GetCodigoLength(), "Cod.",
-           TipoResponsable::GetDescripcionLength(), "Descripcion",
-           TipoResponsable::GetPorcentajeLength(), "IVA %",
-           TipoResponsable::GetTipoFacturacionLength(), "Tipo");
-    rlutil::resetColor();
-}
-
-void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& condicion_ivas) {
-    if(condicion_ivas.Size() == 0) {
+void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& tipo_responsables) {
+    if(tipo_responsables.Size() == 0) {
         Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
         mi_warning.Show();
         return;
     }
-    TipoResponsableManager::ImprimirHeader();
-    TipoResponsableManager::Splitter('=');
-    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
-        condicion_ivas[i]->Print();
-    }
-    TipoResponsableManager::Splitter('-');
-}
 
-void TipoResponsableManager::Splitter(char Separator) {
-    const unsigned int totalLength = TipoResponsable::GetCodigoLength() +
-                                    TipoResponsable::GetDescripcionLength() +
-                                    TipoResponsable::GetPorcentajeLength() +
-                                    TipoResponsable::GetTipoFacturacionLength();
-    for(unsigned int i = 0; i < totalLength; i++) {
-        printf("%c", Separator);
+    const unsigned int altura = tipo_responsables.Size(),
+                        columnas = 4;
+    Tabling::Table mi_tabla(altura, columnas);
+
+    Tabling::Row* mi_header = new Tabling::Row(4);
+    mi_header->AddCell("Cod.", TipoResponsable::GetCodigoLength());
+    mi_header->AddCell("Tipo Responsable", TipoResponsable::GetDescripcionLength());
+    mi_header->AddCell("% IVA", TipoResponsable::GetPorcentajeLength());
+    mi_header->AddCell("Tipo", TipoResponsable::GetTipoFacturacionLength());
+
+    mi_tabla.AddRow(mi_header);
+
+    for(unsigned int i = 0; i < tipo_responsables.Size(); i++) {
+        Tabling::Row* mi_fila = new Tabling::Row(columnas);
+        mi_fila->AddCell(tipo_responsables[i]->getCodigo(), TipoResponsable::GetCodigoLength());
+        mi_fila->AddCell(tipo_responsables[i]->getDescripcion(), TipoResponsable::GetDescripcionLength());
+
+        string porcentaje = Validation::ToFixedDecimal(tipo_responsables[i]->getPorcentaje(), 1);
+        mi_fila->AddCell(porcentaje, TipoResponsable::GetPorcentajeLength());
+
+        string tipo = Validation::ToUpper(string(1, tipo_responsables[i]->getTipoFacturacion()));
+        mi_fila->AddCell(tipo, TipoResponsable::GetTipoFacturacionLength());
+
+        mi_tabla.AddRow(mi_fila);
     }
-    printf("\n");
+    mi_tabla.Print();
 }

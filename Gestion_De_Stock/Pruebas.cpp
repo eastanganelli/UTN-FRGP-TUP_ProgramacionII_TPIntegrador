@@ -88,18 +88,15 @@ void Testing::File() {
 void Testing::ClientePrueba() {
     ClienteManager misClientes("clientes.dat");
 
-//    misClientes.ListarPorCuil_Cuit();
+    misClientes.ListarPorCuil_Cuit();
 //    misClientes.ListarPorDNI();
 //    misClientes.ListarPorApellido();
 
-    Cliente* miCliente = misClientes["34"];
-
-    if(miCliente != nullptr) {
-        ClienteManager::ImprimirHeader();
-        ClienteManager::Splitter('=');
-        miCliente->Print();
-        ClienteManager::Splitter('=');
-    }
+//    Cliente* miCliente = misClientes["34"];
+//
+//    if(miCliente != nullptr) {
+//        miCliente->Print();
+//    }
 }
 
 void Testing::TipoResponsablePrueba() {

@@ -54,21 +54,27 @@
 		<Unit filename="src/controller/modals/modal.h" />
 		<Unit filename="src/controller/modals/warning.cpp" />
 		<Unit filename="src/controller/modals/warning.h" />
+		<Unit filename="src/controller/table/cell.cpp" />
+		<Unit filename="src/controller/table/cell.h" />
+		<Unit filename="src/controller/table/row.cpp" />
+		<Unit filename="src/controller/table/row.h" />
+		<Unit filename="src/controller/table/table.cpp" />
+		<Unit filename="src/controller/table/table.h" />
 		<Unit filename="src/controller/validation.cpp" />
 		<Unit filename="src/controller/validation.h" />
 		<Unit filename="src/file_manager/file_system.h" />
-		<Unit filename="src/main_classes/Fecha.cpp" />
-		<Unit filename="src/main_classes/Fecha.h" />
 		<Unit filename="src/main_classes/cliente.cpp" />
 		<Unit filename="src/main_classes/cliente.h" />
 		<Unit filename="src/main_classes/datos_personales.cpp" />
 		<Unit filename="src/main_classes/datos_personales.h" />
+		<Unit filename="src/main_classes/fecha.cpp" />
+		<Unit filename="src/main_classes/fecha.h" />
 		<Unit filename="src/main_classes/tipo_responsable.cpp" />
 		<Unit filename="src/main_classes/tipo_responsable.h" />
-		<Unit filename="src/manager/cliente_manager.cpp" />
-		<Unit filename="src/manager/cliente_manager.h" />
-		<Unit filename="src/manager/tiporesponsables_manager.cpp" />
-		<Unit filename="src/manager/tiporesponsables_manager.h" />
+		<Unit filename="src/manager/manager_cliente.cpp" />
+		<Unit filename="src/manager/manager_cliente.h" />
+		<Unit filename="src/manager/manager_tiporesponsables.cpp" />
+		<Unit filename="src/manager/manager_tiporesponsables.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

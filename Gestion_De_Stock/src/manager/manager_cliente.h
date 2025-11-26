@@ -1,11 +1,12 @@
 #ifndef CLIENTEMANAGER_H
 #define CLIENTEMANAGER_H
 
-#include "../main_classes/Cliente.h"
+#include "../main_classes/cliente.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 
 #include "../controller/modals.h"
+#include "../controller/table/table.h"
 
 using namespace std;
 
@@ -27,9 +28,7 @@ public:
     GenericArray<Cliente> BuscarPorNombreApellido(string nombre, string Apellido);
     GenericArray<Cliente> BuscarPorCorreo(string correo);
 
-    static void ImprimirHeader();
     static void Imprimir(GenericArray<Cliente>& clientes);
-    static void Splitter(char Separator = '-');
 };
 
 #endif // CLIENTEMANAGER_H

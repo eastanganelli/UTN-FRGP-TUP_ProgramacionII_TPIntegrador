@@ -8,8 +8,8 @@
 #include "src/controller/generic_array.h"
 #include "src/file_manager/file_system.h"
 
-#include "src/manager/cliente_manager.h"
-#include "src/manager/tiporesponsables_manager.h"
+#include "src/manager/manager_cliente.h"
+#include "src/manager/manager_tiporesponsables.h"
 
 using namespace std;
 

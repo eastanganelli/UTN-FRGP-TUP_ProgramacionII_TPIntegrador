@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "../../manager/tiporesponsables_manager.h"
+#include "../../manager/manager_tiporesponsables.h"
 
 namespace DataGenerator {
     struct DatosTipoResponsable {

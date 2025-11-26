@@ -2,7 +2,7 @@
 
 void DataGenerator::GenerateClients(unsigned int count) {
     srand(static_cast<unsigned int>(time(NULL)));
-    ClienteManager clientes("Clientes.dat");
+    ClienteManager clientes("clientes.dat");
 
     string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
                             "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
@@ -11,7 +11,7 @@ void DataGenerator::GenerateClients(unsigned int count) {
             calles[]    = {"Calle Falsa", "Avenida Siempreviva", "Boulevard Central", "Pasaje del Sol", "Camino Real",
                             "Paseo de las Flores", "Calle del Lago", "Avenida de la Libertad", "Callejón del Beso", "Paseo del Parque",
                             "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
-                            
+
     if(clientes.Count() == 0 || count > 0) {
         std::cout << "--- Datos de Clientes Generados ---" << std::endl;
         for (int i = 0; i < 10; ++i) {
@@ -29,10 +29,7 @@ void DataGenerator::GenerateClients(unsigned int count) {
             Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
             cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
 
-            ClienteManager::ImprimirHeader();
-            ClienteManager::Splitter('=');
             dataCliente.Print();
-            ClienteManager::Splitter('=');
         }
         std::cout << "\n-------------------------------------\n" << std::endl;
     }

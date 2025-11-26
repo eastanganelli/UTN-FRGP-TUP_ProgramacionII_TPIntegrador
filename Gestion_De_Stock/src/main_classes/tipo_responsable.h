@@ -29,6 +29,7 @@ public:
     string getCodigo() const;
     string getDescripcion() const;
     float getPorcentaje() const;
+    char getTipoFacturacion() const;
 
     static unsigned int GetCodigoLength();
     static unsigned int GetDescripcionLength();

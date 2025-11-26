@@ -111,6 +111,21 @@ namespace Validation {
      * @return true si las cadenas son iguales; false en caso contrario.
      */
     bool IsEqual(const char* str1, const char* str2);
+
+    /**
+     * @brief Convierte una cadena a mayúsculas.
+     * @param str Cadena a convertir.
+     * @return Cadena en mayúsculas.
+     */
+    string ToUpper(const string& str);
+
+    /**
+     * @brief Convierte un número flotante a una cadena con formato de punto decimal fijo.
+     * @param number Número a convertir.
+     * @param decimalPlaces Cantidad de decimales deseados.
+     * @return Cadena representando el número con el formato especificado.
+     */
+    string ToFixedDecimal(const float number, const unsigned int decimalPlaces);
 } // namespace Validation
 
 #endif // VALIDATION_H

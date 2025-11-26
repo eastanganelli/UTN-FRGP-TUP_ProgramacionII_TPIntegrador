@@ -84,4 +84,18 @@ namespace Validation {
         }
         return string(str1).find(string(str2)) != string::npos;
     }
+
+    string ToUpper(const string& str) {
+        string result = str;
+        for (char& c : result) {
+            c = toupper(c);
+        }
+        return result;
+    }
+
+    string ToFixedDecimal(float number, unsigned int precision) {
+        std::string num_text = std::to_string(number);
+        std::string rounded = num_text.substr(0, num_text.find(".") + precision + 1);
+        return rounded;
+    }
 }

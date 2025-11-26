@@ -19,9 +19,6 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count) {
         TipoResponsable nuevo_tipo(datos.codigo, datos.descripcion, datos.porcentaje, datos.tipoFacturacion);
         tipos_responsables.New(nuevo_tipo);
 
-        TipoResponsableManager::ImprimirHeader();
-        TipoResponsableManager::Splitter();
         nuevo_tipo.Print();
-        TipoResponsableManager::Splitter();
     }
 }

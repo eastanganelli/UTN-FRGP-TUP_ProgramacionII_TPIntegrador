@@ -1,4 +1,4 @@
-#include "cliente_manager.h"
+#include "manager_cliente.h"
 
 #include "../../rlutil.h"
 
@@ -192,29 +192,6 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
     return resultados;
 }
 
-void ClienteManager::Splitter(char Separator) {
-    const int totalWidth = Cliente::GetDniSize() + Cliente::GetNombreSize() + Cliente::GetApellidoSize() + Cliente::GetCuilCuitSize()
-                        + DatosPersonales::GetCorreoSize() + DatosPersonales::GetTelefonoSize() + DatosPersonales::GetCelularSize()
-                        + DatosPersonales::GetDireccionSize() + DatosPersonales::GetEstadoSize();
-    
-    for(int s = 0; s < totalWidth; s++)
-        putchar(Separator);
-
-    putchar('\n');
-}
-
-void ClienteManager::ImprimirHeader() {
-    rlutil::saveDefaultColor();
-    rlutil::setBackgroundColor(rlutil::BLUE);
-    rlutil::setColor(rlutil::WHITE);
-    printf("%-*s%-*s%-*s%-*s%-*s%-*s%-*s%-*s%-*s\n",
-            Cliente::GetDniSize(), "DNI", Cliente::GetApellidoSize(), "Apellido", Cliente::GetNombreSize(), "Nombre",
-            Cliente::GetCuilCuitSize(), "CUIL/CUIT", DatosPersonales::GetCorreoSize(),"Correo",
-            DatosPersonales::GetTelefonoSize(), "Telefono", DatosPersonales::GetCelularSize(), "Celular",
-            DatosPersonales::GetDireccionSize(), "Direccion", DatosPersonales::GetEstadoSize(), "Estado");
-    rlutil::resetColor();
-}
-
 void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
     if(clientes.Size() == 0) {
         Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
@@ -222,10 +199,34 @@ void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
         return;
     }
 
-    ClienteManager::ImprimirHeader();
-    ClienteManager::Splitter('=');
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        clientes[i]->Print();
+    const unsigned int altura = clientes.Size(),
+                        columnas = 9;
+    Tabling::Table mi_tabla(altura, columnas);
+
+    Tabling::Row* header = new Tabling::Row(9);
+    header->AddCell("DNI", Cliente::GetDniSize());
+    header->AddCell("Nombre", Cliente::GetNombreSize());
+    header->AddCell("Apellido", Cliente::GetApellidoSize());
+    header->AddCell("CUIL/CUIT", Cliente::GetCuilCuitSize());
+    header->AddCell("Direccion", DatosPersonales::GetDireccionSize());
+    header->AddCell("Correo", DatosPersonales::GetCorreoSize());
+    header->AddCell("Telefono", DatosPersonales::GetTelefonoSize());
+    header->AddCell("Celular", DatosPersonales::GetCelularSize());
+    header->AddCell("Estado", DatosPersonales::GetEstadoSize());
+    mi_tabla.AddRow(header);
+
+    for(unsigned int i = 0; i < altura; i++) {
+        Tabling::Row* row = new Tabling::Row(columnas);
+        row->AddCell(clientes[i]->getDNI(), Cliente::GetDniSize());
+        row->AddCell(clientes[i]->getNombre(), Cliente::GetNombreSize());
+        row->AddCell(clientes[i]->getApellido(), Cliente::GetApellidoSize());
+        row->AddCell(clientes[i]->getCuilCuit(), Cliente::GetCuilCuitSize());
+        row->AddCell(clientes[i]->getDireccion(), DatosPersonales::GetDireccionSize());
+        row->AddCell(clientes[i]->getCorreo(), DatosPersonales::GetCorreoSize());
+        row->AddCell(clientes[i]->getTelefono(), DatosPersonales::GetTelefonoSize());
+        row->AddCell(clientes[i]->getCelular(), DatosPersonales::GetCelularSize());
+        row->AddCell(clientes[i]->Estado(), DatosPersonales::GetEstadoSize());
+        mi_tabla.AddRow(row);
     }
-    ClienteManager::Splitter('=');
+    mi_tabla.Print();
 }

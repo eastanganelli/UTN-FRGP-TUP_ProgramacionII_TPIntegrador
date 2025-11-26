@@ -6,6 +6,7 @@
 #include "../file_manager/file_system.h"
 
 #include "../controller/modals.h"
+#include "../controller/table/table.h"
 
 using namespace std;
 

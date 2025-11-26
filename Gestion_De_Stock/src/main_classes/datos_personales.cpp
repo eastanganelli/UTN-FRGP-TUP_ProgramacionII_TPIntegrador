@@ -6,6 +6,7 @@ DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, 
     strcpy(this->correo, _correo.c_str());
     strcpy(this->telefono, _telefono.c_str());
     strcpy(this->celular, _celular.c_str());
+    this->codigoRazonSocial = 0;
 }
 
 DatosPersonales::~DatosPersonales() {

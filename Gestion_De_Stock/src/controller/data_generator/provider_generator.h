@@ -4,7 +4,7 @@
 
 using namespace std;
 #include "generator.h"
-#include "../../manager/proveedor_manager.h"
+#include "../../manager/manager_proveedor.h"
 
 namespace DataGenerator {
     struct DatosProveedor {
