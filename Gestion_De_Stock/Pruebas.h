@@ -4,58 +4,33 @@
 #include <ctime>
 #include <iostream>
 
-#include "src/ClientesManager.h"
-#include "src/ProveedoresManager.h"
-#include "src/ProductosManager.h"
-#include "src/VentasManager.h"
+#include "src/controller/modals.h"
+#include "src/controller/generic_array.h"
+#include "src/file_manager/file_system.h"
+
+#include "src/manager/manager_cliente.h"
+#include "src/manager/manager_tiporesponsables.h"
 
 using namespace std;
 
-void TestingCliente();
+namespace Testing {
+    void Modals();
+    void Array();
+    void File();
+    void ClientePrueba();
+    void TipoResponsablePrueba();
+}
 
-void TestingProveedores();
-
-void TestingProductos();
-
-void TestingVentas();
-
-void TestingAll();
-
-struct DatosCliente {
-    std::string nombre;
-    std::string apellido;
-    std::string DNI;
-    std::string cuilCuit;
-    std::string direccion;
-    std::string correo;
-    std::string telefono;
-    std::string celular;
-    unsigned int codigoRazonSocial;
-    bool alta;
-};
-
-struct DatosProveedor {
-    std::string cuit;
-    std::string nombreRazon;
-    unsigned int rubro;
-    std::string direccion;
-    std::string correo;
-    std::string telefono;
-    std::string celular;
-    unsigned int codigoRazonSocial;
-    bool alta;
-};
-
-struct DatosProducto {
-    std::string codigo;
-    std::string codigoProveedor;
-    std::string descripcion;
-    float precio;
-    unsigned int stock;
-};
-
-std::string generarCodigoAlfaNumerico(int longitud);
-
-void loadData();
+//void TestingCliente();
+//
+//void TestingProveedores();
+//
+//void TestingProductos();
+//
+//void TestingVentas();
+//
+//void TestingAll();
+//
+//void loadData();
 
 #endif // PRUEBAS_H

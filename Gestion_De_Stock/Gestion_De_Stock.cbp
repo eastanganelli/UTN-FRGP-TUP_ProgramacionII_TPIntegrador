@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/class_manager" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/class_manager" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,34 +38,51 @@
 		<Unit filename="Pruebas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h" />
-		<Unit filename="src/Cliente.cpp" />
-		<Unit filename="src/Cliente.h" />
-		<Unit filename="src/ClientesManager.cpp" />
-		<Unit filename="src/ClientesManager.h" />
-		<Unit filename="src/Comprobante.cpp" />
-		<Unit filename="src/Comprobante.h" />
-		<Unit filename="src/Configuracion.cpp" />
-		<Unit filename="src/Configuracion.h" />
-		<Unit filename="src/DatosPersonales.cpp" />
-		<Unit filename="src/DatosPersonales.h" />
-		<Unit filename="src/Factura.cpp" />
-		<Unit filename="src/Factura.h" />
-		<Unit filename="src/Fecha.cpp" />
-		<Unit filename="src/Fecha.h" />
-		<Unit filename="src/Menu.cpp" />
-		<Unit filename="src/Menu.h" />
-		<Unit filename="src/NotaDeCredito.cpp" />
-		<Unit filename="src/NotaDeCredito.h" />
-		<Unit filename="src/Producto.cpp" />
-		<Unit filename="src/Producto.h" />
-		<Unit filename="src/ProductosManager.cpp" />
-		<Unit filename="src/ProductosManager.h" />
-		<Unit filename="src/Proveedor.cpp" />
-		<Unit filename="src/Proveedor.h" />
-		<Unit filename="src/ProveedoresManager.cpp" />
-		<Unit filename="src/ProveedoresManager.h" />
-		<Unit filename="src/VentasManager.cpp" />
-		<Unit filename="src/VentasManager.h" />
+		<Unit filename="src/controller/data_generator/client_generator.cpp" />
+		<Unit filename="src/controller/data_generator/client_generator.h" />
+		<Unit filename="src/controller/data_generator/generator.cpp" />
+		<Unit filename="src/controller/data_generator/generator.h" />
+		<Unit filename="src/controller/data_generator/tiporesponsables_generator.cpp" />
+		<Unit filename="src/controller/data_generator/tiporesponsables_generator.h" />
+		<Unit filename="src/controller/generic_array.h" />
+		<Unit filename="src/controller/modals.h" />
+		<Unit filename="src/controller/modals/error.cpp" />
+		<Unit filename="src/controller/modals/error.h" />
+		<Unit filename="src/controller/modals/informational.cpp" />
+		<Unit filename="src/controller/modals/informational.h" />
+		<Unit filename="src/controller/modals/modal.cpp" />
+		<Unit filename="src/controller/modals/modal.h" />
+		<Unit filename="src/controller/modals/warning.cpp" />
+		<Unit filename="src/controller/modals/warning.h" />
+		<Unit filename="src/controller/table/cell.cpp" />
+		<Unit filename="src/controller/table/cell.h" />
+		<Unit filename="src/controller/table/row.cpp" />
+		<Unit filename="src/controller/table/row.h" />
+		<Unit filename="src/controller/table/table.cpp" />
+		<Unit filename="src/controller/table/table.h" />
+		<Unit filename="src/controller/validation.cpp" />
+		<Unit filename="src/controller/validation.h" />
+		<Unit filename="src/file_manager/file_system.h" />
+		<Unit filename="src/main_classes/cliente.cpp" />
+		<Unit filename="src/main_classes/cliente.h" />
+		<Unit filename="src/main_classes/datos_personales.cpp" />
+		<Unit filename="src/main_classes/datos_personales.h" />
+		<Unit filename="src/main_classes/fecha.cpp" />
+		<Unit filename="src/main_classes/fecha.h" />
+		<Unit filename="src/main_classes/producto.cpp" />
+		<Unit filename="src/main_classes/producto.h" />
+		<Unit filename="src/main_classes/proveedor.cpp" />
+		<Unit filename="src/main_classes/proveedor.h" />
+		<Unit filename="src/main_classes/tipo_responsable.cpp" />
+		<Unit filename="src/main_classes/tipo_responsable.h" />
+		<Unit filename="src/manager/manager_cliente.cpp" />
+		<Unit filename="src/manager/manager_cliente.h" />
+		<Unit filename="src/manager/manager_producto.cpp" />
+		<Unit filename="src/manager/manager_producto.h" />
+		<Unit filename="src/manager/manager_proveedor.cpp" />
+		<Unit filename="src/manager/manager_proveedor.h" />
+		<Unit filename="src/manager/manager_tiporesponsables.cpp" />
+		<Unit filename="src/manager/manager_tiporesponsables.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

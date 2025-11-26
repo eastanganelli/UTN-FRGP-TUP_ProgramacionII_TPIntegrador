@@ -1,15 +1,14 @@
-#ifndef CLIENTEMANAGER_H
-#define CLIENTEMANAGER_H
+#ifndef CLIENTES_H
+#define CLIENTES_H
 
 #include "Cliente.h"
 
 #include <cstdio>
 #include <string>
 
-
 using namespace std;
 
-class ClienteManager {
+class Clientes {
 private:
     string rutaArchivo;
 
@@ -20,8 +19,8 @@ private:
     int Posicion(string dni, unsigned int& posicion);
 
 public:
-    ClienteManager(string ruta);
-    ~ClienteManager();
+    Clientes(string ruta);
+    ~Clientes();
 
     bool Crear(Cliente& cliente);
     Cliente* Obtener(string dni);
@@ -40,4 +39,4 @@ public:
     unsigned int Contar();
 };
 
-#endif // CLIENTEMANAGER_H
+#endif // CLIENTES_H

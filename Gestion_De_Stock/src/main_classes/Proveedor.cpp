@@ -2,31 +2,24 @@
 
 Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, string _direccion, string _correo, string _telefono, string _celular, bool _alta)
     : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular) {
+    this->alta = _alta;
+    this->codigoRazonSocial = 0;
+    this->cuit[0] = '\0';
+    this->nombreRazon[0] = '\0';
     strcpy(this->cuit, _cuit.c_str());
     strcpy(this->nombreRazon, _nombreRazon.c_str());
     this->rubro = _rubro;
-    this->cuit[11] = '\0';
 }
 
-Proveedor::~Proveedor() {
+Proveedor::~Proveedor() { }
 
-}
+bool Proveedor::getAlta() { return this->alta; }
 
-bool Proveedor::getAlta() {
-    return this->alta;
-}
+string Proveedor::getCuit() { return string(this->cuit); }
 
-string Proveedor::getCuit() {
-    return string(this->cuit);
-}
+string Proveedor::getNombreRazon() { return this->nombreRazon; }
 
-string Proveedor::getNombreRazon() {
-    return this->nombreRazon;
-}
-
-unsigned int Proveedor::getRubro() {
-    return this->rubro;
-}
+unsigned int Proveedor::getRubro() {  return this->rubro; }
 
 string Proveedor::getRubroNombre() {
     switch(this->rubro) {
@@ -40,28 +33,39 @@ string Proveedor::getRubroNombre() {
         return "Automotor";
     case 5:
         return "Libreria";
-    case 6:
-        return "Indumentaria";
+    default:
+        break;
     }
+    return "Indumentaria";
 }
 
-void Proveedor::setAlta(bool alta) {
-    this->alta = alta;
+unsigned int Proveedor::GetCuitLength() { return Proveedor::CUIT_SIZE; }
+
+unsigned int Proveedor::GetNombreRazonLength() { return Proveedor::NOMBRE_RAZON_SIZE; }
+
+void Proveedor::setAlta(bool alta) { this->alta = alta; }
+
+void Proveedor::setRubro(unsigned int rubro) { this->rubro = rubro; }
+
+void Proveedor::setNombreRazon(string nombre) { strcpy(this->nombreRazon, nombre.c_str()); }
+
+bool Proveedor::operator==(const Proveedor& otro) {
+    return Validation::IsEqual(this->cuit, otro.cuit) && Validation::IsEqual(this->nombreRazon, otro.nombreRazon)
+        && this->rubro == otro.rubro && this->IsEqual(otro);
 }
 
-void Proveedor::setRubro(unsigned int rubro) {
-    this->rubro = rubro;
+bool Proveedor::IsEmpty() {
+    return Validation::IsEmpty(this->cuit) && Validation::IsEmpty(this->nombreRazon)
+        && this->rubro == 0 && this->DatosPersonales::IsEmpty();
 }
 
-void Proveedor::setNombreRazon(string nombre) {
-    strcpy(this->nombreRazon, nombre.c_str());
-}
-
-string Proveedor::toString() {
-    string estadoStr = this->alta ? "Activo" : "Inactivo";
-    return "CUIT: " + getCuit() + " | Nombre/Razon: " + getNombreRazon() + " | Rubro: " + getRubroNombre() +
-           " | Direccion: " + this->direccion + " | Correo: " + this->correo +
-           " | Telefono: " + this->telefono + " | Celular: " + this->celular +
-           " | Codigo Razon Social: " + to_string(this->codigoRazonSocial) +
-           " | Estado: " + estadoStr;
+void Proveedor::Print() {
+    cout << "CUIT: " + this->getCuit() +
+           " | Nombre/Razon: " + this->getNombreRazon() +
+           " | Rubro: " + this->getRubroNombre() +
+           " | Direccion: " + this->getDireccion() +
+           " | Correo: " + this->getCorreo() +
+           " | Telefono: " + this->getTelefono() +
+           " | Celular: " + this->getCelular() +
+           " | Estado: " + (this->getAlta() ? string("Activo") : string("Inactivo"));
 }

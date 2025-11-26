@@ -4,10 +4,6 @@
 #include <string>
 #include <iostream>
 
-#include "ClientesManager.h"
-#include "VentasManager.h"
-#include "ProveedoresManager.h"
-#include "ProductosManager.h"
 #include "../rlutil.h"
 
 class Menu {
@@ -37,7 +33,7 @@ private:
     int renderModelosExportarCSV(string ruta);
     void renderRecaudacionTrimestral(VentaManager& ventasManager);
     void renderRecaudacionAnual(VentaManager& ventasManager);
-    
+
 public:
     // Muestra el menu principal
     void mostrar();

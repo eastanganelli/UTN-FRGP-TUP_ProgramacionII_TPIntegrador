@@ -1,16 +1,20 @@
 #ifndef PROVEEDOR_H
 #define PROVEEDOR_H
 
-#include "DatosPersonales.h"
+#include <iostream>
 
-#include <cstring>
+#include "../controller/validation.h"
+#include "datos_personales.h"
 
 using namespace std;
 
 class Proveedor : public DatosPersonales {
 private:
-    char cuit[12];
-    char nombreRazon[35];
+    static const unsigned int CUIT_SIZE = 12;
+    static const unsigned int NOMBRE_RAZON_SIZE = 35;
+
+    char cuit[CUIT_SIZE];
+    char nombreRazon[NOMBRE_RAZON_SIZE];
     unsigned int rubro;
 
 public:
@@ -24,13 +28,18 @@ public:
     string getRubroNombre();
     string getNombreRazon();
 
+    static unsigned int GetCuitLength();
+    static unsigned int GetNombreRazonLength();
+
     // Setters
     void setAlta(bool alta);
     void setRubro(unsigned int rubro);
     void setNombreRazon(string nombre);
 
     // Metodos
-    string toString();
+    bool operator==(const Proveedor& otro);
+    bool IsEmpty();
+    void Print();
 };
 
 #endif // PROVEEDOR_H

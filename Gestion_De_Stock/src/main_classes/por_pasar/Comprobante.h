@@ -7,6 +7,7 @@
 
 #include <string>
 #include <cstring>
+#include "Item.h"
 
 using namespace std;
 
@@ -17,6 +18,8 @@ private:
     float monto;
     unsigned int cantidadItems;
     Fecha fechaEmision;
+
+    Item items[ITEMS_MAX];
 
     void CargarFecha();
 
@@ -43,6 +46,12 @@ public:
 
     // Métodos
     void mostrar();
+    // Items
+    bool AddItem(const Item& it); // false if duplicate or full
+    bool RemoveItem(const char* codigo);
+    unsigned int GetItemsCount();
+    const Item* GetItem(unsigned int index) const;
+    void ClearItems();
 };
 
 #endif // COMPROBANTE_H
