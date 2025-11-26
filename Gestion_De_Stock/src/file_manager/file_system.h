@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "../controller/modals.h"
+
 using namespace std;
 
 template <typename T>
@@ -10,7 +12,7 @@ class FileSystem {
 private:
     /** @brief Ruta del archivo que gestiona este FileSystem. */
     const string filePath;
-    
+
 protected:
     /**
      * @brief Verifica si un registro existe en el almacenamiento.
@@ -122,7 +124,8 @@ template <typename T>
 unsigned int FileSystem<T>::Count() {
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Conteo de Registros", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return 0;
     }
     unsigned int count = 0;
@@ -138,7 +141,8 @@ template <typename T>
 bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Busqueda de Registro", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return false;
     }
     bool found = false;
@@ -165,11 +169,13 @@ template <typename T>
 bool FileSystem<T>::New(T& record) {
     FILE* file = fopen(this->filePath.c_str(), "ab");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Creacion de Registro", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return false;
     }
     if(Exist(record)) {
-        cerr << "Error: El registro ya existe en el archivo " << this->filePath << endl;
+        Warning mi_warning("Creacion de Registro", "El registro ya existe en el archivo " + this->filePath + ".");
+        mi_warning.Show();
         fclose(file);
         return false;
     }
@@ -182,7 +188,8 @@ template <typename T>
 T* FileSystem<T>::At(unsigned int index) {
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Lectura de Registro", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return nullptr;
     }
     fseek(file, sizeof(T) * index, SEEK_SET);
@@ -191,7 +198,8 @@ T* FileSystem<T>::At(unsigned int index) {
     fclose(file);
     if(!result) {
         delete record;
-        cerr << "Error: No se pudo reservar memoria para el registro" << endl;
+        Warning mi_warning("Lectura de Registro", "No se pudo leer el registro en la posicion " + to_string(index) + " del archivo " + this->filePath + ".");
+        mi_warning.Show();
         return nullptr;
     }
     return record;
@@ -201,7 +209,8 @@ template <typename T>
 bool FileSystem<T>::Update(unsigned int index, T& record) {
     FILE* file = fopen(this->filePath.c_str(), "r+b");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Actualizacion de Registro", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return false;
     }
     fseek(file, sizeof(T) * index, SEEK_SET);
@@ -213,17 +222,20 @@ bool FileSystem<T>::Update(unsigned int index, T& record) {
 template <typename T>
 bool FileSystem<T>::Delete(unsigned int index) {
     if(index >= this->Count()) {
-        cerr << "Error: Posicion a eliminar incorrecta o no existe" << endl;
+        Warning mi_warning("Eliminacion de Registro", "No se puede eliminar el registro en la posicion " + to_string(index) + " porque es incorrecta o no existe.");
+        mi_warning.Show();
         return false;
     }
     FILE* file = fopen(this->filePath.c_str(), "rb");
     if(file == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Eliminacion de Registro", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return false;
     }
     FILE* tempFile = fopen("temp.dat", "wb");
     if(tempFile == nullptr) {
-        cerr << "Error: No se pudo crear el archivo temporal" << endl;
+        Error mi_error("Eliminacion de Registro", "No se pudo crear el archivo temporal para la eliminacion.");
+        mi_error.Show();
         fclose(file);
         return false;
     }
@@ -246,12 +258,14 @@ template <typename T>
 bool FileSystem<T>::Backup(const string& backupFilePath) {
     FILE* sourceFile = fopen(this->filePath.c_str(), "rb");
     if(sourceFile == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Copia de Seguridad", "No se pudo abrir el archivo " + this->filePath + ".");
+        mi_error.Show();
         return false;
     }
     FILE* destFile = fopen(backupFilePath.c_str(), "wb");
     if(destFile == nullptr) {
-        cerr << "Error: No se pudo crear el archivo de respaldo " << backupFilePath << endl;
+        Error mi_error("Copia de Seguridad", "No se pudo crear el archivo de respaldo " + backupFilePath + ".");
+        mi_error.Show();
         fclose(sourceFile);
         return false;
     }
@@ -268,12 +282,14 @@ template <typename T>
 bool FileSystem<T>::Restore(const string& backupFilePath) {
     FILE* backupFile = fopen(backupFilePath.c_str(), "rb");
     if(backupFile == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo de respaldo " << backupFilePath << endl;
+        Error mi_error("Restauracion desde Respaldo", "No se pudo abrir el archivo de respaldo " + backupFilePath + ".");
+        mi_error.Show();
         return false;
     }
     FILE* destFile = fopen(this->filePath.c_str(), "wb");
     if(destFile == nullptr) {
-        cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        Error mi_error("Restauracion desde Respaldo", "No se pudo abrir el archivo " + this->filePath + " para restauracion.");
+        mi_error.Show();
         fclose(backupFile);
         return false;
     }

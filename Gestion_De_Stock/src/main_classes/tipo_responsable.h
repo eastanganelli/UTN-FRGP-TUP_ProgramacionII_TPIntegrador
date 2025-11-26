@@ -4,6 +4,8 @@
 #include <string>
 #include <cstring>
 
+#include "../controller/validation.h"
+
 using namespace std;
 
 class TipoResponsable {

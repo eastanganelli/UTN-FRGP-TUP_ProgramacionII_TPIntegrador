@@ -20,7 +20,7 @@ int main() {
 //    Testing::Modals();
 //    Testing::ClientePrueba();
 
-    DataGenerator::GenerateTipoResponsable();
+//    DataGenerator::GenerateTipoResponsable();
 
     return 0;
 }
