@@ -40,15 +40,17 @@ unsigned int TipoResponsable::GetTipoFacturacionLength() {
 }
 
 bool TipoResponsable::operator==(const TipoResponsable& otra) const {
-    return this->codigo == otra.codigo &&
-           strcmp(this->descripcion, otra.descripcion) == 0 &&
-           this->porcentaje == otra.porcentaje;
+    return string(this->codigo).find(otra.codigo) != string::npos &&
+           string(this->descripcion).find(otra.descripcion) != string::npos &&
+           this->porcentaje == otra.porcentaje &&
+           this->tipoFacturacion == otra.tipoFacturacion;
 }
 
 bool TipoResponsable::IsEmpty() const {
-    return this->codigo == 0 &&
-           strlen(this->descripcion) == 0 &&
-           this->porcentaje == -1.0f;
+    return string(this->codigo).empty() &&
+           string(this->descripcion).empty() &&
+           this->porcentaje == -1.0f &&
+           this->tipoFacturacion == '\0';
 }
 
 void TipoResponsable::Print() {

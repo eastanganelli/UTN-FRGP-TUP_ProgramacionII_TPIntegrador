@@ -10,6 +10,14 @@ class FileSystem {
 private:
     /** @brief Ruta del archivo que gestiona este FileSystem. */
     const string filePath;
+    
+protected:
+    /**
+     * @brief Verifica si un registro existe en el almacenamiento.
+     * @param record Referencia al registro a verificar.
+     * @return true si el registro existe; false en caso contrario.
+     */
+    bool Exist(T& record);
 
 public:
     /**
@@ -94,8 +102,20 @@ FileSystem<T>::FileSystem(const string& _filePath) : filePath(_filePath) {
 }
 
 template <typename T>
-FileSystem<T>::~FileSystem() {
+FileSystem<T>::~FileSystem() { }
 
+template <typename T>
+bool FileSystem<T>::Exist(T& record) {
+    const unsigned int cout_ = this->Count();
+    unsigned int i = 0;
+    while(i < cout_) {
+        T* aux = this->At(i);
+        if(*aux == record) {
+            return true;
+        }
+        i++;
+    }
+    return false;
 }
 
 template <typename T>
@@ -146,6 +166,11 @@ bool FileSystem<T>::New(T& record) {
     FILE* file = fopen(this->filePath.c_str(), "ab");
     if(file == nullptr) {
         cerr << "Error: No se pudo abrir el archivo " << this->filePath << endl;
+        return false;
+    }
+    if(Exist(record)) {
+        cerr << "Error: El registro ya existe en el archivo " << this->filePath << endl;
+        fclose(file);
         return false;
     }
     bool result = fwrite(&record, sizeof(T), 1, file);

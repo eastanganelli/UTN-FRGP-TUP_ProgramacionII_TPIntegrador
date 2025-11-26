@@ -21,19 +21,6 @@ GenericArray<Cliente> ClienteManager::Listar() {
     return clientes;
 }
 
-bool ClienteManager::Existe(Cliente& cliente) {
-    const unsigned int cantidad = this->Count();
-    unsigned int i = 0;
-    while(i < cantidad) {
-        Cliente* aux = this->At(i);
-        if(*aux == cliente) {
-            return true;
-        }
-        i++;
-    }
-    return false;
-}
-
 unsigned int ClienteManager::Cantidad() {
     return this->Count();
 }

@@ -473,7 +473,7 @@
 	"validation.h"
 	<cctype>
 
-1763785846 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
+1764122126 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
 	<string>
 
 1763529317 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.cpp
@@ -488,7 +488,7 @@
 1763530727 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.cpp
 	"generic_array.h"
 
-1763686690 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\file_manager\file_system.h
+1764120744 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\file_manager\file_system.h
 	<iostream>
 
 1763739991 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\cliente_manager.cpp
@@ -569,11 +569,11 @@
 	"DatosPersonales.h"
 	<cstring>
 
-1764046648 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
+1764120720 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.cpp
 	"cliente_manager.h"
 	"../../rlutil.h"
 
-1764046644 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.h
+1764120715 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\cliente_manager.h
 	"../main_classes/Cliente.h"
 	"../controller/generic_array.h"
 	"../file_manager/file_system.h"
@@ -661,11 +661,11 @@
 	"../file_manager/file_system.h"
 	"../controller/modals.h"
 
-1764109069 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.h
+1764120528 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.h
 	<string>
 	<cstring>
 
-1764119932 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.cpp
+1764120840 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.cpp
 	"tipo_responsable.h"
 	<cctype>
 

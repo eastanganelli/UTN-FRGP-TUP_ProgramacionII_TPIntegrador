@@ -13,7 +13,6 @@ class ClienteManager : public FileSystem<Cliente> {
 private:
     // const CondicionIVAManager* condicionesIVA;
     GenericArray<Cliente> Listar();
-    bool Existe(Cliente& cliente);
 
 public:
     ClienteManager(const string& clientePath = "clientes.dat");

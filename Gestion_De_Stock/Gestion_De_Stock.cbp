@@ -38,7 +38,14 @@
 		<Unit filename="Pruebas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h" />
+		<Unit filename="src/controller/data_generator/client_generator.cpp" />
+		<Unit filename="src/controller/data_generator/client_generator.h" />
+		<Unit filename="src/controller/data_generator/generator.cpp" />
+		<Unit filename="src/controller/data_generator/generator.h" />
+		<Unit filename="src/controller/data_generator/tiporesponsables_generator.cpp" />
+		<Unit filename="src/controller/data_generator/tiporesponsables_generator.h" />
 		<Unit filename="src/controller/generic_array.h" />
+		<Unit filename="src/controller/modals.h" />
 		<Unit filename="src/controller/modals/error.cpp" />
 		<Unit filename="src/controller/modals/error.h" />
 		<Unit filename="src/controller/modals/informational.cpp" />
@@ -54,10 +61,10 @@
 		<Unit filename="src/main_classes/Fecha.h" />
 		<Unit filename="src/main_classes/cliente.cpp" />
 		<Unit filename="src/main_classes/cliente.h" />
-		<Unit filename="src/main_classes/condicion_iva.cpp" />
-		<Unit filename="src/main_classes/condicion_iva.h" />
 		<Unit filename="src/main_classes/datos_personales.cpp" />
 		<Unit filename="src/main_classes/datos_personales.h" />
+		<Unit filename="src/main_classes/tipo_responsable.cpp" />
+		<Unit filename="src/main_classes/tipo_responsable.h" />
 		<Unit filename="src/manager/cliente_manager.cpp" />
 		<Unit filename="src/manager/cliente_manager.h" />
 		<Unit filename="src/manager/tiporesponsables_manager.cpp" />

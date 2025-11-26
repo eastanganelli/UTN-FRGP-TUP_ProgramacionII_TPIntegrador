@@ -20,67 +20,34 @@ bool DatosPersonales::IsEmpty() {
         && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular);
 }
 
-bool DatosPersonales::getAlta() {
-    return this->alta;
-}
+bool DatosPersonales::getAlta() { return this->alta; }
 
-string DatosPersonales::Estado() {
-    return (this->alta ? "Alta" : "Baja");
-}
+string DatosPersonales::Estado() { return (this->alta ? "Alta" : "Baja"); }
 
-string DatosPersonales::getCorreo() {
-    return string(this->correo);
-}
+string DatosPersonales::getCorreo() { return string(this->correo); }
 
-string DatosPersonales::getDireccion() {
-    return string(this->direccion);
-}
+string DatosPersonales::getDireccion() { return string(this->direccion); }
 
-string DatosPersonales::getTelefono() {
-    return string(this->telefono);
-}
+string DatosPersonales::getTelefono() { return string(this->telefono); }
 
-string DatosPersonales::getCelular() {
-    return string(this->celular);
-}
+string DatosPersonales::getCelular() { return string(this->celular); }
 
-unsigned int DatosPersonales::GetCorreoSize() {
-    return CORREO_SIZE;
-}
+unsigned int DatosPersonales::GetCorreoSize() { return CORREO_SIZE; }
 
-unsigned int DatosPersonales::GetDireccionSize() {
-    return DIRECCION_SIZE;
-}
+unsigned int DatosPersonales::GetDireccionSize() { return DIRECCION_SIZE; }
 
-unsigned int DatosPersonales::GetTelefonoSize() {
-    return TELEFONO_SIZE;
-}
+unsigned int DatosPersonales::GetTelefonoSize() { return TELEFONO_SIZE; }
 
-unsigned int DatosPersonales::GetCelularSize() {
-    return CELULAR_SIZE;
-}
+unsigned int DatosPersonales::GetCelularSize() { return CELULAR_SIZE; }
 
-unsigned int DatosPersonales::GetEstadoSize() {
-    return ESTADO_SIZE;
-}
+unsigned int DatosPersonales::GetEstadoSize() { return ESTADO_SIZE; }
 
-void DatosPersonales::setAlta(bool a) {
-    this->alta = a;
-}
+void DatosPersonales::setAlta(bool a) { this->alta = a; }
 
-void DatosPersonales::setCorreo(const string& c) {
-    strcpy(this->correo, c.c_str());
-}
+void DatosPersonales::setCorreo(const string& c) { strcpy(this->correo, c.c_str()); }
 
-void DatosPersonales::setDireccion(const string& d) {
-    strcpy(this->direccion, d.c_str());
-}
+void DatosPersonales::setDireccion(const string& d) { strcpy(this->direccion, d.c_str()); }
 
-void DatosPersonales::setTelefono(const string& t) {
-    strcpy(this->telefono, t.c_str());
-}
+void DatosPersonales::setTelefono(const string& t) { strcpy(this->telefono, t.c_str()); }
 
-void DatosPersonales::setCelular(const string& c) {
-    strcpy(this->celular, c.c_str());
-}
-
+void DatosPersonales::setCelular(const string& c) { strcpy(this->celular, c.c_str()); }

@@ -8,6 +8,40 @@ using namespace std;
 namespace Validation {
 
     /**
+     * Helpers (comprobaciones carácter a carácter).
+     * Sólo se declaran aquí; las implementaciones pueden permanecer
+     * en el .cpp para mantenerlas con enlace interno si se desea.
+     */
+    /**
+     * @brief Comprueba si un carácter es un espacio en blanco (espacio, tab, newline, etc.).
+     * @param c Carácter a evaluar.
+     * @return true si es un carácter de espacio; false en caso contrario.
+     */
+    bool IsSpaceChar(char c);
+
+    /**
+     * @brief Comprueba si un carácter es un dígito ASCII ('0'..'9').
+     * @param c Carácter a evaluar.
+     * @return true si es un dígito; false en caso contrario.
+     */
+    bool IsDigitChar(char c);
+
+    /**
+     * @brief Comprueba si un carácter es alfabético ASCII (A-Z, a-z).
+     * @param c Carácter a evaluar.
+     * @return true si es letra; false en caso contrario.
+     */
+    bool IsAlphaChar(char c);
+
+    /**
+     * @brief Comprueba si un carácter es alfanumérico ASCII (letra o dígito).
+     * @param c Carácter a evaluar.
+     * @return true si es letra o dígito; false en caso contrario.
+     */
+    bool IsAlnumChar(char c);
+
+
+    /**
      * @brief Verifica si un número es positivo (> 0).
      * @tparam T Tipo numérico (int, float, double, etc.).
      * @param number Valor a evaluar.
