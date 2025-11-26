@@ -2,10 +2,13 @@
 
 Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, string _direccion, string _correo, string _telefono, string _celular, bool _alta)
     : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular) {
+    this->alta = _alta;
+    this->codigoRazonSocial = 0;
+    this->cuit = {'\0'};
+    this->nombreRazon = {'\0'};
     strcpy(this->cuit, _cuit.c_str());
     strcpy(this->nombreRazon, _nombreRazon.c_str());
     this->rubro = _rubro;
-    this->cuit[11] = '\0';
 }
 
 Proveedor::~Proveedor() {
@@ -45,17 +48,16 @@ string Proveedor::getRubroNombre() {
     }
 }
 
-void Proveedor::setAlta(bool alta) {
-    this->alta = alta;
-}
+unsigned int Proveedor::GetCuitLength() { return Proveedor::CUIT_SIZE; }
+
+unsigned int Proveedor::GetNombreRazonLength() { return Proveedor::NOMBRE_RAZON_SIZE; }
+
+void Proveedor::setAlta(bool alta) { this->alta = alta; }
 
 void Proveedor::setRubro(unsigned int rubro) {
-    this->rubro = rubro;
-}
+ this->rubro = rubro; }
 
-void Proveedor::setNombreRazon(string nombre) {
-    strcpy(this->nombreRazon, nombre.c_str());
-}
+void Proveedor::setNombreRazon(string nombre) { strcpy(this->nombreRazon, nombre.c_str()); }
 
 string Proveedor::toString() {
     string estadoStr = this->alta ? "Activo" : "Inactivo";

@@ -9,8 +9,11 @@ using namespace std;
 
 class Proveedor : public DatosPersonales {
 private:
-    char cuit[12];
-    char nombreRazon[35];
+    static const unsigned int CUIT_SIZE = 12;
+    static const unsigned int NOMBRE_RAZON_SIZE = 35;
+
+    char cuit[CUIT_SIZE];
+    char nombreRazon[NOMBRE_RAZON_SIZE];
     unsigned int rubro;
 
 public:
@@ -23,6 +26,9 @@ public:
     unsigned int getRubro();
     string getRubroNombre();
     string getNombreRazon();
+
+    static unsigned int GetCuitLength();
+    static unsigned int GetNombreRazonLength();
 
     // Setters
     void setAlta(bool alta);
