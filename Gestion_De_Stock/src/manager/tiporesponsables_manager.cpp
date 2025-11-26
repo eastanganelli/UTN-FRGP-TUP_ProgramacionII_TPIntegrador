@@ -137,9 +137,9 @@ void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& condicion_i
 
 void TipoResponsableManager::Splitter(char Separator) {
     const unsigned int totalLength = TipoResponsable::GetCodigoLength() +
-                                        TipoResponsable::GetDescripcionLength() +
-                                        TipoResponsable::GetPorcentajeLength() +
-                                        TipoResponsable::GetTipoFacturacionLength();
+                                    TipoResponsable::GetDescripcionLength() +
+                                    TipoResponsable::GetPorcentajeLength() +
+                                    TipoResponsable::GetTipoFacturacionLength();
     for(unsigned int i = 0; i < totalLength; i++) {
         printf("%c", Separator);
     }

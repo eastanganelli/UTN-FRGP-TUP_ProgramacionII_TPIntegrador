@@ -11,7 +11,6 @@ using namespace std;
 
 class ClienteManager : public FileSystem<Cliente> {
 private:
-    // const CondicionIVAManager* condicionesIVA;
     GenericArray<Cliente> Listar();
 
 public:
