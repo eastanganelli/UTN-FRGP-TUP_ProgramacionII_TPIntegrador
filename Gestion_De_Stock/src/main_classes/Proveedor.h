@@ -1,9 +1,10 @@
 #ifndef PROVEEDOR_H
 #define PROVEEDOR_H
 
-#include "DatosPersonales.h"
+#include <iostream>
 
-#include <cstring>
+#include "../controller/validation.h"
+#include "datos_personales.h"
 
 using namespace std;
 
@@ -36,7 +37,9 @@ public:
     void setNombreRazon(string nombre);
 
     // Metodos
-    string toString();
+    bool operator==(const Proveedor& otro);
+    bool IsEmpty();
+    void Print();
 };
 
 #endif // PROVEEDOR_H

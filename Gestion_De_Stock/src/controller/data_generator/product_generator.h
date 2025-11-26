@@ -5,7 +5,8 @@
 using namespace std;
 
 #include "generator.h"
-#include "../../../manager/manager_producto.h"
+#include "../../manager/manager_proveedor.h"
+#include "../../manager/manager_producto.h"
 
 namespace DataGenerator {
     struct DatosProducto {
@@ -15,5 +16,5 @@ namespace DataGenerator {
         float precio;
         unsigned int stock;
     };
-    void GenerateProduct(unsigned int count = 0);
+    void GenerateProduct(unsigned int count = 30);
 }

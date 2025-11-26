@@ -1,6 +1,7 @@
 #ifndef PRODUCTOMANAGER_H
 #define PRODUCTOMANAGER_H
 
+#include "../../rlutil.h"
 #include "../main_classes/producto.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
@@ -18,7 +19,6 @@ public:
     ProductoManager(const string& productoPath = "productos.dat");
     ~ProductoManager();
 
-    unsigned int Cantidad();
     bool Modificar(string codigo, Producto* producto);
 
     void ListarPorCodigo();

@@ -25,6 +25,7 @@ protected:
     unsigned int codigoRazonSocial;
 
     DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "");
+    bool IsEqual(const DatosPersonales& otro);
     bool IsEmpty();
 
 public:

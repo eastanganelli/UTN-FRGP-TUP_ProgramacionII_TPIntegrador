@@ -1,8 +1,5 @@
 #include "manager_proveedor.h"
 
-#include <ctime>
-#include <iomanip>
-
 static const string RUBROS[] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
 
 ProveedorManager::ProveedorManager(const string& proveedorPath)
@@ -19,10 +16,6 @@ GenericArray<Proveedor> ProveedorManager::Listar() {
         delete aux;
     }
     return proveedores;
-}
-
-unsigned int ProveedorManager::Cantidad() {
-    return this->Count();
 }
 
 bool ProveedorManager::Modificar(string cuit, Proveedor* proveedor) {

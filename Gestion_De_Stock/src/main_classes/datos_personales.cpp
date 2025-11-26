@@ -16,6 +16,12 @@ DatosPersonales::~DatosPersonales() {
     this->direccion[0] = '\0';
 }
 
+bool DatosPersonales::IsEqual(const DatosPersonales& otro) {
+    return Validation::IsEqual(this->correo, otro.correo) && Validation::IsEqual(this->direccion, otro.direccion)
+        && Validation::IsEqual(this->telefono, otro.telefono) && Validation::IsEqual(this->celular, otro.celular)
+        && this->alta == otro.alta;
+}
+
 bool DatosPersonales::IsEmpty() {
     return Validation::IsEmpty(this->correo) && Validation::IsEmpty(this->direccion)
         && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular);

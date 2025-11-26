@@ -41,17 +41,13 @@ void Cliente::setCuilCuit(const string& c) { strcpy(this->cuilCuit, c.c_str()); 
 bool Cliente::operator==(Cliente& cliente) {
     return Validation::IsEqual(this->DNI, cliente.DNI)           && Validation::IsEqual(this->cuilCuit, cliente.cuilCuit)
         && Validation::IsEqual(this->apellido, cliente.apellido) && Validation::IsEqual(this->nombre, cliente.nombre)
-        && Validation::IsEqual(this->correo, cliente.correo)     && Validation::IsEqual(this->direccion,cliente.direccion)
-        && Validation::IsEqual(this->celular, cliente.celular)   && Validation::IsEqual(this->telefono, cliente.telefono)
-        && this->codigoRazonSocial == cliente.codigoRazonSocial && this->alta == cliente.alta;
+        && this->IsEqual(cliente);
 }
 
 bool Cliente::IsEmpty() {
     return Validation::IsEmpty(this->DNI) && Validation::IsEmpty(this->nombre)
         && Validation::IsEmpty(this->apellido) && Validation::IsEmpty(this->cuilCuit)
-        && Validation::IsEmpty(this->correo) && Validation::IsEmpty(this->direccion)
-        && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular)
-        && this->codigoRazonSocial == 0 && this->alta == false;
+        && this->DatosPersonales::IsEmpty();
 }
 
 void Cliente::Print() {

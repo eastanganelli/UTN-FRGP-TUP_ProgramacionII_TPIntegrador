@@ -1,5 +1,4 @@
 #include "manager_tiporesponsables.h"
-#include <iomanip>
 
 TipoResponsableManager::TipoResponsableManager(const string& condicion_ivaPath)
     : FileSystem<TipoResponsable>(condicion_ivaPath) { }

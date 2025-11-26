@@ -3,6 +3,9 @@
 
 #include <string>
 #include <cstring>
+#include <iostream>
+
+#include "../controller/validation.h"
 
 using namespace std;
 
@@ -48,7 +51,7 @@ public:
     // Métodos
     bool operator==(const Producto& otro);
     bool IsEmpty();
-    string Print();
+    void Print();
 };
 
 #endif // PRODUCTO_H

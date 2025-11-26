@@ -1,6 +1,7 @@
 #ifndef TIPORESPONSABLEMANAGER_H
 #define TIPORESPONSABLEMANAGER_H
 
+#include "../../rlutil.h"
 #include "../main_classes/tipo_responsable.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
@@ -25,9 +26,7 @@ public:
     TipoResponsable* operator[](unsigned int codigo);
     GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
 
-    static void ImprimirHeader();
     static void Imprimir(GenericArray<TipoResponsable>& condicion_ivas);
-    static void Splitter(char Separator = '-');
 };
 
 #endif // TIPORESPONSABLEMANAGER_H

@@ -19,5 +19,5 @@ namespace DataGenerator {
         unsigned int codigoRazonSocial;
         bool alta;
     };
-    void GenerateClients(unsigned int count = 0);
+    void GenerateClients(unsigned int count = 15);
 }

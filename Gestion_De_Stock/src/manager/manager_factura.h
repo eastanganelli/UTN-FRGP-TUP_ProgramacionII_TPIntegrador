@@ -1,6 +1,7 @@
 #ifndef FACTURAMANAGER_H
 #define FACTURAMANAGER_H
 
+#include "../../rlutil.h"
 #include "../main_classes/por_pasar/Factura.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"

@@ -1,6 +1,7 @@
 #ifndef PROVEEDORMANAGER_H
 #define PROVEEDORMANAGER_H
 
+#include "../../rlutil.h"
 #include "../main_classes/proveedor.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
@@ -18,7 +19,6 @@ public:
     ProveedorManager(const string& proveedorPath = "proveedores.dat");
     ~ProveedorManager();
 
-    unsigned int Cantidad();
     bool Modificar(string cuit, Proveedor* proveedor);
 
     Proveedor* SeleccionarRandom();

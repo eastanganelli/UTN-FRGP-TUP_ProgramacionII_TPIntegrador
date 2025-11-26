@@ -12,7 +12,7 @@ void DataGenerator::GenerateClients(unsigned int count) {
                             "Paseo de las Flores", "Calle del Lago", "Avenida de la Libertad", "Callejón del Beso", "Paseo del Parque",
                             "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
 
-    if(clientes.Count() == 0 || count > 0) {
+    if(clientes.Count() == 0) {
         std::cout << "--- Datos de Clientes Generados ---" << std::endl;
         for (int i = 0; i < 10; ++i) {
             DataGenerator::DatosCliente dc;

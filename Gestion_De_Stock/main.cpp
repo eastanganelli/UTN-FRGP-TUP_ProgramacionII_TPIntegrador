@@ -1,8 +1,10 @@
 #include <ctime>
 
 #include "Pruebas.h"
-#include "src/controller/data_generator/tiporesponsables_generator.h"
 #include "src/controller/data_generator/client_generator.h"
+#include "src/controller/data_generator/tiporesponsables_generator.h"
+#include "src/controller/data_generator/provider_generator.h"
+#include "src/controller/data_generator/product_generator.h"
 //#include "src/Menu.h"
 
 //https://pastebin.com/J4hm7rb5
@@ -22,10 +24,12 @@ int main() {
 //    DataGenerator::GenerateClients(15);
 //    rlutil::anykey();
 //    rlutil::cls();
-    Testing::ClientePrueba();
+//    Testing::ClientePrueba();
 //    Testing::TipoResponsablePrueba();
 
 //    DataGenerator::GenerateTipoResponsable();
+    DataGenerator::GenerateProviders();
+    DataGenerator::GenerateProduct();
 
     return 0;
 }

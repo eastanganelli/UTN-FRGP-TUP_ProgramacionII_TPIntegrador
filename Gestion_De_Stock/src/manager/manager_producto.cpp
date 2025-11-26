@@ -1,7 +1,5 @@
 #include "manager_producto.h"
 
-#include <iomanip>
-
 ProductoManager::ProductoManager(const string& productoPath)
     : FileSystem<Producto>(productoPath) { }
 
@@ -16,10 +14,6 @@ GenericArray<Producto> ProductoManager::Listar() {
         delete aux;
     }
     return productos;
-}
-
-unsigned int ProductoManager::Cantidad() {
-    return this->Count();
 }
 
 bool ProductoManager::Modificar(string codigo, Producto* producto) {

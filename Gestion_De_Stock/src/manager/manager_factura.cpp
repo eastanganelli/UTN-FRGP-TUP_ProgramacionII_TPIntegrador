@@ -1,7 +1,5 @@
 #include "manager_factura.h"
 
-#include <iomanip>
-
 FacturaManager::FacturaManager(const string& facturaPath)
     : FileSystem<Factura>(facturaPath) { }
 
@@ -130,7 +128,7 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         row->AddCell(to_string(facturas[i]->getNumero()), 6);
         row->AddCell(facturas[i]->getClienteDNI(), 9);
         row->AddCell(facturas[i]->getFechaEmision().toString(), 12);
-        row->AddCell(to_string(facturas[i]->Total()), 10);
+        // row->AddCell(to_string(facturas[i]->Total()), 10);
         row->AddCell(to_string(facturas[i]->GetItemsCount()), 6);
         // Factura-specific fields: dynamic cast
         Factura* f = facturas[i];
@@ -140,15 +138,15 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
     }
     mi_tabla.Print();
 
-    // Additionally, print items per factura for clarity
-    for(unsigned int i = 0; i < altura; i++) {
-        Factura* f = facturas[i];
-        if(f->GetItemsCount() > 0) {
-            cout << "\nItems de Factura " << f->getNumero() << ":\n";
-            for(unsigned int j = 0; j < f->GetItemsCount(); j++) {
-                const Item* it = f->GetItem(j);
-                if(it != nullptr) cout << "  - " << it->toString() << "\n";
-            }
-        }
-    }
+    // // Additionally, print items per factura for clarity
+    // for(unsigned int i = 0; i < altura; i++) {
+    //     Factura* f = facturas[i];
+    //     if(f->GetItemsCount() > 0) {
+    //         cout << "\nItems de Factura " << f->getNumero() << ":\n";
+    //         for(unsigned int j = 0; j < f->GetItemsCount(); j++) {
+    //             const Item* it = f->GetItem(j);
+    //             if(it != nullptr) cout << "  - " << it->toString() << "\n";
+    //         }
+    //     }
+    // }
 }

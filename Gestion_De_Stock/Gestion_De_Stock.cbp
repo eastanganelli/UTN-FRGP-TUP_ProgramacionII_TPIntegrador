@@ -69,10 +69,18 @@
 		<Unit filename="src/main_classes/datos_personales.h" />
 		<Unit filename="src/main_classes/fecha.cpp" />
 		<Unit filename="src/main_classes/fecha.h" />
+		<Unit filename="src/main_classes/producto.cpp" />
+		<Unit filename="src/main_classes/producto.h" />
+		<Unit filename="src/main_classes/proveedor.cpp" />
+		<Unit filename="src/main_classes/proveedor.h" />
 		<Unit filename="src/main_classes/tipo_responsable.cpp" />
 		<Unit filename="src/main_classes/tipo_responsable.h" />
 		<Unit filename="src/manager/manager_cliente.cpp" />
 		<Unit filename="src/manager/manager_cliente.h" />
+		<Unit filename="src/manager/manager_producto.cpp" />
+		<Unit filename="src/manager/manager_producto.h" />
+		<Unit filename="src/manager/manager_proveedor.cpp" />
+		<Unit filename="src/manager/manager_proveedor.h" />
 		<Unit filename="src/manager/manager_tiporesponsables.cpp" />
 		<Unit filename="src/manager/manager_tiporesponsables.h" />
 		<Extensions>
