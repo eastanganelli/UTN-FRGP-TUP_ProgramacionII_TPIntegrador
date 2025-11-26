@@ -19,6 +19,7 @@ int main() {
 //    Testing::File();
 //    Testing::Modals();
 //    Testing::ClientePrueba();
+    Testing::TipoResponsablePrueba();
 
 //    DataGenerator::GenerateTipoResponsable();
 

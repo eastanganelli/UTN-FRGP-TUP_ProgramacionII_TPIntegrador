@@ -103,7 +103,9 @@ void Testing::ClientePrueba() {
 }
 
 void Testing::TipoResponsablePrueba() {
+    TipoResponsableManager misReponsables("tipo_responsable.dat");
 
+    misReponsables.ListarPorPorcentaje();
 }
 
 //

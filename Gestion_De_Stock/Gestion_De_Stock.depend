@@ -1,18 +1,17 @@
 # depslib dependency file v1.0
-1764108704 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1764127614 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"Pruebas.h"
 	"src/controller/data_generator/tiporesponsables_generator.h"
 
-1764108150 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
+1764127587 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.h
 	<ctime>
 	<iostream>
-	"src/controller/modals/informational.h"
-	"src/controller/modals/warning.h"
-	"src/controller/modals/error.h"
+	"src/controller/modals.h"
 	"src/controller/generic_array.h"
 	"src/file_manager/file_system.h"
 	"src/manager/cliente_manager.h"
+	"src/manager/tiporesponsables_manager.h"
 
 1763066629 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\clientesmanager.h
 	"Cliente.h"
@@ -390,7 +389,7 @@
 	<cstdio>
 	<cctype>
 
-1764108528 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
+1764127928 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\pruebas.cpp
 	"Pruebas.h"
 
 1763078804 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu.cpp
@@ -671,6 +670,6 @@
 	"tipo_responsable.h"
 	<cctype>
 
-1764111362 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\tiporesponsables_manager.cpp
+1764127925 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\tiporesponsables_manager.cpp
 	"tiporesponsables_manager.h"
 

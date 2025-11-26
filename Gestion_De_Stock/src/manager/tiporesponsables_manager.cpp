@@ -122,9 +122,17 @@ void TipoResponsableManager::ImprimirHeader() {
 }
 
 void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& condicion_ivas) {
+    if(condicion_ivas.Size() == 0) {
+        Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    TipoResponsableManager::ImprimirHeader();
+    TipoResponsableManager::Splitter('=');
     for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
         condicion_ivas[i]->Print();
     }
+    TipoResponsableManager::Splitter('-');
 }
 
 void TipoResponsableManager::Splitter(char Separator) {
