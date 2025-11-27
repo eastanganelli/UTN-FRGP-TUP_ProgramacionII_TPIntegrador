@@ -7,7 +7,7 @@ using namespace std;
 #include "../../manager/manager_cliente.h"
 
 namespace DataGenerator {
-    struct DatosCliente {
+     struct DatosCliente {
         std::string nombre;
         std::string apellido;
         std::string DNI;

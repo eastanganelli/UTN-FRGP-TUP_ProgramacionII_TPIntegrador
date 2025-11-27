@@ -1,9 +1,8 @@
 #include "Proveedor.h"
 
-Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, string _direccion, string _correo, string _telefono, string _celular, bool _alta)
-    : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular) {
+Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, string _direccion, string _correo, string _telefono, string _celular, string _razonSocial, bool _alta)
+    : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular, _razonSocial) {
     this->alta = _alta;
-    this->codigoRazonSocial = 0;
     this->cuit[0] = '\0';
     this->nombreRazon[0] = '\0';
     strcpy(this->cuit, _cuit.c_str());

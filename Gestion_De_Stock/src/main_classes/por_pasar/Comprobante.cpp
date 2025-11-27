@@ -1,11 +1,10 @@
 #include "Comprobante.h"
 
-Comprobante::Comprobante(unsigned int _numero, string _clienteDNI, float _monto, unsigned int _cantidadItems) : numero(_numero) {
+Comprobante::Comprobante(unsigned int _numero, string _clienteDNI) : numero(_numero) {
+    this->clienteDNI[0] = '\0';
     strcpy(this->clienteDNI, _clienteDNI.c_str());
     this->fechaEmision.CargarFecha();
-    this->monto = _monto;
-    this->cantidadItems = _cantidadItems;
-    this->clienteDNI[8] = '\0';
+    this->itemsActuales = 0;
 }
 
 Comprobante::~Comprobante() {
@@ -25,61 +24,63 @@ Fecha &Comprobante::getFechaEmision() {
 }
 
 float Comprobante::Total() {
-    return this->monto;
-}
-
-unsigned int Comprobante::getCantidadItems() {
-    return this->cantidadItems;
+    return 0.0f;
 }
 
 void Comprobante::setClienteDNI(string dni) {
     strcpy(this->clienteDNI, dni.c_str());
 }
 
-void Comprobante::setMonto(float m) {
-    this->monto = m;
+bool Comprobante::IsEqual(const Comprobante& otro) {
+    return Validation::IsEqual(this->clienteDNI, otro.clienteDNI)
+        && this->numero == otro.numero
+        && this->fechaEmision == otro.fechaEmision;
 }
 
-void Comprobante::setCantidadItems(unsigned int c) {
-    this->cantidadItems = c;
+bool Comprobante::IsEmpty() {
+    return Validation::IsEmpty(this->clienteDNI)
+        && this->numero == 0
+        && this->itemsActuales == 0
+        && this->fechaEmision == Fecha();
 }
 
-bool Comprobante::AddItem(const Item& it) {
-    unsigned int count = this->getCantidadItems();
-    for (unsigned int i = 0; i < count; i++) {
-        if (strncmp(this->items[i].codigo, it.codigo, 9) == 0) {
+bool Comprobante::AgregarItem(const Item& it) {
+    for (unsigned int i = 0; i < this->itemsActuales; i++) {
+        if (this->items[i] == it) {
             return false; // duplicate
         }
     }
-    if (count >= ITEMS_MAX) return false;
-    this->items[count] = it;
-    this->setCantidadItems(count + 1);
+    if (this->itemsActuales >= ITEMS_MAX) return false;
+    this->items[this->itemsActuales] = it;
+    this->itemsActuales++;
     return true;
 }
 
-bool Comprobante::RemoveItem(const char* codigo) {
-    unsigned int count = this->getCantidadItems();
-    for (unsigned int i = 0; i < count; i++) {
-        if (strncmp(this->items[i].codigo, codigo, 9) == 0) {
-            for (unsigned int j = i; j + 1 < count; j++) {
+bool Comprobante::EliminarItem(const string codigo) {
+    for (unsigned int i = 0; i < this->itemsActuales; i++) {
+        if (Validation::IsEqual(this->items[i].getCodigo(), codigo)) {
+            for (unsigned int j = i; j + 1 < this->itemsActuales; j++) {
                 this->items[j] = this->items[j+1];
             }
-            this->setCantidadItems(count - 1);
+            this->itemsActuales--;
             return true;
         }
     }
     return false;
 }
 
-unsigned int Comprobante::GetItemsCount() {
-    return this->getCantidadItems();
+unsigned int Comprobante::CantidadItems() {
+    return this->itemsActuales;
 }
 
-const Item* Comprobante::GetItem(unsigned int index) const {
-    if (index >= this->getCantidadItems()) return nullptr;
+const Item* Comprobante::ObtenerItem(unsigned int index) const {
+    if (index >= this->itemsActuales) return nullptr;
     return &this->items[index];
 }
 
-void Comprobante::ClearItems() {
-    this->setCantidadItems(0);
+void Comprobante::LimpiarItems() {
+    this->itemsActuales = 0;
+    for (unsigned int i = 0; i < ITEMS_MAX; i++) {
+        this->items[i] = Item();
+    }
 }

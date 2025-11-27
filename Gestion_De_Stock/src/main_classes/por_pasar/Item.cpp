@@ -3,7 +3,7 @@
 #include <sstream>
 
 Item::Item(const char* _codigo, unsigned int _cantidad, float _precioUnitario) {
-    this->codigo = {'\0'};
+    this->codigo[0] = '\0';
     this->cantidad = 0;
     this->precioUnitario = 0.0f;
     if (!Validation::IsEmpty(_codigo)) {

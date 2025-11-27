@@ -9,28 +9,35 @@ using namespace std;
 
 class Factura : public Comprobante {
 private:
-    char tipoFactura; // 'A', 'B', 'C'
-    char cae[16];
+    static const unsigned int TIPOFACTURA_SIZE = 8;
+    static const unsigned int CAE_SIZE = 15;
+    static const unsigned int VENCIMIENTOCAE_SIZE = 10;
+
+    char cae[CAE_SIZE];
     Fecha vencimientoCAE;
 
     void ObtenerCAE();
 
 public:
-    Factura(unsigned int _id = 0, string _cliente = "", float _monto = 0.0f, unsigned int _cantidadItems = 0, char _tipoFactura = 'B');
+    Factura(unsigned int _id = 0, string _cliente = "");
     ~Factura();
 
     // Getters
-    char getTipoFactura();
     string getCAE();
     Fecha getVencimientoCAE();
+    float TotalSinIVA();
+
+    static unsigned int GetTipoFacturaLength();
+    static unsigned int GetCAELength();
+    static unsigned int GetVencimientoCAELength();
 
     // Setters
-    void setTipoFactura(char t);
+    bool Facturar();
 
     // Métodos
-    float TotalSinIVA();
-    float TotalConIVA();
-    string toString();
+    bool operator==(const Factura& otra);
+    bool IsEmpty();
+    void Print();
 };
 
 #endif // FACTURA_H

@@ -20,9 +20,10 @@ void DataGenerator::GenerateProduct(unsigned int count) {
             dp.stock = rand() % 100 + 1;
 
             Producto dataProducto(dp.codigo, dp.codigoProveedor, dp.descripcion, dp.precio, dp.stock);
-            cout << "Producto agregado? >> " << (productos.New(dataProducto) ? "Si" : "No") << endl;
+            cout << endl << "Producto agregado? >> " << (productos.New(dataProducto) ? "Si" : "No") << endl;
 
             dataProducto.Print();
+            cout << endl;
         }
         std::cout << "\n-------------------------------------\n" << std::endl;
     }

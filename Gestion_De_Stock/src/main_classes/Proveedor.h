@@ -18,7 +18,7 @@ private:
     unsigned int rubro;
 
 public:
-    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", bool _alta = false);
+    Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", string _razonSocial = "", bool _alta = false);
     ~Proveedor();
 
     // Getters

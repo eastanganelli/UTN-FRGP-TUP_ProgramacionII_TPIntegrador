@@ -19,18 +19,7 @@ namespace Testing {
     void File();
     void ClientePrueba();
     void TipoResponsablePrueba();
+    void FacturaPrueba();
 }
-
-//void TestingCliente();
-//
-//void TestingProveedores();
-//
-//void TestingProductos();
-//
-//void TestingVentas();
-//
-//void TestingAll();
-//
-//void loadData();
 
 #endif // PRUEBAS_H

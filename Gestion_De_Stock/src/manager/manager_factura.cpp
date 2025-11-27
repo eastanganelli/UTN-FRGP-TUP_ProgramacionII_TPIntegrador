@@ -16,10 +16,6 @@ GenericArray<Factura> FacturaManager::Listar() {
     return facturas;
 }
 
-unsigned int FacturaManager::Cantidad() {
-    return this->Count();
-}
-
 bool FacturaManager::Modificar(unsigned int numero, Factura* factura) {
     const unsigned int cantidad = this->Count();
     for(unsigned int i = 0; i < cantidad; i++) {
@@ -86,9 +82,9 @@ GenericArray<Factura> FacturaManager::BuscarPorItemCodigo(string codigo) {
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         Factura* aux = this->At(i);
-        unsigned int itemsCount = aux->GetItemsCount();
+        unsigned int itemsCount = aux->CantidadItems();
         for(unsigned int j = 0; j < itemsCount; j++) {
-            const Item* it = aux->GetItem(j);
+            const Item* it = aux->ObtenerItem(j);
             if(it != nullptr && it->getCodigo().find(codigo) != string::npos) {
                 resultados + (*aux);
                 break;
@@ -117,9 +113,9 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
     header->AddCell("ID", 6);
     header->AddCell("Cliente", 9);
     header->AddCell("Fecha", 12);
-    header->AddCell("Monto", 10);
-    header->AddCell("Items", 6);
-    header->AddCell("Tipo", 6);
+//    header->AddCell("Monto", 10);
+//    header->AddCell("Items", 6);
+//    header->AddCell("Tipo", 6);
     header->AddCell("CAE", 16);
     mi_tabla.AddRow(header);
 
@@ -129,10 +125,10 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         row->AddCell(facturas[i]->getClienteDNI(), 9);
         row->AddCell(facturas[i]->getFechaEmision().toString(), 12);
         // row->AddCell(to_string(facturas[i]->Total()), 10);
-        row->AddCell(to_string(facturas[i]->GetItemsCount()), 6);
+//        row->AddCell(to_string(facturas[i]->GetItemsCount()), 6);
         // Factura-specific fields: dynamic cast
         Factura* f = facturas[i];
-        row->AddCell(string(1, f->getTipoFactura()), 6);
+//        row->AddCell(string(1, f->getTipoFactura()), 6);
         row->AddCell(f->getCAE(), 16);
         mi_tabla.AddRow(row);
     }

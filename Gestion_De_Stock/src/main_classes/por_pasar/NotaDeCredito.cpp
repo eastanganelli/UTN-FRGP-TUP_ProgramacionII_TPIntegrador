@@ -1,7 +1,7 @@
 #include "NotaDeCredito.h"
 
-NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, float _monto, unsigned int _cantidadItems, string _motivoAnulacion)
-    : Comprobante(_id, _cliente, _monto, _cantidadItems) {
+NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, string _motivoAnulacion)
+    : Comprobante(_id, _cliente) {
     strcpy(this->motivoAnulacion, _motivoAnulacion.c_str());
 }
 
@@ -15,10 +15,6 @@ string NotaDeCredito::getMotivoAnulacion() {
 
 float NotaDeCredito::TotalSinIVA() {
     return this->Total();
-}
-
-unsigned int NotaDeCredito::CantidadItems() {
-    return this->getCantidadItems();
 }
 
 void NotaDeCredito::setMotivoAnulacion(string m) {

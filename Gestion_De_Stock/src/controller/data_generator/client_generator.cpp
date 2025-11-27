@@ -18,12 +18,12 @@ void DataGenerator::GenerateClients(unsigned int count) {
             DataGenerator::DatosCliente dc;
             dc.nombre = nombres[rand() % nombres->length()];
             dc.apellido = apellidos[rand() % apellidos->length()];
-            dc.DNI = std::to_string(rand() % 40000000 + i) + "\0";
-            dc.cuilCuit = "20" + dc.DNI + "1" + "\0";
+            dc.DNI = std::to_string(40000000 + 10000000 + i);
+            dc.cuilCuit = "20" + dc.DNI + "1";
             dc.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
             dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
-            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
-            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000) + "\0";
+            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
             dc.alta = (i % 2 == 0);
 
             Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);

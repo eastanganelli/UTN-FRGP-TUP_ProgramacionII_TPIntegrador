@@ -1,57 +1,51 @@
 #ifndef COMPROBANTE_H
 #define COMPROBANTE_H
 
-#define ITEMS_MAX 20
-
-#include "Fecha.h"
-
 #include <string>
 #include <cstring>
+
+#include "../fecha.h"
+#include "../../controller/validation.h"
 #include "Item.h"
 
 using namespace std;
 
 class Comprobante {
 private:
-    unsigned int numero;
-    char clienteDNI[9];
-    float monto;
-    unsigned int cantidadItems;
-    Fecha fechaEmision;
+    static const unsigned int ITEMS_MAX = 20;
+    static const unsigned int CLIENTEDNI_SIZE = 9;
+    static const unsigned int NUMERO_SIZE = 5;
+    static const unsigned int MONTO_SIZE = 10;
 
+    const unsigned int numero;
+    unsigned int itemsActuales;
+    char clienteDNI[CLIENTEDNI_SIZE];
+    Fecha fechaEmision;
     Item items[ITEMS_MAX];
 
-    void CargarFecha();
-
 protected:
-    Fecha creado;
-
     float Total();
-    unsigned int CantidadItems();
+    bool IsEqual(const Comprobante& otro);
+    bool IsEmpty();
 
 public:
-    Comprobante(unsigned int _numero = 0, string _clienteDNI = "", float _monto = 0.0f, unsigned int _cantidadItems = 0);
+    Comprobante(unsigned int _numero = 0, string _clienteDNI = "");
     ~Comprobante();
 
     // Getters
     unsigned int getNumero();
     string getClienteDNI();
     Fecha& getFechaEmision();
-    unsigned int getCantidadItems();
 
     // Setters
     void setClienteDNI(string dni);
-    void setMonto(float m);
-    void setCantidadItems(unsigned int c);
 
-    // Métodos
-    void mostrar();
     // Items
-    bool AddItem(const Item& it); // false if duplicate or full
-    bool RemoveItem(const char* codigo);
-    unsigned int GetItemsCount();
-    const Item* GetItem(unsigned int index) const;
-    void ClearItems();
+    bool AgregarItem(const Item& it);
+    bool EliminarItem(const string codigo);
+    unsigned int CantidadItems();
+    const Item* ObtenerItem(unsigned int index) const;
+    void LimpiarItems();
 };
 
 #endif // COMPROBANTE_H
