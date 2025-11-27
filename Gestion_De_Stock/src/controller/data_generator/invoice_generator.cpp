@@ -7,6 +7,7 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
     ProductoManager productos;
     ProveedorManager proveedores;
     ClienteManager clientes;
+    TipoResponsableManager tipos;
 
     if (facturas.Count() == 0) {
         std::cout << "--- Datos de Facturas Generados ---" << std::endl;
@@ -28,10 +29,10 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
             string codigoRazon = cliente->getCodigoRazonSocial();
 
             unsigned int id = 1000 + i;
-            char tipos[] = {'A','B','C'};
-            char tipo = tipos[rand() % 3];
+//            unsigned int index;
+//            string tipo = tipos.At(index)->getCodigo();
 
-            Factura f(id, clienteDNI, 0.0f);
+            Factura f(id, clienteDNI);
 
             unsigned int itemsCount = (rand() % 6) + 1;
             for (unsigned int it = 0; it < itemsCount; ++it) {
@@ -58,19 +59,20 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
 
             if (saved != nullptr) {
                 // Calcular porcentaje de IVA consultando TipoResponsableManager
-                TipoResponsableManager tipos;
-                TipoResponsable* tr = nullptr;
-                if (codigoRazon > 0 && codigoRazon < tipos.Count()) tr = tipos[codigoRazon];
-                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
+//                TipoResponsable* tr = nullptr;
+//                if (!Validation::IsEmpty(codigoRazon)) {
+//                    tr = tipos[codigoRazon];
+//                }
+//                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
 
                 float neto = saved->TotalSinIVA();
-                float totalConIVA = neto * (1.0f + porcentaje / 100.0f);
+                float totalConIVA = neto * (1.0f + 1 / 100.0f);
 
                 cout << "Factura leida del archivo - ID: " << saved->getNumero()
                      << " | Cliente: " << saved->getClienteDNI()
                     //  << " | Tipo: " << saved->getTipoFactura()
                      << " | Neto: " << neto
-                     << " | IVA(%): " << porcentaje
+//                     << " | IVA(%): " << porcentaje
                      << " | Total c/IVA: " << totalConIVA
                      << " | Items: " << saved->CantidadItems() << std::endl;
 
@@ -84,19 +86,19 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
                 delete saved; // FileSystem::At devuelve un nuevo puntero
             } else {
                 // Fallback: imprimir la factura auxiliar en memoria
-                TipoResponsableManager tipos;
-                TipoResponsable* tr = nullptr;
-                if (codigoRazon > 0 && codigoRazon < tipos.Count()) tr = tipos[codigoRazon];
-                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
+//                TipoResponsableManager tipos;
+//                TipoResponsable* tr = nullptr;
+//                if (codigoRazon > 0 && codigoRazon < tipos.Count()) tr = tipos[codigoRazon];
+//                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
 
                 float neto = f.TotalSinIVA();
-                float totalConIVA = neto * (1.0f + porcentaje / 100.0f);
+                float totalConIVA = neto * (1.0f + 1 / 100.0f);
 
                 cout << "Factura (no encontrada en archivo) - ID: " << f.getNumero()
                      << " | Cliente: " << f.getClienteDNI()
                     //  << " | Tipo: " << f.getTipoFactura()
                      << " | Neto: " << neto
-                     << " | IVA(%): " << porcentaje
+//                     << " | IVA(%): " << porcentaje
                      << " | Total c/IVA: " << totalConIVA
                      << " | Items: " << f.CantidadItems() << std::endl;
 

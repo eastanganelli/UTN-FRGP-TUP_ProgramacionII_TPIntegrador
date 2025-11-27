@@ -825,7 +825,7 @@
 1764173388 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
 	"invoice_generator.h"
 
-1764172810 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
+1764221694 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
 	<ctime>
 	<string>
 	<iostream>
@@ -837,5 +837,6 @@
 	"../../manager/manager_producto.h"
 	"../../manager/manager_proveedor.h"
 	"../../manager/manager_cliente.h"
+	"../../manager/manager_tiporesponsables.h"
 	"../../main_classes/por_pasar/Item.h"
 
