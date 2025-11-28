@@ -1,4 +1,4 @@
-#include "Factura.h"
+#include "factura.h"
 
 #include <iostream>
 

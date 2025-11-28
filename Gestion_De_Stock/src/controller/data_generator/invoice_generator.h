@@ -13,7 +13,7 @@ using namespace std;
 #include "../../manager/manager_producto.h"
 #include "../../manager/manager_proveedor.h"
 #include "../../manager/manager_cliente.h"
-#include "../../manager/manager_tiporesponsables.h"
+#include "../../manager/manager_tipo_responsables.h"
 
 #include "../../main_classes/ventas/Item.h"
 

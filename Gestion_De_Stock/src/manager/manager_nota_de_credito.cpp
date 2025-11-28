@@ -1,4 +1,4 @@
-#include "manager_notadecredito.h"
+#include "manager_nota_de_credito.h"
 
 NotaDeCreditoManager::NotaDeCreditoManager(const string& notasPath)
     : FileSystem<NotaDeCredito>(notasPath) { }

@@ -2,7 +2,7 @@
 #define FACTURAMANAGER_H
 
 #include "../../rlutil.h"
-#include "../main_classes/ventas/Factura.h"
+#include "../main_classes/ventas/factura.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 

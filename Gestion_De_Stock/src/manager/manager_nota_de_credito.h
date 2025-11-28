@@ -2,7 +2,7 @@
 #define NOTADECREDITOMANAGER_H
 
 #include "../../rlutil.h"
-#include "../main_classes/por_pasar/NotaDeCredito.h"
+#include "../main_classes/ventas/nota_de_credito.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 
