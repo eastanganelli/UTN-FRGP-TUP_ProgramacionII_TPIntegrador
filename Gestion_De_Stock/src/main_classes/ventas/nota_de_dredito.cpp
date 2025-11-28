@@ -2,6 +2,7 @@
 
 NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, string _motivoAnulacion)
     : Comprobante(_id, _cliente) {
+    this->motivoAnulacion[0] = '\0';
     strcpy(this->motivoAnulacion, _motivoAnulacion.c_str());
 }
 

@@ -859,3 +859,14 @@
 1764298818 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_dredito.cpp
 	"nota_de_credito.h"
 
+1764298630 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_nota_de_credito.cpp
+	"manager_nota_de_credito.h"
+
+1764298856 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_nota_de_credito.h
+	"../../rlutil.h"
+	"../main_classes/ventas/nota_de_credito.h"
+	"../controller/generic_array.h"
+	"../file_manager/file_system.h"
+	"../controller/modals.h"
+	"../controller/table/table.h"
+
