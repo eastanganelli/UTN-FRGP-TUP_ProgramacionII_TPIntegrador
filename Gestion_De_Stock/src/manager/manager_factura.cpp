@@ -193,9 +193,9 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         row->AddCell(to_string(facturas[i]->getNumero()), 6);
         row->AddCell(facturas[i]->getClienteDNI(), 9);
         row->AddCell(facturas[i]->getFechaEmision().toString(), 12);
-        // row->AddCell(to_string(facturas[i]->Total()), 10);
+//        row->AddCell(to_string(facturas[i]->Total()), 10);
 //        row->AddCell(to_string(facturas[i]->GetItemsCount()), 6);
-        // Factura-specific fields: dynamic cast
+//        Factura-specific fields: dynamic cast
         Factura* f = facturas[i];
 //        row->AddCell(string(1, f->getTipoFactura()), 6);
         row->AddCell(f->getCAE(), 16);
