@@ -17,7 +17,7 @@ private:
     static const unsigned int NUMERO_SIZE = 5;
     static const unsigned int MONTO_SIZE = 10;
 
-    const unsigned int numero;
+    unsigned int numero;
     unsigned int itemsActuales;
     char clienteDNI[CLIENTEDNI_SIZE];
     Fecha fechaEmision;

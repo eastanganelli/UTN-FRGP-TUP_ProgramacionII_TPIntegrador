@@ -15,7 +15,7 @@ using namespace std;
 #include "../../manager/manager_cliente.h"
 #include "../../manager/manager_tiporesponsables.h"
 
-#include "../../main_classes/por_pasar/Item.h"
+#include "../../main_classes/ventas/Item.h"
 
 namespace DataGenerator {
     struct DatosFactura {

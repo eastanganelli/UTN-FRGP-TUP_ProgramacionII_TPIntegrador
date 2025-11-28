@@ -2,7 +2,7 @@
 #define FACTURAMANAGER_H
 
 #include "../../rlutil.h"
-#include "../main_classes/por_pasar/Factura.h"
+#include "../main_classes/ventas/Factura.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 
@@ -19,12 +19,15 @@ public:
     FacturaManager(const string& facturaPath = "facturas.dat");
     ~FacturaManager();
 
-    unsigned int Cantidad();
     bool Modificar(unsigned int numero, Factura* factura);
     Factura* operator[](unsigned int numero);
 
+    void ListarPorCliente();
+    void ListarPorFecha();
+    void ListarPorMonto();
     GenericArray<Factura> BuscarPorCliente(string clienteDNI);
-    GenericArray<Factura> BuscarPorItemCodigo(string codigo);
+    GenericArray<Factura> BuscarPorCAE(string cae);
+    GenericArray<Factura> BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin);
 
     static void Imprimir(GenericArray<Factura>& facturas);
 };

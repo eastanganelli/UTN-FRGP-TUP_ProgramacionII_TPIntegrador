@@ -5,21 +5,13 @@ NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, string _motivoAn
     strcpy(this->motivoAnulacion, _motivoAnulacion.c_str());
 }
 
-NotaDeCredito::~NotaDeCredito() {
+NotaDeCredito::~NotaDeCredito() { }
 
-}
+string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
 
-string NotaDeCredito::getMotivoAnulacion() {
-    return this->motivoAnulacion;
-}
+float NotaDeCredito::TotalSinIVA() { return this->Total(); }
 
-float NotaDeCredito::TotalSinIVA() {
-    return this->Total();
-}
-
-void NotaDeCredito::setMotivoAnulacion(string m) {
-    strcpy(this->motivoAnulacion, m.c_str());
-}
+void NotaDeCredito::setMotivoAnulacion(string m) { strcpy(this->motivoAnulacion, m.c_str()); }
 
 string NotaDeCredito::toString() {
     string resultado = "Nota de Credito Nro: " + to_string(this->getNumero()) +
