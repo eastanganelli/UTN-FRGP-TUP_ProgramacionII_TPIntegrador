@@ -202,16 +202,4 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
-
-    // // Additionally, print items per factura for clarity
-    // for(unsigned int i = 0; i < altura; i++) {
-    //     Factura* f = facturas[i];
-    //     if(f->GetItemsCount() > 0) {
-    //         cout << "\nItems de Factura " << f->getNumero() << ":\n";
-    //         for(unsigned int j = 0; j < f->GetItemsCount(); j++) {
-    //             const Item* it = f->GetItem(j);
-    //             if(it != nullptr) cout << "  - " << it->toString() << "\n";
-    //         }
-    //     }
-    // }
 }
