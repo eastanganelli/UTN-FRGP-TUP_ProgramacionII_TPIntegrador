@@ -48,13 +48,6 @@ void FacturaMenu::OnSelect(int index) {
             Fecha fechaInicio = InputDate("Fecha Inicio (DD/MM/AAAA): "),
                   fechaFin = InputDate("Fecha Fin (DD/MM/AAAA): ");
 
-            Fecha fechaInicio, fechaFin;
-            if (!fechaInicio.IsValid() || !fechaFin.()) {
-                cout << "Formato de fecha invalido." << endl;
-                PauseConsole();
-                break;
-            }
-
             auto res = facturas.BuscarPorRangoFecha(fechaInicio, fechaFin);
             FacturaManager::Imprimir(res);
             PauseConsole();

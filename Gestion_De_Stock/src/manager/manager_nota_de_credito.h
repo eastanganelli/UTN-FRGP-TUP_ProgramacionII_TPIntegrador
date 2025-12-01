@@ -23,8 +23,11 @@ public:
     bool Modificar(unsigned int numero, NotaDeCredito* nota);
     NotaDeCredito* operator[](unsigned int numero);
 
+    void ListarPorCliente();
+    void ListarPorFecha();
     GenericArray<NotaDeCredito> BuscarPorCliente(string clienteDNI);
-    GenericArray<NotaDeCredito> BuscarPorItemCodigo(string codigo);
+    GenericArray<NotaDeCredito> BuscarPorMotivo(string motivo);
+    GenericArray<NotaDeCredito> BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin);
 
     static void Imprimir(GenericArray<NotaDeCredito>& notas);
 };

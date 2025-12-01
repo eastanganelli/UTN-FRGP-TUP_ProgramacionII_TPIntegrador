@@ -54,6 +54,33 @@ NotaDeCredito* NotaDeCreditoManager::operator[](unsigned int numero) {
     return aux;
 }
 
+void NotaDeCreditoManager::ListarPorCliente() {
+    GenericArray<NotaDeCredito> notas = this->Listar();
+    if(notas.Size() == 0) {
+        Warning mi_warning("Listado de Notas", "No hay notas de credito registradas.");
+        mi_warning.Show();
+        return;
+    }
+    Imprimir(notas);
+}
+
+void NotaDeCreditoManager::ListarPorFecha() {
+    GenericArray<NotaDeCredito> notas = this->Listar();
+    if(notas.Size() == 0) {
+        Warning mi_warning("Listado de Notas", "No hay notas de credito registradas.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < notas.Size() - 1; i++) {
+        for(unsigned int j = 0; j < notas.Size() - i - 1; j++) {
+            if(notas[j]->getFechaEmision() > notas[j + 1]->getFechaEmision()) {
+                notas.Swap(notas[j], notas[j + 1]);
+            }
+        }
+    }
+    Imprimir(notas);
+}
+
 GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorCliente(string clienteDNI) {
     GenericArray<NotaDeCredito> resultados;
     const unsigned int cantidad = this->Count();
@@ -76,7 +103,7 @@ GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorCliente(string client
     return resultados;
 }
 
-GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorItemCodigo(string codigo) {
+GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorMotivo(string motivo) {
     GenericArray<NotaDeCredito> resultados;
     const unsigned int cantidad = this->Count();
     if(cantidad == 0) {
@@ -86,18 +113,36 @@ GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorItemCodigo(string cod
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         NotaDeCredito* aux = this->At(i);
-        unsigned int itemsCount = aux->CantidadItems();
-        for(unsigned int j = 0; j < itemsCount; j++) {
-            const Item* it = aux->ObtenerItem(j);
-            if(it != nullptr && it->getCodigo().find(codigo) != string::npos) {
-                resultados + (*aux);
-                break;
-            }
+        if(aux->getMotivoAnulacion().find(motivo) != string::npos) {
+            resultados + (*aux);
         }
         delete aux;
     }
     if(resultados.Size() == 0) {
-        Warning mi_warning("Busqueda de Notas", "No se encontraron notas con items que contengan " + codigo + ".");
+        Warning mi_warning("Busqueda de Notas", "No se encontraron notas con motivo que contenga " + motivo + ".");
+        mi_warning.Show();
+    }
+    return resultados;
+}
+
+GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin) {
+    GenericArray<NotaDeCredito> resultados;
+    const unsigned int cantidad = this->Count();
+    if(cantidad == 0) {
+        Warning mi_warning("Busqueda de Notas", "No hay notas de credito registradas.");
+        mi_warning.Show();
+        return resultados;
+    }
+    for(unsigned int i = 0; i < cantidad; i++) {
+        NotaDeCredito* aux = this->At(i);
+        Fecha fechaNota = aux->getFechaEmision();
+        if(fechaNota >= fechaInicio && fechaNota <= fechaFin) {
+            resultados + (*aux);
+        }
+        delete aux;
+    }
+    if(resultados.Size() == 0) {
+        Warning mi_warning("Busqueda de Notas", "No se encontraron notas en el rango de fechas indicado.");
         mi_warning.Show();
     }
     return resultados;
