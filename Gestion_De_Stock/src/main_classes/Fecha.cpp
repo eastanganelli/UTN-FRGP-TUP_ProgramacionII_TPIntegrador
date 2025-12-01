@@ -90,7 +90,7 @@ Fecha Fecha::CrearFecha() {
         }
 
         m = stoi(input);
-        if (!Validation::IsInRange(m, 1, 12)) {
+        if (!Validation::IsInRange<int>(m, 1, 12)) {
             Warning w("Mes invalido", "El mes debe estar entre 1 y 12.");
             w.Show();
             continue;
@@ -116,7 +116,7 @@ Fecha Fecha::CrearFecha() {
         }
 
         a = stoi(input);
-        if (!Validation::IsInRange(a, 1900, 9999)) {
+        if (!Validation::IsInRange<int>(a, 1900, 9999)) {
             Warning w("Anio invalido", "El anio debe ser mayor o igual a 1900.");
             w.Show();
             continue;
@@ -146,7 +146,7 @@ Fecha Fecha::CrearFecha() {
         }
 
         d = stoi(input);
-        if (!Validation::IsInRange(d, 1, maxDay)) {
+        if (!Validation::IsInRange<int>(d, 1, maxDay)) {
             Warning w("Dia invalido", "El dia ingresado no es valido para el mes y anio seleccionados.");
             w.Show();
             continue;

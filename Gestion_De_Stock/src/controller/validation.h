@@ -128,4 +128,14 @@ namespace Validation {
     string ToFixedDecimal(const float number, const unsigned int decimalPlaces);
 } // namespace Validation
 
+template <typename T>
+bool Validation::IsPositiveNumber(T number) {
+    return number > 0;
+}
+
+template <typename T>
+bool Validation::IsInRange(T value, T min, T max) {
+    return value >= min && value <= max;
+}
+
 #endif // VALIDATION_H

@@ -89,7 +89,6 @@
 		<Unit filename="src/main_classes/ventas/item.h" />
 		<Unit filename="src/main_classes/ventas/nota_de_credito.cpp" />
 		<Unit filename="src/main_classes/ventas/nota_de_credito.h" />
-		<Unit filename="src/main_classes/ventas/nota_de_dredito.cpp" />
 		<Unit filename="src/manager/manager_cliente.cpp" />
 		<Unit filename="src/manager/manager_cliente.h" />
 		<Unit filename="src/manager/manager_factura.cpp" />

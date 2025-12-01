@@ -11,7 +11,7 @@ void DataGenerator::GenerateProduct(unsigned int count) {
 
     if(productos.Count() == 0) {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;
-        for (int i = 0; i < count; ++i) {
+        for (unsigned int i = 0; i < count; ++i) {
             DatosProducto dp;
             dp.codigo = DataGenerator::generarCodigoAlfaNumerico(Producto::GetCodigoLength());
             dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit();
