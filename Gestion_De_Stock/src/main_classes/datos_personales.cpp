@@ -1,12 +1,17 @@
 #include "datos_personales.h"
 
-DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular) {
+DatosPersonales::DatosPersonales(bool _alta, string _direccion, string _correo, string _telefono, string _celular, string _codigoRazonSocial) {
     this->alta = _alta;
+    this->correo[0] = '\0';
+    this->celular[0] = '\0';
+    this->telefono[0] = '\0';
+    this->direccion[0] = '\0';
+    this->codigoRazonSocial[0] = '\0';
     strcpy(this->direccion, _direccion.c_str());
     strcpy(this->correo, _correo.c_str());
     strcpy(this->telefono, _telefono.c_str());
     strcpy(this->celular, _celular.c_str());
-    this->codigoRazonSocial = 0;
+    strcpy(this->codigoRazonSocial, _codigoRazonSocial.c_str());
 }
 
 DatosPersonales::~DatosPersonales() {
@@ -14,6 +19,7 @@ DatosPersonales::~DatosPersonales() {
     this->celular[0] = '\0';
     this->telefono[0] = '\0';
     this->direccion[0] = '\0';
+    this->codigoRazonSocial[0] = '\0';
 }
 
 bool DatosPersonales::IsEqual(const DatosPersonales& otro) {
@@ -39,6 +45,8 @@ string DatosPersonales::getTelefono() { return string(this->telefono); }
 
 string DatosPersonales::getCelular() { return string(this->celular); }
 
+string DatosPersonales::getCodigoRazonSocial() { return string(this->codigoRazonSocial); }
+
 unsigned int DatosPersonales::GetCorreoSize() { return CORREO_SIZE; }
 
 unsigned int DatosPersonales::GetDireccionSize() { return DIRECCION_SIZE; }
@@ -48,6 +56,8 @@ unsigned int DatosPersonales::GetTelefonoSize() { return TELEFONO_SIZE; }
 unsigned int DatosPersonales::GetCelularSize() { return CELULAR_SIZE; }
 
 unsigned int DatosPersonales::GetEstadoSize() { return ESTADO_SIZE; }
+
+unsigned int DatosPersonales::GetCodigoRazonSocialSize() { return CODIGORAZONSOCIAL_SIZE; }
 
 void DatosPersonales::setAlta(bool a) { this->alta = a; }
 

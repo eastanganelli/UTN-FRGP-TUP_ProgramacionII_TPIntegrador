@@ -21,9 +21,10 @@ public:
     ~TipoResponsableManager();
     unsigned int Cantidad();
     bool Modificar(unsigned int codigo, TipoResponsable* condicion_iva);
+    TipoResponsable* operator[](unsigned int codigo);
+
     void ListarPorDescripcion();
     void ListarPorPorcentaje();
-    TipoResponsable* operator[](unsigned int codigo);
     GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
 
     static void Imprimir(GenericArray<TipoResponsable>& condicion_ivas);

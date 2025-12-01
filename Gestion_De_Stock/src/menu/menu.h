@@ -2,21 +2,30 @@
 #define MENU_H
 
 #include <string>
-using namespace std;
+#include <vector>
 
+#include "../controller/modals.h"
 #include "../../rlutil.h"
 
 class Menu {
+protected:
+    std::string title;
+    std::vector<std::string> options;
+    bool centered;
+    int selectedIndex;
+
+    virtual void DrawHeader();
+    virtual void DrawOptions();
 
 public:
-    Menu();
-    ~Menu();
+    Menu(const std::string& title = "", bool centered = true);
+    virtual ~Menu();
 
-    virtual void Crear();
-    virtual void Mostrar();
-    virtual void Modificar();
-    virtual void Eliminar();
-    virtual void Listar();
+    void AddOption(const std::string& opt);
+    void Run();
+
+    // Subclases implementan la acción a realizar al seleccionar una opción
+    virtual void OnSelect(int index) = 0;
 };
 
 #endif // MENU_H

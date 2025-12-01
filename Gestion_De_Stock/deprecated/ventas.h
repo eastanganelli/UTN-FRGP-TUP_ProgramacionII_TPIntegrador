@@ -1,8 +1,8 @@
 #ifndef VENTASMANAGER_H
 #define VENTASMANAGER_H
 
-#include "Factura.h"
-#include "NotaDeCredito.h"
+#include "factura.h"
+#include "nota_de_credito.h"
 
 using namespace std;
 

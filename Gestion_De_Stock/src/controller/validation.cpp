@@ -19,16 +19,6 @@ namespace Validation {
         return IsAlphaChar(c) || IsDigitChar(c);
     }
 
-    template <typename T>
-    bool IsPositiveNumber(T number) {
-        return number > 0;
-    }
-
-    template <typename T>
-    bool IsInRange(T value, T min, T max) {
-        return value >= min && value <= max;
-    }
-
     bool IsEmpty(const string& str) {
         if (str.empty()) return true;
         for (char c : str) {

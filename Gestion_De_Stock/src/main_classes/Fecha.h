@@ -4,6 +4,9 @@
 #include <ctime>
 #include <iostream>
 
+#include "../controller/validation.h"
+#include "../controller/modals.h"
+
 using namespace std;
 
 class Fecha {
@@ -34,6 +37,8 @@ public:
     bool operator<=(Fecha fechaComparar);
     bool operator==(Fecha fechaComparar);
     bool operator!=(Fecha fechaComparar);
+
+    static Fecha CrearFecha();
 };
 
 #endif // FECHA_H
