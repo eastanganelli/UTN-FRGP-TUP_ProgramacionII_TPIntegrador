@@ -18,16 +18,18 @@ private:
 public:
     ClienteManager(const string& clientePath = "clientes.dat");
     ~ClienteManager();
-    unsigned int Cantidad();
-    bool Modificar(string dni, Cliente* cliente);
+    
     void ListarPorCuil_Cuit();
     void ListarPorDNI();
     void ListarPorApellido();
-    Cliente* operator[](string dni);
-    GenericArray<Cliente> BuscarPorCUIL_CUIT(string cuil_cuit);
     GenericArray<Cliente> BuscarPorDNI(string dni);
+    GenericArray<Cliente> BuscarPorCUIL_CUIT(string cuil_cuit);
     GenericArray<Cliente> BuscarPorNombreApellido(string nombre, string Apellido);
     GenericArray<Cliente> BuscarPorCorreo(string correo);
+
+    unsigned int Cantidad();
+    bool Modificar(string dni, Cliente* cliente);
+    Cliente* operator[](string dni);
 
     static void Imprimir(GenericArray<Cliente>& clientes);
 };

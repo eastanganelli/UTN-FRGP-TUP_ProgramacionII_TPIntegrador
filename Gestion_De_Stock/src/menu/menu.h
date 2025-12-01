@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#include "../controller/modals.h"
+#include "../../rlutil.h"
+
 class Menu {
 protected:
     std::string title;

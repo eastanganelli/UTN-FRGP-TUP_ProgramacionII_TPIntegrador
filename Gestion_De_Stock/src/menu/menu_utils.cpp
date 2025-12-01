@@ -1,13 +1,10 @@
 #include "menu_utils.h"
-#include <iostream>
-#include <string>
 
 using namespace std;
 
 std::string InputBox(const std::string& prompt) {
     cout << prompt;
     string s;
-    // consume newline from previous input if present
     if (!std::getline(cin, s) || s.size() == 0) {
         std::getline(cin, s);
     }
@@ -22,9 +19,14 @@ unsigned int InputNumber(const std::string& prompt) {
         string tmp; getline(cin, tmp);
         return 0;
     }
-    // consume rest of line
     string tmp; getline(cin, tmp);
     return n;
+}
+
+Fecha InputDate(const std::string& prompt) {
+    cout << prompt;
+    Fecha f = Fecha::CrearFecha();
+    return f;
 }
 
 bool Confirm(const std::string& prompt) {
@@ -32,7 +34,8 @@ bool Confirm(const std::string& prompt) {
     string r;
     getline(cin, r);
     if (r.size() == 0) { getline(cin, r); }
-    return (r.size() > 0 && (r[0] == 's' || r[0] == 'S' || r[0] == 'y' || r[0] == 'Y'));
+    r = Validation::ToUpper(r);
+    return (r.size() > 0 && (Validation::IsEqual(r, "N") || Validation::IsEqual(r, "Y")));
 }
 
 void PauseConsole() {

@@ -102,12 +102,28 @@
 		<Unit filename="src/manager/manager_proveedor.h" />
 		<Unit filename="src/manager/manager_tipo_responsables.cpp" />
 		<Unit filename="src/manager/manager_tipo_responsables.h" />
+		<Unit filename="src/manager/manager_ventas.cpp" />
+		<Unit filename="src/manager/manager_ventas.h" />
+		<Unit filename="src/menu/main_menu.cpp" />
+		<Unit filename="src/menu/main_menu.h" />
 		<Unit filename="src/menu/menu.cpp" />
 		<Unit filename="src/menu/menu.h" />
-		<Unit filename="src/menu/submenu/menu_cliente.cpp" />
-		<Unit filename="src/menu/submenu/menu_cliente.h" />
-		<Unit filename="src/menu/submenu/menu_tipor_responsable.cpp" />
-		<Unit filename="src/menu/submenu/menu_tipor_responsable.h" />
+		<Unit filename="src/menu/menu_utils.cpp" />
+		<Unit filename="src/menu/menu_utils.h" />
+		<Unit filename="src/menu/submenu/cliente_menu.cpp" />
+		<Unit filename="src/menu/submenu/cliente_menu.h" />
+		<Unit filename="src/menu/submenu/factura_menu.cpp" />
+		<Unit filename="src/menu/submenu/factura_menu.h" />
+		<Unit filename="src/menu/submenu/nota_de_credito_menu.cpp" />
+		<Unit filename="src/menu/submenu/nota_de_credito_menu.h" />
+		<Unit filename="src/menu/submenu/producto_menu.cpp" />
+		<Unit filename="src/menu/submenu/producto_menu.h" />
+		<Unit filename="src/menu/submenu/proveedor_menu.cpp" />
+		<Unit filename="src/menu/submenu/proveedor_menu.h" />
+		<Unit filename="src/menu/submenu/tipo_responsable_menu.cpp" />
+		<Unit filename="src/menu/submenu/tipo_responsable_menu.h" />
+		<Unit filename="src/menu/submenu/venta_menu.cpp" />
+		<Unit filename="src/menu/submenu/venta_menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
