@@ -15,7 +15,7 @@ namespace DataGenerator {
         float porcentaje;
         char tipoFacturacion;
     };
-    void GenerateTipoResponsable(unsigned int count = 0);
+    void GenerateTipoResponsable(unsigned int count = 0, bool printLog = false);
 }
 
 #endif // TIPORESPONSABLES_GENERATOR_H

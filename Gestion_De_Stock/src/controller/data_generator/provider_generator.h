@@ -21,7 +21,7 @@ namespace DataGenerator {
         unsigned int codigoRazonSocial;
         bool alta;
     };
-    void GenerateProviders(unsigned int count = 5);
+    void GenerateProviders(unsigned int count = 5, bool printLog = false);
 }
 
 #endif // PROVIDER_GENERATOR_H

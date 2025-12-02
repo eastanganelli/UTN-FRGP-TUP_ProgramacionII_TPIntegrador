@@ -1,6 +1,6 @@
 #include "provider_generator.h"
 
-void DataGenerator::GenerateProviders(unsigned int count) {
+void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
     ProveedorManager proveedores;
 
@@ -9,7 +9,8 @@ void DataGenerator::GenerateProviders(unsigned int count) {
                     "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
 
     if(proveedores.Count() == 0) {
-        std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
+        if (printLog)
+            std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
         for (int i = 0; i < count; ++i) {
             DatosProveedor dp;
             dp.cuit = "30" + std::to_string(rand() % 40000000 + 10000000 + i) + "9";
@@ -22,11 +23,15 @@ void DataGenerator::GenerateProviders(unsigned int count) {
             dp.alta = (i % 2 != 0);
 
             Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, "", dp.alta);
-            cout << endl << "Proveedor agregado? >> " << (proveedores.New(dataProveedor) ? "Si" : "No") << endl;
-
-            dataProveedor.Print();
-            cout << endl;
+            if (printLog) {
+                cout << endl << "Proveedor agregado? >> " << (proveedores.New(dataProveedor) ? "Si" : "No") << endl;
+                dataProveedor.Print();
+                cout << endl;
+            } else {
+                proveedores.New(dataProveedor);
+            }
         }
-        std::cout << "\n-------------------------------------\n" << std::endl;
+        if (printLog)
+            std::cout << "\n-------------------------------------\n" << std::endl;
     }
 }

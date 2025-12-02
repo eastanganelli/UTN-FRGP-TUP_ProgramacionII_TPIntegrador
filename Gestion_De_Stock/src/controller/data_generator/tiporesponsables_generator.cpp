@@ -1,6 +1,6 @@
 #include "tiporesponsables_generator.h"
 
-void DataGenerator::GenerateTipoResponsable(unsigned int count) {
+void DataGenerator::GenerateTipoResponsable(unsigned int count, bool printLog) {
     TipoResponsableManager tipos_responsables;
 
     if(tipos_responsables.Count() == 0) {
@@ -20,7 +20,8 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count) {
             TipoResponsable nuevo_tipo(datos.codigo, datos.descripcion, datos.porcentaje, datos.tipoFacturacion);
             tipos_responsables.New(nuevo_tipo);
 
-            nuevo_tipo.Print();
+            if(printLog)
+                nuevo_tipo.Print();
         }
     }
 }

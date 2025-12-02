@@ -28,7 +28,7 @@ namespace DataGenerator {
         char tipoFactura;
     };
 
-    void GenerateInvoices(unsigned int count = 10);
+    void GenerateInvoices(unsigned int count = 10, bool printLog = false);
 }
 
 #endif // INVOICE_GENERATOR_H

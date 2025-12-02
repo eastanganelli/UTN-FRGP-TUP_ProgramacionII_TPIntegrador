@@ -1,6 +1,6 @@
 #include "client_generator.h"
 
-void DataGenerator::GenerateClients(unsigned int count) {
+void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
     ClienteManager clientes("clientes.dat");
 
@@ -13,7 +13,8 @@ void DataGenerator::GenerateClients(unsigned int count) {
                             "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
 
     if(clientes.Count() == 0) {
-        std::cout << "--- Datos de Clientes Generados ---" << std::endl;
+        if(printLog)
+            std::cout << "--- Datos de Clientes Generados ---" << std::endl;
         for (int i = 0; i < 10; ++i) {
             DataGenerator::DatosCliente dc;
             dc.nombre = nombres[rand() % nombres->length()];
@@ -27,10 +28,14 @@ void DataGenerator::GenerateClients(unsigned int count) {
             dc.alta = (i % 2 == 0);
 
             Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
-            cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
-
-            dataCliente.Print();
+            if(printLog) {
+                cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
+                dataCliente.Print();
+            } else {
+                clientes.New(dataCliente);
+            }
         }
-        std::cout << "\n-------------------------------------\n" << std::endl;
+        if(printLog)
+            std::cout << "\n-------------------------------------\n" << std::endl;
     }
 }

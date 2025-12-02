@@ -51,6 +51,7 @@ void MainMenu::OnSelect(int index) {
             DataGenerator::GenerateClients();
             DataGenerator::GenerateProviders();
             DataGenerator::GenerateProduct();
+            DataGenerator::GenerateInvoices();
             PauseConsole();
             break;
         }
