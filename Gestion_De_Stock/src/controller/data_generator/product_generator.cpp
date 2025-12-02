@@ -10,8 +10,7 @@ void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
                                      "Disco Duro", "Memoria USB", "Router", "Smartwatch", "Proyector"};
 
     if(productos.Count() == 0) {
-        if (printLog)
-            std::cout << "--- Datos de Productos Generados ---" << std::endl;
+        std::cout << "--- Datos de Productos Generados ---" << std::endl;
         for (unsigned int i = 0; i < count; ++i) {
             DatosProducto dp;
             dp.codigo = DataGenerator::generarCodigoAlfaNumerico(Producto::GetCodigoLength());
@@ -31,5 +30,7 @@ void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
         }
         if (printLog)
             std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Los productos ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

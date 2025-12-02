@@ -13,7 +13,7 @@ class Producto {
 private:
     static const unsigned int CODIGO_SIZE = 9;
     static const unsigned int CODIGOPROVEEDOR_SIZE = 12;
-    static const unsigned int DESCRIPCION_SIZE = 256;
+    static const unsigned int DESCRIPCION_SIZE = 64;
     static const unsigned int PRECIO_SIZE = 6;
     static const unsigned int STOCK_SIZE = 6;
 

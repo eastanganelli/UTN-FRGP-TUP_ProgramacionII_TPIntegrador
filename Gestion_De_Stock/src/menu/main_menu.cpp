@@ -47,12 +47,15 @@ void MainMenu::OnSelect(int index) {
             break;
         }
         case 7: {
+            cout << "--- Generando datos de prueba... ---" << endl << endl;
             DataGenerator::GenerateTipoResponsable();
             DataGenerator::GenerateClients();
             DataGenerator::GenerateProviders();
             DataGenerator::GenerateProduct();
             DataGenerator::GenerateInvoices();
+            cout << endl << "--- Datos de prueba generados. ---" << endl;
             PauseConsole();
+            rlutil::cls();
             break;
         }
         default:

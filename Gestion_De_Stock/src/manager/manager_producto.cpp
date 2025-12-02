@@ -189,11 +189,12 @@ void ProductoManager::Imprimir(GenericArray<Producto>& productos) {
 
     for(unsigned int i = 0; i < altura; i++) {
         Tabling::Row* row = new Tabling::Row(columnas);
-        row->AddCell(productos[i]->getCodigo(), Producto::GetCodigoLength());
-        row->AddCell(productos[i]->getCodigoProveedor(), Producto::GetCodigoProveedorLength());
-        row->AddCell(productos[i]->getDescripcion(), Producto::GetDescripcionLength());
-        row->AddCell(to_string(productos[i]->getPrecio()), Producto::GetPrecioLength());
-        row->AddCell(to_string(productos[i]->getStock()), Producto::GetStockLength());
+        Producto* aux = productos[i];
+        row->AddCell(aux->getCodigo(), Producto::GetCodigoLength());
+        row->AddCell(aux->getCodigoProveedor(), Producto::GetCodigoProveedorLength());
+        row->AddCell(aux->getDescripcion(), Producto::GetDescripcionLength());
+        row->AddCell(to_string(aux->getPrecio()), Producto::GetPrecioLength());
+        row->AddCell(to_string(aux->getStock()), Producto::GetStockLength());
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();

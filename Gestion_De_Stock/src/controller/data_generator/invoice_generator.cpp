@@ -10,8 +10,7 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
     TipoResponsableManager tipos;
 
     if (facturas.Count() == 0) {
-        if (printLog)
-            std::cout << "--- Datos de Facturas Generados ---" << std::endl;
+        std::cout << "--- Datos de Facturas Generados ---" << std::endl;
 
         unsigned int prodCount = productos.Count();
         unsigned int provCount = proveedores.Count();
@@ -119,5 +118,7 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
         }
         if (printLog)
             std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Las facturas ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

@@ -9,8 +9,7 @@ void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
                     "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
 
     if(proveedores.Count() == 0) {
-        if (printLog)
-            std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
+        std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
         for (int i = 0; i < count; ++i) {
             DatosProveedor dp;
             dp.cuit = "30" + std::to_string(rand() % 40000000 + 10000000 + i) + "9";
@@ -33,5 +32,7 @@ void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
         }
         if (printLog)
             std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Los datos de proveedores ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

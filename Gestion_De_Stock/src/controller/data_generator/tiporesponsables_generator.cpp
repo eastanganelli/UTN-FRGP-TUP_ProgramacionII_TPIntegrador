@@ -16,6 +16,8 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count, bool printLog) {
             {"9E3", "Cliente del Exterior", 0.0f, 'E'}
         };
 
+        cout << "--- Datos de Tipo Responsables Generados ---" << std::endl;
+        
         for(const auto& datos : datos_ejemplo) {
             TipoResponsable nuevo_tipo(datos.codigo, datos.descripcion, datos.porcentaje, datos.tipoFacturacion);
             tipos_responsables.New(nuevo_tipo);
@@ -23,5 +25,7 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count, bool printLog) {
             if(printLog)
                 nuevo_tipo.Print();
         }
+    } else {
+        cout << "Los datos de Tipo Responsables ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

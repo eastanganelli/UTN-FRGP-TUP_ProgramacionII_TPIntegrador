@@ -13,8 +13,7 @@ void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
                             "Calle de la Amistad", "Avenida del Mar", "Boulevard de los Sueños", "Pasaje de la Luna", "Camino del Viento"};
 
     if(clientes.Count() == 0) {
-        if(printLog)
-            std::cout << "--- Datos de Clientes Generados ---" << std::endl;
+        std::cout << "--- Datos de Clientes Generados ---" << std::endl;
         for (int i = 0; i < 10; ++i) {
             DataGenerator::DatosCliente dc;
             dc.nombre = nombres[rand() % nombres->length()];
@@ -37,5 +36,7 @@ void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
         }
         if(printLog)
             std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Los clientes ya existen. No se generaron nuevos datos." << std::endl;
     }
 }
