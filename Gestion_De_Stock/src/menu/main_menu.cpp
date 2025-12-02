@@ -15,56 +15,42 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Salir");
 }
 
-void MainMenu::OnSelect(int index) {
+bool MainMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             ClienteMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 1: {
             ProveedorMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 2: {
             ProductoMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 3: {
             TipoResponsableMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 4: {
             FacturaMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 5: {
             NotaDeCreditoMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 6: {
             VentaMenu m;
-            do {
-                m.Run();
-            } while (true);
-            break;
+            while (!m.Run()) { }
+            return false;
         }
         case 7: {
             cout << "--- Generando datos de prueba... ---" << endl << endl;
@@ -75,9 +61,13 @@ void MainMenu::OnSelect(int index) {
             DataGenerator::GenerateInvoices();
             cout << endl << "--- Datos de prueba generados. ---" << endl;
             PauseConsole();
-            break;
+            return false;
+        }
+        case 8: {
+            // Salir
+            return true;
         }
         default:
-            exit(0);
+            return true;
     }
 }

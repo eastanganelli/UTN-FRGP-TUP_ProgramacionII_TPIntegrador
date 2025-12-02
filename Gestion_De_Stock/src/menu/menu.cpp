@@ -24,7 +24,7 @@ void Menu::DrawOptions() {
     }
 }
 
-void Menu::Run() {
+bool Menu::Run() {
     rlutil::cls();
     DrawHeader();
     DrawOptions();
@@ -34,9 +34,9 @@ void Menu::Run() {
     if (!(cin >> sel)) {
         cin.clear();
         string tmp; getline(cin, tmp);
-        return;
+        return false;
     }
-    if (sel < 1 || sel > (int)options.Size()) return;
+    if (sel < 1 || sel > (int)options.Size()) return false;
     selectedIndex = sel - 1;
-    OnSelect(selectedIndex);
+    return OnSelect(selectedIndex);
 }

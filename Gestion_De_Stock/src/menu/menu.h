@@ -25,10 +25,11 @@ public:
     virtual ~Menu();
 
     void AddOption(const std::string& opt);
-    void Run();
+    bool Run();
 
     // Subclases implementan la acción a realizar al seleccionar una opción
-    virtual void OnSelect(int index) = 0;
+    // Devuelven true si la ejecución del menú debe terminar (p.ej. "Volver" o "Salir").
+    virtual bool OnSelect(int index) = 0;
 };
 
 #endif // MENU_H

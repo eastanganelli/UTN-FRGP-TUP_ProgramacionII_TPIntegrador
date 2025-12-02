@@ -10,7 +10,7 @@ private:
     TipoResponsableManager tipos;
 public:
     TipoResponsableMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // TIPORESPONSABLE_MENU_H

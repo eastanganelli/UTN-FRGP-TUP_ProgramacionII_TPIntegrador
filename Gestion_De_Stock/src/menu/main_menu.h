@@ -14,7 +14,7 @@
 class MainMenu : public Menu {
 public:
     MainMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // MAIN_MENU_H

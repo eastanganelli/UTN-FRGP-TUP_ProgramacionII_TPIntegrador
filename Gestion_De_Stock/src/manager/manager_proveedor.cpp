@@ -240,7 +240,7 @@ void ProveedorManager::Imprimir(GenericArray<Proveedor>& proveedores) {
         return;
     }
 
-    const unsigned int altura = proveedores.Size(), columnas = 9;
+    const unsigned int altura = proveedores.Size(), columnas = 8;
     Tabling::Table mi_tabla(altura, columnas);
 
     Tabling::Row* header = new Tabling::Row(columnas);

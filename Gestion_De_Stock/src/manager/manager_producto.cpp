@@ -180,21 +180,21 @@ void ProductoManager::Imprimir(GenericArray<Producto>& productos) {
     Tabling::Table mi_tabla(altura, columnas);
 
     Tabling::Row* header = new Tabling::Row(columnas);
-    header->AddCell("Codigo", Producto::GetCodigoLength());
-    header->AddCell("Proveedor", Producto::GetCodigoProveedorLength());
-    header->AddCell("Descripcion", Producto::GetDescripcionLength());
-    header->AddCell("Precio", Producto::GetPrecioLength());
-    header->AddCell("Stock", Producto::GetStockLength());
+    header->AddCell("Codigo", Producto::ColCodigoSize());
+    header->AddCell("Proveedor", Producto::ColCodigoProveedorSize());
+    header->AddCell("Descripcion", Producto::ColDescripcionSize());
+    header->AddCell("Precio", Producto::ColPrecioSize());
+    header->AddCell("Stock", Producto::ColStockSize());
     mi_tabla.AddRow(header);
 
     for(unsigned int i = 0; i < altura; i++) {
         Tabling::Row* row = new Tabling::Row(columnas);
         Producto* aux = productos[i];
-        row->AddCell(aux->getCodigo(), Producto::GetCodigoLength());
-        row->AddCell(aux->getCodigoProveedor(), Producto::GetCodigoProveedorLength());
-        row->AddCell(aux->getDescripcion(), Producto::GetDescripcionLength());
-        row->AddCell(to_string(aux->getPrecio()), Producto::GetPrecioLength());
-        row->AddCell(to_string(aux->getStock()), Producto::GetStockLength());
+        row->AddCell(aux->getCodigo(), Producto::ColCodigoSize());
+        row->AddCell(aux->getCodigoProveedor(), Producto::ColCodigoProveedorSize());
+        row->AddCell(aux->getDescripcion(), Producto::ColDescripcionSize());
+        row->AddCell(to_string(aux->getPrecio()), Producto::ColPrecioSize());
+        row->AddCell(to_string(aux->getStock()), Producto::ColStockSize());
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();

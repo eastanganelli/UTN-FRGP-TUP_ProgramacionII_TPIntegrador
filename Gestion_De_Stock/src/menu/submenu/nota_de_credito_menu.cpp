@@ -11,34 +11,34 @@ NotaDeCreditoMenu::NotaDeCreditoMenu() : Menu("Menu Notas de Credito", true) {
     AddOption("Volver");
 }
 
-void NotaDeCreditoMenu::OnSelect(int index) {
+bool NotaDeCreditoMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
         case 0: {
             notas.ListarPorCliente();
             PauseConsole();
-            break;
+            return false;
         }
         case 1: {
             string dni = InputBox("DNI del cliente: ");
             auto res = notas.BuscarPorCliente(dni);
             NotaDeCreditoManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 2: {
             string dni = InputBox("DNI del cliente: ");
             auto res = notas.BuscarPorCliente(dni);
             NotaDeCreditoManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 3: {
             string motivo = InputBox("Motivo de la nota de credito: ");
             auto res = notas.BuscarPorMotivo(motivo);
             NotaDeCreditoManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 4: {
             Fecha fechaInicio = InputDate("Fecha Inicio (DD/MM/AAAA): ");
@@ -46,12 +46,12 @@ void NotaDeCreditoMenu::OnSelect(int index) {
             auto res = notas.BuscarPorRangoFecha(fechaInicio, fechaFin);
             NotaDeCreditoManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 5: {
-            return;
+            return true;
         }
         default:
-            break;
+            return false;
     }
 }

@@ -16,9 +16,11 @@ int main() {
 //    DataGenerator::GenerateInvoices();
 
     MainMenu menuPrincipal;
-    do {
-        menuPrincipal.Run();
-    } while(true);
+    while (!menuPrincipal.Run());
+
+    Informational exitMsg("Salir", "Gracias por usar el sistema de gestion de stock. Hasta luego!");
+    exitMsg.Show();
+    PauseConsole();
 
     return 0;
 }
