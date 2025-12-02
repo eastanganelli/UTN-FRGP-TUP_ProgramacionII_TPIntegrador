@@ -11,6 +11,7 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Facturas");
     AddOption("Notas de Credito");
     AddOption("Ventas");
+    AddOption("Data Generator");
     AddOption("Salir");
 }
 
@@ -43,6 +44,14 @@ void MainMenu::OnSelect(int index) {
         }
         case 6: {
             VentaMenu m; m.Run();
+            break;
+        }
+        case 7: {
+            DataGenerator::GenerateTipoResponsable();
+            DataGenerator::GenerateClients();
+            DataGenerator::GenerateProviders();
+            DataGenerator::GenerateProduct();
+            PauseConsole();
             break;
         }
         default:

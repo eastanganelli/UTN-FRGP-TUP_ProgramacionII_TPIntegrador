@@ -1,3 +1,6 @@
+#ifndef CLIENT_GENERATOR_H
+#define CLIENT_GENERATOR_H
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -21,3 +24,5 @@ namespace DataGenerator {
     };
     void GenerateClients(unsigned int count = 15);
 }
+
+#endif // CLIENT_GENERATOR_H

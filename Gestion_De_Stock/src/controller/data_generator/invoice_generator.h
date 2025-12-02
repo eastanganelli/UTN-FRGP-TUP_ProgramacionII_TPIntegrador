@@ -1,3 +1,6 @@
+#ifndef INVOICE_GENERATOR_H
+#define INVOICE_GENERATOR_H
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -27,3 +30,5 @@ namespace DataGenerator {
 
     void GenerateInvoices(unsigned int count = 10);
 }
+
+#endif // INVOICE_GENERATOR_H

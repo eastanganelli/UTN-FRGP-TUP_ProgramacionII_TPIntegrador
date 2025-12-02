@@ -1,3 +1,6 @@
+#ifndef PROVIDER_GENERATOR_H
+#define PROVIDER_GENERATOR_H
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -20,3 +23,5 @@ namespace DataGenerator {
     };
     void GenerateProviders(unsigned int count = 5);
 }
+
+#endif // PROVIDER_GENERATOR_H

@@ -1,9 +1,12 @@
+#ifndef TIPORESPONSABLES_GENERATOR_H
+#define TIPORESPONSABLES_GENERATOR_H
+
 #include <ctime>
 #include <string>
 
 using namespace std;
 
-#include "../../manager/manager_tiporesponsables.h"
+#include "../../manager/manager_tipo_responsables.h"
 
 namespace DataGenerator {
     struct DatosTipoResponsable {
@@ -14,3 +17,5 @@ namespace DataGenerator {
     };
     void GenerateTipoResponsable(unsigned int count = 0);
 }
+
+#endif // TIPORESPONSABLES_GENERATOR_H
