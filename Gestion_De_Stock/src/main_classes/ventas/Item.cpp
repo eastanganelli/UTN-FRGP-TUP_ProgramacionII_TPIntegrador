@@ -52,8 +52,8 @@ void Item::setPrecioUnitario(float p) {
     this->precioUnitario = p;
 }
 
-unsigned int Item::GetCodigoLength() {
-    return CODIGO_SIZE;
+unsigned int Item::ColCodigoSize() {
+    return Item::COL_Codigo;
 }
 
 bool Item::operator==(const Item& otro) const {

@@ -9,6 +9,7 @@ using namespace std;
 class Item {
 private:
     static const unsigned int CODIGO_SIZE = 9;
+    static const unsigned int COL_Codigo = 11;
 
     char codigo[CODIGO_SIZE];
     unsigned int cantidad;
@@ -29,7 +30,7 @@ public:
     void setPrecioUnitario(float p);
 
     // Helpers
-    static unsigned int GetCodigoLength();
+    static unsigned int ColCodigoSize();
     bool operator==(const Item& otro) const;
     bool IsEmpty() const;
     std::string toString() const;

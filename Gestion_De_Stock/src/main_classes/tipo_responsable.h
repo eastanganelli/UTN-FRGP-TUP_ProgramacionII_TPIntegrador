@@ -39,7 +39,7 @@ public:
     static unsigned int ColCodigoSize();
     static unsigned int ColDescripcionSize();
     static unsigned int ColPorcentajeSize();
-    static unsigned int GetCodigoLength();
+    static unsigned int ColTipoFacturacion();
 
     // Métodos
     bool operator==(const TipoResponsable& otra) const;

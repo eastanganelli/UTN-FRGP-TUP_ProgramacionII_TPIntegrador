@@ -27,11 +27,11 @@ Fecha Factura::getVencimientoCAE() { return this->vencimientoCAE; }
 
 float Factura::TotalSinIVA() { return this->Total(); }
 
-unsigned int Factura::GetTipoFacturaLength() { return Factura::TIPOFACTURA_SIZE; }
+unsigned int Factura::ColTipoFacturaSize() { return Factura::TIPOFACTURA_SIZE + 2; }
 
-unsigned int Factura::GetCAELength() { return Factura::CAE_SIZE; }
+unsigned int Factura::ColCAESize() { return Factura::CAE_SIZE + 2; }
 
-unsigned int Factura::GetVencimientoCAELength() { return Factura::VENCIMIENTOCAE_SIZE; }
+unsigned int Factura::ColVencimientoCAESize() { return Factura::VENCIMIENTOCAE_SIZE + 2; }
 
 bool Factura::operator==(const Factura& otra) {
     return Validation::IsEqual(this->cae, otra.cae)

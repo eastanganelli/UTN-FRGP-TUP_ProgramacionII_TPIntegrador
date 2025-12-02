@@ -31,7 +31,7 @@ unsigned int TipoResponsable::ColDescripcionSize() { return TipoResponsable::COL
 
 unsigned int TipoResponsable::ColPorcentajeSize() { return TipoResponsable::COL_Porcentaje; }
 
-unsigned int TipoResponsable::GetCodigoLength() { return TipoResponsable::CODIGO_SIZE; }
+unsigned int TipoResponsable::ColTipoFacturacion() { return TipoResponsable::COL_TipoFacturacion; }
 
 bool TipoResponsable::operator==(const TipoResponsable& otra) const {
     return Validation::IsEqual(this->codigo, otra.codigo) && Validation::IsEqual(this->descripcion, otra.descripcion)

@@ -12,6 +12,8 @@ class Proveedor : public DatosPersonales {
 private:
     static const unsigned int CUIT_SIZE = 12;
     static const unsigned int NOMBRE_RAZON_SIZE = 35;
+    static const unsigned int COL_CUIT = 14;
+    static const unsigned int COL_NOMBRE_RAZON = 36;
 
     char cuit[CUIT_SIZE];
     char nombreRazon[NOMBRE_RAZON_SIZE];
@@ -28,8 +30,8 @@ public:
     string getRubroNombre();
     string getNombreRazon();
 
-    static unsigned int GetCuitLength();
-    static unsigned int GetNombreRazonLength();
+    static unsigned int ColCuitSize();
+    static unsigned int ColNombreRazonSize();
 
     // Setters
     void setAlta(bool alta);

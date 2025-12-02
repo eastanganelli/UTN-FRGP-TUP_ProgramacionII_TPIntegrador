@@ -124,7 +124,7 @@ void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& tipo_respon
     mi_header->AddCell("Cod.", TipoResponsable::ColCodigoSize());
     mi_header->AddCell("Tipo Responsable", TipoResponsable::ColDescripcionSize());
     mi_header->AddCell("% IVA", TipoResponsable::ColPorcentajeSize());
-    mi_header->AddCell("Tipo", TipoResponsable::GetCodigoLength());
+    mi_header->AddCell("Tipo", TipoResponsable::ColTipoFacturacion());
 
     mi_tabla.AddRow(mi_header);
 
@@ -137,7 +137,7 @@ void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& tipo_respon
         mi_fila->AddCell(porcentaje, TipoResponsable::ColPorcentajeSize());
 
         string tipo = Validation::ToUpper(string(1, tipo_responsables[i]->getTipoFacturacion()));
-        mi_fila->AddCell(tipo, TipoResponsable::GetCodigoLength());
+        mi_fila->AddCell(tipo, TipoResponsable::ColTipoFacturacion());
 
         mi_tabla.AddRow(mi_fila);
     }
