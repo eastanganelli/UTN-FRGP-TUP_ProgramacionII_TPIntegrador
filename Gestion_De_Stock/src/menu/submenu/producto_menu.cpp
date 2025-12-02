@@ -52,6 +52,9 @@ void ProductoMenu::OnSelect(int index) {
             PauseConsole();
             break;
         }
+        case 6: {
+            return;
+        }
         default:
             break;
     }

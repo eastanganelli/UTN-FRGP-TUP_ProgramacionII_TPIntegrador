@@ -61,6 +61,9 @@ void ClienteMenu::OnSelect(int index) {
             PauseConsole();
             break;
         }
+        case 7: {
+            return;
+        }
         default:
             break;
     }

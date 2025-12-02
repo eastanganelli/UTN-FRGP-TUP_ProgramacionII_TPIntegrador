@@ -29,6 +29,9 @@ void VentaMenu::OnSelect(int index) {
             PauseConsole();
             break;
         }
+        case 2: {
+            return;
+        }
         default:
             break;
     }

@@ -48,6 +48,9 @@ void NotaDeCreditoMenu::OnSelect(int index) {
             PauseConsole();
             break;
         }
+        case 5: {
+            return;
+        }
         default:
             break;
     }

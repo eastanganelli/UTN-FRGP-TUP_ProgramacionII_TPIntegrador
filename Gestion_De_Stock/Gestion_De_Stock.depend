@@ -556,7 +556,7 @@
 	<cstring>
 	<string>
 
-1764651301 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
+1764651357 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
 	<string>
 	<cstring>
 	<iostream>
@@ -717,13 +717,13 @@
 1764166431 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_cliente.cpp
 	"manager_cliente.h"
 
-1764140275 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\table.cpp
+1764651904 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\table.cpp
 	"table.h"
 
 1764166465 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_tiporesponsables.cpp
 	"manager_tiporesponsables.h"
 
-1764137091 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\row.cpp
+1764651868 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\row.cpp
 	"row.h"
 
 1764651172 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_producto.cpp
@@ -769,7 +769,7 @@
 	"generator.h"
 	"../../manager/manager_proveedor.h"
 
-1764644933 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu.cpp
+1764652097 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu.cpp
 	"menu.h"
 	<iostream>
 
@@ -889,7 +889,7 @@
 	"manager_factura.h"
 	"manager_nota_de_credito.h"
 
-1764649829 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\main_menu.cpp
+1764652378 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\main_menu.cpp
 	"main_menu.h"
 	<iostream>
 

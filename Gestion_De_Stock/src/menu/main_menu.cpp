@@ -5,8 +5,8 @@ using namespace std;
 
 MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Clientes");
-    AddOption("Productos");
     AddOption("Proveedores");
+    AddOption("Productos");
     AddOption("Tipo Responsables");
     AddOption("Facturas");
     AddOption("Notas de Credito");
@@ -16,34 +16,54 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
 }
 
 void MainMenu::OnSelect(int index) {
-    rlutil::cls();
     switch(index) {
         case 0: {
-            ClienteMenu m; m.Run();
+            ClienteMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 1: {
-            ProductoMenu m; m.Run();
+            ProveedorMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 2: {
-            ProveedorMenu m; m.Run();
+            ProductoMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 3: {
-            TipoResponsableMenu m; m.Run();
+            TipoResponsableMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 4: {
-            FacturaMenu m; m.Run();
+            FacturaMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 5: {
-            NotaDeCreditoMenu m; m.Run();
+            NotaDeCreditoMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 6: {
-            VentaMenu m; m.Run();
+            VentaMenu m;
+            do {
+                m.Run();
+            } while (true);
             break;
         }
         case 7: {
@@ -55,7 +75,6 @@ void MainMenu::OnSelect(int index) {
             DataGenerator::GenerateInvoices();
             cout << endl << "--- Datos de prueba generados. ---" << endl;
             PauseConsole();
-            rlutil::cls();
             break;
         }
         default:

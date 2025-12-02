@@ -25,6 +25,7 @@ void Menu::DrawOptions() {
 }
 
 void Menu::Run() {
+    rlutil::cls();
     DrawHeader();
     DrawOptions();
 

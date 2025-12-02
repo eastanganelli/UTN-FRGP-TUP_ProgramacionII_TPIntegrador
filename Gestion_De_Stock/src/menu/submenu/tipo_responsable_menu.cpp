@@ -30,6 +30,9 @@ void TipoResponsableMenu::OnSelect(int index) {
             PauseConsole();
             break;
         }
+        case 3: {
+            return;
+        }
         default:
             break;
     }
