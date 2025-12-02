@@ -12,6 +12,7 @@ NotaDeCreditoMenu::NotaDeCreditoMenu() : Menu("Menu Notas de Credito", true) {
 }
 
 void NotaDeCreditoMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             notas.ListarPorCliente();

@@ -4,13 +4,16 @@
 #include <string>
 #include <vector>
 
+#include "../controller/generic_array.h"
 #include "../controller/modals.h"
 #include "../../rlutil.h"
 
+using namespace std;
+
 class Menu {
 protected:
-    std::string title;
-    std::vector<std::string> options;
+    string title;
+    GenericArray<string> options;
     bool centered;
     int selectedIndex;
 

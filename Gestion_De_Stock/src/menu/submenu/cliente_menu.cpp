@@ -15,6 +15,7 @@ ClienteMenu::ClienteMenu() : Menu("Menu Clientes", true) {
 }
 
 void ClienteMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             clientes.ListarPorDNI();

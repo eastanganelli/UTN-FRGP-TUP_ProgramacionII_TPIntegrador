@@ -9,27 +9,25 @@ Menu::Menu(const std::string& title_, bool centered_)
 Menu::~Menu() { }
 
 void Menu::AddOption(const std::string& opt) {
-    options.push_back(opt);
+    string aux = opt;
+    options.Append(aux);
 }
 
 void Menu::DrawHeader() {
-    // Simple header; subclasses can override drawing behavior if needed
     cout << "\n=== " << title << " ===\n";
 }
 
 void Menu::DrawOptions() {
-    for (size_t i = 0; i < options.size(); ++i) {
+    for (size_t i = 0; i < options.Size(); ++i) {
         if ((int)i == selectedIndex) cout << "> "; else cout << "  ";
-        cout << (i + 1) << ") " << options[i] << "\n";
+        cout << (i + 1) << ") " << *options[i] << "\n";
     }
 }
 
 void Menu::Run() {
-    OnEnter:
     DrawHeader();
     DrawOptions();
 
-    // Simple numeric selection for portability
     cout << "Seleccione una opcion (numero) y presione Enter: ";
     int sel = 0;
     if (!(cin >> sel)) {
@@ -37,7 +35,7 @@ void Menu::Run() {
         string tmp; getline(cin, tmp);
         return;
     }
-    if (sel < 1 || sel > (int)options.size()) return;
+    if (sel < 1 || sel > (int)options.Size()) return;
     selectedIndex = sel - 1;
     OnSelect(selectedIndex);
 }

@@ -15,6 +15,7 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
 }
 
 void MainMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             ClienteMenu m; m.Run();

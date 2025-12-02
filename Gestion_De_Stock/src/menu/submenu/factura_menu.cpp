@@ -14,6 +14,7 @@ FacturaMenu::FacturaMenu() : Menu("Menu Facturas", true) {
 }
 
 void FacturaMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             facturas.ListarPorCliente();

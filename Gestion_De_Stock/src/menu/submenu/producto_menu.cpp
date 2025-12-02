@@ -14,6 +14,7 @@ ProductoMenu::ProductoMenu() : Menu("Menu Productos", true) {
 }
 
 void ProductoMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             productos.ListarPorCodigo();

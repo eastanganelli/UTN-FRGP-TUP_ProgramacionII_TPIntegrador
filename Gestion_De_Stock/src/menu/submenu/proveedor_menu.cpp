@@ -15,6 +15,7 @@ ProveedorMenu::ProveedorMenu() : Menu("Menu Proveedores", true) {
 }
 
 void ProveedorMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             proveedores.ListarPorNombre();

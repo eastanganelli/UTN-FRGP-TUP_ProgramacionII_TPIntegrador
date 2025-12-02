@@ -11,6 +11,7 @@ TipoResponsableMenu::TipoResponsableMenu() : Menu("Menu Tipo Responsables", true
 }
 
 void TipoResponsableMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             tipos.ListarPorDescripcion();

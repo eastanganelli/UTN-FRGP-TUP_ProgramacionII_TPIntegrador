@@ -10,6 +10,7 @@ VentaMenu::VentaMenu() : Menu("Menu Ventas", true) {
 }
 
 void VentaMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             string dni = InputBox("DNI del cliente: ");
