@@ -175,7 +175,7 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         return;
     }
 
-    const unsigned int altura = facturas.Size(), columnas = 7;
+    const unsigned int altura = facturas.Size(), columnas = 4;
     Tabling::Table mi_tabla(altura, columnas);
 
     Tabling::Row* header = new Tabling::Row(columnas);

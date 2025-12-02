@@ -38,9 +38,9 @@ string Proveedor::getRubroNombre() {
     return "Indumentaria";
 }
 
-unsigned int Proveedor::GetCuitLength() { return Proveedor::CUIT_SIZE; }
+unsigned int Proveedor::ColCuitSize() { return Proveedor::COL_CUIT; }
 
-unsigned int Proveedor::GetNombreRazonLength() { return Proveedor::NOMBRE_RAZON_SIZE; }
+unsigned int Proveedor::ColNombreRazonSize() { return Proveedor::COL_NOMBRE_RAZON; }
 
 void Proveedor::setAlta(bool alta) { this->alta = alta; }
 

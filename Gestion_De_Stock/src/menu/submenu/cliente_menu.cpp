@@ -14,36 +14,37 @@ ClienteMenu::ClienteMenu() : Menu("Menu Clientes", true) {
     AddOption("Volver");
 }
 
-void ClienteMenu::OnSelect(int index) {
+bool ClienteMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             clientes.ListarPorDNI();
             PauseConsole();
-            break;
+            return false;
         }
         case 1: {
             clientes.ListarPorCuil_Cuit();
             PauseConsole();
-            break;
+            return false;
         }
         case 2: {
             clientes.ListarPorApellido();
             PauseConsole();
-            break;
+            return false;
         }
         case 3: {
             string dni = InputBox("DNI: ");
             auto res = clientes.BuscarPorDNI(dni);
             ClienteManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 4: {
             string cuilCuit = InputBox("CUIL/CUIT: ");
             auto res = clientes.BuscarPorCUIL_CUIT(cuilCuit);
             ClienteManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 5: {
             string nombre = InputBox("Nombre: ");
@@ -51,16 +52,19 @@ void ClienteMenu::OnSelect(int index) {
             auto res = clientes.BuscarPorNombreApellido(nombre, apellido);
             ClienteManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 6: {
             string correo = InputBox("Correo: ");
             auto res = clientes.BuscarPorCorreo(correo);
             ClienteManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
+        }
+        case 7: {
+            return true; // Volver
         }
         default:
-            break;
+            return false;
     }
 }

@@ -1,6 +1,6 @@
 #include "invoice_generator.h"
 
-void DataGenerator::GenerateInvoices(unsigned int count) {
+void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
 
     FacturaManager facturas;
@@ -17,7 +17,8 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
         unsigned int cliCount = clientes.Count();
 
         if (prodCount == 0 || cliCount == 0) {
-            std::cout << "No hay productos o clientes suficientes para generar facturas." << std::endl;
+            if (printLog)
+                std::cout << "No hay productos o clientes suficientes para generar facturas." << std::endl;
             return;
         }
 
@@ -46,7 +47,8 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
             }
 
             bool added = facturas.New(f);
-            cout << endl << "Factura agregada? >> " << (added ? "Si" : "No") << endl;
+            if (printLog)
+                cout << endl << "Factura agregada? >> " << (added ? "Si" : "No") << endl;
 
             // Intentar leer la factura recién guardada desde el archivo
             Factura* saved = nullptr;
@@ -68,18 +70,20 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
                 float neto = saved->TotalSinIVA();
                 float totalConIVA = neto * (1.0f + 1 / 100.0f);
 
-                cout << "Factura leida del archivo - ID: " << saved->getNumero()
-                     << " | Cliente: " << saved->getClienteDNI()
-                    //  << " | Tipo: " << saved->getTipoFactura()
-                     << " | Neto: " << neto
-//                     << " | IVA(%): " << porcentaje
-                     << " | Total c/IVA: " << totalConIVA
-                     << " | Items: " << saved->CantidadItems() << std::endl;
+                if (printLog) {
+                    cout << "Factura leida del archivo - ID: " << saved->getNumero()
+                        << " | Cliente: " << saved->getClienteDNI()
+                        //  << " | Tipo: " << saved->getTipoFactura()
+                        << " | Neto: " << neto
+    //                     << " | IVA(%): " << porcentaje
+                        << " | Total c/IVA: " << totalConIVA
+                        << " | Items: " << saved->CantidadItems() << std::endl;
 
-                for (unsigned int k = 0; k < saved->CantidadItems(); ++k) {
-                    const Item* it = saved->ObtenerItem(k);
-                    if (it != nullptr) {
-                        cout << "  - Item codigo: " << it->getCodigo() << std::endl;
+                    for (unsigned int k = 0; k < saved->CantidadItems(); ++k) {
+                        const Item* it = saved->ObtenerItem(k);
+                        if (it != nullptr) {
+                            cout << "  - Item codigo: " << it->getCodigo() << std::endl;
+                        }
                     }
                 }
 
@@ -94,23 +98,27 @@ void DataGenerator::GenerateInvoices(unsigned int count) {
                 float neto = f.TotalSinIVA();
                 float totalConIVA = neto * (1.0f + 1 / 100.0f);
 
-                cout << "Factura (no encontrada en archivo) - ID: " << f.getNumero()
-                     << " | Cliente: " << f.getClienteDNI()
-                    //  << " | Tipo: " << f.getTipoFactura()
-                     << " | Neto: " << neto
-//                     << " | IVA(%): " << porcentaje
-                     << " | Total c/IVA: " << totalConIVA
-                     << " | Items: " << f.CantidadItems() << std::endl;
+                if (printLog) {
+                    cout << "Factura (no encontrada en archivo) - ID: " << f.getNumero()
+                        << " | Cliente: " << f.getClienteDNI()
+                        //  << " | Tipo: " << f.getTipoFactura()
+                        << " | Neto: " << neto
+    //                     << " | IVA(%): " << porcentaje
+                        << " | Total c/IVA: " << totalConIVA
+                        << " | Items: " << f.CantidadItems() << std::endl;
 
-                for (unsigned int k = 0; k < f.CantidadItems(); ++k) {
-                    const Item* it = f.ObtenerItem(k);
-                    if (it != nullptr) {
-                        cout << "  - Item codigo: " << it->getCodigo() << std::endl;
+                    for (unsigned int k = 0; k < f.CantidadItems(); ++k) {
+                        const Item* it = f.ObtenerItem(k);
+                        if (it != nullptr) {
+                            cout << "  - Item codigo: " << it->getCodigo() << std::endl;
+                        }
                     }
                 }
             }
         }
-
-        std::cout << "\n-------------------------------------\n" << std::endl;
+        if (printLog)
+            std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Las facturas ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

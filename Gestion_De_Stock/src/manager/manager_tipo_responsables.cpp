@@ -121,23 +121,23 @@ void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& tipo_respon
     Tabling::Table mi_tabla(altura, columnas);
 
     Tabling::Row* mi_header = new Tabling::Row(4);
-    mi_header->AddCell("Cod.", TipoResponsable::GetCodigoLength());
-    mi_header->AddCell("Tipo Responsable", TipoResponsable::GetDescripcionLength());
-    mi_header->AddCell("% IVA", TipoResponsable::GetPorcentajeLength());
-    mi_header->AddCell("Tipo", TipoResponsable::GetTipoFacturacionLength());
+    mi_header->AddCell("Cod.", TipoResponsable::ColCodigoSize());
+    mi_header->AddCell("Tipo Responsable", TipoResponsable::ColDescripcionSize());
+    mi_header->AddCell("% IVA", TipoResponsable::ColPorcentajeSize());
+    mi_header->AddCell("Tipo", TipoResponsable::ColTipoFacturacion());
 
     mi_tabla.AddRow(mi_header);
 
     for(unsigned int i = 0; i < tipo_responsables.Size(); i++) {
         Tabling::Row* mi_fila = new Tabling::Row(columnas);
-        mi_fila->AddCell(tipo_responsables[i]->getCodigo(), TipoResponsable::GetCodigoLength());
-        mi_fila->AddCell(tipo_responsables[i]->getDescripcion(), TipoResponsable::GetDescripcionLength());
+        mi_fila->AddCell(tipo_responsables[i]->getCodigo(), TipoResponsable::ColCodigoSize());
+        mi_fila->AddCell(tipo_responsables[i]->getDescripcion(), TipoResponsable::ColDescripcionSize());
 
         string porcentaje = Validation::ToFixedDecimal(tipo_responsables[i]->getPorcentaje(), 1);
-        mi_fila->AddCell(porcentaje, TipoResponsable::GetPorcentajeLength());
+        mi_fila->AddCell(porcentaje, TipoResponsable::ColPorcentajeSize());
 
         string tipo = Validation::ToUpper(string(1, tipo_responsables[i]->getTipoFacturacion()));
-        mi_fila->AddCell(tipo, TipoResponsable::GetTipoFacturacionLength());
+        mi_fila->AddCell(tipo, TipoResponsable::ColTipoFacturacion());
 
         mi_tabla.AddRow(mi_fila);
     }

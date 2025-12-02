@@ -10,7 +10,7 @@ private:
     ProductoManager productos;
 public:
     ProductoMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // PRODUCTO_MENU_H

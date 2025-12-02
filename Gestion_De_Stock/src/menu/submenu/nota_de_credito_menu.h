@@ -10,7 +10,7 @@ private:
     NotaDeCreditoManager notas;
 public:
     NotaDeCreditoMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // NOTA_DE_CREDITO_MENU_H

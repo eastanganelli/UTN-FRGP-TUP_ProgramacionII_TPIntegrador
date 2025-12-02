@@ -9,13 +9,13 @@ VentaMenu::VentaMenu() : Menu("Menu Ventas", true) {
     AddOption("Volver");
 }
 
-void VentaMenu::OnSelect(int index) {
+bool VentaMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             string dni = InputBox("DNI del cliente: ");
             ventas.ImprimirComprobantesPorCliente(dni);
             PauseConsole();
-            break;
+                return false;
         }
         case 1: {
             unsigned int nro = InputNumber("Numero factura: ");
@@ -26,9 +26,12 @@ void VentaMenu::OnSelect(int index) {
                 else cout << "Error: no se pudo convertir la factura." << endl;
             }
             PauseConsole();
-            break;
+                return false;
+        }
+        case 2: {
+                return true;
         }
         default:
-            break;
+                return false;
     }
 }

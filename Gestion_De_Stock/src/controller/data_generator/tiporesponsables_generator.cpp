@@ -1,6 +1,6 @@
 #include "tiporesponsables_generator.h"
 
-void DataGenerator::GenerateTipoResponsable(unsigned int count) {
+void DataGenerator::GenerateTipoResponsable(unsigned int count, bool printLog) {
     TipoResponsableManager tipos_responsables;
 
     if(tipos_responsables.Count() == 0) {
@@ -16,11 +16,16 @@ void DataGenerator::GenerateTipoResponsable(unsigned int count) {
             {"9E3", "Cliente del Exterior", 0.0f, 'E'}
         };
 
+        cout << "--- Datos de Tipo Responsables Generados ---" << std::endl;
+        
         for(const auto& datos : datos_ejemplo) {
             TipoResponsable nuevo_tipo(datos.codigo, datos.descripcion, datos.porcentaje, datos.tipoFacturacion);
             tipos_responsables.New(nuevo_tipo);
 
-            nuevo_tipo.Print();
+            if(printLog)
+                nuevo_tipo.Print();
         }
+    } else {
+        cout << "Los datos de Tipo Responsables ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

@@ -1,3 +1,6 @@
+#ifndef CLIENT_GENERATOR_H
+#define CLIENT_GENERATOR_H
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -19,5 +22,7 @@ namespace DataGenerator {
         unsigned int codigoRazonSocial;
         bool alta;
     };
-    void GenerateClients(unsigned int count = 15);
+    void GenerateClients(unsigned int count = 15, bool printLog = false);
 }
+
+#endif // CLIENT_GENERATOR_H

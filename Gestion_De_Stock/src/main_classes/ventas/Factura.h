@@ -27,9 +27,9 @@ public:
     Fecha getVencimientoCAE();
     float TotalSinIVA();
 
-    static unsigned int GetTipoFacturaLength();
-    static unsigned int GetCAELength();
-    static unsigned int GetVencimientoCAELength();
+    static unsigned int ColTipoFacturaSize();
+    static unsigned int ColCAESize();
+    static unsigned int ColVencimientoCAESize();
 
     // Setters
     bool Facturar();

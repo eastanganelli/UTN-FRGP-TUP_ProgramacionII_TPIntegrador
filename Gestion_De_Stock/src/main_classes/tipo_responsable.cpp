@@ -25,13 +25,13 @@ float TipoResponsable::getPorcentaje() const { return this->porcentaje; }
 
 char TipoResponsable::getTipoFacturacion() const { return toupper(this->tipoFacturacion); }
 
-unsigned int TipoResponsable::GetCodigoLength() { return TipoResponsable::CODIGO_SIZE; }
+unsigned int TipoResponsable::ColCodigoSize() { return TipoResponsable::COL_Codigo; }
 
-unsigned int TipoResponsable::GetDescripcionLength() { return TipoResponsable::DESCRIPCION_SIZE; }
+unsigned int TipoResponsable::ColDescripcionSize() { return TipoResponsable::COL_Descripcion; }
 
-unsigned int TipoResponsable::GetPorcentajeLength() { return TipoResponsable::PORCENTAJE_SIZE; }
+unsigned int TipoResponsable::ColPorcentajeSize() { return TipoResponsable::COL_Porcentaje; }
 
-unsigned int TipoResponsable::GetTipoFacturacionLength() { return TipoResponsable::TIPOFACTURACION_SIZE; }
+unsigned int TipoResponsable::ColTipoFacturacion() { return TipoResponsable::COL_TipoFacturacion; }
 
 bool TipoResponsable::operator==(const TipoResponsable& otra) const {
     return Validation::IsEqual(this->codigo, otra.codigo) && Validation::IsEqual(this->descripcion, otra.descripcion)
@@ -48,19 +48,19 @@ void TipoResponsable::Print() {
     int x = 1;
 
     rlutil::locate(x, row);
-    std::cout << std::left << std::setw(TipoResponsable::GetCodigoLength()) << this->codigo;
-    x += TipoResponsable::GetCodigoLength();
+    std::cout << std::left << std::setw(TipoResponsable::COL_Codigo) << this->codigo;
+    x += TipoResponsable::COL_Codigo;
 
     rlutil::locate(x, row);
-    std::cout << std::left << std::setw(TipoResponsable::GetDescripcionLength()) << this->descripcion;
-    x += TipoResponsable::GetDescripcionLength();
+    std::cout << std::left << std::setw(TipoResponsable::COL_Descripcion) << this->descripcion;
+    x += TipoResponsable::COL_Descripcion;
 
     rlutil::locate(x, row);
-    std::cout << std::left << std::setw(TipoResponsable::GetPorcentajeLength()) << std::fixed << std::setprecision(1) << this->porcentaje;
-    x += TipoResponsable::GetPorcentajeLength();
+    std::cout << std::left << std::setw(TipoResponsable::COL_Porcentaje) << std::fixed << std::setprecision(1) << this->porcentaje;
+    x += TipoResponsable::COL_Porcentaje;
 
     rlutil::locate(x, row);
-    std::cout << std::left << std::setw(TipoResponsable::GetTipoFacturacionLength()) << (char)toupper(this->tipoFacturacion);
+    std::cout << std::left << std::setw(TipoResponsable::COL_Porcentaje) << (char)toupper(this->tipoFacturacion);
 
     rlutil::locate(1, row + 1);
 }

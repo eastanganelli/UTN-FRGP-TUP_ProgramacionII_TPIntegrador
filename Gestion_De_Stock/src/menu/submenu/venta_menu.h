@@ -10,7 +10,7 @@ private:
     VentaManager ventas;
 public:
     VentaMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // VENTA_MENU_H

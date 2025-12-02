@@ -10,7 +10,7 @@ private:
     ClienteManager clientes;
 public:
     ClienteMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // CLIENTE_MENU_H

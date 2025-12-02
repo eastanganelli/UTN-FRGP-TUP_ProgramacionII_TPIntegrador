@@ -13,36 +13,37 @@ FacturaMenu::FacturaMenu() : Menu("Menu Facturas", true) {
     AddOption("Volver");
 }
 
-void FacturaMenu::OnSelect(int index) {
+bool FacturaMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             facturas.ListarPorCliente();
             PauseConsole();
-            break;
+            return false;
         }
         case 1: {
             facturas.ListarPorFecha();
             PauseConsole();
-            break;
+            return false;
         }
         case 2: {
             facturas.ListarPorMonto();
             PauseConsole();
-            break;
+            return false;
         }
         case 3: {
             string dni = InputBox("DNI del cliente: ");
             auto res = facturas.BuscarPorCliente(dni);
             FacturaManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 4: {
             string cae = InputBox("CAE: ");
             auto res = facturas.BuscarPorCAE(cae);
             FacturaManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 5: {
             Fecha fechaInicio = InputDate("Fecha Inicio (DD/MM/AAAA): "),
@@ -51,9 +52,12 @@ void FacturaMenu::OnSelect(int index) {
             auto res = facturas.BuscarPorRangoFecha(fechaInicio, fechaFin);
             FacturaManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
+        }
+        case 6: {
+            return true;
         }
         default:
-            break;
+            return false;
     }
 }

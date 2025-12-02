@@ -13,9 +13,15 @@ class Producto {
 private:
     static const unsigned int CODIGO_SIZE = 9;
     static const unsigned int CODIGOPROVEEDOR_SIZE = 12;
-    static const unsigned int DESCRIPCION_SIZE = 256;
+    static const unsigned int DESCRIPCION_SIZE = 64;
     static const unsigned int PRECIO_SIZE = 6;
     static const unsigned int STOCK_SIZE = 6;
+
+    static const unsigned int COL_Codigo = 11;
+    static const unsigned int COL_CodigoProveedor = 14;
+    static const unsigned int COL_Descripcion = 66;
+    static const unsigned int COL_Precio = 8;
+    static const unsigned int COL_Stock = 8;
 
     char codigo[CODIGO_SIZE];
     char codigoProveedor[CODIGOPROVEEDOR_SIZE];
@@ -37,11 +43,11 @@ public:
     float getPrecio();
     unsigned int getStock();
 
-    static unsigned int GetCodigoLength();
-    static unsigned int GetCodigoProveedorLength();
-    static unsigned int GetDescripcionLength();
-    static unsigned int GetPrecioLength();
-    static unsigned int GetStockLength();
+    static unsigned int ColCodigoSize();
+    static unsigned int ColCodigoProveedorSize();
+    static unsigned int ColDescripcionSize();
+    static unsigned int ColPrecioSize();
+    static unsigned int ColStockSize();
 
     // Setters
     void setDescripcion(string d);

@@ -15,6 +15,11 @@ private:
     static const unsigned int PORCENTAJE_SIZE = 6;
     static const unsigned int TIPOFACTURACION_SIZE = 5;
 
+    static const unsigned int COL_Codigo = 6;
+    static const unsigned int COL_Descripcion = 32;
+    static const unsigned int COL_Porcentaje = 8;
+    static const unsigned int COL_TipoFacturacion = 6;
+
     char codigo[CODIGO_SIZE];
     char descripcion[DESCRIPCION_SIZE];
     float porcentaje;
@@ -31,10 +36,10 @@ public:
     float getPorcentaje() const;
     char getTipoFacturacion() const;
 
-    static unsigned int GetCodigoLength();
-    static unsigned int GetDescripcionLength();
-    static unsigned int GetPorcentajeLength();
-    static unsigned int GetTipoFacturacionLength();
+    static unsigned int ColCodigoSize();
+    static unsigned int ColDescripcionSize();
+    static unsigned int ColPorcentajeSize();
+    static unsigned int ColTipoFacturacion();
 
     // Métodos
     bool operator==(const TipoResponsable& otra) const;

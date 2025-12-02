@@ -240,12 +240,12 @@ void ProveedorManager::Imprimir(GenericArray<Proveedor>& proveedores) {
         return;
     }
 
-    const unsigned int altura = proveedores.Size(), columnas = 9;
+    const unsigned int altura = proveedores.Size(), columnas = 8;
     Tabling::Table mi_tabla(altura, columnas);
 
     Tabling::Row* header = new Tabling::Row(columnas);
-    header->AddCell("CUIT", Proveedor::GetCuitLength());
-    header->AddCell("Nombre/Razon", Proveedor::GetNombreRazonLength());
+    header->AddCell("CUIT", Proveedor::ColCuitSize());
+    header->AddCell("Nombre/Razon", Proveedor::ColNombreRazonSize());
     header->AddCell("Rubro", 12);
     header->AddCell("Direccion", DatosPersonales::GetDireccionSize());
     header->AddCell("Correo", DatosPersonales::GetCorreoSize());
@@ -256,8 +256,8 @@ void ProveedorManager::Imprimir(GenericArray<Proveedor>& proveedores) {
 
     for(unsigned int i = 0; i < altura; i++) {
         Tabling::Row* row = new Tabling::Row(columnas);
-        row->AddCell(proveedores[i]->getCuit(), Proveedor::GetCuitLength());
-        row->AddCell(proveedores[i]->getNombreRazon(), Proveedor::GetNombreRazonLength());
+        row->AddCell(proveedores[i]->getCuit(), Proveedor::ColCuitSize());
+        row->AddCell(proveedores[i]->getNombreRazon(), Proveedor::ColNombreRazonSize());
         row->AddCell(proveedores[i]->getRubroNombre(), 12);
         row->AddCell(proveedores[i]->getDireccion(), DatosPersonales::GetDireccionSize());
         row->AddCell(proveedores[i]->getCorreo(), DatosPersonales::GetCorreoSize());

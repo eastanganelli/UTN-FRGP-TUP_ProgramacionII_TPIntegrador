@@ -1,3 +1,6 @@
+#ifndef PRODUCT_GENERATOR_H
+#define PRODUCT_GENERATOR_H
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -16,5 +19,7 @@ namespace DataGenerator {
         float precio;
         unsigned int stock;
     };
-    void GenerateProduct(unsigned int count = 30);
+    void GenerateProduct(unsigned int count = 30, bool printLog = false);
 }
+
+#endif // PRODUCT_GENERATOR_H

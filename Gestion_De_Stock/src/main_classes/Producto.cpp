@@ -29,15 +29,15 @@ void Producto::setPrecio(float p) { this->precio = p; }
 
 void Producto::setStock(unsigned int s) { this->stock = s; }
 
-unsigned int Producto::GetCodigoLength() { return Producto::CODIGO_SIZE; }
+unsigned int Producto::ColCodigoSize() { return Producto::COL_Codigo; }
 
-unsigned int Producto::GetCodigoProveedorLength() { return Producto::CODIGOPROVEEDOR_SIZE; }
+unsigned int Producto::ColCodigoProveedorSize() { return Producto::COL_CodigoProveedor; }
 
-unsigned int Producto::GetDescripcionLength() { return Producto::DESCRIPCION_SIZE; }
+unsigned int Producto::ColDescripcionSize() { return Producto::COL_Descripcion; }
 
-unsigned int Producto::GetPrecioLength() { return Producto::PRECIO_SIZE; }
+unsigned int Producto::ColPrecioSize() { return Producto::COL_Precio; }
 
-unsigned int Producto::GetStockLength() { return Producto::STOCK_SIZE; }
+unsigned int Producto::ColStockSize() { return Producto::COL_Stock; }
 
 bool Producto::operator==(const Producto& otro) {
     return Validation::IsEqual(this->codigo, otro.codigo);

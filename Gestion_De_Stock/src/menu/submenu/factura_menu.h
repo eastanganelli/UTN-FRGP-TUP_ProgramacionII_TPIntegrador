@@ -10,7 +10,7 @@ private:
     FacturaManager facturas;
 public:
     FacturaMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // FACTURA_MENU_H

@@ -42,6 +42,8 @@ void Tabling::Table::Print() {
         }
         else if(y == this->rows) {
             this->PrintSeparator(y);
+            cout << endl;
+            break;
         }
     }
 }

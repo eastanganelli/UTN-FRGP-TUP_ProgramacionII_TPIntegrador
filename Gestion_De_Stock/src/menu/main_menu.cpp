@@ -5,46 +5,69 @@ using namespace std;
 
 MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Clientes");
-    AddOption("Productos");
     AddOption("Proveedores");
+    AddOption("Productos");
     AddOption("Tipo Responsables");
     AddOption("Facturas");
     AddOption("Notas de Credito");
     AddOption("Ventas");
+    AddOption("Data Generator");
     AddOption("Salir");
 }
 
-void MainMenu::OnSelect(int index) {
+bool MainMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
-            ClienteMenu m; m.Run();
-            break;
+            ClienteMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 1: {
-            ProductoMenu m; m.Run();
-            break;
+            ProveedorMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 2: {
-            ProveedorMenu m; m.Run();
-            break;
+            ProductoMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 3: {
-            TipoResponsableMenu m; m.Run();
-            break;
+            TipoResponsableMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 4: {
-            FacturaMenu m; m.Run();
-            break;
+            FacturaMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 5: {
-            NotaDeCreditoMenu m; m.Run();
-            break;
+            NotaDeCreditoMenu m;
+            while (!m.Run()) { }
+            return false;
         }
         case 6: {
-            VentaMenu m; m.Run();
-            break;
+            VentaMenu m;
+            while (!m.Run()) { }
+            return false;
+        }
+        case 7: {
+            cout << "--- Generando datos de prueba... ---" << endl << endl;
+            DataGenerator::GenerateTipoResponsable();
+            DataGenerator::GenerateClients();
+            DataGenerator::GenerateProviders();
+            DataGenerator::GenerateProduct();
+            DataGenerator::GenerateInvoices();
+            cout << endl << "--- Datos de prueba generados. ---" << endl;
+            PauseConsole();
+            return false;
+        }
+        case 8: {
+            // Salir
+            return true;
         }
         default:
-            exit(0);
+            return true;
     }
 }

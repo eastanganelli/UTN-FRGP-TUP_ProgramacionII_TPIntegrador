@@ -1,6 +1,6 @@
 #include "client_generator.h"
 
-void DataGenerator::GenerateClients(unsigned int count) {
+void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
     ClienteManager clientes("clientes.dat");
 
@@ -27,10 +27,16 @@ void DataGenerator::GenerateClients(unsigned int count) {
             dc.alta = (i % 2 == 0);
 
             Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
-            cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
-
-            dataCliente.Print();
+            if(printLog) {
+                cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
+                dataCliente.Print();
+            } else {
+                clientes.New(dataCliente);
+            }
         }
-        std::cout << "\n-------------------------------------\n" << std::endl;
+        if(printLog)
+            std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Los clientes ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

@@ -1,6 +1,6 @@
 #include "provider_generator.h"
 
-void DataGenerator::GenerateProviders(unsigned int count) {
+void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
     ProveedorManager proveedores;
 
@@ -22,11 +22,17 @@ void DataGenerator::GenerateProviders(unsigned int count) {
             dp.alta = (i % 2 != 0);
 
             Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, "", dp.alta);
-            cout << endl << "Proveedor agregado? >> " << (proveedores.New(dataProveedor) ? "Si" : "No") << endl;
-
-            dataProveedor.Print();
-            cout << endl;
+            if (printLog) {
+                cout << endl << "Proveedor agregado? >> " << (proveedores.New(dataProveedor) ? "Si" : "No") << endl;
+                dataProveedor.Print();
+                cout << endl;
+            } else {
+                proveedores.New(dataProveedor);
+            }
         }
-        std::cout << "\n-------------------------------------\n" << std::endl;
+        if (printLog)
+            std::cout << "\n-------------------------------------\n" << std::endl;
+    } else {
+        std::cout << "Los datos de proveedores ya existen. No se generaron nuevos datos." << std::endl;
     }
 }

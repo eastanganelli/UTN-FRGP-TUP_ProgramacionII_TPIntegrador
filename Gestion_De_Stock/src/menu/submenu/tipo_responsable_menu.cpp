@@ -10,26 +10,30 @@ TipoResponsableMenu::TipoResponsableMenu() : Menu("Menu Tipo Responsables", true
     AddOption("Volver");
 }
 
-void TipoResponsableMenu::OnSelect(int index) {
+bool TipoResponsableMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             tipos.ListarPorDescripcion();
             PauseConsole();
-            break;
+            return false;
         }
         case 1: {
             tipos.ListarPorPorcentaje();
             PauseConsole();
-            break;
+            return false;
         }
         case 2: {
             float minimo = InputNumber("Porcentaje minimo: ");
             auto lista = tipos.PorcentajeMayorA(minimo);
             TipoResponsableManager::Imprimir(lista);
             PauseConsole();
-            break;
+            return false;
+        }
+        case 3: {
+            return true;
         }
         default:
-            break;
+            return false;
     }
 }

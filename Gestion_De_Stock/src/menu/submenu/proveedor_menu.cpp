@@ -14,52 +14,56 @@ ProveedorMenu::ProveedorMenu() : Menu("Menu Proveedores", true) {
     AddOption("Volver");
 }
 
-void ProveedorMenu::OnSelect(int index) {
+bool ProveedorMenu::OnSelect(int index) {
+    rlutil::cls();
     switch(index) {
         case 0: {
             proveedores.ListarPorNombre();
             PauseConsole();
-            break;
+            return false;
         }
         case 1: {
             proveedores.ListarPorRubro();
             PauseConsole();
-            break;
+            return false;
         }
         case 2: {
             proveedores.ListarPorCUIT();
             PauseConsole();
-            break;
+            return false;
         }
         case 3: {
             string cuit = InputBox("CUIT: ");
             auto res = proveedores.ConsultarPorCUIT(cuit);
             ProveedorManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 4: {
             string nombre = InputBox("Nombre o Razon Social: ");
             auto res = proveedores.ConsultarPorNombre(nombre);
             ProveedorManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 5: {
             unsigned int rubro = proveedores.SeleccionarRubro();
             auto res = proveedores.ConsultarPorRubro(rubro);
             ProveedorManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
         }
         case 6: {
             bool estado = Confirm("¿Desea buscar proveedores activos?");
             auto res = proveedores.ConsultarPorEstado(estado);
             ProveedorManager::Imprimir(res);
             PauseConsole();
-            break;
+            return false;
+        }
+        case 7: {
+            return true;
         }
         default:
-            break;
+            return false;
     }
 }

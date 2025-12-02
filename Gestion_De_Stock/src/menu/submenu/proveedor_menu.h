@@ -10,7 +10,7 @@ private:
     ProveedorManager proveedores;
 public:
     ProveedorMenu();
-    virtual void OnSelect(int index) override;
+    virtual bool OnSelect(int index) override;
 };
 
 #endif // PROVEEDOR_MENU_H
