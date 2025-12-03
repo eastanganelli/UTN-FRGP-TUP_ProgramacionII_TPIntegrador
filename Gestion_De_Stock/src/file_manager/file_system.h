@@ -149,7 +149,8 @@ bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
     T tempRecord;
     unsigned int current = 0;
     while(fread(&tempRecord, sizeof(T), 1, file)) {
-        if(tempRecord == record) {
+        bool result = tempRecord == record;
+        if(result) {
             found = true;
             index = current;
             break;

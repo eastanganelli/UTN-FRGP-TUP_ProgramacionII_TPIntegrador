@@ -24,11 +24,16 @@ unsigned int ClienteManager::Cantidad() {
 }
 
 bool ClienteManager::Modificar(string dni, Cliente* cliente) {
+    const unsigned int cantidad = this->Count();
     unsigned int index = 0;
-    if(!this->IndexOf(*cliente, index)) {
-        Error mi_error("Modificacion de Cliente", "Cliente con DNI " + dni + " no encontrado.");
-        mi_error.Show();
-        return false;
+    for(unsigned int i = 0; i < cantidad; i++) {
+        Cliente* aux = this->At(i);
+        if(aux != nullptr && aux->getDNI() == dni) {
+            index = i;
+            delete aux;
+            return this->Update(index, *cliente);
+        }
+        delete aux;
     }
     return this->Update(index, *cliente);
 }

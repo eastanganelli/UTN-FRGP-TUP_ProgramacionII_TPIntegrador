@@ -3,6 +3,7 @@
 
 #include "datos_personales.h"
 #include "../controller/validation.h"
+#include "../menu/menu_utils.h"
 
 #include <iostream>
 #include <cstring>
@@ -48,6 +49,10 @@ public:
     bool operator==(Cliente& cliente);
     bool IsEmpty();
     void Print();
+
+    static Cliente NuevoCliente();
+    static void ModificarCliente(Cliente& cliente);
+    static unsigned int EliminarCliente(Cliente& cliente);
 };
 
 #endif // CLIENTE_H

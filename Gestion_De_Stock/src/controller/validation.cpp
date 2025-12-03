@@ -65,14 +65,18 @@ namespace Validation {
     }
 
     bool IsEqual(const string& str1, const string& str2) {
-        return str1.find(str2) != string::npos;
+        bool result = str1.find(str2) != string::npos;
+        return result;
     }
 
     bool IsEqual(const char* str1, const char* str2) {
         if (str1 == nullptr || str2 == nullptr) {
             return str1 == str2;
         }
-        return string(str1).find(string(str2)) != string::npos;
+        string aux_str1 = string(str1),
+            aux_str2 = string(str2);
+        bool result = aux_str1.find(aux_str2) != string::npos;
+        return result;
     }
 
     string ToUpper(const string& str) {

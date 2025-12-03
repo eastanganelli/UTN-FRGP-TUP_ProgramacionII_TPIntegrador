@@ -38,6 +38,7 @@
 		<Unit filename="Pruebas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h" />
+		<Unit filename="src/controller/data_generator.h" />
 		<Unit filename="src/controller/data_generator/client_generator.cpp" />
 		<Unit filename="src/controller/data_generator/client_generator.h" />
 		<Unit filename="src/controller/data_generator/generator.cpp" />

@@ -10,7 +10,7 @@ void Modal::ClearScreen() {
 }
 
 bool Modal::IsYes(char key) {
-    return key == 'Y' || key == 'y';
+    return key == 'S' || key == 's';
 }
 
 bool Modal::IsNo(char key) {
