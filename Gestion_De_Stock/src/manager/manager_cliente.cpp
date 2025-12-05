@@ -19,10 +19,6 @@ GenericArray<Cliente> ClienteManager::Listar() {
     return clientes;
 }
 
-unsigned int ClienteManager::Cantidad() {
-    return this->Count();
-}
-
 bool ClienteManager::Modificar(string dni, Cliente* cliente) {
     const unsigned int cantidad = this->Count();
     unsigned int index = 0;
@@ -36,57 +32,6 @@ bool ClienteManager::Modificar(string dni, Cliente* cliente) {
         delete aux;
     }
     return this->Update(index, *cliente);
-}
-
-void ClienteManager::ListarPorCuil_Cuit() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getCuilCuit() > clientes[j]->getCuilCuit()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
-}
-
-void ClienteManager::ListarPorDNI() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getDNI() > clientes[j]->getDNI()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
-}
-
-void ClienteManager::ListarPorApellido() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getApellido() > clientes[j]->getApellido()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
 }
 
 Cliente* ClienteManager::operator[](string dni) {
@@ -193,6 +138,59 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
         mi_warning.Show();
     }
     return resultados;
+}
+
+unsigned int ClienteManager::Cantidad() { return this->Count(); }
+
+void ClienteManager::ListarPorCuil_Cuit() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getCuilCuit() > clientes[j]->getCuilCuit()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
+}
+
+void ClienteManager::ListarPorDNI() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getDNI() > clientes[j]->getDNI()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
+}
+
+void ClienteManager::ListarPorApellido() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getApellido() > clientes[j]->getApellido()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
 }
 
 void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {

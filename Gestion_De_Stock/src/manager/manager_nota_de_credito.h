@@ -19,15 +19,17 @@ public:
     NotaDeCreditoManager(const string& notasPath = "notas_de_credito.dat");
     ~NotaDeCreditoManager();
 
-    unsigned int Cantidad();
+    bool Agregar(NotaDeCredito& nota);
     bool Modificar(unsigned int numero, NotaDeCredito* nota);
+    bool Eliminar(unsigned int numero);
     NotaDeCredito* operator[](unsigned int numero);
-
-    void ListarPorCliente();
-    void ListarPorFecha();
     GenericArray<NotaDeCredito> BuscarPorCliente(string clienteDNI);
     GenericArray<NotaDeCredito> BuscarPorMotivo(string motivo);
     GenericArray<NotaDeCredito> BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin);
+    unsigned int Cantidad();
+
+    void ListarPorCliente();
+    void ListarPorFecha();
 
     static void Imprimir(GenericArray<NotaDeCredito>& notas);
 };

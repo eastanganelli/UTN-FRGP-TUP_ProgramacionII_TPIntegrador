@@ -19,15 +19,17 @@ public:
     FacturaManager(const string& facturaPath = "facturas.dat");
     ~FacturaManager();
 
+    bool Agregar(Factura& factura);
     bool Modificar(unsigned int numero, Factura* factura);
+    bool Eliminar(unsigned int numero);
     Factura* operator[](unsigned int numero);
+    GenericArray<Factura> BuscarPorCliente(string clienteDNI);
+    GenericArray<Factura> BuscarPorCAE(string cae);
+    GenericArray<Factura> BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin);
 
     void ListarPorCliente();
     void ListarPorFecha();
     void ListarPorMonto();
-    GenericArray<Factura> BuscarPorCliente(string clienteDNI);
-    GenericArray<Factura> BuscarPorCAE(string cae);
-    GenericArray<Factura> BuscarPorRangoFecha(Fecha fechaInicio, Fecha fechaFin);
 
     static void Imprimir(GenericArray<Factura>& facturas);
 };

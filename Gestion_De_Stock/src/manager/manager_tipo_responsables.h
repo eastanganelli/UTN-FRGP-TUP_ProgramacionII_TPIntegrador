@@ -19,13 +19,16 @@ private:
 public:
     TipoResponsableManager(const string& condicion_ivaPath = "tipo_responsable.dat");
     ~TipoResponsableManager();
-    unsigned int Cantidad();
+
+    bool Agregar(TipoResponsable& condicion_iva);
     bool Modificar(unsigned int codigo, TipoResponsable* condicion_iva);
+    bool Eliminar(unsigned int codigo);
     TipoResponsable* operator[](unsigned int codigo);
+    GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
+    unsigned int Cantidad();
 
     void ListarPorDescripcion();
     void ListarPorPorcentaje();
-    GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
 
     static void Imprimir(GenericArray<TipoResponsable>& condicion_ivas);
 };

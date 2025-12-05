@@ -29,8 +29,13 @@ bool TipoResponsableManager::Existe(TipoResponsable& condicion_iva) {
     return false;
 }
 
-unsigned int TipoResponsableManager::Cantidad() {
-    return this->Count();
+bool TipoResponsableManager::Agregar(TipoResponsable& condicion_iva) {
+    if(this->Existe(condicion_iva)) {
+        Warning mi_warning("Alta de Condicion IVA", "La condicion IVA ya existe en el sistema.");
+        mi_warning.Show();
+        return false;
+    }
+    return this->New(condicion_iva);
 }
 
 bool TipoResponsableManager::Modificar(unsigned int codigo, TipoResponsable* condicion_iva) {
@@ -43,38 +48,15 @@ bool TipoResponsableManager::Modificar(unsigned int codigo, TipoResponsable* con
     return this->Update(index, *condicion_iva);
 }
 
-void TipoResponsableManager::ListarPorDescripcion() {
-    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
-    if(condicion_ivas.Size() == 0) {
-        Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
-        mi_warning.Show();
-        return;
+bool TipoResponsableManager::Eliminar(unsigned int codigo) {
+    TipoResponsable condicion_iva("", "", -1.0f, '\0');
+    unsigned int index = 0;
+    if(!this->IndexOf(condicion_iva, index)) {
+        Error mi_error("Eliminacion de Condicion IVA", "Condicion IVA con codigo " + to_string(codigo) + " no encontrada.");
+        mi_error.Show();
+        return false;
     }
-    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
-        for(unsigned int j = i + 1; j < condicion_ivas.Size(); j++) {
-            if(condicion_ivas[i]->getDescripcion() > condicion_ivas[j]->getDescripcion()) {
-                condicion_ivas.Swap(condicion_ivas[i], condicion_ivas[j]);
-            }
-        }
-    }
-    TipoResponsableManager::Imprimir(condicion_ivas);
-}
-
-void TipoResponsableManager::ListarPorPorcentaje() {
-    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
-    if(condicion_ivas.Size() == 0) {
-        Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
-        for(unsigned int j = i + 1; j < condicion_ivas.Size(); j++) {
-            if(condicion_ivas[i]->getPorcentaje() > condicion_ivas[j]->getPorcentaje()) {
-                condicion_ivas.Swap(condicion_ivas[i], condicion_ivas[j]);
-            }
-        }
-    }
-    TipoResponsableManager::Imprimir(condicion_ivas);
+    return this->Delete(index);
 }
 
 TipoResponsable* TipoResponsableManager::operator[](unsigned int codigo) {
@@ -108,6 +90,44 @@ GenericArray<TipoResponsable> TipoResponsableManager::PorcentajeMayorA(float min
     }
     return resultados;
 }
+
+void TipoResponsableManager::ListarPorDescripcion() {
+    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
+    if(condicion_ivas.Size() == 0) {
+        Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
+        for(unsigned int j = i + 1; j < condicion_ivas.Size(); j++) {
+            if(condicion_ivas[i]->getDescripcion() > condicion_ivas[j]->getDescripcion()) {
+                condicion_ivas.Swap(condicion_ivas[i], condicion_ivas[j]);
+            }
+        }
+    }
+    TipoResponsableManager::Imprimir(condicion_ivas);
+}
+
+unsigned int TipoResponsableManager::Cantidad() { return this->Count(); }
+
+
+void TipoResponsableManager::ListarPorPorcentaje() {
+    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
+    if(condicion_ivas.Size() == 0) {
+        Warning mi_warning("Listado de Condiciones IVA", "No se encontraron condiciones IVA para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
+        for(unsigned int j = i + 1; j < condicion_ivas.Size(); j++) {
+            if(condicion_ivas[i]->getPorcentaje() > condicion_ivas[j]->getPorcentaje()) {
+                condicion_ivas.Swap(condicion_ivas[i], condicion_ivas[j]);
+            }
+        }
+    }
+    TipoResponsableManager::Imprimir(condicion_ivas);
+}
+
 
 void TipoResponsableManager::Imprimir(GenericArray<TipoResponsable>& tipo_responsables) {
     if(tipo_responsables.Size() == 0) {

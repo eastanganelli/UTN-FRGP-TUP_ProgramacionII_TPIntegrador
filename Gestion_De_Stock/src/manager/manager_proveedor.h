@@ -19,15 +19,11 @@ public:
     ProveedorManager(const string& proveedorPath = "proveedores.dat");
     ~ProveedorManager();
 
+    bool Agregar(Proveedor& proveedor);
     bool Modificar(string cuit, Proveedor* proveedor);
-
-    Proveedor* SeleccionarRandom();
+    bool Eliminar(string cuit);
     Proveedor* operator[](string cuit);
-
-    void ListarPorNombre();
-    void ListarPorRubro();
-    void ListarPorCUIT();
-
+    Proveedor* SeleccionarRandom();
     GenericArray<Proveedor> ConsultarPorCUIT(string cuit);
     GenericArray<Proveedor> ConsultarPorNombre(string nombreRazon);
     GenericArray<Proveedor> ConsultarPorRubro(unsigned int rubro);
@@ -35,6 +31,10 @@ public:
 
     unsigned int SeleccionarRubro();
     string getNombreRubro(unsigned int cr);
+
+    void ListarPorNombre();
+    void ListarPorRubro();
+    void ListarPorCUIT();
 
     static void Imprimir(GenericArray<Proveedor>& proveedores);
 };

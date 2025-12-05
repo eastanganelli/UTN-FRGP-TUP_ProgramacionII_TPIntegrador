@@ -12,7 +12,9 @@ using namespace std;
 
 class NotaDeCredito : public Comprobante {
 private:
-    char motivoAnulacion[256];
+    static unsigned int const MOTIVOANULACION_SIZE = 255;
+
+    char motivoAnulacion[255];
 
 public:
     NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
@@ -26,6 +28,8 @@ public:
     void setMotivoAnulacion(string m);
 
     // Metodos
+    bool operator==(NotaDeCredito& nota);
+    bool IsEmpty();
     string toString();
 };
 
