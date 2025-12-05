@@ -7,24 +7,28 @@ Comprobante::Comprobante(unsigned int _numero, string _clienteDNI) : numero(_num
     this->itemsActuales = 0;
 }
 
-Comprobante::~Comprobante() {
+Comprobante::~Comprobante() { }
 
-}
+unsigned int Comprobante::getNumero() { return this->numero; }
 
-unsigned int Comprobante::getNumero() {
-    return this->numero;
-}
+string Comprobante::getClienteDNI() { return string(this->clienteDNI); }
 
-string Comprobante::getClienteDNI() {
-    return string(this->clienteDNI);
-}
+Fecha &Comprobante::getFechaEmision() { return this->fechaEmision; }
 
-Fecha &Comprobante::getFechaEmision() {
-    return this->fechaEmision;
-}
+unsigned int Comprobante::ColNumeroSize() { return COL_Numero; }
+
+unsigned int Comprobante::ColClienteDNISize() { return COL_ClienteDNI; }
+
+unsigned int Comprobante::ColFechaEmisionSize() { return COL_FechaEmision; }
+
+unsigned int Comprobante::ColMontoTotalSize() { return COL_MontoTotal; }
 
 float Comprobante::Total() {
-    return 0.0f;
+    float total = 0.0f;
+    for (unsigned int i = 0; i < this->itemsActuales; i++) {
+        total += this->items[i].getCantidad() * this->items[i].getPrecioUnitario();
+    }
+    return total;
 }
 
 void Comprobante::setClienteDNI(string dni) {

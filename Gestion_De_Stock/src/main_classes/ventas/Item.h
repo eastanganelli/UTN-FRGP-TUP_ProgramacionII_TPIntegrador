@@ -9,7 +9,10 @@ using namespace std;
 class Item {
 private:
     static const unsigned int CODIGO_SIZE = 9;
+
     static const unsigned int COL_Codigo = 11;
+    static const unsigned int COL_Cantidad = 10;
+    static const unsigned int COL_PrecioUnitario = 16;
 
     char codigo[CODIGO_SIZE];
     unsigned int cantidad;
@@ -23,6 +26,10 @@ public:
     std::string getCodigo() const;
     unsigned int getCantidad() const;
     float getPrecioUnitario() const;
+
+    static const unsigned int CodigoSize() { return COL_Codigo; }
+    static const unsigned int CantidadSize() { return COL_Cantidad; }
+    static const unsigned int PrecioUnitarioSize() { return COL_PrecioUnitario; }
 
     // Setters
     void setCodigo(const std::string& c);

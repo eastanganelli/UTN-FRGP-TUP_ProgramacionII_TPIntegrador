@@ -9,6 +9,8 @@ NotaDeCredito::~NotaDeCredito() { }
 
 string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
 
+unsigned int NotaDeCredito::ColMotivoAnulacionSize() { return COL_MotivoAnulacion; }
+
 float NotaDeCredito::TotalSinIVA() { return this->Total(); }
 
 void NotaDeCredito::setMotivoAnulacion(string m) { strcpy(this->motivoAnulacion, m.c_str()); }

@@ -15,26 +15,18 @@ Item::Item(const char* _codigo, unsigned int _cantidad, float _precioUnitario) {
 
 Item::~Item() { }
 
-std::string Item::getCodigo() const {
-    return std::string(this->codigo);
-}
+std::string Item::getCodigo() const { return std::string(this->codigo); }
 
-unsigned int Item::getCantidad() const {
-    return this->cantidad;
-}
+unsigned int Item::getCantidad() const { return this->cantidad; }
 
-float Item::getPrecioUnitario() const {
-    return this->precioUnitario;
-}
+float Item::getPrecioUnitario() const { return this->precioUnitario; }
 
 void Item::setCodigo(const std::string& c) {
     if (Validation::IsEmpty(c)) {
         this->codigo[0] = '\0';
         return;
     }
-    // accept alphanumeric codes only
     if (!Validation::IsAlphanumeric(c)) {
-        // store empty to indicate invalid
         this->codigo[0] = '\0';
         return;
     }
@@ -43,7 +35,7 @@ void Item::setCodigo(const std::string& c) {
 }
 
 void Item::setCantidad(unsigned int c) {
-    if (c == 0) return; // do not accept zero
+    if (c == 0) return;
     this->cantidad = c;
 }
 
@@ -52,17 +44,11 @@ void Item::setPrecioUnitario(float p) {
     this->precioUnitario = p;
 }
 
-unsigned int Item::ColCodigoSize() {
-    return Item::COL_Codigo;
-}
+unsigned int Item::ColCodigoSize() { return Item::COL_Codigo; }
 
-bool Item::operator==(const Item& otro) const {
-    return Validation::IsEqual(this->codigo, otro.codigo);
-}
+bool Item::operator==(const Item& otro) const { return Validation::IsEqual(this->codigo, otro.codigo); }
 
-bool Item::IsEmpty() const {
-    return Validation::IsEmpty(this->codigo) && this->cantidad == 0 && this->precioUnitario == 0.0f;
-}
+bool Item::IsEmpty() const { return Validation::IsEmpty(this->codigo) && this->cantidad == 0 && this->precioUnitario == 0.0f; }
 
 std::string Item::toString() const {
     std::ostringstream oss;

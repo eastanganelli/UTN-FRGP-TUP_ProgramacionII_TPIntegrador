@@ -784,18 +784,18 @@
 	"factura.h"
 	<iostream>
 
-1764657169 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\factura.h
+1764904878 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\factura.h
 	"Comprobante.h"
 	<cstring>
 
-1764297711 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.h
+1764905525 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.h
 	<string>
 	<cstring>
 	"../fecha.h"
 	"../../controller/validation.h"
 	"Item.h"
 
-1764657169 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.h
+1764905687 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.h
 	<string>
 	<cstring>
 
@@ -813,14 +813,14 @@
 1764297574 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\notadecredito.cpp
 	"nota_de_credito.h"
 
-1764899027 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_credito.h
+1764904693 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_credito.h
 	"Comprobante.h"
 	"../producto.h"
 	<iostream>
 	<cstring>
 	<string>
 
-1764212255 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.cpp
+1764905614 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.cpp
 	"Comprobante.h"
 
 1764657169 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.cpp
@@ -857,7 +857,7 @@
 	"../controller/modals.h"
 	"../controller/table/table.h"
 
-1764568876 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_credito.cpp
+1764904691 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_credito.cpp
 	"nota_de_credito.h"
 
 1764306853 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\nota_de_dredito.cpp

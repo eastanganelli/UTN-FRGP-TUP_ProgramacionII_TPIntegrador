@@ -12,9 +12,11 @@ using namespace std;
 
 class NotaDeCredito : public Comprobante {
 private:
-    static unsigned int const MOTIVOANULACION_SIZE = 255;
+    static unsigned int const MOTIVOANULACION_SIZE = 120;
 
-    char motivoAnulacion[255];
+    static unsigned int const COL_MotivoAnulacion = 125;
+
+    char motivoAnulacion[120];
 
 public:
     NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
@@ -23,6 +25,8 @@ public:
     // Getters
     string getMotivoAnulacion();
     float TotalSinIVA();
+
+    static unsigned int ColMotivoAnulacionSize();
 
     // Setters
     void setMotivoAnulacion(string m);
