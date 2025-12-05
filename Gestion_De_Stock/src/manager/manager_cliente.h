@@ -14,9 +14,8 @@ using namespace std;
 class ClienteManager : public FileSystem<Cliente> {
 private:
     GenericArray<Cliente> Listar();
-
-    bool Existe(string dni);
-    bool Indice(string dni, unsigned int& index);
+    bool Existe(string codigo);
+    bool Indice(string codigo, unsigned int& index);
 
 public:
     ClienteManager(const string& clientePath = "clientes.dat");

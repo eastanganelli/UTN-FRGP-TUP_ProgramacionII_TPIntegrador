@@ -14,6 +14,8 @@ using namespace std;
 class NotaDeCreditoManager : public FileSystem<NotaDeCredito> {
 private:
     GenericArray<NotaDeCredito> Listar();
+    bool Existe(unsigned int codigo);
+    bool Indice(unsigned int codigo, unsigned int& index);
 
 public:
     NotaDeCreditoManager(const string& notasPath = "notas_de_credito.dat");

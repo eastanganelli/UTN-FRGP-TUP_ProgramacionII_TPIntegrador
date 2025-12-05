@@ -14,6 +14,8 @@ using namespace std;
 class ProductoManager : public FileSystem<Producto> {
 private:
     GenericArray<Producto> Listar();
+    bool Existe(string dni);
+    bool Indice(string dni, unsigned int& index);
 
 public:
     ProductoManager(const string& productoPath = "productos.dat");

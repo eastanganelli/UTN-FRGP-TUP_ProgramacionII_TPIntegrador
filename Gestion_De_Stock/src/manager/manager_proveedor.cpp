@@ -18,63 +18,59 @@ GenericArray<Proveedor> ProveedorManager::Listar() {
     return proveedores;
 }
 
+bool ProveedorManager::Existe(string codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool ProveedorManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<Proveedor> proveedores = this->Listar();
+    for(unsigned int i = 0; i < proveedores.Size(); i++) {
+        if(Validation::IsEqual(proveedores[i]->getCuit(), codigo)) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool ProveedorManager::Agregar(Proveedor& proveedor) {
-    if(this->Exist(proveedor)) {
-        Error mi_error("Alta de Proveedor", "El proveedor con CUIT " + proveedor.getCuit() + " ya existe.");
-        mi_error.Show();
+    if(this->Existe(proveedor.getCuit())) {
+        Warning mi_warning("Creacion de Proveedor", "El proveedor con CUIT " + proveedor.getCuit() + " ya existe.");
+        mi_warning.Show();
         return false;
     }
     return this->New(proveedor);
 }
 
 bool ProveedorManager::Modificar(string cuit, Proveedor* proveedor) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Proveedor* aux = this->At(i);
-        if(aux != nullptr && aux->getCuit() == cuit) {
-            unsigned int index = i;
-            delete aux;
-            return this->Update(index, *proveedor);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Error mi_error("Modificacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Modificacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
-    mi_error.Show();
-    return false;
+    return this->Update(index, *proveedor);
 }
 
 bool ProveedorManager::Eliminar(string cuit) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Proveedor* aux = this->At(i);
-        if(aux != nullptr && aux->getCuit() == cuit) {
-            unsigned int index = i;
-            delete aux;
-            return this->Delete(index);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Error mi_error("Eliminacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Eliminacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
-    mi_error.Show();
-    return false;
+    return this->Delete(index);
 }
 
 Proveedor* ProveedorManager::operator[](string cuit) {
-    const unsigned int cantidad = this->Count();
-    Proveedor* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getCuit() == cuit) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
-        Warning mi_warning("Busqueda de Proveedor", "No se encontro proveedor con CUIT " + cuit + ".");
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Warning mi_warning("Busqueda de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
 }
 
 Proveedor* ProveedorManager::SeleccionarRandom() {

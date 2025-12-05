@@ -16,8 +16,25 @@ GenericArray<Producto> ProductoManager::Listar() {
     return productos;
 }
 
+bool ProductoManager::Existe(string codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool ProductoManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<Producto> productos = this->Listar();
+    for(unsigned int i = 0; i < productos.Size(); i++) {
+        string aux = productos[i]->getCodigo();
+        if(Validation::IsEqual(aux, codigo)) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool ProductoManager::Agregar(Producto& producto) {
-    if(this->Exist(producto)) {
+    if(this->Existe(producto.getCodigo())) {
         Warning mi_warning("Alta de Producto", "El producto con codigo " + producto.getCodigo() + " ya existe.");
         mi_warning.Show();
         return false;
@@ -26,55 +43,33 @@ bool ProductoManager::Agregar(Producto& producto) {
 }
 
 bool ProductoManager::Modificar(string codigo, Producto* producto) {
-    const unsigned int cantidad = this->Count();
-    unsigned int index = 0;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Producto* aux = this->At(i);
-        if(aux != nullptr && aux->getCodigo() == codigo) {
-            index = i;
-            delete aux;
-            return this->Update(index, *producto);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
+        Warning mi_warning("Modificacion de Producto", "No se encontro producto con codigo " + codigo + ".");
+        mi_warning.Show();
+        return false;
     }
-    Error mi_error("Modificacion de Producto", "Producto con codigo " + codigo + " no encontrado.");
-    mi_error.Show();
-    return false;
+    return this->Update(index, *producto);
 }
 
 bool ProductoManager::Eliminar(string codigo) {
-    const unsigned int cantidad = this->Count();
-    unsigned int index = 0;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Producto* aux = this->At(i);
-        if(aux != nullptr && aux->getCodigo() == codigo) {
-            index = i;
-            delete aux;
-            return this->Delete(index);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
+        Warning mi_warning("Eliminacion de Producto", "No se encontro producto con codigo " + codigo + ".");
+        mi_warning.Show();
+        return false;
     }
-    Error mi_error("Eliminacion de Producto", "Producto con codigo " + codigo + " no encontrado.");
-    mi_error.Show();
-    return false;
+    return this->Delete(index);
 }
 
 Producto* ProductoManager::operator[](string codigo) {
-    const unsigned int cantidad = this->Count();
-    Producto* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getCodigo() == codigo) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
         Warning mi_warning("Busqueda de Producto", "No se encontro producto con codigo " + codigo + ".");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
 }
 
 GenericArray<Producto> ProductoManager::BuscarPorCodigo(string codigo) {

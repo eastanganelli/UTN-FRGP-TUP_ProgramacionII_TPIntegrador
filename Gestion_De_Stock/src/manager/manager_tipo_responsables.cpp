@@ -16,6 +16,22 @@ GenericArray<TipoResponsable> TipoResponsableManager::Listar() {
     return condicion_ivas;
 }
 
+bool TipoResponsableManager::Existe(string codigo) {
+    unsigned int index = 0;
+    return this->Indice(codigo, index);
+}
+
+bool TipoResponsableManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<TipoResponsable> condicion_ivas = this->Listar();
+    for(unsigned int i = 0; i < condicion_ivas.Size(); i++) {
+        if(Validation::IsEqual(condicion_ivas[i]->getCodigo(), codigo)) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool TipoResponsableManager::Existe(TipoResponsable& condicion_iva) {
     const unsigned int cantidad = this->Count();
     unsigned int i = 0;
@@ -30,43 +46,42 @@ bool TipoResponsableManager::Existe(TipoResponsable& condicion_iva) {
 }
 
 bool TipoResponsableManager::Agregar(TipoResponsable& condicion_iva) {
-    if(this->Existe(condicion_iva)) {
-        Warning mi_warning("Alta de Condicion IVA", "La condicion IVA ya existe en el sistema.");
+    if(this->Existe(condicion_iva.getCodigo())) {
+        Warning mi_warning("Creacion de Condicion IVA", "La condicion IVA con codigo " + condicion_iva.getCodigo() + " ya existe.");
         mi_warning.Show();
         return false;
     }
     return this->New(condicion_iva);
 }
 
-bool TipoResponsableManager::Modificar(unsigned int codigo, TipoResponsable* condicion_iva) {
+bool TipoResponsableManager::Modificar(string codigo, TipoResponsable* condicion_iva) {
     unsigned int index = 0;
-    if(!this->IndexOf(*condicion_iva, index)) {
-        Error mi_error("Modificacion de Condicion IVA", "Condicion IVA con codigo " + to_string(codigo) + " no encontrada.");
+    if(!this->Indice(condicion_iva->getCodigo(), index)) {
+        Error mi_error("Modificacion de Condicion IVA", "Condicion IVA con codigo " + codigo + " no encontrada.");
         mi_error.Show();
         return false;
     }
     return this->Update(index, *condicion_iva);
 }
 
-bool TipoResponsableManager::Eliminar(unsigned int codigo) {
-    TipoResponsable condicion_iva("", "", -1.0f, '\0');
+bool TipoResponsableManager::Eliminar(string codigo) {
     unsigned int index = 0;
-    if(!this->IndexOf(condicion_iva, index)) {
-        Error mi_error("Eliminacion de Condicion IVA", "Condicion IVA con codigo " + to_string(codigo) + " no encontrada.");
+    if(!this->Indice(codigo, index)) {
+        Error mi_error("Eliminacion de Condicion IVA", "Condicion IVA con codigo " + codigo + " no encontrada.");
         mi_error.Show();
         return false;
     }
     return this->Delete(index);
 }
 
-TipoResponsable* TipoResponsableManager::operator[](unsigned int codigo) {
-    TipoResponsable* condicion_iva = this->At(codigo);
-    if(condicion_iva == nullptr || condicion_iva->IsEmpty()) {
-        Warning mi_warning("Busqueda de Condicion IVA", "No se encontro condicion IVA con codigo " + to_string(codigo) + ".");
+TipoResponsable* TipoResponsableManager::operator[](string codigo) {
+    unsigned int index = 0;
+    if(!this->Indice(codigo, index)) {
+        Warning mi_warning("Busqueda de Condicion IVA", "Condicion IVA con codigo " + codigo + " no encontrada.");
         mi_warning.Show();
         return nullptr;
     }
-    return condicion_iva;
+    return this->At(index);
 }
 
 GenericArray<TipoResponsable> TipoResponsableManager::PorcentajeMayorA(float minimo) {

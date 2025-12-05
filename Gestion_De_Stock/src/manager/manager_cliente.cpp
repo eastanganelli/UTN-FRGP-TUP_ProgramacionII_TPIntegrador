@@ -4,9 +4,7 @@ ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(
 
 }
 
-ClienteManager::~ClienteManager() {
-
-}
+ClienteManager::~ClienteManager() { }
 
 GenericArray<Cliente> ClienteManager::Listar() {
     GenericArray<Cliente> clientes;
@@ -19,16 +17,16 @@ GenericArray<Cliente> ClienteManager::Listar() {
     return clientes;
 }
 
-bool ClienteManager::Existe(string dni) {
+bool ClienteManager::Existe(string codigo) {
     unsigned int index;
-    return this->Indice(dni, index);
+    return this->Indice(codigo, index);
 }
 
-bool ClienteManager::Indice(string dni, unsigned int& index) {
+bool ClienteManager::Indice(string codigo, unsigned int& index) {
     GenericArray<Cliente> clientes = this->Listar();
     for(unsigned int i = 0; i < clientes.Size(); i++) {
         string aux = clientes[i]->getDNI();
-        if(Validation::IsEqual(aux, dni)) {
+        if(Validation::IsEqual(aux, codigo)) {
             index = i;
             return true;
         }

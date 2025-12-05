@@ -14,6 +14,8 @@ using namespace std;
 class ProveedorManager : public FileSystem<Proveedor> {
 private:
     GenericArray<Proveedor> Listar();
+    bool Existe(string codigo);
+    bool Indice(string codigo, unsigned int& index);
 
 public:
     ProveedorManager(const string& proveedorPath = "proveedores.dat");

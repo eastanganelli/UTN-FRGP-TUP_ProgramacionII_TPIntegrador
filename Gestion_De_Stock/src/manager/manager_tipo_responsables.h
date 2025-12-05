@@ -14,6 +14,8 @@ using namespace std;
 class TipoResponsableManager : public FileSystem<TipoResponsable> {
 private:
     GenericArray<TipoResponsable> Listar();
+    bool Existe(string c);
+    bool Indice(string c, unsigned int& index);
     bool Existe(TipoResponsable& condicion_iva);
 
 public:
@@ -21,9 +23,9 @@ public:
     ~TipoResponsableManager();
 
     bool Agregar(TipoResponsable& condicion_iva);
-    bool Modificar(unsigned int codigo, TipoResponsable* condicion_iva);
-    bool Eliminar(unsigned int codigo);
-    TipoResponsable* operator[](unsigned int codigo);
+    bool Modificar(string codigo, TipoResponsable* condicion_iva);
+    bool Eliminar(string codigo);
+    TipoResponsable* operator[](string codigo);
     GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
     unsigned int Cantidad();
 

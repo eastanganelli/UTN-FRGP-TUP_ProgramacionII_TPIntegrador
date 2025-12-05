@@ -14,6 +14,8 @@ using namespace std;
 class FacturaManager : public FileSystem<Factura> {
 private:
     GenericArray<Factura> Listar();
+    bool Existe(unsigned int codigo);
+    bool Indice(unsigned int codigo, unsigned int& index);
 
 public:
     FacturaManager(const string& facturaPath = "facturas.dat");

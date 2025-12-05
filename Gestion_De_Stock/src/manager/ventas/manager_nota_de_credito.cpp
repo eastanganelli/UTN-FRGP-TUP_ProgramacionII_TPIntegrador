@@ -16,9 +16,25 @@ GenericArray<NotaDeCredito> NotaDeCreditoManager::Listar() {
     return notas;
 }
 
+bool NotaDeCreditoManager::Existe(unsigned int codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool NotaDeCreditoManager::Indice(unsigned int codigo, unsigned int& index) {
+    GenericArray<NotaDeCredito> notas = this->Listar();
+    for(unsigned int i = 0; i < notas.Size(); i++) {
+        if(notas[i]->getNumero() == codigo) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool NotaDeCreditoManager::Agregar(NotaDeCredito& nota) {
-    if(this->Exist(nota)) {
-        Warning mi_warning("Agregar Nota de Credito", "La nota con numero " + to_string(nota.getNumero()) + " ya existe.");
+    if(this->Existe(nota.getNumero())) {
+        Warning mi_warning("Creacion de Nota de Credito", "Ya existe una nota con numero " + to_string(nota.getNumero()) + ".");
         mi_warning.Show();
         return false;
     }
@@ -26,53 +42,33 @@ bool NotaDeCreditoManager::Agregar(NotaDeCredito& nota) {
 }
 
 bool NotaDeCreditoManager::Modificar(unsigned int numero, NotaDeCredito* nota) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        NotaDeCredito* aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            unsigned int index = i;
-            delete aux;
-            return this->Update(index, *nota);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Modificacion de Nota de Credito", "No se encontro nota con numero " + to_string(numero) + ".");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Modificacion de Nota de Credito", "Nota con numero " + to_string(numero) + " no encontrada.");
-    mi_error.Show();
-    return false;
+    return this->Update(index, *nota);
 }
 
 bool NotaDeCreditoManager::Eliminar(unsigned int numero) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        NotaDeCredito* aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            unsigned int index = i;
-            delete aux;
-            return this->Delete(index);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Eliminacion de Nota de Credito", "No se encontro nota con numero " + to_string(numero) + ".");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Eliminacion de Nota de Credito", "Nota con numero " + to_string(numero) + " no encontrada.");
-    mi_error.Show();
-    return false;
+    return this->Delete(index);
 }
 
 NotaDeCredito* NotaDeCreditoManager::operator[](unsigned int numero) {
-    const unsigned int cantidad = this->Count();
-    NotaDeCredito* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
         Warning mi_warning("Busqueda de Nota de Credito", "No se encontro nota con numero " + to_string(numero) + ".");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
 }
 
 GenericArray<NotaDeCredito> NotaDeCreditoManager::BuscarPorCliente(string clienteDNI) {

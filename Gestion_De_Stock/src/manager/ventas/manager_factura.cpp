@@ -16,8 +16,24 @@ GenericArray<Factura> FacturaManager::Listar() {
     return facturas;
 }
 
+bool FacturaManager::Existe(unsigned int codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool FacturaManager::Indice(unsigned int codigo, unsigned int& index) {
+    GenericArray<Factura> facturas = this->Listar();
+    for(unsigned int i = 0; i < facturas.Size(); i++) {
+        if(facturas[i]->getNumero() == codigo) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool FacturaManager::Agregar(Factura& factura) {
-    if(this->Exist(factura)) {
+    if(this->Existe(factura.getNumero())) {
         Warning mi_warning("Agregar Factura", "La factura con numero " + to_string(factura.getNumero()) + " ya existe.");
         mi_warning.Show();
         return false;
@@ -26,35 +42,33 @@ bool FacturaManager::Agregar(Factura& factura) {
 }
 
 bool FacturaManager::Modificar(unsigned int numero, Factura* factura) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Factura* aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            unsigned int index = i;
-            delete aux;
-            return this->Update(index, *factura);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Modificacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Modificacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
-    mi_error.Show();
-    return false;
+    return this->Update(index, *factura);
 }
 
 bool FacturaManager::Eliminar(unsigned int numero) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Factura* aux = this->At(i);
-        if(aux != nullptr &&  aux->getNumero() == numero) {
-            unsigned int index = i;
-            delete aux;
-            return this->Delete(index);
-        }
-        delete aux;
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Eliminacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
+        mi_error.Show();
+        return false;
     }
-    Error mi_error("Eliminacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
-    mi_error.Show();
-    return false;
+    return this->Delete(index);
+}
+
+Factura* FacturaManager::operator[](unsigned int numero) {
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Warning mi_warning("Busqueda de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
+        mi_warning.Show();
+        return nullptr;
+    }
+    return this->At(index);
 }
 
 GenericArray<Factura> FacturaManager::BuscarPorCliente(string clienteDNI) {
@@ -121,24 +135,6 @@ GenericArray<Factura> FacturaManager::BuscarPorRangoFecha(Fecha fechaInicio, Fec
         mi_warning.Show();
     }
     return resultados;
-}
-
-Factura* FacturaManager::operator[](unsigned int numero) {
-    const unsigned int cantidad = this->Count();
-    Factura* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
-        Warning mi_warning("Busqueda de Factura", "No se encontro factura con numero " + to_string(numero) + ".");
-        mi_warning.Show();
-    }
-    return aux;
 }
 
 void FacturaManager::ListarPorCliente() {
