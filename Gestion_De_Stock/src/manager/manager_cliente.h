@@ -15,6 +15,9 @@ class ClienteManager : public FileSystem<Cliente> {
 private:
     GenericArray<Cliente> Listar();
 
+    bool Existe(string dni);
+    bool Indice(string dni, unsigned int& index);
+
 public:
     ClienteManager(const string& clientePath = "clientes.dat");
     ~ClienteManager();

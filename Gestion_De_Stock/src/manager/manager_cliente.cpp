@@ -19,37 +19,61 @@ GenericArray<Cliente> ClienteManager::Listar() {
     return clientes;
 }
 
-bool ClienteManager::Modificar(string dni, Cliente* cliente) {
-    const unsigned int cantidad = this->Count();
-    unsigned int index = 0;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Cliente* aux = this->At(i);
-        if(aux != nullptr && aux->getDNI() == dni) {
+bool ClienteManager::Existe(string dni) {
+    unsigned int index;
+    return this->Indice(dni, index);
+}
+
+bool ClienteManager::Indice(string dni, unsigned int& index) {
+    GenericArray<Cliente> clientes = this->Listar();
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        string aux = clientes[i]->getDNI();
+        if(Validation::IsEqual(aux, dni)) {
             index = i;
-            delete aux;
-            return this->Update(index, *cliente);
+            return true;
         }
-        delete aux;
+    }
+    return false;
+}
+
+bool ClienteManager::Agregar(Cliente& cliente) {
+    if(this->Existe(cliente.getDNI())) {
+        Warning mi_warning("Agregar Cliente", "El cliente con DNI " + cliente.getDNI() + " ya existe.");
+        mi_warning.Show();
+        return false;
+    }
+    return this->New(cliente);
+}
+
+bool ClienteManager::Modificar(string dni, Cliente* cliente) {
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
+        Warning mi_warning("Modificar Cliente", "No se encontro cliente con DNI " + dni + ".");
+        mi_warning.Show();
+        return false;
     }
     return this->Update(index, *cliente);
+
 }
 
 Cliente* ClienteManager::operator[](string dni) {
-    const unsigned int cantidad = this->Count();
-    Cliente* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux->getDNI() == dni) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
         Warning mi_warning("Busqueda de Cliente", "No se encontro cliente con DNI " + dni + ".");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
+}
+
+bool ClienteManager::Eliminar(string dni) {
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
+        Warning mi_warning("Eliminacion de Cliente", "No se encontro cliente con DNI " + dni + ".");
+        mi_warning.Show();
+        return false;
+    }
+    return this->Delete(index);
 }
 
 GenericArray<Cliente> ClienteManager::BuscarPorCUIL_CUIT(string cuil_cuit) {

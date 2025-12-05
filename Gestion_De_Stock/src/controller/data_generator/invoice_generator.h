@@ -12,7 +12,7 @@ using namespace std;
 #include "product_generator.h"
 #include "provider_generator.h"
 
-#include "../../manager/manager_factura.h"
+#include "../../manager/ventas/manager_factura.h"
 #include "../../manager/manager_producto.h"
 #include "../../manager/manager_proveedor.h"
 #include "../../manager/manager_cliente.h"

@@ -22,7 +22,7 @@ bool ClienteMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             Cliente nuevoCliente = Cliente::NuevoCliente();
-            if(clientes.New(nuevoCliente)) {
+            if(clientes.Agregar(nuevoCliente)) {
                 cout << "Cliente agregado exitosamente." << endl;
             } else {
                 cout << "Error al agregar el cliente." << endl;
@@ -56,10 +56,9 @@ bool ClienteMenu::OnSelect(int index) {
                 return false;
             }
             bool confirma = Cliente::EliminarCliente(*cliente);
-            unsigned int index;
-            bool resultado = clientes.IndexOf(*cliente, index);
-            if (resultado && confirma) {
-                if (clientes.Delete(index)) {
+            delete cliente;
+            if (confirma) {
+                if (clientes.Eliminar(dni)) {
                     cout << "Cliente eliminado exitosamente." << endl;
                 } else {
                     cout << "Error al eliminar el cliente." << endl;

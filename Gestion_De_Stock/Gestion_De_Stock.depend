@@ -480,13 +480,13 @@
 1763529167 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.h
 	<iostream>
 
-1763740143 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.h
+1764908304 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.h
 	<iostream>
 
 1763530727 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\generic_array.cpp
 	"generic_array.h"
 
-1764735448 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\file_manager\file_system.h
+1764908205 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\file_manager\file_system.h
 	<iostream>
 	"../controller/modals.h"
 
@@ -692,7 +692,7 @@
 	"../controller/modals.h"
 	"../controller/table/table.h"
 
-1764890039 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_cliente.h
+1764908422 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_cliente.h
 	"../../rlutil.h"
 	"../main_classes/cliente.h"
 	"../controller/generic_array.h"
@@ -717,7 +717,7 @@
 1764134129 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\cell.cpp
 	"cell.h"
 
-1764892861 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_cliente.cpp
+1764908863 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_cliente.cpp
 	"manager_cliente.h"
 
 1764651904 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\table.cpp
@@ -820,10 +820,10 @@
 	<cstring>
 	<string>
 
-1764905614 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.cpp
+1764906503 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\comprobante.cpp
 	"Comprobante.h"
 
-1764657169 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.cpp
+1764906033 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.cpp
 	"Item.h"
 	"../../controller/validation.h"
 	<sstream>
@@ -831,7 +831,7 @@
 1764649974 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
 	"invoice_generator.h"
 
-1764649017 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
+1764906880 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
 	<ctime>
 	<string>
 	<iostream>
@@ -839,7 +839,7 @@
 	"client_generator.h"
 	"product_generator.h"
 	"provider_generator.h"
-	"../../manager/manager_factura.h"
+	"../../manager/ventas/manager_factura.h"
 	"../../manager/manager_producto.h"
 	"../../manager/manager_proveedor.h"
 	"../../manager/manager_cliente.h"
@@ -899,10 +899,10 @@
 	"../controller/data_generator.h"
 	"submenu.h"
 
-1764655813 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\factura_menu.h
-	"..\menu.h"
-	"..\menu_utils.h"
-	"..\..\manager\manager_factura.h"
+1764906935 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\factura_menu.h
+	"../menu.h"
+	"../menu_utils.h"
+	"../../manager/ventas/manager_factura.h"
 
 1764551202 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.h
 	<string>
@@ -931,15 +931,15 @@
 	"..\menu_utils.h"
 	"..\..\manager\manager_tipo_responsables.h"
 
-1764655813 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\nota_de_credito_menu.h
-	"..\menu.h"
-	"..\menu_utils.h"
-	"..\..\manager\manager_nota_de_credito.h"
+1764906964 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\nota_de_credito_menu.h
+	"../menu.h"
+	"../menu_utils.h"
+	"../../manager/ventas/manager_nota_de_credito.h"
 
-1764655813 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\venta_menu.h
-	"..\menu.h"
-	"..\menu_utils.h"
-	"..\..\manager\manager_ventas.h"
+1764906981 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\venta_menu.h
+	"../menu.h"
+	"../menu_utils.h"
+	"../../manager/ventas/manager_ventas.h"
 
 1764555545 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.cpp
 	"menu_utils.h"
@@ -948,7 +948,7 @@
 	"venta_menu.h"
 	<iostream>
 
-1764736772 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\cliente_menu.cpp
+1764906775 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\cliente_menu.cpp
 	"cliente_menu.h"
 	<iostream>
 
@@ -987,4 +987,35 @@
 	"submenu/tipo_responsable_menu.h"
 	"submenu/nota_de_credito_menu.h"
 	"submenu/venta_menu.h"
+
+1764892814 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_nota_de_credito.cpp
+	"manager_nota_de_credito.h"
+
+1764906217 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_nota_de_credito.h
+	"../../../rlutil.h"
+	"../../main_classes/ventas/nota_de_credito.h"
+	"../../controller/generic_array.h"
+	"../../file_manager/file_system.h"
+	"../../controller/modals.h"
+	"../../controller/table/table.h"
+
+1764892797 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_factura.cpp
+	"manager_factura.h"
+
+1764906227 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_factura.h
+	"../../../rlutil.h"
+	"../../main_classes/ventas/factura.h"
+	"../../controller/generic_array.h"
+	"../../file_manager/file_system.h"
+	"../../controller/modals.h"
+	"../../controller/table/table.h"
+
+1764308060 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_ventas.cpp
+	"manager_ventas.h"
+	<iostream>
+
+1764730415 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_ventas.h
+	<string>
+	"manager_factura.h"
+	"manager_nota_de_credito.h"
 

@@ -1,13 +1,13 @@
 #ifndef NOTADECREDITOMANAGER_H
 #define NOTADECREDITOMANAGER_H
 
-#include "../../rlutil.h"
-#include "../main_classes/ventas/nota_de_credito.h"
-#include "../controller/generic_array.h"
-#include "../file_manager/file_system.h"
+#include "../../../rlutil.h"
+#include "../../main_classes/ventas/nota_de_credito.h"
+#include "../../controller/generic_array.h"
+#include "../../file_manager/file_system.h"
 
-#include "../controller/modals.h"
-#include "../controller/table/table.h"
+#include "../../controller/modals.h"
+#include "../../controller/table/table.h"
 
 using namespace std;
 
