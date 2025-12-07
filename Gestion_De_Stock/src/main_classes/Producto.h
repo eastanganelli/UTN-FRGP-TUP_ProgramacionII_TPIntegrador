@@ -17,7 +17,7 @@ private:
     static const unsigned int PRECIO_SIZE = 6;
     static const unsigned int STOCK_SIZE = 6;
 
-    static const unsigned int COL_Codigo = 11;
+    static const unsigned int COL_Codigo = 13;
     static const unsigned int COL_CodigoProveedor = 14;
     static const unsigned int COL_Descripcion = 66;
     static const unsigned int COL_Precio = 8;

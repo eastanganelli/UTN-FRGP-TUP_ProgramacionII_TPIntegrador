@@ -17,6 +17,11 @@ private:
     static const unsigned int NUMERO_SIZE = 5;
     static const unsigned int MONTO_SIZE = 10;
 
+    static const unsigned int COL_Numero = 8;
+    static const unsigned int COL_ClienteDNI = 12;
+    static const unsigned int COL_FechaEmision = 15;
+    static const unsigned int COL_MontoTotal = 12;
+
     unsigned int numero;
     unsigned int itemsActuales;
     char clienteDNI[CLIENTEDNI_SIZE];
@@ -36,6 +41,11 @@ public:
     unsigned int getNumero();
     string getClienteDNI();
     Fecha& getFechaEmision();
+
+    static unsigned int ColNumeroSize();
+    static unsigned int ColClienteDNISize();
+    static unsigned int ColFechaEmisionSize();
+    static unsigned int ColMontoTotalSize();
 
     // Setters
     void setClienteDNI(string dni);

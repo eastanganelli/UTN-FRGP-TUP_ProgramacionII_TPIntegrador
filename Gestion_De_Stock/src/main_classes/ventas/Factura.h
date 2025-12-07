@@ -13,6 +13,12 @@ private:
     static const unsigned int CAE_SIZE = 15;
     static const unsigned int VENCIMIENTOCAE_SIZE = 10;
 
+    static const unsigned int COL_TipoFactura = 12;
+    static const unsigned int COL_CAE = 20;
+    static const unsigned int COL_VencimientoCAE = 18;
+    static const unsigned int COL_FechaCAE = 15;
+    static const unsigned int COL_TotalSinIVA = 15;
+
     char cae[CAE_SIZE];
     Fecha vencimientoCAE;
 

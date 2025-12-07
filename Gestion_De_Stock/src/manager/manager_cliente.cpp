@@ -4,9 +4,7 @@ ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(
 
 }
 
-ClienteManager::~ClienteManager() {
-
-}
+ClienteManager::~ClienteManager() { }
 
 GenericArray<Cliente> ClienteManager::Listar() {
     GenericArray<Cliente> clientes;
@@ -19,87 +17,61 @@ GenericArray<Cliente> ClienteManager::Listar() {
     return clientes;
 }
 
-unsigned int ClienteManager::Cantidad() {
-    return this->Count();
+bool ClienteManager::Existe(string codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool ClienteManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<Cliente> clientes = this->Listar();
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        string aux = clientes[i]->getDNI();
+        if(Validation::IsEqual(aux, codigo)) {
+            index = i;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ClienteManager::Agregar(Cliente& cliente) {
+    if(this->Existe(cliente.getDNI())) {
+        Warning mi_warning("Agregar Cliente", "El cliente con DNI " + cliente.getDNI() + " ya existe.");
+        mi_warning.Show();
+        return false;
+    }
+    return this->New(cliente);
 }
 
 bool ClienteManager::Modificar(string dni, Cliente* cliente) {
-    unsigned int index = 0;
-    if(!this->IndexOf(*cliente, index)) {
-        Error mi_error("Modificacion de Cliente", "Cliente con DNI " + dni + " no encontrado.");
-        mi_error.Show();
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
+        Warning mi_warning("Modificar Cliente", "No se encontro cliente con DNI " + dni + ".");
+        mi_warning.Show();
         return false;
     }
     return this->Update(index, *cliente);
-}
 
-void ClienteManager::ListarPorCuil_Cuit() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getCuilCuit() > clientes[j]->getCuilCuit()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
-}
-
-void ClienteManager::ListarPorDNI() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getDNI() > clientes[j]->getDNI()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
-}
-
-void ClienteManager::ListarPorApellido() {
-    GenericArray<Cliente> clientes = this->Listar();
-    if(clientes.Size() == 0) {
-        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < clientes.Size(); i++) {
-        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
-            if(clientes[i]->getApellido() > clientes[j]->getApellido()) {
-                clientes.Swap(clientes[i], clientes[j]);
-            }
-        }
-    }
-    ClienteManager::Imprimir(clientes);
 }
 
 Cliente* ClienteManager::operator[](string dni) {
-    const unsigned int cantidad = this->Count();
-    Cliente* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux->getDNI() == dni) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
         Warning mi_warning("Busqueda de Cliente", "No se encontro cliente con DNI " + dni + ".");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
+}
+
+bool ClienteManager::Eliminar(string dni) {
+    unsigned int index;
+    if(!this->Indice(dni, index)) {
+        Warning mi_warning("Eliminacion de Cliente", "No se encontro cliente con DNI " + dni + ".");
+        mi_warning.Show();
+        return false;
+    }
+    return this->Delete(index);
 }
 
 GenericArray<Cliente> ClienteManager::BuscarPorCUIL_CUIT(string cuil_cuit) {
@@ -188,6 +160,59 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
         mi_warning.Show();
     }
     return resultados;
+}
+
+unsigned int ClienteManager::Cantidad() { return this->Count(); }
+
+void ClienteManager::ListarPorCuil_Cuit() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getCuilCuit() > clientes[j]->getCuilCuit()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
+}
+
+void ClienteManager::ListarPorDNI() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getDNI() > clientes[j]->getDNI()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
+}
+
+void ClienteManager::ListarPorApellido() {
+    GenericArray<Cliente> clientes = this->Listar();
+    if(clientes.Size() == 0) {
+        Warning mi_warning("Listado de Clientes", "No se encontraron clientes para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < clientes.Size(); i++) {
+        for(unsigned int j = i + 1; j < clientes.Size(); j++) {
+            if(clientes[i]->getApellido() > clientes[j]->getApellido()) {
+                clientes.Swap(clientes[i], clientes[j]);
+            }
+        }
+    }
+    ClienteManager::Imprimir(clientes);
 }
 
 void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {

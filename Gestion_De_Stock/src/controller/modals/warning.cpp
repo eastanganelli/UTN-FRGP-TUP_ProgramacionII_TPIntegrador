@@ -36,10 +36,15 @@ bool Warning::ShowYesNo() {
     do {
         this->PrintHeader();
         cout << this->message << endl
-             << "\nSi (Y) || No (N)" << endl;
+             << "\nSi (S) || No (N)" << endl;
         this->PrintFooter();
         key = rlutil::getkey();
         key = toupper(key);
-    } while(this->IsYes(key) || this->IsNo(key));
+        rlutil::cls();
+        if(this->IsYes(key))
+            break;
+        else if (this->IsNo(key))
+            break;
+    } while(true);
     return this->IsYes(key);
 }

@@ -16,90 +16,60 @@ GenericArray<Producto> ProductoManager::Listar() {
     return productos;
 }
 
-bool ProductoManager::Modificar(string codigo, Producto* producto) {
-    const unsigned int cantidad = this->Count();
-    unsigned int index = 0;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Producto* aux = this->At(i);
-        if(aux != nullptr && aux->getCodigo() == codigo) {
+bool ProductoManager::Existe(string codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool ProductoManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<Producto> productos = this->Listar();
+    for(unsigned int i = 0; i < productos.Size(); i++) {
+        string aux = productos[i]->getCodigo();
+        if(Validation::IsEqual(aux, codigo)) {
             index = i;
-            delete aux;
-            return this->Update(index, *producto);
+            return true;
         }
-        delete aux;
     }
-    Error mi_error("Modificacion de Producto", "Producto con codigo " + codigo + " no encontrado.");
-    mi_error.Show();
     return false;
 }
 
-void ProductoManager::ListarPorCodigo() {
-    GenericArray<Producto> productos = this->Listar();
-    if(productos.Size() == 0) {
-        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+bool ProductoManager::Agregar(Producto& producto) {
+    if(this->Existe(producto.getCodigo())) {
+        Warning mi_warning("Alta de Producto", "El producto con codigo " + producto.getCodigo() + " ya existe.");
         mi_warning.Show();
-        return;
+        return false;
     }
-    for(unsigned int i = 0; i < productos.Size(); i++) {
-        for(unsigned int j = i + 1; j < productos.Size(); j++) {
-            if(productos[i]->getCodigo() > productos[j]->getCodigo()) {
-                productos.Swap(productos[i], productos[j]);
-            }
-        }
-    }
-    ProductoManager::Imprimir(productos);
+    return this->New(producto);
 }
 
-void ProductoManager::ListarPorPrecio() {
-    GenericArray<Producto> productos = this->Listar();
-    if(productos.Size() == 0) {
-        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+bool ProductoManager::Modificar(string codigo, Producto* producto) {
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
+        Warning mi_warning("Modificacion de Producto", "No se encontro producto con codigo " + codigo + ".");
         mi_warning.Show();
-        return;
+        return false;
     }
-    for(unsigned int i = 0; i < productos.Size(); i++) {
-        for(unsigned int j = i + 1; j < productos.Size(); j++) {
-            if(productos[i]->getPrecio() > productos[j]->getPrecio()) {
-                productos.Swap(productos[i], productos[j]);
-            }
-        }
-    }
-    ProductoManager::Imprimir(productos);
+    return this->Update(index, *producto);
 }
 
-void ProductoManager::ListarPorStock() {
-    GenericArray<Producto> productos = this->Listar();
-    if(productos.Size() == 0) {
-        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+bool ProductoManager::Eliminar(string codigo) {
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
+        Warning mi_warning("Eliminacion de Producto", "No se encontro producto con codigo " + codigo + ".");
         mi_warning.Show();
-        return;
+        return false;
     }
-    for(unsigned int i = 0; i < productos.Size(); i++) {
-        for(unsigned int j = i + 1; j < productos.Size(); j++) {
-            if(productos[i]->getStock() > productos[j]->getStock()) {
-                productos.Swap(productos[i], productos[j]);
-            }
-        }
-    }
-    ProductoManager::Imprimir(productos);
+    return this->Delete(index);
 }
 
 Producto* ProductoManager::operator[](string codigo) {
-    const unsigned int cantidad = this->Count();
-    Producto* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getCodigo() == codigo) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
+    unsigned int index;
+    if(!this->Indice(codigo, index)) {
         Warning mi_warning("Busqueda de Producto", "No se encontro producto con codigo " + codigo + ".");
         mi_warning.Show();
+        return nullptr;
     }
-    return aux;
+    return this->At(index);
 }
 
 GenericArray<Producto> ProductoManager::BuscarPorCodigo(string codigo) {
@@ -166,6 +136,57 @@ GenericArray<Producto> ProductoManager::BuscarPorStockMinimo(unsigned int stockM
         mi_warning.Show();
     }
     return resultados;
+}
+
+void ProductoManager::ListarPorCodigo() {
+    GenericArray<Producto> productos = this->Listar();
+    if(productos.Size() == 0) {
+        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < productos.Size(); i++) {
+        for(unsigned int j = i + 1; j < productos.Size(); j++) {
+            if(productos[i]->getCodigo() > productos[j]->getCodigo()) {
+                productos.Swap(productos[i], productos[j]);
+            }
+        }
+    }
+    ProductoManager::Imprimir(productos);
+}
+
+void ProductoManager::ListarPorPrecio() {
+    GenericArray<Producto> productos = this->Listar();
+    if(productos.Size() == 0) {
+        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < productos.Size(); i++) {
+        for(unsigned int j = i + 1; j < productos.Size(); j++) {
+            if(productos[i]->getPrecio() > productos[j]->getPrecio()) {
+                productos.Swap(productos[i], productos[j]);
+            }
+        }
+    }
+    ProductoManager::Imprimir(productos);
+}
+
+void ProductoManager::ListarPorStock() {
+    GenericArray<Producto> productos = this->Listar();
+    if(productos.Size() == 0) {
+        Warning mi_warning("Listado de Productos", "No se encontraron productos para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < productos.Size(); i++) {
+        for(unsigned int j = i + 1; j < productos.Size(); j++) {
+            if(productos[i]->getStock() > productos[j]->getStock()) {
+                productos.Swap(productos[i], productos[j]);
+            }
+        }
+    }
+    ProductoManager::Imprimir(productos);
 }
 
 void ProductoManager::Imprimir(GenericArray<Producto>& productos) {

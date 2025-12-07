@@ -1,4 +1,4 @@
-#ifndef VENTAMANAGER_H
+  #ifndef VENTAMANAGER_H
 #define VENTAMANAGER_H
 
 #include <string>
@@ -19,7 +19,6 @@ public:
     bool ConvertirFacturaANota(unsigned int numeroFactura, const string& motivo);
 
     void ImprimirComprobantesPorCliente(const string& clienteDNI);
-
     void ImprimirTodos();
 };
 

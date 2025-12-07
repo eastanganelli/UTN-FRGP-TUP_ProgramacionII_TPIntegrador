@@ -149,7 +149,8 @@ bool FileSystem<T>::IndexOf(T& record, unsigned int& index) {
     T tempRecord;
     unsigned int current = 0;
     while(fread(&tempRecord, sizeof(T), 1, file)) {
-        if(tempRecord == record) {
+        bool result = tempRecord == record;
+        if(result) {
             found = true;
             index = current;
             break;
@@ -192,8 +193,8 @@ T* FileSystem<T>::At(unsigned int index) {
         mi_error.Show();
         return nullptr;
     }
-    fseek(file, sizeof(T) * index, SEEK_SET);
     T* record = new T();
+    fseek(file, sizeof(T) * index, SEEK_SET);
     bool result = fread(record, sizeof(T), 1, file);
     fclose(file);
     if(!result) {

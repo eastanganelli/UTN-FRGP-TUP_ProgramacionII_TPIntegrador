@@ -14,18 +14,23 @@ using namespace std;
 class TipoResponsableManager : public FileSystem<TipoResponsable> {
 private:
     GenericArray<TipoResponsable> Listar();
+    bool Existe(string c);
+    bool Indice(string c, unsigned int& index);
     bool Existe(TipoResponsable& condicion_iva);
 
 public:
     TipoResponsableManager(const string& condicion_ivaPath = "tipo_responsable.dat");
     ~TipoResponsableManager();
+
+    bool Agregar(TipoResponsable& condicion_iva);
+    bool Modificar(string codigo, TipoResponsable* condicion_iva);
+    bool Eliminar(string codigo);
+    TipoResponsable* operator[](string codigo);
+    GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
     unsigned int Cantidad();
-    bool Modificar(unsigned int codigo, TipoResponsable* condicion_iva);
-    TipoResponsable* operator[](unsigned int codigo);
 
     void ListarPorDescripcion();
     void ListarPorPorcentaje();
-    GenericArray<TipoResponsable> PorcentajeMayorA(float minimo);
 
     static void Imprimir(GenericArray<TipoResponsable>& condicion_ivas);
 };

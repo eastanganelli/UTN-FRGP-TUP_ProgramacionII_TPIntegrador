@@ -1,9 +1,9 @@
 #ifndef VENTA_MENU_H
 #define VENTA_MENU_H
 
-#include "..\menu.h"
-#include "..\menu_utils.h"
-#include "..\..\manager\manager_ventas.h"
+#include "../menu.h"
+#include "../menu_utils.h"
+#include "../../manager/ventas/manager_ventas.h"
 
 class VentaMenu : public Menu {
 private:

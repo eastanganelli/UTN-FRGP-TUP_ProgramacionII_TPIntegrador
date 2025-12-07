@@ -19,37 +19,37 @@ bool MainMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             ClienteMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 1: {
             ProveedorMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 2: {
             ProductoMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 3: {
             TipoResponsableMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 4: {
             FacturaMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 5: {
             NotaDeCreditoMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 6: {
             VentaMenu m;
-            while (!m.Run()) { }
+            while (!m.Run());
             return false;
         }
         case 7: {
@@ -63,8 +63,7 @@ bool MainMenu::OnSelect(int index) {
             PauseConsole();
             return false;
         }
-        case 8: {
-            // Salir
+        case 8: { // Salir
             return true;
         }
         default:

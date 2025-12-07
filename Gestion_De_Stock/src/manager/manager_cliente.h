@@ -14,22 +14,26 @@ using namespace std;
 class ClienteManager : public FileSystem<Cliente> {
 private:
     GenericArray<Cliente> Listar();
+    bool Existe(string codigo);
+    bool Indice(string codigo, unsigned int& index);
 
 public:
     ClienteManager(const string& clientePath = "clientes.dat");
     ~ClienteManager();
-    
-    void ListarPorCuil_Cuit();
-    void ListarPorDNI();
-    void ListarPorApellido();
+
+    bool Agregar(Cliente& cliente);
+    bool Modificar(string dni, Cliente* cliente);
+    bool Eliminar(string dni);
+    Cliente* operator[](string dni);
     GenericArray<Cliente> BuscarPorDNI(string dni);
     GenericArray<Cliente> BuscarPorCUIL_CUIT(string cuil_cuit);
     GenericArray<Cliente> BuscarPorNombreApellido(string nombre, string Apellido);
     GenericArray<Cliente> BuscarPorCorreo(string correo);
-
     unsigned int Cantidad();
-    bool Modificar(string dni, Cliente* cliente);
-    Cliente* operator[](string dni);
+
+    void ListarPorCuil_Cuit();
+    void ListarPorDNI();
+    void ListarPorApellido();
 
     static void Imprimir(GenericArray<Cliente>& clientes);
 };

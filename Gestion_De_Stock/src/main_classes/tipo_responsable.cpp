@@ -40,7 +40,7 @@ bool TipoResponsable::operator==(const TipoResponsable& otra) const {
 
 bool TipoResponsable::IsEmpty() const {
     return Validation::IsEmpty(this->codigo) && Validation::IsEmpty(this->descripcion)
-        && this->porcentaje == -1.0f && Validation::IsEmpty(&this->tipoFacturacion);
+        && this->porcentaje, -1.0f && Validation::IsEmpty(&this->tipoFacturacion);
 }
 
 void TipoResponsable::Print() {

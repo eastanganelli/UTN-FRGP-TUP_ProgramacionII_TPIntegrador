@@ -16,71 +16,59 @@ GenericArray<Factura> FacturaManager::Listar() {
     return facturas;
 }
 
-bool FacturaManager::Modificar(unsigned int numero, Factura* factura) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Factura* aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            unsigned int index = i;
-            delete aux;
-            return this->Update(index, *factura);
+bool FacturaManager::Existe(unsigned int codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool FacturaManager::Indice(unsigned int codigo, unsigned int& index) {
+    GenericArray<Factura> facturas = this->Listar();
+    for(unsigned int i = 0; i < facturas.Size(); i++) {
+        if(facturas[i]->getNumero() == codigo) {
+            index = i;
+            return true;
         }
-        delete aux;
     }
-    Error mi_error("Modificacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
-    mi_error.Show();
     return false;
 }
 
-void FacturaManager::ListarPorCliente() {
-    GenericArray<Factura> facturas = this->Listar();
-    if(facturas.Size() == 0) {
-        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
+bool FacturaManager::Agregar(Factura& factura) {
+    if(this->Existe(factura.getNumero())) {
+        Warning mi_warning("Agregar Factura", "La factura con numero " + to_string(factura.getNumero()) + " ya existe.");
         mi_warning.Show();
-        return;
+        return false;
     }
-    for(unsigned int i = 0; i < facturas.Size(); i++) {
-        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
-            if(facturas[i]->getClienteDNI() > facturas[j]->getClienteDNI()) {
-                facturas.Swap(facturas[i], facturas[j]);
-            }
-        }
-    }
-    FacturaManager::Imprimir(facturas);
+    return this->New(factura);
 }
 
-void FacturaManager::ListarPorFecha() {
-    GenericArray<Factura> facturas = this->Listar();
-    if(facturas.Size() == 0) {
-        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
-        mi_warning.Show();
-        return;
+bool FacturaManager::Modificar(unsigned int numero, Factura* factura) {
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Modificacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
+        mi_error.Show();
+        return false;
     }
-    for(unsigned int i = 0; i < facturas.Size(); i++) {
-        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
-            if(facturas[i]->getFechaEmision() > facturas[j]->getFechaEmision()) {
-                facturas.Swap(facturas[i], facturas[j]);
-            }
-        }
-    }
-    FacturaManager::Imprimir(facturas);
+    return this->Update(index, *factura);
 }
 
-void FacturaManager::ListarPorMonto() {
-    GenericArray<Factura> facturas = this->Listar();
-    if(facturas.Size() == 0) {
-        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
+bool FacturaManager::Eliminar(unsigned int numero) {
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Error mi_error("Eliminacion de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
+        mi_error.Show();
+        return false;
+    }
+    return this->Delete(index);
+}
+
+Factura* FacturaManager::operator[](unsigned int numero) {
+    unsigned int index;
+    if(!this->Indice(numero, index)) {
+        Warning mi_warning("Busqueda de Factura", "Factura con numero " + to_string(numero) + " no encontrada.");
         mi_warning.Show();
-        return;
+        return nullptr;
     }
-    for(unsigned int i = 0; i < facturas.Size(); i++) {
-        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
-            if(facturas[i]->TotalSinIVA() > facturas[j]->TotalSinIVA()) {
-                facturas.Swap(facturas[i], facturas[j]);
-            }
-        }
-    }
-    FacturaManager::Imprimir(facturas);
+    return this->At(index);
 }
 
 GenericArray<Factura> FacturaManager::BuscarPorCliente(string clienteDNI) {
@@ -149,24 +137,56 @@ GenericArray<Factura> FacturaManager::BuscarPorRangoFecha(Fecha fechaInicio, Fec
     return resultados;
 }
 
-Factura* FacturaManager::operator[](unsigned int numero) {
-    const unsigned int cantidad = this->Count();
-    Factura* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getNumero() == numero) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
-        Warning mi_warning("Busqueda de Factura", "No se encontro factura con numero " + to_string(numero) + ".");
+void FacturaManager::ListarPorCliente() {
+    GenericArray<Factura> facturas = this->Listar();
+    if(facturas.Size() == 0) {
+        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
         mi_warning.Show();
+        return;
     }
-    return aux;
+    for(unsigned int i = 0; i < facturas.Size(); i++) {
+        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
+            if(facturas[i]->getClienteDNI() > facturas[j]->getClienteDNI()) {
+                facturas.Swap(facturas[i], facturas[j]);
+            }
+        }
+    }
+    FacturaManager::Imprimir(facturas);
 }
 
+void FacturaManager::ListarPorFecha() {
+    GenericArray<Factura> facturas = this->Listar();
+    if(facturas.Size() == 0) {
+        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < facturas.Size(); i++) {
+        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
+            if(facturas[i]->getFechaEmision() > facturas[j]->getFechaEmision()) {
+                facturas.Swap(facturas[i], facturas[j]);
+            }
+        }
+    }
+    FacturaManager::Imprimir(facturas);
+}
+
+void FacturaManager::ListarPorMonto() {
+    GenericArray<Factura> facturas = this->Listar();
+    if(facturas.Size() == 0) {
+        Warning mi_warning("Listado de Facturas", "No se encontraron facturas para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < facturas.Size(); i++) {
+        for(unsigned int j = i + 1; j < facturas.Size(); j++) {
+            if(facturas[i]->TotalSinIVA() > facturas[j]->TotalSinIVA()) {
+                facturas.Swap(facturas[i], facturas[j]);
+            }
+        }
+    }
+    FacturaManager::Imprimir(facturas);
+}
 
 void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
     if(facturas.Size() == 0) {

@@ -18,20 +18,59 @@ GenericArray<Proveedor> ProveedorManager::Listar() {
     return proveedores;
 }
 
-bool ProveedorManager::Modificar(string cuit, Proveedor* proveedor) {
-    const unsigned int cantidad = this->Count();
-    for(unsigned int i = 0; i < cantidad; i++) {
-        Proveedor* aux = this->At(i);
-        if(aux != nullptr && aux->getCuit() == cuit) {
-            unsigned int index = i;
-            delete aux;
-            return this->Update(index, *proveedor);
+bool ProveedorManager::Existe(string codigo) {
+    unsigned int index;
+    return this->Indice(codigo, index);
+}
+
+bool ProveedorManager::Indice(string codigo, unsigned int& index) {
+    GenericArray<Proveedor> proveedores = this->Listar();
+    for(unsigned int i = 0; i < proveedores.Size(); i++) {
+        if(Validation::IsEqual(proveedores[i]->getCuit(), codigo)) {
+            index = i;
+            return true;
         }
-        delete aux;
     }
-    Error mi_error("Modificacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
-    mi_error.Show();
     return false;
+}
+
+bool ProveedorManager::Agregar(Proveedor& proveedor) {
+    if(this->Existe(proveedor.getCuit())) {
+        Warning mi_warning("Creacion de Proveedor", "El proveedor con CUIT " + proveedor.getCuit() + " ya existe.");
+        mi_warning.Show();
+        return false;
+    }
+    return this->New(proveedor);
+}
+
+bool ProveedorManager::Modificar(string cuit, Proveedor* proveedor) {
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Error mi_error("Modificacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
+        mi_error.Show();
+        return false;
+    }
+    return this->Update(index, *proveedor);
+}
+
+bool ProveedorManager::Eliminar(string cuit) {
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Error mi_error("Eliminacion de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
+        mi_error.Show();
+        return false;
+    }
+    return this->Delete(index);
+}
+
+Proveedor* ProveedorManager::operator[](string cuit) {
+    unsigned int index;
+    if(!this->Indice(cuit, index)) {
+        Warning mi_warning("Busqueda de Proveedor", "Proveedor con CUIT " + cuit + " no encontrado.");
+        mi_warning.Show();
+        return nullptr;
+    }
+    return this->At(index);
 }
 
 Proveedor* ProveedorManager::SeleccionarRandom() {
@@ -39,75 +78,6 @@ Proveedor* ProveedorManager::SeleccionarRandom() {
     if(cantidad == 0) return nullptr;
     unsigned int indice = rand() % cantidad;
     return this->At(indice);
-}
-
-Proveedor* ProveedorManager::operator[](string cuit) {
-    const unsigned int cantidad = this->Count();
-    Proveedor* aux = nullptr;
-    for(unsigned int i = 0; i < cantidad; i++) {
-        aux = this->At(i);
-        if(aux != nullptr && aux->getCuit() == cuit) {
-            break;
-        }
-        delete aux;
-        aux = nullptr;
-    }
-    if(aux == nullptr) {
-        Warning mi_warning("Busqueda de Proveedor", "No se encontro proveedor con CUIT " + cuit + ".");
-        mi_warning.Show();
-    }
-    return aux;
-}
-
-void ProveedorManager::ListarPorNombre() {
-    GenericArray<Proveedor> proveedores = this->Listar();
-    if(proveedores.Size() == 0) {
-        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < proveedores.Size(); i++) {
-        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
-            if(proveedores[i]->getNombreRazon() > proveedores[j]->getNombreRazon()) {
-                proveedores.Swap(proveedores[i], proveedores[j]);
-            }
-        }
-    }
-    ProveedorManager::Imprimir(proveedores);
-}
-
-void ProveedorManager::ListarPorRubro() {
-    GenericArray<Proveedor> proveedores = this->Listar();
-    if(proveedores.Size() == 0) {
-        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < proveedores.Size(); i++) {
-        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
-            if(proveedores[i]->getRubro() > proveedores[j]->getRubro()) {
-                proveedores.Swap(proveedores[i], proveedores[j]);
-            }
-        }
-    }
-    ProveedorManager::Imprimir(proveedores);
-}
-
-void ProveedorManager::ListarPorCUIT() {
-    GenericArray<Proveedor> proveedores = this->Listar();
-    if(proveedores.Size() == 0) {
-        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
-        mi_warning.Show();
-        return;
-    }
-    for(unsigned int i = 0; i < proveedores.Size(); i++) {
-        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
-            if(proveedores[i]->getCuit() > proveedores[j]->getCuit()) {
-                proveedores.Swap(proveedores[i], proveedores[j]);
-            }
-        }
-    }
-    ProveedorManager::Imprimir(proveedores);
 }
 
 GenericArray<Proveedor> ProveedorManager::ConsultarPorCUIT(string cuit) {
@@ -231,6 +201,57 @@ unsigned int ProveedorManager::SeleccionarRubro() {
 string ProveedorManager::getNombreRubro(unsigned int cr) {
     if(cr == 0 || cr > (unsigned int)(sizeof(RUBROS) / sizeof(RUBROS[0]))) return string("Otros");
     return RUBROS[cr - 1];
+}
+
+void ProveedorManager::ListarPorNombre() {
+    GenericArray<Proveedor> proveedores = this->Listar();
+    if(proveedores.Size() == 0) {
+        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < proveedores.Size(); i++) {
+        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
+            if(proveedores[i]->getNombreRazon() > proveedores[j]->getNombreRazon()) {
+                proveedores.Swap(proveedores[i], proveedores[j]);
+            }
+        }
+    }
+    ProveedorManager::Imprimir(proveedores);
+}
+
+void ProveedorManager::ListarPorRubro() {
+    GenericArray<Proveedor> proveedores = this->Listar();
+    if(proveedores.Size() == 0) {
+        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < proveedores.Size(); i++) {
+        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
+            if(proveedores[i]->getRubro() > proveedores[j]->getRubro()) {
+                proveedores.Swap(proveedores[i], proveedores[j]);
+            }
+        }
+    }
+    ProveedorManager::Imprimir(proveedores);
+}
+
+void ProveedorManager::ListarPorCUIT() {
+    GenericArray<Proveedor> proveedores = this->Listar();
+    if(proveedores.Size() == 0) {
+        Warning mi_warning("Listado de Proveedores", "No se encontraron proveedores para mostrar.");
+        mi_warning.Show();
+        return;
+    }
+    for(unsigned int i = 0; i < proveedores.Size(); i++) {
+        for(unsigned int j = i + 1; j < proveedores.Size(); j++) {
+            if(proveedores[i]->getCuit() > proveedores[j]->getCuit()) {
+                proveedores.Swap(proveedores[i], proveedores[j]);
+            }
+        }
+    }
+    ProveedorManager::Imprimir(proveedores);
 }
 
 void ProveedorManager::Imprimir(GenericArray<Proveedor>& proveedores) {

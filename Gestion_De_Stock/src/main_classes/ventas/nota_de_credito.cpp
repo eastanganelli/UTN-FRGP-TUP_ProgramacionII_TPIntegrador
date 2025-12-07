@@ -9,9 +9,19 @@ NotaDeCredito::~NotaDeCredito() { }
 
 string NotaDeCredito::getMotivoAnulacion() { return this->motivoAnulacion; }
 
+unsigned int NotaDeCredito::ColMotivoAnulacionSize() { return COL_MotivoAnulacion; }
+
 float NotaDeCredito::TotalSinIVA() { return this->Total(); }
 
 void NotaDeCredito::setMotivoAnulacion(string m) { strcpy(this->motivoAnulacion, m.c_str()); }
+
+bool NotaDeCredito::operator==(NotaDeCredito& nota) {
+    return this->IsEqual(nota) && Validation::IsEqual(this->motivoAnulacion, nota.motivoAnulacion);
+}
+
+bool NotaDeCredito::IsEmpty() {
+    return Validation::IsEmpty(this->motivoAnulacion) && this->Comprobante::IsEmpty();
+}
 
 string NotaDeCredito::toString() {
     string resultado = "Nota de Credito Nro: " + to_string(this->getNumero()) +
