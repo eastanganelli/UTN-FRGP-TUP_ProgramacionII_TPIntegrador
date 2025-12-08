@@ -3,6 +3,13 @@
 
 #include <string>
 #include <cstring>
+#include <sstream>
+#include <cstdio>
+
+#include "../../controller/validation.h"
+#include "../../menu/menu_utils.h"
+#include "../../controller/modals.h"
+#include "../../manager/manager_producto.h"
 
 using namespace std;
 
@@ -41,6 +48,9 @@ public:
     bool operator==(const Item& otro) const;
     bool IsEmpty() const;
     std::string toString() const;
+    static Item NuevoItem(class ProductoManager& pm);
+    static void ModificarItem(Item& item, class ProductoManager& pm);
+    static unsigned int EliminarItem(Item& item, class ProductoManager& pm);
 };
 
 #endif // ITEM_H

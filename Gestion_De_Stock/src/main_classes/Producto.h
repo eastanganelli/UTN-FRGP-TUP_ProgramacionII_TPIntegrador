@@ -58,6 +58,10 @@ public:
     bool operator==(const Producto& otro);
     bool IsEmpty();
     void Print();
+
+    static Producto NuevoProducto();
+    static void ModificarProducto(Producto& producto);
+    static unsigned int EliminarProducto(Producto& producto);
 };
 
 #endif // PRODUCTO_H

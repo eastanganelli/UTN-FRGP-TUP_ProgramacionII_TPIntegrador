@@ -42,6 +42,9 @@ public:
     bool operator==(const Proveedor& otro);
     bool IsEmpty();
     void Print();
+    static Proveedor NuevoProveedor();
+    static void ModificarProveedor(Proveedor& proveedor);
+    static unsigned int EliminarProveedor(Proveedor& proveedor);
 };
 
 #endif // PROVEEDOR_H

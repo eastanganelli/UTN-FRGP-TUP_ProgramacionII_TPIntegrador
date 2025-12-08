@@ -44,6 +44,11 @@ public:
     bool operator==(const Factura& otra);
     bool IsEmpty();
     void Print();
+    
+    // CRUD helpers
+    static Factura NuevoFactura(unsigned int numero, class ProductoManager& pm);
+    static void ModificarFactura(Factura& factura, class ProductoManager& pm);
+    static unsigned int EliminarFactura(Factura& factura, class ProductoManager& pm);
 };
 
 #endif // FACTURA_H
