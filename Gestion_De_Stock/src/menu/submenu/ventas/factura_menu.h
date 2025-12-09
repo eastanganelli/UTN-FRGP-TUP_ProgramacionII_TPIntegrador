@@ -1,9 +1,9 @@
 #ifndef FACTURA_MENU_H
 #define FACTURA_MENU_H
 
-#include "../menu.h"
-#include "../menu_utils.h"
-#include "../../manager/ventas/manager_factura.h"
+#include "../../menu.h"
+#include "../../menu_utils.h"
+#include "../../../manager/ventas/manager_factura.h"
 
 class FacturaMenu : public Menu {
 private:
