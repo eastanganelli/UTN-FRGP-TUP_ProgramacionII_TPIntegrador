@@ -678,7 +678,7 @@
 	<cstring>
 	"../controller/validation.h"
 
-1765229486 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.cpp
+1765324979 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\tipo_responsable.cpp
 	"tipo_responsable.h"
 	<cctype>
 	<iostream>
