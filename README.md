@@ -1,10 +1,3 @@
-# Gestion de Stock
-## Programación 2 - UTN FRGP TUP
-## 2025 2do Cuatrimestre
-
-Descripción
-- **Proyecto**: Sistema de gestión de stock desarrollado como trabajo práctico para la materia Programación 2 (UTN FRGP). Permite gestionar productos, clientes, proveedores y comprobantes (facturas, notas de crédito).
-
 # Gestión de Stock
 
 ## Trabajo Práctico — Programación 2 (UTN FRGP)
@@ -21,17 +14,24 @@ Autores
 Estructura relevante
 - `Gestion_De_Stock/` — proyecto principal (contiene `Gestion_De_Stock.cbp`, `main.cpp`, `src/`, `bin/`, etc.).
 - `Gestion_De_Stock/src/` — código fuente en C++ (clases como `Producto`, `Cliente`, `ProductosManager`, `VentasManager`, entre otras).
+- El proyecto incluye un archivo de proyecto de Code::Blocks (`Gestion_De_Stock/Gestion_De_Stock.cbp`) y una estructura pensada para compilación local.
 
-Notas
-- El proyecto fue desarrollado usando Code::Blocks; por eso este `README` no incluye instrucciones de compilación específicas. Abrir el proyecto con Code::Blocks es la forma recomendada para compilar y ejecutar tal como fue entregado.
-- Si necesitás, puedo agregar instrucciones alternativas (por ejemplo `CMake`, Makefile o pasos para compilar con otro compilador). Sólo decime cuál preferís.
+## Índice de módulos
 
-Contacto
-- Para dudas o para que prepare instrucciones adicionales, abrime un issue o comentame en este repositorio.
+- `main_classes` : modelos y clases de dominio (clientes, proveedores, productos, comprobantes, ítems, fechas, tipos de responsables).
+- `manager` : capa de persistencia y operaciones (managers para cada entidad).
+- `controller` : utilidades y componentes para la UI de consola (tablas, modales, arreglos genéricos).
+- `menu` : menú principal y submenús de interacción.
+- `file_manager` : abstracción de persistencia (`FileSystem`).
 
----
+## Cómo ejecutar con Code::Blocks (versión 21)
 
-Documento breve preparado según indicaciones: sólo descripción y miembros, sin pasos de compilación detallados.
-- El proyecto incluye un archivo de proyecto de Code::Blocks (`Gestion_De_Stock/Gestion_De_Stock.cbp`) y una estructura pensada para compilación local. Si desea, puedo agregar instrucciones más detalladas para Linux, Makefile o un CMake mínimo.
+1. Abrir Code::Blocks (versión 21) en Windows.
+2. Ir a `File -> Open...` y abrir `Gestion_De_Stock/Gestion_De_Stock.cbp`.
+3. Verificar en `Settings -> Compiler...` que esté seleccionado `GNU GCC Compiler` o el compilador configurado por el curso.
+4. En la barra del proyecto seleccionar la configuración `Debug` y luego `Build -> Build`.
+5. Ejecutar con `Build -> Run` o presionando `F9`.
 
-
+Notas:
+- El proyecto fue preparado para Code::Blocks; usar la versión 21 (indicada por la cátedra) ayuda a evitar diferencias en el archivo `.cbp` o en configuraciones del IDE.
+- Si necesitás, puedo crear un pequeño `build.ps1` para compilar desde PowerShell con MinGW/GCC.

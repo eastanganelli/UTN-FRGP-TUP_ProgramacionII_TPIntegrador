@@ -110,11 +110,11 @@ TipoResponsable TipoResponsable::NuevoTipoResponsable() {
 
     // Tipo Facturacion
     while (true) {
-        entrada = InputBox("Tipo de facturacion (A/B): ");
-        if (Validation::IsEmpty(entrada)) { Warning w("Tipo invalido", "Ingrese A o B."); w.Show(); w.WaitForKey(); continue; }
+        entrada = InputBox("Tipo de facturacion (A, B, C o E): ");
+        if (Validation::IsEmpty(entrada)) { Warning w("Tipo invalido", "Ingrese A, B, C o E."); w.Show(); w.WaitForKey(); continue; }
         tipo = toupper(entrada[0]);
-        if (tipo != 'A' && tipo != 'B') {
-            Warning w("Tipo invalido", "Ingrese A o B.");
+        if (tipo != 'A' && tipo != 'B' && tipo != 'C' && tipo != 'E') {
+            Warning w("Tipo invalido", "Ingrese A, B, C o E.");
             w.Show(); w.WaitForKey();
             continue;
         }
@@ -188,10 +188,10 @@ void TipoResponsable::ModificarTipoResponsable(TipoResponsable& tipo) {
             }
             case 4: {
                 while (true) {
-                    entrada = InputBox("Nuevo Tipo Facturacion (A/B): ");
-                    if (Validation::IsEmpty(entrada)) { Warning w("Tipo invalido", "Ingrese A o B."); w.Show(); w.WaitForKey(); continue; }
+                    entrada = InputBox("Nuevo Tipo Facturacion (A, B, C o E): ");
+                    if (Validation::IsEmpty(entrada)) { Warning w("Tipo invalido", "Ingrese A, B, C o E."); w.Show(); w.WaitForKey(); continue; }
                     char t = toupper(entrada[0]);
-                    if (t != 'A' && t != 'B') { Warning w("Tipo invalido", "Ingrese A o B."); w.Show(); w.WaitForKey(); continue; }
+                    if (t != 'A' && t != 'B' && t != 'C' && t != 'E') { Warning w("Tipo invalido", "Ingrese A, B, C o E."); w.Show(); w.WaitForKey(); continue; }
                     tipo = TipoResponsable(tipo.getCodigo(), tipo.getDescripcion(), tipo.getPorcentaje(), t);
                     Informational i("Tipo facturacion modificado", "Tipo de facturacion actualizado correctamente.");
                     i.Show(); i.WaitForKey();

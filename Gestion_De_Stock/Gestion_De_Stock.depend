@@ -983,7 +983,7 @@
 	"nota_de_credito_menu.h"
 	<iostream>
 
-1765254327 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\proveedor_menu.cpp
+1765254609 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\proveedor_menu.cpp
 	"proveedor_menu.h"
 	<iostream>
 
@@ -998,14 +998,14 @@
 	"data_generator/invoice_generator.h"
 	"data_generator/tiporesponsables_generator.h"
 
-1764731154 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu.h
-	"submenu/factura_menu.h"
+1765321272 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu.h
+	"submenu/ventas/factura_menu.h"
 	"submenu/cliente_menu.h"
 	"submenu/producto_menu.h"
 	"submenu/proveedor_menu.h"
 	"submenu/tipo_responsable_menu.h"
-	"submenu/nota_de_credito_menu.h"
-	"submenu/venta_menu.h"
+	"submenu/ventas/nota_de_credito_menu.h"
+	"submenu/ventas/venta_menu.h"
 
 1764912666 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_nota_de_credito.cpp
 	"manager_nota_de_credito.h"
