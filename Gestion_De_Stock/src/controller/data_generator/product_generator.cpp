@@ -11,10 +11,22 @@ void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
 
     if(productos.Count() == 0) {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;
+        unsigned int totalProveedores = proveedores.Count();
+        if (totalProveedores == 0) {
+            std::cout << "No hay proveedores cargados. No se generaron productos." << std::endl;
+            return;
+        }
+
         for (unsigned int i = 0; i < count; ++i) {
             DatosProducto dp;
             dp.codigo = DataGenerator::generarCodigoAlfaNumerico(Producto::GetCodigoSize());
-            dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit();
+            unsigned int idx = rand() % totalProveedores;
+            Proveedor* p = proveedores.At(idx);
+            dp.codigoProveedor = "";
+            if (p != nullptr) {
+                dp.codigoProveedor = p->getCuit();
+                delete p;
+            }
             dp.descripcion = "Producto " + dp.codigo;
             dp.precio = static_cast<float>((rand() % 10000) / 100.0 + 1.0);
             dp.stock = rand() % 100 + 1;

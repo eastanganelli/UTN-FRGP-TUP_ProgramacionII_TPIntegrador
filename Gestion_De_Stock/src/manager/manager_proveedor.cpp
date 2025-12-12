@@ -73,13 +73,6 @@ Proveedor* ProveedorManager::operator[](string cuit) {
     return this->At(index);
 }
 
-Proveedor* ProveedorManager::SeleccionarRandom() {
-    const unsigned int cantidad = this->Count();
-    if(cantidad == 0) return nullptr;
-    unsigned int indice = rand() % cantidad;
-    return this->At(indice);
-}
-
 GenericArray<Proveedor> ProveedorManager::ConsultarPorCUIT(string cuit) {
     GenericArray<Proveedor> resultados;
     const unsigned int cantidad = this->Count();
