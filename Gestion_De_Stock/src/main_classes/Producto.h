@@ -59,9 +59,7 @@ public:
     bool IsEmpty();
     void Print();
 
-    static Producto NuevoProducto();
-    static void ModificarProducto(Producto& producto);
-    static unsigned int EliminarProducto(Producto& producto);
+    // interactive UI methods moved to menu layer
 };
 
 #endif // PRODUCTO_H

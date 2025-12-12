@@ -50,6 +50,8 @@ void Proveedor::setRubro(unsigned int rubro) { this->rubro = rubro; }
 
 void Proveedor::setNombreRazon(string nombre) { strcpy(this->nombreRazon, nombre.c_str()); }
 
+void Proveedor::setCuit(string cuit) { strcpy(this->cuit, cuit.c_str()); }
+
 bool Proveedor::operator==(const Proveedor& otro) {
     return Validation::IsEqual(this->cuit, otro.cuit) && Validation::IsEqual(this->nombreRazon, otro.nombreRazon)
         && this->rubro == otro.rubro && this->IsEqual(otro);

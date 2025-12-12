@@ -1,6 +1,9 @@
 #include "factura.h"
 
 #include "../../manager/manager_producto.h"
+#include "../../manager/manager_cliente.h"
+#include "../../manager/ventas/manager_factura.h"
+#include "../../manager/ventas/manager_nota_de_credito.h"
 #include "../../menu/menu_utils.h"
 #include "../../controller/modals.h"
 #include <cstdio>
@@ -8,13 +11,10 @@
 
 Factura::Factura(unsigned int _id, string _cliente) : Comprobante(_id, _cliente) {
     this->cae[0] = '\0';
-    this->vencimientoCAE.CargarFecha();
-    this->ObtenerCAE();
+    this->vencimientoCAE = Fecha();
 }
 
-Factura::~Factura() {
-
-}
+Factura::~Factura() { }
 
 void Factura::ObtenerCAE() {
     const char caracteres[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -58,13 +58,54 @@ void Factura::Print() {
                  "\nCAE: " + this->getCAE() + "\nVencimiento CAE:" + this->vencimientoCAE.toString() + "\n";
 }
 
-Factura Factura::NuevoFactura(unsigned int numero, ProductoManager& pm) {
+Factura Factura::NuevoFactura(unsigned int numero, ProductoManager& pm, ClienteManager& clientes) {
+    if (numero == 0) {
+        unsigned int maxNum = 0;
+        FacturaManager fm;
+        NotaDeCreditoManager nm;
+
+        unsigned int fc = fm.Count();
+        for (unsigned int i = 0; i < fc; ++i) {
+            Factura* ff = fm.At(i);
+            if (ff != nullptr) {
+                if (ff->getNumero() > maxNum) maxNum = ff->getNumero();
+                delete ff;
+            }
+        }
+
+        unsigned int nc = nm.Count();
+        for (unsigned int i = 0; i < nc; ++i) {
+            NotaDeCredito* nn = nm.At(i);
+            if (nn != nullptr) {
+                if (nn->getNumero() > maxNum) maxNum = nn->getNumero();
+                delete nn;
+            }
+        }
+        numero = maxNum + 1;
+    }
+
     Factura f(numero, "");
+
     string dni;
-    dni = InputBox("DNI del cliente: ");
+    while (true) {
+        dni = InputBox("DNI del cliente: ");
+        if (dni.size() == 0) {
+            Warning w("DNI invalido", "Debe ingresar un DNI valido."); w.Show(); w.WaitForKey(); continue;
+        }
+        Cliente* c = clientes[dni];
+        if (c == nullptr) {
+            Warning w("Cliente no encontrado", "No existe cliente con ese DNI. Ingrese uno existente."); w.Show(); w.WaitForKey();
+            continue;
+        }
+        // found
+        delete c;
+        break;
+    }
     f.setClienteDNI(dni);
 
-    // agregar items
+    Fecha fechaEmision = InputDate("Fecha de Emision (DD/MM/AAAA): ");
+    f.getFechaEmision() = fechaEmision;
+
     while (true) {
         string codigo = InputBox("Codigo producto (vaciar para terminar): ");
         if (codigo.length() == 0) break;
@@ -75,12 +116,33 @@ Factura Factura::NuevoFactura(unsigned int numero, ProductoManager& pm) {
         if (cantidad == 0 || cantidad > stock) { Warning w("Cantidad invalida", "Cantidad debe ser >0 y <= stock disponible."); w.Show(); w.WaitForKey(); continue; }
         Item it(codigo.c_str(), cantidad, p->getPrecio());
         if (!f.AgregarItem(it)) { Warning w("Item duplicado", "El item ya existe en la factura."); w.Show(); w.WaitForKey(); continue; }
-        // disminuir stock
         Producto aux = *p;
         aux.setStock(stock - cantidad);
         pm.Modificar(aux.getCodigo(), &aux);
     }
+
+    if (f.CantidadItems() > 0) {
+        if (!f.Facturar()) {
+            Warning w("Facturacion", "No se pudo generar CAE para la factura."); w.Show(); w.WaitForKey();
+        }
+    } else {
+        Informational i("Factura guardada", "Factura creada sin items. No puede ser facturada hasta agregar items."); i.Show(); i.WaitForKey();
+    }
+
     return f;
+}
+
+bool Factura::Facturar() {
+    if (this->CantidadItems() == 0) {
+        Warning w("Facturar Factura", "No se puede facturar una factura sin items.");
+        w.Show();
+        return false;
+    }
+    this->ObtenerCAE();
+    this->vencimientoCAE.CargarFecha();
+    Informational i("Factura emitida", "CAE generado correctamente.");
+    i.Show();
+    return true;
 }
 
 void Factura::ModificarFactura(Factura& factura, ProductoManager& pm) {
@@ -112,7 +174,6 @@ void Factura::ModificarFactura(Factura& factura, ProductoManager& pm) {
                 if (pit == nullptr) { Warning w("Item no encontrado", "Indice invalido."); w.Show(); w.WaitForKey(); break; }
                 Item mutableItem = *pit;
                 Item::ModificarItem(mutableItem, pm);
-                // update item in factura: remove old and add updated at same position
                 factura.EliminarItem(mutableItem.getCodigo());
                 factura.AgregarItem(mutableItem);
                 break;
@@ -127,7 +188,6 @@ void Factura::ModificarFactura(Factura& factura, ProductoManager& pm) {
                 if (pit == nullptr) { Warning w("Item no encontrado", "No hay item con ese codigo en la factura."); w.Show(); w.WaitForKey(); break; }
                 Item temp = *pit;
                 if (factura.EliminarItem(codigo)) {
-                    // restaurar stock
                     Producto* p = pm[temp.getCodigo()];
                     if (p != nullptr) { Producto aux = *p; aux.setStock(p->getStock() + temp.getCantidad()); pm.Modificar(aux.getCodigo(), &aux); }
                 }

@@ -46,6 +46,9 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
                 f.AgregarItem(item);
             }
 
+            // Si la factura tiene items, generar CAE antes de persistir
+            if (f.CantidadItems() > 0) f.Facturar();
+
             bool added = facturas.New(f);
             if (printLog)
                 cout << endl << "Factura agregada? >> " << (added ? "Si" : "No") << endl;

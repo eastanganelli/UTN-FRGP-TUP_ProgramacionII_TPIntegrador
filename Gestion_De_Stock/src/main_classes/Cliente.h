@@ -50,9 +50,7 @@ public:
     bool IsEmpty();
     void Print();
 
-    static Cliente NuevoCliente();
-    static void ModificarCliente(Cliente& cliente);
-    static unsigned int EliminarCliente(Cliente& cliente);
+    // interactive UI methods moved to menu layer
 };
 
 #endif // CLIENTE_H

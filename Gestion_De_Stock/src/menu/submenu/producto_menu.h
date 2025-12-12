@@ -8,6 +8,9 @@
 class ProductoMenu : public Menu {
 private:
     ProductoManager productos;
+    Producto CrearProducto();
+    void ModificarProductoInteractivo(Producto& producto);
+    bool EliminarProductoInteractivo(Producto& producto);
 public:
     ProductoMenu();
     virtual bool OnSelect(int index) override;

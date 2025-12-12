@@ -92,4 +92,12 @@ namespace Validation {
         std::string rounded = num_text.substr(0, num_text.find(".") + precision + 1);
         return rounded;
     }
+
+    void RemoveSpaces(string &s) {
+        string out;
+        for (size_t i = 0; i < s.size(); ++i) {
+            if (s[i] != ' ') out.push_back(s[i]);
+        }
+        s = out;
+    }
 }

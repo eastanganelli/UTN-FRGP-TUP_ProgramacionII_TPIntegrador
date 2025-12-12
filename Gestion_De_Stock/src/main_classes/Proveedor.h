@@ -37,6 +37,7 @@ public:
     void setAlta(bool alta);
     void setRubro(unsigned int rubro);
     void setNombreRazon(string nombre);
+    void setCuit(string cuit);
 
     // Metodos
     bool operator==(const Proveedor& otro);
