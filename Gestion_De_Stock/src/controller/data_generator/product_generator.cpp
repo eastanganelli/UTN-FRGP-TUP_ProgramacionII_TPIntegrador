@@ -13,7 +13,7 @@ void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;
         for (unsigned int i = 0; i < count; ++i) {
             DatosProducto dp;
-            dp.codigo = DataGenerator::generarCodigoAlfaNumerico(Producto::ColCodigoSize());
+            dp.codigo = DataGenerator::generarCodigoAlfaNumerico(Producto::GetCodigoSize());
             dp.codigoProveedor = proveedores.SeleccionarRandom()->getCuit();
             dp.descripcion = "Producto " + dp.codigo;
             dp.precio = static_cast<float>((rand() % 10000) / 100.0 + 1.0);

@@ -59,6 +59,11 @@ public:
     void setDescripcion(string d);
     void setPrecio(float p);
     void setStock(unsigned int s);
+    void setCodigo(const string& c);
+    void setCodigoProveedor(const string& c);
+
+    // Generador de codigo alfanumerico
+    static string GenerarCodigo();
 
     // Métodos
     bool operator==(const Producto& otro);

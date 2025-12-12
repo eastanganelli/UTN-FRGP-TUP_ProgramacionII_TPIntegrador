@@ -559,16 +559,17 @@
 	<cstring>
 	<string>
 
-1765503445 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
+1765507641 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
 	<string>
 	<cstring>
 	<iostream>
 	"../controller/validation.h"
 
-1765503480 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.cpp
+1765507641 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.cpp
 	"Producto.h"
 	"../controller/modals.h"
 	"../menu/menu_utils.h"
+	"../controller/data_generator/generator.h"
 	<cstdio>
 
 1765503410 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\proveedor.cpp
@@ -758,7 +759,7 @@
 	"../controller/modals.h"
 	"../controller/table/table.h"
 
-1764657169 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\product_generator.cpp
+1765503846 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\product_generator.cpp
 	"product_generator.h"
 
 1764649108 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\product_generator.h
@@ -938,10 +939,11 @@
 	"..\menu_utils.h"
 	"..\..\manager\manager_cliente.h"
 
-1765499558 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.h
+1765507641 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.h
 	"..\menu.h"
 	"..\menu_utils.h"
 	"..\..\manager\manager_producto.h"
+	"..\..\manager\manager_proveedor.h"
 
 1765499918 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\proveedor_menu.h
 	"..\menu.h"
@@ -978,9 +980,10 @@
 	"factura_menu.h"
 	<iostream>
 
-1765254327 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.cpp
+1765505707 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.cpp
 	"producto_menu.h"
 	<iostream>
+	<algorithm>
 
 1764655813 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\nota_de_credito_menu.cpp
 	"nota_de_credito_menu.h"

@@ -18,8 +18,21 @@ ProductoMenu::ProductoMenu() : Menu("Menu Productos", true) {
 }
 
 Producto ProductoMenu::CrearProducto() {
+    rlutil::cls();
     Producto producto;
     string v;
+
+    // Seleccionar proveedor mostrando lista con indice
+    string cuitProveedor = SeleccionarProveedor();
+    if (Validation::IsEmpty(cuitProveedor)) {
+        Warning w("Proveedor requerido", "No se selecciono proveedor. Operacion cancelada.");
+        w.Show(); w.WaitForKey();
+        return producto;
+    }
+    producto.setCodigoProveedor(cuitProveedor);
+
+    // Codigo generado automaticamente (se puede mostrar al usuario si se desea)
+    producto.setCodigo(Producto::GenerarCodigo());
 
     // Descripcion (no vacio, longitud max)
     while (true) {
@@ -71,7 +84,8 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
         cout << "1) Descripcion: " << producto.getDescripcion() << "\n";
         cout << "2) Precio: " << producto.getPrecio() << "\n";
         cout << "3) Stock: " << producto.getStock() << "\n";
-        cout << "4) Terminar\n";
+        cout << "4) Proveedor (CUIT actual: " << producto.getCodigoProveedor() << ")\n";
+        cout << "5) Terminar\n";
 
         opcion = InputNumber("Seleccione campo a modificar: ");
 
@@ -124,15 +138,24 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
                 break;
             }
             case 4: {
+                string nuevo = SeleccionarProveedor();
+                if (!Validation::IsEmpty(nuevo)) {
+                    producto.setCodigoProveedor(nuevo);
+                    Informational i("Proveedor actualizado", "Se actualizo el proveedor del producto.");
+                    i.Show(); i.WaitForKey();
+                }
+                break;
+            }
+            case 5: {
                 break;
             }
             default: {
-                Warning w("Opcion invalida", "Seleccione una opcion valida (1-4).");
+                Warning w("Opcion invalida", "Seleccione una opcion valida (1-5).");
                 w.Show(); w.WaitForKey();
                 break;
             }
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
     rlutil::cls();
 }
 
@@ -149,6 +172,10 @@ bool ProductoMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             Producto nuevo = CrearProducto();
+            if (Validation::IsEmpty(nuevo.getCodigoProveedor())) {
+                // ya se mostro aviso en la seleccion
+                return false;
+            }
             if (productos.Agregar(nuevo)) cout << "Producto agregado exitosamente." << endl;
             else cout << "Error al agregar el producto." << endl;
             PauseConsole();
@@ -232,4 +259,46 @@ bool ProductoMenu::OnSelect(int index) {
         default:
             return false;
     }
+}
+
+string ProductoMenu::SeleccionarProveedor() {
+    rlutil::cls();
+    unsigned int total = proveedores.Count();
+    if (total == 0) {
+        Warning w("Sin proveedores", "No hay proveedores cargados. Cree uno antes de asignarlo.");
+        w.Show(); w.WaitForKey();
+        return "";
+    }
+
+    // Mostrar lista con indice
+    auto imprimirListado = [&]() {
+        rlutil::cls();
+        cout << "\nSeleccione proveedor:\n";
+        for (unsigned int i = 0; i < total; ++i) {
+            Proveedor* p = proveedores.At(i);
+            if (p != nullptr) {
+                cout << i << ") " << p->getCuit() << " - " << p->getNombreRazon() << " (" << p->getRubroNombre() << ")" << "\n";
+                delete p;
+            }
+        }
+    };
+
+    imprimirListado();
+
+    unsigned int idx = total; // valor invalido inicial
+    do {
+        idx = InputNumber("Ingrese indice: ");
+        if (idx < total) break;
+        Warning w("Indice invalido", "Seleccione un indice existente.");
+        w.Show(); w.WaitForKey();
+        imprimirListado();
+    } while (true);
+
+    Proveedor* elegido = proveedores.At(idx);
+    string cuit = "";
+    if (elegido != nullptr) {
+        cuit = elegido->getCuit();
+        delete elegido;
+    }
+    return cuit;
 }

@@ -1,14 +1,26 @@
 #include "Producto.h"
 #include "../controller/modals.h"
 #include "../menu/menu_utils.h"
+#include "../controller/data_generator/generator.h"
 #include <cstdio>
 
 Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion, float _precio, unsigned int _stock) {
     this->codigo[0] = '\0';
     this->codigoProveedor[0] = '\0';
     this->descripcion[0] = '\0';
-    strcpy(this->codigo, _codigo.c_str());
-    strcpy(this->codigoProveedor, _codigoProveedor.c_str());
+
+    // Generar codigo si no se proporciona
+    if (Validation::IsEmpty(_codigo)) {
+        string generado = Producto::GenerarCodigo();
+        strcpy(this->codigo, generado.c_str());
+    } else {
+        strcpy(this->codigo, _codigo.c_str());
+    }
+
+    this->codigoProveedor[0] = '\0';
+    if (!Validation::IsEmpty(_codigoProveedor)) {
+        setCodigoProveedor(_codigoProveedor);
+    }
     strcpy(this->descripcion, _descripcion.c_str());
     this->precio = _precio;
     this->stock = _stock;
@@ -32,6 +44,22 @@ void Producto::setPrecio(float p) { this->precio = p; }
 
 void Producto::setStock(unsigned int s) { this->stock = s; }
 
+void Producto::setCodigo(const string& c) {
+    if (Validation::IsEmpty(c) || c.length() >= CODIGO_SIZE || !Validation::IsAlphanumeric(c)) {
+        this->codigo[0] = '\0';
+        return;
+    }
+    strcpy(this->codigo, c.c_str());
+}
+
+void Producto::setCodigoProveedor(const string& c) {
+    if (Validation::IsEmpty(c) || c.length() >= CODIGOPROVEEDOR_SIZE || !Validation::IsAlphanumeric(c)) {
+        this->codigoProveedor[0] = '\0';
+        return;
+    }
+    strcpy(this->codigoProveedor, c.c_str());
+}
+
 unsigned int Producto::GetCodigoSize() { return Producto::CODIGO_SIZE; }
 
 unsigned int Producto::GetCodigoProveedorSize() { return Producto::CODIGOPROVEEDOR_SIZE; }
@@ -51,6 +79,11 @@ unsigned int Producto::ColDescripcionSize() { return Producto::COL_Descripcion; 
 unsigned int Producto::ColPrecioSize() { return Producto::COL_Precio; }
 
 unsigned int Producto::ColStockSize() { return Producto::COL_Stock; }
+
+string Producto::GenerarCodigo() {
+    // genera un codigo alfanumerico de longitud maxima permitida (dejando espacio para '\0')
+    return DataGenerator::generarCodigoAlfaNumerico(static_cast<int>(CODIGO_SIZE - 1));
+}
 
 bool Producto::operator==(const Producto& otro) {
     return Validation::IsEqual(this->codigo, otro.codigo);
