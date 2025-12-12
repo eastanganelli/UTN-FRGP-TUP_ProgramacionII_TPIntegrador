@@ -32,6 +32,16 @@ void Producto::setPrecio(float p) { this->precio = p; }
 
 void Producto::setStock(unsigned int s) { this->stock = s; }
 
+unsigned int Producto::GetCodigoSize() { return Producto::CODIGO_SIZE; }
+
+unsigned int Producto::GetCodigoProveedorSize() { return Producto::CODIGOPROVEEDOR_SIZE; }
+
+unsigned int Producto::GetDescripcionSize() { return Producto::DESCRIPCION_SIZE; }
+
+unsigned int Producto::GetPrecioSize() { return Producto::PRECIO_SIZE; }
+
+unsigned int Producto::GetStockSize() { return Producto::STOCK_SIZE; }
+
 unsigned int Producto::ColCodigoSize() { return Producto::COL_Codigo; }
 
 unsigned int Producto::ColCodigoProveedorSize() { return Producto::COL_CodigoProveedor; }

@@ -24,7 +24,7 @@ Producto ProductoMenu::CrearProducto() {
     // Descripcion (no vacio, longitud max)
     while (true) {
         v = InputBox("Descripcion: ");
-        if (Validation::IsEmpty(v) || v.length() >= DESCRIPCION_SIZE) {
+        if (Validation::IsEmpty(v) || v.length() >= Producto::GetDescripcionSize()) {
             Warning w("Descripcion invalida", "Ingrese una descripcion valida y de longitud aceptable.");
             w.Show(); w.WaitForKey();
             continue;
@@ -79,7 +79,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nueva Descripcion: ");
-                    if (Validation::IsEmpty(entrada) || entrada.length() >= DESCRIPCION_SIZE) {
+                    if (Validation::IsEmpty(entrada) || entrada.length() >= Producto::GetDescripcionSize()) {
                         Warning w("Descripcion invalida", "Ingrese una descripcion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
                         continue;

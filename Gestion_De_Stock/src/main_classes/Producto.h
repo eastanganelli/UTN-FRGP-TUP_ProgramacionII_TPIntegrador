@@ -43,6 +43,12 @@ public:
     float getPrecio();
     unsigned int getStock();
 
+    static unsigned int GetCodigoSize();
+    static unsigned int GetCodigoProveedorSize();
+    static unsigned int GetDescripcionSize();
+    static unsigned int GetPrecioSize();
+    static unsigned int GetStockSize();
+
     static unsigned int ColCodigoSize();
     static unsigned int ColCodigoProveedorSize();
     static unsigned int ColDescripcionSize();

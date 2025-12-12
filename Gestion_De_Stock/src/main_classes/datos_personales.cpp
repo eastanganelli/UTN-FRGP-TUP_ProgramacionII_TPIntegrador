@@ -59,6 +59,18 @@ unsigned int DatosPersonales::GetEstadoSize() { return ESTADO_SIZE; }
 
 unsigned int DatosPersonales::GetCodigoRazonSocialSize() { return CODIGORAZONSOCIAL_SIZE; }
 
+unsigned int DatosPersonales::ColCorreoSize() { return COL_CORREO; }
+
+unsigned int DatosPersonales::ColDireccionSize() { return COL_DIRECCION; }
+
+unsigned int DatosPersonales::ColTelefonoSize() { return COL_TELEFONO; }
+
+unsigned int DatosPersonales::ColCelularSize() { return COL_CELULAR; }
+
+unsigned int DatosPersonales::ColEstadoSize() { return COL_ESTADO; }
+
+unsigned int DatosPersonales::ColCodigoRazonSocialSize() { return COL_CODIGO_RAZON_SOCIAL; }
+
 void DatosPersonales::setAlta(bool a) { this->alta = a; }
 
 void DatosPersonales::setCorreo(const string& c) { strcpy(this->correo, c.c_str()); }

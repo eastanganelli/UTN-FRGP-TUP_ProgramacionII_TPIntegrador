@@ -32,6 +32,14 @@ unsigned int Cliente::GetApellidoSize() { return APELLIDO_SIZE; }
 
 unsigned int Cliente::GetCuilCuitSize() { return CUIL_CUIT_SIZE; }
 
+unsigned int Cliente::ColDniSize() { return Cliente::COL_DNI; }
+
+unsigned int Cliente::ColNombreSize() { return Cliente::COL_NOMBRE; }
+
+unsigned int Cliente::ColApellidoSize() { return Cliente::COL_APELLIDO; }
+
+unsigned int Cliente::ColCuilCuitSize() { return Cliente::COL_CUIL_CUIT; }
+
 void Cliente::setDNI(const string& dni) { strcpy(this->DNI, dni.c_str()); }
 
 void Cliente::setNombre(const string& n) { strcpy(this->nombre, n.c_str()); }
