@@ -173,7 +173,6 @@ bool ProductoMenu::OnSelect(int index) {
         case 0: {
             Producto nuevo = CrearProducto();
             if (Validation::IsEmpty(nuevo.getCodigoProveedor())) {
-                // ya se mostro aviso en la seleccion
                 return false;
             }
             if (productos.Agregar(nuevo)) cout << "Producto agregado exitosamente." << endl;

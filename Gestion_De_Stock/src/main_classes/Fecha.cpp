@@ -159,3 +159,9 @@ Fecha Fecha::CrearFecha() {
     Fecha fecha(d, m, a);
     return fecha;
 }
+
+Fecha Fecha::Hoy() {
+    Fecha f;
+    f.CargarFecha();
+    return f;
+}

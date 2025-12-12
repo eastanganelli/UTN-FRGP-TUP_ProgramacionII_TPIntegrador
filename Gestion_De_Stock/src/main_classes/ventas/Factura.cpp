@@ -103,8 +103,7 @@ Factura Factura::NuevoFactura(unsigned int numero, ProductoManager& pm, ClienteM
     }
     f.setClienteDNI(dni);
 
-    Fecha fechaEmision = InputDate("Fecha de Emision (DD/MM/AAAA): ");
-    f.getFechaEmision() = fechaEmision;
+    f.getFechaEmision() = Fecha::Hoy();
 
     while (true) {
         string codigo = InputBox("Codigo producto (vaciar para terminar): ");
