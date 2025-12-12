@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1764655997 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
+1765509272 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\main.cpp
 	<ctime>
 	"src/menu/main_menu.h"
 
@@ -559,13 +559,13 @@
 	<cstring>
 	<string>
 
-1765507641 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
+1765509884 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.h
 	<string>
 	<cstring>
 	<iostream>
 	"../controller/validation.h"
 
-1765507641 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.cpp
+1765509533 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\producto.cpp
 	"Producto.h"
 	"../controller/modals.h"
 	"../menu/menu_utils.h"
@@ -980,7 +980,7 @@
 	"factura_menu.h"
 	<iostream>
 
-1765505707 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.cpp
+1765507896 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\producto_menu.cpp
 	"producto_menu.h"
 	<iostream>
 	<algorithm>

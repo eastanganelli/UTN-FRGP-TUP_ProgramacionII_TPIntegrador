@@ -17,11 +17,11 @@ private:
     static const unsigned int PRECIO_SIZE = 6;
     static const unsigned int STOCK_SIZE = 6;
 
-    static const unsigned int COL_Codigo = 13;
-    static const unsigned int COL_CodigoProveedor = 14;
-    static const unsigned int COL_Descripcion = 66;
-    static const unsigned int COL_Precio = 8;
-    static const unsigned int COL_Stock = 8;
+    static const unsigned int COL_Codigo = 15;
+    static const unsigned int COL_CodigoProveedor = 15;
+    static const unsigned int COL_Descripcion = 70;
+    static const unsigned int COL_Precio = 10;
+    static const unsigned int COL_Stock = 10;
 
     char codigo[CODIGO_SIZE];
     char codigoProveedor[CODIGOPROVEEDOR_SIZE];

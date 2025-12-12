@@ -9,7 +9,6 @@ Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion,
     this->codigoProveedor[0] = '\0';
     this->descripcion[0] = '\0';
 
-    // Generar codigo si no se proporciona
     if (Validation::IsEmpty(_codigo)) {
         string generado = Producto::GenerarCodigo();
         strcpy(this->codigo, generado.c_str());
@@ -17,10 +16,7 @@ Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion,
         strcpy(this->codigo, _codigo.c_str());
     }
 
-    this->codigoProveedor[0] = '\0';
-    if (!Validation::IsEmpty(_codigoProveedor)) {
-        setCodigoProveedor(_codigoProveedor);
-    }
+    setCodigoProveedor(_codigoProveedor);
     strcpy(this->descripcion, _descripcion.c_str());
     this->precio = _precio;
     this->stock = _stock;
