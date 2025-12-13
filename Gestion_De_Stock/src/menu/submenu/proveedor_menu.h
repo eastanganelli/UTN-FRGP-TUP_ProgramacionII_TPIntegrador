@@ -8,6 +8,9 @@
 class ProveedorMenu : public Menu {
 private:
     ProveedorManager proveedores;
+    Proveedor CrearProveedor();
+    void ModificarProveedorInteractivo(Proveedor& proveedor);
+    bool EliminarProveedorInteractivo(Proveedor& proveedor);
 public:
     ProveedorMenu();
     virtual bool OnSelect(int index) override;

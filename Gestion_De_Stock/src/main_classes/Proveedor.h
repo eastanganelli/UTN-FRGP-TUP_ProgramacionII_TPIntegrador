@@ -12,6 +12,7 @@ class Proveedor : public DatosPersonales {
 private:
     static const unsigned int CUIT_SIZE = 12;
     static const unsigned int NOMBRE_RAZON_SIZE = 35;
+
     static const unsigned int COL_CUIT = 14;
     static const unsigned int COL_NOMBRE_RAZON = 36;
 
@@ -30,6 +31,9 @@ public:
     string getRubroNombre();
     string getNombreRazon();
 
+    static unsigned int GetCuitSize();
+    static unsigned int GetNombreRazonSize();
+
     static unsigned int ColCuitSize();
     static unsigned int ColNombreRazonSize();
 
@@ -37,6 +41,7 @@ public:
     void setAlta(bool alta);
     void setRubro(unsigned int rubro);
     void setNombreRazon(string nombre);
+    void setCuit(string cuit);
 
     // Metodos
     bool operator==(const Proveedor& otro);

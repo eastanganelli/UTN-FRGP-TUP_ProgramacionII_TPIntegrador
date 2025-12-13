@@ -126,6 +126,12 @@ namespace Validation {
      * @return Cadena representando el número con el formato especificado.
      */
     string ToFixedDecimal(const float number, const unsigned int decimalPlaces);
+
+    /**
+     * @brief Elimina todos los espacios de la cadena (modifica la cadena dada).
+     * @param s Cadena que será modificada.
+     */
+    void RemoveSpaces(string &s);
 } // namespace Validation
 
 template <typename T>

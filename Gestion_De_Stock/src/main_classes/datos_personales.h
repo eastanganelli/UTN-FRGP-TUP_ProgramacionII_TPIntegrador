@@ -17,6 +17,14 @@ private:
     static const unsigned int ESTADO_SIZE = 8;
     static const unsigned int CODIGORAZONSOCIAL_SIZE = 5;
 
+    // Column widths for aligned table output
+    static const unsigned int COL_CORREO = CORREO_SIZE;
+    static const unsigned int COL_DIRECCION = DIRECCION_SIZE;
+    static const unsigned int COL_TELEFONO = TELEFONO_SIZE;
+    static const unsigned int COL_CELULAR = CELULAR_SIZE;
+    static const unsigned int COL_ESTADO = ESTADO_SIZE;
+    static const unsigned int COL_CODIGO_RAZON_SOCIAL = CODIGORAZONSOCIAL_SIZE;
+
 protected:
     bool alta;
     char correo[CORREO_SIZE];
@@ -47,6 +55,14 @@ public:
     static unsigned int GetCelularSize();
     static unsigned int GetEstadoSize();
     static unsigned int GetCodigoRazonSocialSize();
+
+    // Column-size accessors
+    static unsigned int ColCorreoSize();
+    static unsigned int ColDireccionSize();
+    static unsigned int ColTelefonoSize();
+    static unsigned int ColCelularSize();
+    static unsigned int ColEstadoSize();
+    static unsigned int ColCodigoRazonSocialSize();
 
     // Setters
     void setAlta(bool a);

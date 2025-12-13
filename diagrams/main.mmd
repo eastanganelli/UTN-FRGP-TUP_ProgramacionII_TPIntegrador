@@ -1,0 +1,235 @@
+classDiagram
+    class DatosPersonales {
+        - CORREO_SIZE: unsigned int
+        - DIRECCION_SIZE: unsigned int
+        - TELEFONO_SIZE: unsigned int
+        - CELULAR_SIZE: unsigned int
+        - ESTADO_SIZE: unsigned int
+        - CODIGORAZONSOCIAL_SIZE: unsigned int
+        # alta: bool
+        # correo: char[]
+        # direccion: char[]
+        # telefono: char[]
+        # celular: char[]
+        # codigoRazonSocial: char[]
+        + ~DatosPersonales()
+        + getAlta(): bool
+        + Estado(): string
+        + getCorreo(): string
+        + getDireccion(): string
+        + getTelefono(): string
+        + getCelular(): string
+        + getCodigoRazonSocial(): string
+        + setAlta(a: bool)
+        + setCorreo(correo: string)
+        + setDireccion(direccion: string)
+        + setTelefono(t: string)
+        + setCelular(c: string)
+    }
+
+    class Cliente {
+        - DNI_SIZE: unsigned int
+        - NOMBRE_SIZE: unsigned int
+        - APELLIDO_SIZE: unsigned int
+        - CUIL_CUIT_SIZE: unsigned int
+        - DNI: char[]
+        - nombre: char[]
+        - apellido: char[]
+        - cuilCuit: char[]
+        + Cliente(_nombre: string, ...)
+        + ~Cliente()
+        + getDNI(): string
+        + getNombre(): string
+        + getApellido(): string
+        + getCuilCuit(): string
+        + setDNI(dni: string)
+        + setNombre(n: string)
+        + setApellido(a: string)
+        + setCuilCuit(cuilCuit: string)
+        + operator==(cliente: Cliente): bool
+        + IsEmpty(): bool
+        + Print(): void
+        + static NuevoCliente(): Cliente
+        + static ModificarCliente(cliente: Cliente): void
+        + static EliminarCliente(cliente: Cliente): unsigned int
+    }
+
+    class Proveedor {
+        - // hereda de DatosPersonales; ver atributos y métodos en esa clase
+        + // implementación similar a Cliente (en headers)
+    }
+
+    class Producto {
+        - CODIGO_SIZE: unsigned int
+        - CODIGOPROVEEDOR_SIZE: unsigned int
+        - DESCRIPCION_SIZE: unsigned int
+        - precio: float
+        - stock: unsigned int
+        - codigo: char[]
+        - codigoProveedor: char[]
+        - descripcion: char[]
+        + Producto(_codigo: string, ...)
+        + ~Producto()
+        + getCodigo(): string
+        + getCodigoProveedor(): string
+        + getDescripcion(): string
+        + getPrecio(): float
+        + getStock(): unsigned int
+        + setDescripcion(d: string)
+        + setPrecio(p: float)
+        + setStock(s: unsigned int)
+        + operator==(otro: Producto): bool
+        + IsEmpty(): bool
+        + Print(): void
+        + static NuevoProducto(): Producto
+        + static ModificarProducto(producto: Producto): void
+        + static EliminarProducto(producto: Producto): unsigned int
+    }
+
+    class Fecha {
+        - dia: int
+        - mes: int
+        - anio: int
+        + Fecha(dia: int, mes: int, anio: int)
+        + getDia(): int
+        + getMes(): int
+        + getAnio(): int
+        + setDia(d: int)
+        + setMes(m: int)
+        + setAnio(a: int)
+        + CargarFecha(): void
+        + toString(): string
+        + operator>(fechaComparar: Fecha): bool
+        + operator>=(fechaComparar: Fecha): bool
+        + operator<(fechaComparar: Fecha): bool
+        + operator<=(fechaComparar: Fecha): bool
+        + operator==(fechaComparar: Fecha): bool
+        + operator!=(fechaComparar: Fecha): bool
+        + static CrearFecha(): Fecha
+    }
+
+    class TipoResponsable {
+        - CODIGO_SIZE: unsigned int
+        - DESCRIPCION_SIZE: unsigned int
+        - porcentaje: float
+        - tipoFacturacion: char
+        - codigo: char[]
+        - descripcion: char[]
+        + TipoResponsable(_codigo: string, ...)
+        + ~TipoResponsable()
+        + getCodigo(): string
+        + getDescripcion(): string
+        + getPorcentaje(): float
+        + getTipoFacturacion(): char
+        + operator==(otra: TipoResponsable): bool
+        + IsEmpty(): bool
+        + Print(): void
+        + static NuevoTipoResponsable(): TipoResponsable
+        + static ModificarTipoResponsable(tipo: TipoResponsable): void
+        + static EliminarTipoResponsable(tipo: TipoResponsable): unsigned int
+    }
+
+    class Item {
+        - CODIGO_SIZE: unsigned int
+        - codigo: char[]
+        - cantidad: unsigned int
+        - precioUnitario: float
+        + Item(_codigo: char*, _cantidad: unsigned int, _precioUnitario: float)
+        + ~Item()
+        + getCodigo(): string
+        + getCantidad(): unsigned int
+        + getPrecioUnitario(): float
+        + setCodigo(c: string)
+        + setCantidad(c: unsigned int)
+        + setPrecioUnitario(p: float)
+        + operator==(otro: Item): bool
+        + IsEmpty(): bool
+        + toString(): string
+        + static NuevoItem(pm: ProductoManager): Item
+        + static ModificarItem(item: Item, pm: ProductoManager): void
+        + static EliminarItem(item: Item): unsigned int
+    }
+
+    class Comprobante {
+        - ITEMS_MAX: unsigned int
+        - numero: unsigned int
+        - itemsActuales: unsigned int
+        - clienteDNI: char[]
+        - fechaEmision: Fecha
+        - items: Item[]
+        # Total(): float
+        # IsEqual(otro: Comprobante): bool
+        # IsEmpty(): bool
+        + Comprobante(_numero: unsigned int, _clienteDNI: string)
+        + ~Comprobante()
+        + getNumero(): unsigned int
+        + getClienteDNI(): string
+        + getFechaEmision(): Fecha&
+        + setClienteDNI(dni: string)
+        + AgregarItem(it: Item): bool
+        + EliminarItem(codigo: string): bool
+        + CantidadItems(): unsigned int
+        + ObtenerItem(index: unsigned int): Item*
+        + LimpiarItems(): void
+    }
+
+    class Factura {
+        - TIPOFACTURA_SIZE: unsigned int
+        - CAE_SIZE: unsigned int
+        - VENCIMIENTOCAE_SIZE: unsigned int
+        - cae: char[]
+        - vencimientoCAE: Fecha
+        - ObtenerCAE(): void
+        + Factura(_id: unsigned int, _cliente: string)
+        + ~Factura()
+        + getCAE(): string
+        + getVencimientoCAE(): Fecha
+        + TotalSinIVA(): float
+        + Facturar(): bool
+        + operator==(otra: Factura): bool
+        + IsEmpty(): bool
+        + Print(): void
+        + static NuevoFactura(numero: unsigned int, pm: ProductoManager): Factura
+        + static ModificarFactura(factura: Factura, pm: ProductoManager): void
+        + static EliminarFactura(factura: Factura, pm: ProductoManager): unsigned int
+    }
+
+    class NotaDeCredito {
+        - MOTIVOANULACION_SIZE: unsigned int
+        - motivoAnulacion: char[]
+        + NotaDeCredito(_id: unsigned int, _cliente: string, _motivoAnulacion: string)
+        + ~NotaDeCredito()
+        + getMotivoAnulacion(): string
+        + TotalSinIVA(): float
+        + setMotivoAnulacion(m: string)
+        + operator==(nota: NotaDeCredito): bool
+        + IsEmpty(): bool
+        + toString(): string
+        + static NuevoNotaDeCredito(numero: unsigned int, pm: ProductoManager): NotaDeCredito
+        + static ModificarNotaDeCredito(nota: NotaDeCredito, pm: ProductoManager): void
+        + static EliminarNotaDeCredito(nota: NotaDeCredito, pm: ProductoManager): unsigned int
+    }
+
+    class FileSystem {
+        - filePath: string
+        # Exist(record: T): bool
+        + FileSystem(_filePath: string)
+        + ~FileSystem()
+        + Count(): unsigned int
+        + IndexOf(record: T, index: unsigned int&): bool
+        + operator[](index: unsigned int): T*
+        + New(record: T): bool
+        + At(index: unsigned int): T*
+        + Update(index: unsigned int, record: T): bool
+        + Delete(index: unsigned int): bool
+        + Backup(backupFilePath: string): bool
+        + Restore(backupFilePath: string): bool
+    }
+
+    DatosPersonales <|-- Cliente
+    DatosPersonales <|-- Proveedor
+    Comprobante <|-- Factura
+    Comprobante <|-- NotaDeCredito
+    Factura "1" -- "*" Item : contiene
+
+""" Mermaid class diagram for the project. Paste into https://mermaid.live or use mmdc to export to PNG/SVG.

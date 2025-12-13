@@ -25,7 +25,6 @@ public:
     bool Modificar(string cuit, Proveedor* proveedor);
     bool Eliminar(string cuit);
     Proveedor* operator[](string cuit);
-    Proveedor* SeleccionarRandom();
     GenericArray<Proveedor> ConsultarPorCUIT(string cuit);
     GenericArray<Proveedor> ConsultarPorNombre(string nombreRazon);
     GenericArray<Proveedor> ConsultarPorRubro(unsigned int rubro);

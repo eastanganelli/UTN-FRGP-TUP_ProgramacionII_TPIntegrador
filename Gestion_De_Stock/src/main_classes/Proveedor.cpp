@@ -40,6 +40,10 @@ string Proveedor::getRubroNombre() {
     return "Indumentaria";
 }
 
+unsigned int Proveedor::GetCuitSize() { return CUIT_SIZE; }
+
+unsigned int Proveedor::GetNombreRazonSize() { return NOMBRE_RAZON_SIZE; }
+
 unsigned int Proveedor::ColCuitSize() { return Proveedor::COL_CUIT; }
 
 unsigned int Proveedor::ColNombreRazonSize() { return Proveedor::COL_NOMBRE_RAZON; }
@@ -49,6 +53,8 @@ void Proveedor::setAlta(bool alta) { this->alta = alta; }
 void Proveedor::setRubro(unsigned int rubro) { this->rubro = rubro; }
 
 void Proveedor::setNombreRazon(string nombre) { strcpy(this->nombreRazon, nombre.c_str()); }
+
+void Proveedor::setCuit(string cuit) { strcpy(this->cuit, cuit.c_str()); }
 
 bool Proveedor::operator==(const Proveedor& otro) {
     return Validation::IsEqual(this->cuit, otro.cuit) && Validation::IsEqual(this->nombreRazon, otro.nombreRazon)

@@ -8,6 +8,10 @@
 class ClienteMenu : public Menu {
 private:
     ClienteManager clientes;
+    // UI moved from model
+    Cliente CrearCliente();
+    void ModificarClienteInteractivo(Cliente& cliente);
+    bool EliminarClienteInteractivo(Cliente& cliente);
 public:
     ClienteMenu();
     virtual bool OnSelect(int index) override;

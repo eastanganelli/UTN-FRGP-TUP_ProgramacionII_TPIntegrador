@@ -46,7 +46,7 @@ public:
     void Print();
     
     // CRUD helpers
-    static Factura NuevoFactura(unsigned int numero, class ProductoManager& pm);
+    static Factura NuevoFactura(unsigned int numero, class ProductoManager& pm, class ClienteManager& cm);
     static void ModificarFactura(Factura& factura, class ProductoManager& pm);
     static unsigned int EliminarFactura(Factura& factura, class ProductoManager& pm);
 };

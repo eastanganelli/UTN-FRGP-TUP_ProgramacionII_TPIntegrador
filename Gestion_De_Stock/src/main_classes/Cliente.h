@@ -19,6 +19,12 @@ private:
     static const unsigned int APELLIDO_SIZE = 20;
     static const unsigned int CUIL_CUIT_SIZE = 12;
 
+    // Column widths (for table printing) — restored for consistency with other classes
+    static const unsigned int COL_DNI = 12;
+    static const unsigned int COL_NOMBRE = 25;
+    static const unsigned int COL_APELLIDO = 25;
+    static const unsigned int COL_CUIL_CUIT = 15;
+
     char DNI[DNI_SIZE];
     char nombre[NOMBRE_SIZE];
     char apellido[APELLIDO_SIZE];
@@ -39,6 +45,12 @@ public:
     static unsigned int GetApellidoSize();
     static unsigned int GetCuilCuitSize();
 
+    // Column-size accessors (align with other main_classes naming)
+    static unsigned int ColDniSize();
+    static unsigned int ColNombreSize();
+    static unsigned int ColApellidoSize();
+    static unsigned int ColCuilCuitSize();
+
     // Setters
     void setDNI(const string& dni);
     void setNombre(const string& n);
@@ -49,10 +61,6 @@ public:
     bool operator==(Cliente& cliente);
     bool IsEmpty();
     void Print();
-
-    static Cliente NuevoCliente();
-    static void ModificarCliente(Cliente& cliente);
-    static unsigned int EliminarCliente(Cliente& cliente);
 };
 
 #endif // CLIENTE_H

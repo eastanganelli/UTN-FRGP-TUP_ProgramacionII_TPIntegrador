@@ -17,11 +17,11 @@ private:
     static const unsigned int PRECIO_SIZE = 6;
     static const unsigned int STOCK_SIZE = 6;
 
-    static const unsigned int COL_Codigo = 13;
-    static const unsigned int COL_CodigoProveedor = 14;
-    static const unsigned int COL_Descripcion = 66;
-    static const unsigned int COL_Precio = 8;
-    static const unsigned int COL_Stock = 8;
+    static const unsigned int COL_Codigo = 15;
+    static const unsigned int COL_CodigoProveedor = 15;
+    static const unsigned int COL_Descripcion = 70;
+    static const unsigned int COL_Precio = 10;
+    static const unsigned int COL_Stock = 10;
 
     char codigo[CODIGO_SIZE];
     char codigoProveedor[CODIGOPROVEEDOR_SIZE];
@@ -43,6 +43,12 @@ public:
     float getPrecio();
     unsigned int getStock();
 
+    static unsigned int GetCodigoSize();
+    static unsigned int GetCodigoProveedorSize();
+    static unsigned int GetDescripcionSize();
+    static unsigned int GetPrecioSize();
+    static unsigned int GetStockSize();
+
     static unsigned int ColCodigoSize();
     static unsigned int ColCodigoProveedorSize();
     static unsigned int ColDescripcionSize();
@@ -53,15 +59,18 @@ public:
     void setDescripcion(string d);
     void setPrecio(float p);
     void setStock(unsigned int s);
+    void setCodigo(const string& c);
+    void setCodigoProveedor(const string& c);
+
+    // Generador de codigo alfanumerico
+    static string GenerarCodigo();
 
     // Métodos
     bool operator==(const Producto& otro);
     bool IsEmpty();
     void Print();
 
-    static Producto NuevoProducto();
-    static void ModificarProducto(Producto& producto);
-    static unsigned int EliminarProducto(Producto& producto);
+    // interactive UI methods moved to menu layer
 };
 
 #endif // PRODUCTO_H

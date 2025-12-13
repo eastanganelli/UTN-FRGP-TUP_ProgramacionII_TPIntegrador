@@ -84,7 +84,7 @@ GenericArray<Cliente> ClienteManager::BuscarPorCUIL_CUIT(string cuil_cuit) {
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         Cliente* aux = this->At(i);
-        if(aux->getCuilCuit() == cuil_cuit) {
+        if(aux->getCuilCuit().find(cuil_cuit) != string::npos) {
             resultados + (*aux);
         }
         delete aux;
@@ -106,7 +106,7 @@ GenericArray<Cliente> ClienteManager::BuscarPorDNI(string dni) {
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         Cliente* aux = this->At(i);
-        if(aux->getDNI() == dni) {
+        if(aux->getDNI().find(dni) != string::npos) {
             resultados + (*aux);
         }
         delete aux;
@@ -128,7 +128,9 @@ GenericArray<Cliente> ClienteManager::BuscarPorNombreApellido(string nombre, str
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         Cliente* aux = this->At(i);
-        if(aux->getNombre() == nombre && aux->getApellido() == apellido) {
+        bool coincideNombre = aux->getNombre().find(nombre) != string::npos;
+        bool coincideApellido = aux->getApellido().find(apellido) != string::npos;
+        if(coincideNombre && coincideApellido) {
             resultados + (*aux);
         }
         delete aux;
@@ -150,7 +152,7 @@ GenericArray<Cliente> ClienteManager::BuscarPorCorreo(string correo) {
     }
     for(unsigned int i = 0; i < cantidad; i++) {
         Cliente* aux = this->At(i);
-        if(aux->getCorreo() == correo) {
+        if(aux->getCorreo().find(correo) != string::npos) {
             resultados + (*aux);
         }
         delete aux;

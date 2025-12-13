@@ -39,6 +39,7 @@ public:
     bool operator!=(Fecha fechaComparar);
 
     static Fecha CrearFecha();
+    static Fecha Hoy();
 };
 
 #endif // FECHA_H
