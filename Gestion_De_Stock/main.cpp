@@ -10,11 +10,6 @@ using namespace std;
 int main() {
 //    srand(time(NULL));
 
-//    DataGenerator::GenerateTipoResponsable();
-//    DataGenerator::GenerateProviders();
-//    DataGenerator::GenerateProduct();
-//    DataGenerator::GenerateInvoices();
-
     MainMenu menuPrincipal;
     while (!menuPrincipal.Run());
 

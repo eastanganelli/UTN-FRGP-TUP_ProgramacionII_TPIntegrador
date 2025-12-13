@@ -1,6 +1,7 @@
 #include "factura_menu.h"
 #include <iostream>
 #include <cstdlib>
+#include "../../../controller/generic_array.h"
 #include "../../../manager/manager_producto.h"
 #include "../../../manager/manager_cliente.h"
 #include "../../../manager/ventas/manager_nota_de_credito.h"
@@ -114,20 +115,32 @@ bool FacturaMenu::OnSelect(int index) {
 string FacturaMenu::SeleccionarCliente() {
     rlutil::cls();
     const unsigned int total = clientes.Count();
-    if (total == 0) {
-        Warning w("Sin clientes", "No hay clientes cargados. Cree uno antes de facturar.");
+    GenericArray<string> dnis;
+    GenericArray<string> nombres;
+
+    for (unsigned int i = 0; i < total; ++i) {
+        Cliente* c = clientes.At(i);
+        if (c != nullptr) {
+            if (c->getAlta()) {
+                string dni = c->getDNI();
+                string nombre = c->getApellido() + string(", ") + c->getNombre();
+                dnis.Append(dni);
+                nombres.Append(nombre);
+            }
+            delete c;
+        }
+    }
+
+    if (dnis.Size() == 0) {
+        Warning w("Sin clientes activos", "No hay clientes dados de alta para seleccionar.");
         w.Show(); w.WaitForKey();
         return "";
     }
 
     while (true) {
         cout << "\nSeleccione cliente:\n";
-        for (unsigned int i = 0; i < total; ++i) {
-            Cliente* c = clientes.At(i);
-            if (c != nullptr) {
-                cout << i << ") " << c->getDNI() << " - " << c->getApellido() << ", " << c->getNombre() << "\n";
-                delete c;
-            }
+        for (unsigned int i = 0; i < dnis.Size(); ++i) {
+            cout << i << ") " << *dnis[i] << " - " << *nombres[i] << "\n";
         }
 
         string entrada = InputBox("Indice (vacio para cancelar): ");
@@ -142,20 +155,14 @@ string FacturaMenu::SeleccionarCliente() {
             continue;
         }
         unsigned int idx = static_cast<unsigned int>(idxLong);
-        if (idx >= total) {
+        if (idx >= dnis.Size()) {
             Warning w("Fuera de rango", "Seleccione un indice existente.");
             w.Show(); w.WaitForKey();
             rlutil::cls();
             continue;
         }
 
-        Cliente* elegido = clientes.At(idx);
-        string dni = "";
-        if (elegido != nullptr) {
-            dni = elegido->getDNI();
-            delete elegido;
-        }
-        return dni;
+        return *dnis[idx];
     }
 }
 

@@ -1,6 +1,7 @@
 #include "producto_menu.h"
 #include <iostream>
 #include <algorithm>
+#include "../../controller/generic_array.h"
 
 using namespace std;
 
@@ -262,42 +263,47 @@ bool ProductoMenu::OnSelect(int index) {
 
 string ProductoMenu::SeleccionarProveedor() {
     rlutil::cls();
-    unsigned int total = proveedores.Count();
-    if (total == 0) {
-        Warning w("Sin proveedores", "No hay proveedores cargados. Cree uno antes de asignarlo.");
+    const unsigned int total = proveedores.Count();
+    GenericArray<string> cuits;
+    GenericArray<string> descripciones;
+
+    for (unsigned int i = 0; i < total; ++i) {
+        Proveedor* p = proveedores.At(i);
+        if (p != nullptr) {
+            if (p->getAlta()) {
+                string cuit = p->getCuit();
+                string desc = p->getNombreRazon() + string(" ( ") + p->getRubroNombre() + string(" )");
+                cuits.Append(cuit);
+                descripciones.Append(desc);
+            }
+            delete p;
+        }
+    }
+
+    if (cuits.Size() == 0) {
+        Warning w("Sin proveedores activos", "No hay proveedores dados de alta para seleccionar.");
         w.Show(); w.WaitForKey();
         return "";
     }
 
-    // Mostrar lista con indice
     auto imprimirListado = [&]() {
         rlutil::cls();
         cout << "\nSeleccione proveedor:\n";
-        for (unsigned int i = 0; i < total; ++i) {
-            Proveedor* p = proveedores.At(i);
-            if (p != nullptr) {
-                cout << i << ") " << p->getCuit() << " - " << p->getNombreRazon() << " (" << p->getRubroNombre() << ")" << "\n";
-                delete p;
-            }
+        for (unsigned int i = 0; i < cuits.Size(); ++i) {
+            cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << "\n";
         }
     };
 
     imprimirListado();
 
-    unsigned int idx = total; // valor invalido inicial
+    unsigned int idx = cuits.Size(); // valor invalido inicial
     do {
         idx = InputNumber("Ingrese indice: ");
-        if (idx < total) break;
+        if (idx < cuits.Size()) break;
         Warning w("Indice invalido", "Seleccione un indice existente.");
         w.Show(); w.WaitForKey();
         imprimirListado();
     } while (true);
 
-    Proveedor* elegido = proveedores.At(idx);
-    string cuit = "";
-    if (elegido != nullptr) {
-        cuit = elegido->getCuit();
-        delete elegido;
-    }
-    return cuit;
+    return *cuits[idx];
 }
