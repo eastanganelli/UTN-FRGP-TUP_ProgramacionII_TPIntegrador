@@ -14,6 +14,7 @@ private:
     void ModificarProductoInteractivo(Producto& producto);
     bool EliminarProductoInteractivo(Producto& producto);
     string SeleccionarProveedor();
+    void ImprimirProveedoresActivos(class GenericArray<string>& cuits, class GenericArray<string>& descripciones);
 public:
     ProductoMenu();
     virtual bool OnSelect(int index) override;

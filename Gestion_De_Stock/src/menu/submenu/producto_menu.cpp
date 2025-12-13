@@ -286,15 +286,7 @@ string ProductoMenu::SeleccionarProveedor() {
         return "";
     }
 
-    auto imprimirListado = [&]() {
-        rlutil::cls();
-        cout << "\nSeleccione proveedor:\n";
-        for (unsigned int i = 0; i < cuits.Size(); ++i) {
-            cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << "\n";
-        }
-    };
-
-    imprimirListado();
+    ImprimirProveedoresActivos(cuits, descripciones);
 
     unsigned int idx = cuits.Size(); // valor invalido inicial
     do {
@@ -302,8 +294,16 @@ string ProductoMenu::SeleccionarProveedor() {
         if (idx < cuits.Size()) break;
         Warning w("Indice invalido", "Seleccione un indice existente.");
         w.Show(); w.WaitForKey();
-        imprimirListado();
+        ImprimirProveedoresActivos(cuits, descripciones);
     } while (true);
 
     return *cuits[idx];
+}
+
+void ProductoMenu::ImprimirProveedoresActivos(GenericArray<string>& cuits, GenericArray<string>& descripciones) {
+    rlutil::cls();
+    cout << "\nSeleccione proveedor:\n";
+    for (unsigned int i = 0; i < cuits.Size(); ++i) {
+        cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << "\n";
+    }
 }

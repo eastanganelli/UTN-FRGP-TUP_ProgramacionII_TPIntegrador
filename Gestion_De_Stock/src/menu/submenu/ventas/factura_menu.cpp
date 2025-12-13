@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "../../../controller/generic_array.h"
+#include "../../../controller/validation.h"
 #include "../../../manager/manager_producto.h"
 #include "../../../manager/manager_cliente.h"
 #include "../../../manager/ventas/manager_nota_de_credito.h"
@@ -55,6 +56,13 @@ bool FacturaMenu::OnSelect(int index) {
             Factura* f = facturas[numero];
             if (f == nullptr) {
                 cout << "Factura no encontrada." << endl;
+                PauseConsole();
+                return false;
+            }
+
+            if (!Validation::IsEmpty(f->getCAE())) {
+                Warning w("Factura facturada", "No se puede modificar una factura con CAE asignado.");
+                w.Show(); w.WaitForKey();
                 PauseConsole();
                 return false;
             }
@@ -296,7 +304,8 @@ void FacturaMenu::ModificarFacturaInteractiva(Factura& factura) {
         cout << "1) Agregar Item\n";
         cout << "2) Modificar Item\n";
         cout << "3) Eliminar Item\n";
-        cout << "4) Terminar\n";
+        cout << "4) Cambiar cliente\n";
+        cout << "5) Terminar\n";
         opcion = InputNumber("Seleccione accion: ");
         switch(opcion) {
             case 1: {
@@ -341,13 +350,22 @@ void FacturaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 }
                 break;
             }
-            case 4: break;
+            case 4: {
+                string nuevo = SeleccionarCliente();
+                if (!Validation::IsEmpty(nuevo)) {
+                    factura.setClienteDNI(nuevo);
+                    Informational i("Cliente actualizado", "Se actualizo el cliente de la factura.");
+                    i.Show(); i.WaitForKey();
+                }
+                break;
+            }
+            case 5: break;
             default: {
                 Warning w("Opcion invalida", "Seleccione una opcion valida.");
                 w.Show(); w.WaitForKey();
                 break;
             }
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
     rlutil::cls();
 }

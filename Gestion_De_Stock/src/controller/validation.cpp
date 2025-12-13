@@ -1,6 +1,6 @@
 #include "validation.h"
 
-#include <cctype>
+#include <cstring>
 
 namespace Validation {
     bool IsSpaceChar(char c) {
@@ -65,18 +65,14 @@ namespace Validation {
     }
 
     bool IsEqual(const string& str1, const string& str2) {
-        bool result = str1.find(str2) != string::npos;
-        return result;
+        return str1 == str2;
     }
 
     bool IsEqual(const char* str1, const char* str2) {
         if (str1 == nullptr || str2 == nullptr) {
             return str1 == str2;
         }
-        string aux_str1 = string(str1),
-            aux_str2 = string(str2);
-        bool result = aux_str1.find(aux_str2) != string::npos;
-        return result;
+        return std::strcmp(str1, str2) == 0;
     }
 
     string ToUpper(const string& str) {
