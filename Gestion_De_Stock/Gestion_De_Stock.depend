@@ -1529,7 +1529,7 @@
 	"venta_menu.h"
 	<iostream>
 
-1765744452 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
+1765747930 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
 	"../../menu.h"
 	"../../menu_utils.h"
 	"../../../manager/ventas/manager_factura.h"
@@ -1538,5 +1538,5 @@
 	"../../../manager/manager_cliente.h"
 	"../../../controller/generic_array.h"
 	"../../../controller/validation.h"
-	"../../../rlutil.h"
+	"../../../../rlutil.h"
 

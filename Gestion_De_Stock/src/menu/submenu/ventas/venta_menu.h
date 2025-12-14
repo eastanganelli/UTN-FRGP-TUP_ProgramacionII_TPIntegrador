@@ -9,7 +9,7 @@
 #include "../../../manager/manager_cliente.h"
 #include "../../../controller/generic_array.h"
 #include "../../../controller/validation.h"
-#include "../../../rlutil.h"
+#include "../../../../rlutil.h"
 
 class VentaMenu : public Menu {
 private:
@@ -23,6 +23,8 @@ private:
     bool AgregarItemInteractivo(Factura& factura);
     Factura CrearFactura(unsigned int numero, bool& ok);
     void ModificarFacturaInteractiva(Factura& factura);
+    void BajaFactura(Factura& factura);
+    bool ConvertirFacturaEnNota(unsigned int numero, const std::string& motivo);
 public:
     VentaMenu();
     virtual bool OnSelect(int index) override;

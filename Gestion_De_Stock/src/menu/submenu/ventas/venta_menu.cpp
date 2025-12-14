@@ -18,7 +18,7 @@ VentaMenu::VentaMenu() : Menu("Menu Ventas", true) {
     AddOption("Buscar Nota por Motivo");
     AddOption("Buscar Nota por Rango de Fecha");
     AddOption("Listar comprobantes (Facturas y Notas) por cliente");
-    AddOption("Anular factura -> crear nota");
+    AddOption("Anular factura");
     AddOption("Volver");
 }
 
@@ -152,8 +152,7 @@ bool VentaMenu::OnSelect(int index) {
             unsigned int nro = InputNumber("Numero factura: ");
             string motivo = InputBox("Motivo de anulación: ");
             if (Confirm("Confirmar anular factura?")) {
-                VentaManager vm;
-                bool ok = vm.ConvertirFacturaANota(nro, motivo);
+                bool ok = ConvertirFacturaEnNota(nro, motivo);
                 if (ok) cout << "Factura convertida en Nota de Credito." << endl;
                 else cout << "Error: no se pudo convertir la factura." << endl;
             }
@@ -416,4 +415,45 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
         }
     } while (opcion != 5);
     rlutil::cls();
+}
+
+bool VentaMenu::ConvertirFacturaEnNota(unsigned int numero, const string& motivo) {
+    Factura* factura = facturas[numero];
+    if (factura == nullptr) return false;
+
+    NotaDeCredito nota(factura->getNumero(), factura->getClienteDNI(), motivo);
+    nota.getFechaEmision() = Fecha::Hoy();
+
+    for (unsigned int i = 0; i < factura->CantidadItems(); ++i) {
+        const Item* it = factura->ObtenerItem(i);
+        if (it != nullptr) {
+            nota.AgregarItem(*it);
+        }
+    }
+
+    if (!notas.Agregar(nota)) {
+        delete factura;
+        return false;
+    }
+
+    if (!facturas.Eliminar(numero)) {
+        notas.Eliminar(nota.getNumero());
+        delete factura;
+        return false;
+    }
+
+    for (unsigned int i = 0; i < factura->CantidadItems(); ++i) {
+        const Item* it = factura->ObtenerItem(i);
+        if (it == nullptr) continue;
+        Producto* p = productos[it->getCodigo()];
+        if (p != nullptr) {
+            Producto actualizado = *p;
+            actualizado.setStock(p->getStock() + it->getCantidad());
+            productos.Modificar(actualizado.getCodigo(), &actualizado);
+            delete p;
+        }
+    }
+
+    delete factura;
+    return true;
 }
