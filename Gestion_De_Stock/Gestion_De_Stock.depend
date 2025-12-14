@@ -1005,13 +1005,11 @@
 	"data_generator/invoice_generator.h"
 	"data_generator/tiporesponsables_generator.h"
 
-1765321272 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu.h
-	"submenu/ventas/factura_menu.h"
+1765744578 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu.h
 	"submenu/cliente_menu.h"
 	"submenu/producto_menu.h"
 	"submenu/proveedor_menu.h"
 	"submenu/tipo_responsable_menu.h"
-	"submenu/ventas/nota_de_credito_menu.h"
 	"submenu/ventas/venta_menu.h"
 
 1764912666 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\ventas\manager_nota_de_credito.cpp
@@ -1531,8 +1529,14 @@
 	"venta_menu.h"
 	<iostream>
 
-1765252663 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
+1765744452 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
 	"../../menu.h"
 	"../../menu_utils.h"
-	"../../../manager/ventas/manager_ventas.h"
+	"../../../manager/ventas/manager_factura.h"
+	"../../../manager/ventas/manager_nota_de_credito.h"
+	"../../../manager/manager_producto.h"
+	"../../../manager/manager_cliente.h"
+	"../../../controller/generic_array.h"
+	"../../../controller/validation.h"
+	"../../../rlutil.h"
 

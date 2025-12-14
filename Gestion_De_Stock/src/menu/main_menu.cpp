@@ -8,8 +8,6 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Proveedores");
     AddOption("Productos");
     AddOption("Tipo Responsables");
-    AddOption("Facturas");
-    AddOption("Notas de Credito");
     AddOption("Ventas");
     AddOption("Data Generator");
     AddOption("Salir");
@@ -38,21 +36,11 @@ bool MainMenu::OnSelect(int index) {
             return false;
         }
         case 4: {
-            FacturaMenu m;
-            while (!m.Run());
-            return false;
-        }
-        case 5: {
-            NotaDeCreditoMenu m;
-            while (!m.Run());
-            return false;
-        }
-        case 6: {
             VentaMenu m;
             while (!m.Run());
             return false;
         }
-        case 7: {
+        case 5: {
             cout << "--- Generando datos de prueba... ---" << endl << endl;
             DataGenerator::GenerateTipoResponsable();
             DataGenerator::GenerateClients();
@@ -63,7 +51,7 @@ bool MainMenu::OnSelect(int index) {
             PauseConsole();
             return false;
         }
-        case 8: { // Salir
+        case 6: { // Salir
             return true;
         }
         default:

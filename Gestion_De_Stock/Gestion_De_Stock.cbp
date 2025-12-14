@@ -119,10 +119,6 @@
 		<Unit filename="src/menu/submenu/proveedor_menu.h" />
 		<Unit filename="src/menu/submenu/tipo_responsable_menu.cpp" />
 		<Unit filename="src/menu/submenu/tipo_responsable_menu.h" />
-		<Unit filename="src/menu/submenu/ventas/factura_menu.cpp" />
-		<Unit filename="src/menu/submenu/ventas/factura_menu.h" />
-		<Unit filename="src/menu/submenu/ventas/nota_de_credito_menu.cpp" />
-		<Unit filename="src/menu/submenu/ventas/nota_de_credito_menu.h" />
 		<Unit filename="src/menu/submenu/ventas/venta_menu.cpp" />
 		<Unit filename="src/menu/submenu/ventas/venta_menu.h" />
 		<Extensions>
