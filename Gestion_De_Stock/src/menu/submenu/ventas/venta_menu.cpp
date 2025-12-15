@@ -273,76 +273,64 @@ void VentaMenu::VerDetalleComprobante() {
 
     const unsigned int flag = *mapEsFactura[static_cast<unsigned int>(seleccionado)];
     const unsigned int pos = *mapIdx[static_cast<unsigned int>(seleccionado)];
+
+    unsigned int cantidad_filas = 0;
+    GenericArray<Item> items_comprobante;
+
     rlutil::cls();
     if (flag == 1) {
         Factura* f = fcs[pos];
         const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
-        cout << "Tipo: " << tipo << "\n";
-        cout << "Numero: " << f->getNumero() << "\n";
-        cout << "Cliente: " << f->getClienteDNI() << "\n";
-        cout << "Fecha emision: " << f->getFechaEmision().toString() << "\n";
-        cout << "Total sin IVA: " << f->TotalSinIVA() << "\n";
-        cout << "CAE: " << f->getCAE() << "\n";
-        cout << "Vto CAE: " << f->getVencimientoCAE().toString() << "\n";
-        cout << endl << "Items " << endl;
+        cout << "Tipo: " << tipo << endl
+            << "Numero: " << f->getNumero() << endl
+            << "Cliente: " << f->getClienteDNI() << endl
+            << "Fecha emision: " << f->getFechaEmision().toString() << endl
+            << "Total sin IVA: " << f->TotalSinIVA() << endl
+            << "CAE: " << f->getCAE() << endl
+            << "Vto CAE: " << f->getVencimientoCAE().toString() << endl
+            << endl << "Items " << endl;
 
-        const unsigned int itemCols = 4;
-        const unsigned int widthCod = 12;
-        const unsigned int widthCant = 8;
-        const unsigned int widthPrecio = 12;
-        const unsigned int widthSub = 14;
-        Tabling::Table items(f->CantidadItems(), itemCols, '-', 9);
-        Tabling::Row* ih = new Tabling::Row(itemCols);
-        ih->AddCell("Codigo", widthCod);
-        ih->AddCell("Cant", widthCant);
-        ih->AddCell("Precio", widthPrecio);
-        ih->AddCell("Subtotal", widthSub);
-        items.AddRow(ih);
-        for (unsigned int k = 0; k < f->CantidadItems(); ++k) {
-            const Item* it = f->ObtenerItem(k);
-            if (it == nullptr) continue;
-            Tabling::Row* ir = new Tabling::Row(itemCols);
-            ir->AddCell(it->getCodigo(), widthCod);
-            ir->AddCell(to_string(it->getCantidad()), widthCant);
-            ir->AddCell(to_string(it->getPrecioUnitario()), widthPrecio);
-            ir->AddCell(to_string(it->getCantidad() * it->getPrecioUnitario()), widthSub);
-            items.AddRow(ir);
-        }
-        items.Print();
+        cantidad_filas = f->CantidadItems();
+        items_comprobante = f->ObtenerTodosLosItems();
+
     } else {
         NotaDeCredito* n = nts[pos];
-        cout << "Tipo: Nota de Credito\n";
-        cout << "Numero: " << n->getNumero() << "\n";
-        cout << "Cliente: " << n->getClienteDNI() << "\n";
-        cout << "Fecha emision: " << n->getFechaEmision().toString() << "\n";
-        cout << "Total sin IVA: " << n->TotalSinIVA() << "\n";
-        cout << "Motivo: " << n->getMotivoAnulacion() << "\n";
-        cout << endl << "Items " << endl;
+        cout << "Tipo: Nota de Credito" << endl
+            << "Numero: " << n->getNumero() << endl
+            << "Cliente: " << n->getClienteDNI() << endl
+            << "Fecha emision: " << n->getFechaEmision().toString() << endl
+            << "Total sin IVA: " << n->TotalSinIVA() << endl
+            << "Motivo: " << n->getMotivoAnulacion() << endl
+            << endl << "Items " << endl;
 
-        const unsigned int itemCols = 4;
-        const unsigned int widthCod = 12;
-        const unsigned int widthCant = 8;
-        const unsigned int widthPrecio = 12;
-        const unsigned int widthSub = 14;
-        Tabling::Table items(n->CantidadItems(), itemCols, '-', 9);
-        Tabling::Row* ih = new Tabling::Row(itemCols);
-        ih->AddCell("Codigo", widthCod);
-        ih->AddCell("Cant", widthCant);
-        ih->AddCell("Precio", widthPrecio);
-        ih->AddCell("Subtotal", widthSub);
-        items.AddRow(ih);
-        for (unsigned int k = 0; k < n->CantidadItems(); ++k) {
-            const Item* it = n->ObtenerItem(k);
-            if (it == nullptr) continue;
-            Tabling::Row* ir = new Tabling::Row(itemCols);
-            ir->AddCell(it->getCodigo(), widthCod);
-            ir->AddCell(to_string(it->getCantidad()), widthCant);
-            ir->AddCell(to_string(it->getPrecioUnitario()), widthPrecio);
-            ir->AddCell(to_string(it->getCantidad() * it->getPrecioUnitario()), widthSub);
-            items.AddRow(ir);
-        }
-        items.Print();
+        cantidad_filas = n->CantidadItems();
+        items_comprobante = n->ObtenerTodosLosItems();
     }
+    
+    const unsigned int itemCols = 4;
+    const unsigned int widthCod = Item::CodigoSize();
+    const unsigned int widthCant = Item::CantidadSize();
+    const unsigned int widthPrecio = Item::PrecioUnitarioSize();
+    const unsigned int widthSub = Item::TotalItemSize();
+
+    Tabling::Table itemsTable(cantidad_filas, itemCols, '-', 9);
+    Tabling::Row* ih = new Tabling::Row(itemCols);
+    ih->AddCell("Codigo", widthCod);
+    ih->AddCell("Cant", widthCant);
+    ih->AddCell("Precio", widthPrecio);
+    ih->AddCell("Subtotal", widthSub);
+    itemsTable.AddRow(ih);
+    for (unsigned int k = 0; k < cantidad_filas; ++k) {
+        const Item* it = items_comprobante[k];
+        if (it == nullptr) continue;
+        Tabling::Row* ir = new Tabling::Row(itemCols);
+        ir->AddCell(it->getCodigo(), widthCod);
+        ir->AddCell(to_string(it->getCantidad()), widthCant);
+        ir->AddCell(to_string(it->getPrecioUnitario()), widthPrecio);
+        ir->AddCell(to_string(it->getCantidad() * it->getPrecioUnitario()), widthSub);
+        itemsTable.AddRow(ir);
+    }
+    itemsTable.Print();
 
     PauseConsole();
 }
