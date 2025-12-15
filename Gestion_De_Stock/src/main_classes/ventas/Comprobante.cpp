@@ -84,6 +84,14 @@ const Item* Comprobante::ObtenerItem(unsigned int index) const {
     return &this->items[index];
 }
 
+GenericArray<Item> Comprobante::ObtenerTodosLosItems() {
+    GenericArray<Item> resultado;
+    for (unsigned int i = 0; i < this->itemsActuales; i++) {
+        resultado.Append(this->items[i]);
+    }
+    return resultado;
+}
+
 void Comprobante::LimpiarItems() {
     this->itemsActuales = 0;
     for (unsigned int i = 0; i < ITEMS_MAX; i++) {

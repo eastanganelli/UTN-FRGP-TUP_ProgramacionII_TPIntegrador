@@ -18,7 +18,7 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
         std::cout << "--- Datos de Facturas Generados ---" << std::endl;
 
         unsigned int prodCount = productos.Count();
-        unsigned int provCount = proveedores.Count();
+        // unsigned int provCount = proveedores.Count();
         unsigned int cliCount = clientes.Count();
 
         if (prodCount == 0 || cliCount == 0) {

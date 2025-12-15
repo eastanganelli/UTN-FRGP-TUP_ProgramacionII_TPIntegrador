@@ -51,6 +51,8 @@
 		<Unit filename="src/controller/data_generator/provider_generator.h" />
 		<Unit filename="src/controller/data_generator/tiporesponsables_generator.cpp" />
 		<Unit filename="src/controller/data_generator/tiporesponsables_generator.h" />
+		<Unit filename="src/controller/fecha.cpp" />
+		<Unit filename="src/controller/fecha.h" />
 		<Unit filename="src/controller/generic_array.h" />
 		<Unit filename="src/controller/modals.h" />
 		<Unit filename="src/controller/modals/error.cpp" />
