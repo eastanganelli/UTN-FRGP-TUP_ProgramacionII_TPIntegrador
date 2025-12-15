@@ -284,13 +284,14 @@ void VentaMenu::VerDetalleComprobante() {
         cout << "Total sin IVA: " << f->TotalSinIVA() << "\n";
         cout << "CAE: " << f->getCAE() << "\n";
         cout << "Vto CAE: " << f->getVencimientoCAE().toString() << "\n";
-        
+        cout << endl << "Items " << endl;
+
         const unsigned int itemCols = 4;
         const unsigned int widthCod = 12;
         const unsigned int widthCant = 8;
         const unsigned int widthPrecio = 12;
         const unsigned int widthSub = 14;
-        Tabling::Table items(f->CantidadItems(), itemCols);
+        Tabling::Table items(f->CantidadItems(), itemCols, '-', 9);
         Tabling::Row* ih = new Tabling::Row(itemCols);
         ih->AddCell("Codigo", widthCod);
         ih->AddCell("Cant", widthCant);
@@ -316,12 +317,14 @@ void VentaMenu::VerDetalleComprobante() {
         cout << "Fecha emision: " << n->getFechaEmision().toString() << "\n";
         cout << "Total sin IVA: " << n->TotalSinIVA() << "\n";
         cout << "Motivo: " << n->getMotivoAnulacion() << "\n";
+        cout << endl << "Items " << endl;
+
         const unsigned int itemCols = 4;
         const unsigned int widthCod = 12;
         const unsigned int widthCant = 8;
         const unsigned int widthPrecio = 12;
         const unsigned int widthSub = 14;
-        Tabling::Table items(n->CantidadItems(), itemCols);
+        Tabling::Table items(n->CantidadItems(), itemCols, '-', 9);
         Tabling::Row* ih = new Tabling::Row(itemCols);
         ih->AddCell("Codigo", widthCod);
         ih->AddCell("Cant", widthCant);

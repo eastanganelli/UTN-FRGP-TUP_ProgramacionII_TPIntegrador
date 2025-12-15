@@ -1,6 +1,7 @@
 #include "table.h"
 
-Tabling::Table::Table(unsigned int _rows, unsigned int _cols, char _separator) : rows(_rows + 3), separator(_separator), used(0) {
+Tabling::Table::Table(unsigned int _rows, unsigned int _cols, char _separator, unsigned int _startY)
+    : rows(_rows + 3), separator(_separator), startY(_startY == 0 ? 1 : _startY), used(0) {
     this->table_rows = new Tabling::Row*[_rows + 1];
 }
 
@@ -24,9 +25,10 @@ void Tabling::Table::AddRow(Tabling::Row* row) {
 }
 
 void Tabling::Table::Print() {
-    for(unsigned int i = 0, y = 1; i < this->rows; y++) {
+    unsigned int yStart = this->startY == 0 ? 1 : this->startY;
+    for(unsigned int i = 0, y = yStart; i < this->rows; y++) {
         Tabling::Row* row = this->table_rows[i];
-        if(y == 1) {
+        if(y == yStart) {
             rlutil::saveDefaultColor();
             rlutil::setBackgroundColor(rlutil::BLUE);
             rlutil::setColor(rlutil::WHITE);
@@ -34,13 +36,13 @@ void Tabling::Table::Print() {
             rlutil::resetColor();
             i++;
         }
-        else if(y == 2) {
+        else if(y == yStart + 1) {
             this->PrintSeparator(y);
-        } else if(y > 2 && y < this->rows) {
+        } else if(y > yStart + 1 && y < yStart + this->rows - 1) {
             row->PrintAt(y);
             i++;
         }
-        else if(y == this->rows) {
+        else if(y == yStart + this->rows - 1) {
             this->PrintSeparator(y);
             cout << endl;
             break;
