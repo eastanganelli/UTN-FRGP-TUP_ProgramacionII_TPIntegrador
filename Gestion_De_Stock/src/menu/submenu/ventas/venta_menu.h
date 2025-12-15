@@ -28,6 +28,7 @@ private:
     void VerDetalleComprobante();
     void AnularFactura();
     void ImprimirComprobantesCliente(const std::string& dni);
+    void ImprimirIntercaladoComun(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, bool ordenarPorCliente);
     void ImprimirIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);
     void OrdenarPorNumero(GenericArray<Factura>& fcs);
     void OrdenarPorNumero(GenericArray<NotaDeCredito>& nts);
