@@ -1,4 +1,4 @@
-#include "Fecha.h"
+#include "fecha.h"
 
 Fecha::Fecha(int dia, int mes, int anio) {
     this->dia = dia;

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-#include "../main_classes/fecha.h"
+#include "../controller/fecha.h"
 #include "../controller/validation.h"
 
 std::string InputBox(const std::string& prompt);

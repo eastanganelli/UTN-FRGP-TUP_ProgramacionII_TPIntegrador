@@ -1,9 +1,14 @@
 #include "invoice_generator.h"
 
+#include <vector>
+#include <algorithm>
+#include "../validation.h"
+
 void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
 
     FacturaManager facturas;
+    NotaDeCreditoManager notas;
     ProductoManager productos;
     ProveedorManager proveedores;
     ClienteManager clientes;
@@ -22,25 +27,38 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             return;
         }
 
-        for (unsigned int i = 0; i < count; ++i) {
-            Cliente* cliente = clientes.At(rand() % cliCount);
-            string clienteDNI = cliente->getDNI();
+        // Distribuir clientes de forma rotativa para no repetir siempre el mismo
+        std::vector<string> clientDnis;
+        clientDnis.reserve(cliCount);
+        for (unsigned int c = 0; c < cliCount; ++c) {
+            Cliente* cli = clientes.At(c);
+            if (cli != nullptr) {
+                clientDnis.push_back(cli->getDNI());
+                delete cli;
+            }
+        }
+        if (clientDnis.size() > 1) {
+            std::random_shuffle(clientDnis.begin(), clientDnis.end());
+        }
 
-            // Obtener codigoRazonSocial desde el cliente (vinculo a TipoResponsable)
-            string codigoRazon = cliente->getCodigoRazonSocial();
+        std::vector<unsigned int> facturasConCAE;
+
+        for (unsigned int i = 0; i < count; ++i) {
+            const string& clienteDNI = clientDnis[i % clientDnis.size()];
 
             unsigned int id = 1000 + i;
-//            unsigned int index;
-//            string tipo = tipos.At(index)->getCodigo();
 
             Factura f(id, clienteDNI);
+            f.getFechaEmision() = DataGenerator::RandomFechaWithinDays(180);
 
             unsigned int itemsCount = (rand() % 6) + 1;
             for (unsigned int it = 0; it < itemsCount; ++it) {
                 Producto* p = productos.At(rand() % prodCount);
+                if (p == nullptr) continue;
                 string codigoProducto = p->getCodigo();
                 float precioUnitario = p->getPrecio();
                 unsigned int cantidad = (rand() % 5) + 1;
+                delete p;
 
                 Item item(codigoProducto.c_str(), cantidad, precioUnitario);
                 f.AgregarItem(item);
@@ -48,7 +66,9 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
 
             // Solo algunas facturas obtienen CAE para mezclar facturadas y pendientes
             if (f.CantidadItems() > 0 && (rand() % 100) < 70) {
-                f.Facturar();
+                if (f.Facturar() && !Validation::IsEmpty(f.getCAE())) {
+                    facturasConCAE.push_back(f.getNumero());
+                }
             }
 
             bool added = facturas.New(f);
@@ -121,9 +141,49 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
                 }
             }
         }
+
+        // Convertir algunas facturas facturadas en notas de credito
+        for (unsigned int idx = 0; idx < facturasConCAE.size(); ++idx) {
+            if ((rand() % 100) >= 20) continue; // 20% se anulan
+            unsigned int nro = facturasConCAE[idx];
+            Factura* fac = facturas[nro];
+            if (fac == nullptr) continue;
+            if (Validation::IsEmpty(fac->getCAE())) { delete fac; continue; }
+
+            NotaDeCredito nota(fac->getNumero(), fac->getClienteDNI(), "Anulada por generador");
+            nota.getFechaEmision() = Fecha::Hoy();
+
+            for (unsigned int it = 0; it < fac->CantidadItems(); ++it) {
+                const Item* item = fac->ObtenerItem(it);
+                if (item != nullptr) nota.AgregarItem(*item);
+            }
+
+            bool notaOk = notas.Agregar(nota);
+            bool factDel = false;
+            if (notaOk) {
+                factDel = facturas.Eliminar(nro);
+                if (!factDel) {
+                    notas.Eliminar(nota.getNumero());
+                }
+            }
+
+            if (printLog) {
+                cout << "Factura " << nro << (notaOk && factDel ? " anulada y convertida a NC" : " no pudo anularse") << endl;
+            }
+            delete fac;
+        }
         if (printLog)
             std::cout << "\n-------------------------------------\n" << std::endl;
     } else {
         std::cout << "Las facturas ya existen. No se generaron nuevos datos." << std::endl;
     }
+}
+
+Fecha DataGenerator::RandomFechaWithinDays(int spanDays) {
+    time_t now = time(nullptr);
+    int span = spanDays > 0 ? spanDays : 1;
+    int offset = rand() % span;
+    time_t target = now - static_cast<time_t>(offset * 24 * 3600);
+    tm* ltm = localtime(&target);
+    return Fecha(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
 }
