@@ -132,6 +132,11 @@ namespace Validation {
      * @param s Cadena que será modificada.
      */
     void RemoveSpaces(string &s);
+
+    /**
+     * @brief Limpia el buffer de entrada hasta el siguiente salto de linea.
+     */
+    void ClearInputLine();
 } // namespace Validation
 
 template <typename T>

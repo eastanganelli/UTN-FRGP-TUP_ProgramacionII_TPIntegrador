@@ -102,8 +102,6 @@
 		<Unit filename="src/manager/ventas/manager_factura.h" />
 		<Unit filename="src/manager/ventas/manager_nota_de_credito.cpp" />
 		<Unit filename="src/manager/ventas/manager_nota_de_credito.h" />
-		<Unit filename="src/manager/ventas/manager_ventas.cpp" />
-		<Unit filename="src/manager/ventas/manager_ventas.h" />
 		<Unit filename="src/menu/main_menu.cpp" />
 		<Unit filename="src/menu/main_menu.h" />
 		<Unit filename="src/menu/menu.cpp" />
@@ -119,10 +117,6 @@
 		<Unit filename="src/menu/submenu/proveedor_menu.h" />
 		<Unit filename="src/menu/submenu/tipo_responsable_menu.cpp" />
 		<Unit filename="src/menu/submenu/tipo_responsable_menu.h" />
-		<Unit filename="src/menu/submenu/ventas/factura_menu.cpp" />
-		<Unit filename="src/menu/submenu/ventas/factura_menu.h" />
-		<Unit filename="src/menu/submenu/ventas/nota_de_credito_menu.cpp" />
-		<Unit filename="src/menu/submenu/ventas/nota_de_credito_menu.h" />
 		<Unit filename="src/menu/submenu/ventas/venta_menu.cpp" />
 		<Unit filename="src/menu/submenu/ventas/venta_menu.h" />
 		<Extensions>

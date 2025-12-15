@@ -23,6 +23,8 @@ unsigned int Comprobante::ColFechaEmisionSize() { return COL_FechaEmision; }
 
 unsigned int Comprobante::ColMontoTotalSize() { return COL_MontoTotal; }
 
+unsigned int Comprobante::ColTipoSize() { return COL_Tipo; }
+
 float Comprobante::Total() {
     float total = 0.0f;
     for (unsigned int i = 0; i < this->itemsActuales; i++) {

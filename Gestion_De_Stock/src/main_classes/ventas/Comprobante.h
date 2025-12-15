@@ -4,7 +4,7 @@
 #include <string>
 #include <cstring>
 
-#include "../fecha.h"
+#include "../../controller/fecha.h"
 #include "../../controller/validation.h"
 #include "Item.h"
 
@@ -21,6 +21,7 @@ private:
     static const unsigned int COL_ClienteDNI = 12;
     static const unsigned int COL_FechaEmision = 15;
     static const unsigned int COL_MontoTotal = 12;
+    static const unsigned int COL_Tipo = 15;
 
     unsigned int numero;
     unsigned int itemsActuales;
@@ -46,6 +47,7 @@ public:
     static unsigned int ColClienteDNISize();
     static unsigned int ColFechaEmisionSize();
     static unsigned int ColMontoTotalSize();
+    static unsigned int ColTipoSize();
 
     // Setters
     void setClienteDNI(string dni);
