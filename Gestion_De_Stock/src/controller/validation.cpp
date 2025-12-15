@@ -1,6 +1,7 @@
 #include "validation.h"
 
 #include <cstring>
+#include <iostream>
 
 namespace Validation {
     bool IsSpaceChar(char c) {
@@ -95,5 +96,12 @@ namespace Validation {
             if (s[i] != ' ') out.push_back(s[i]);
         }
         s = out;
+    }
+    
+    void ClearInputLine() {
+        while (std::cin.good()) {
+            int ch = std::cin.get();
+            if (ch == '\n' || ch == '\r' || ch == EOF) break;
+        }
     }
 }

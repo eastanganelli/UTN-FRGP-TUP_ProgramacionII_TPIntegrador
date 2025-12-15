@@ -23,9 +23,7 @@ void Fecha::CargarFecha() {
     this->anio = ltm->tm_year + 1900;
 }
 
-string Fecha::toString() {
-    return to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio);
-}
+string Fecha::toString() { return to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio); }
 
 bool Fecha::operator>(Fecha fechaComparar) {
     if (this->anio > fechaComparar.anio) {
@@ -73,88 +71,76 @@ bool Fecha::operator!=(Fecha fechaComparar) {
 
 Fecha Fecha::CrearFecha() {
     int d = 0, m = 0, a = 0;
-    string input;
 
-    while (true) {
-        rlutil::locate(1, 1);
-        cout << "Ingrese mes: ";
-        if (!(cin >> input)) {
+    if (!cin.good()) {
+        cin.clear();
+    }
+    Validation::ClearInputLine();
+
+    do {
+        cout << "Mes: " << std::flush;
+        if (!(cin >> m)) {
             cin.clear();
-            continue;
-        }
-
-        if (!Validation::IsNumeric(input)) {
+            Validation::ClearInputLine();
             Warning w("Entrada invalida", "Ingrese solo digitos.");
             w.Show();
             continue;
         }
+        Validation::ClearInputLine();
 
-        m = stoi(input);
         if (!Validation::IsInRange<int>(m, 1, 12)) {
             Warning w("Mes invalido", "El mes debe estar entre 1 y 12.");
             w.Show();
             continue;
         }
 
-        rlutil::cls();
         break;
-    }
+    } while (true);
 
-    while (true) {
-        rlutil::locate(1, 1);
-        cout << "Ingrese anio (ej: 2024): ";
-        if (!(cin >> input)) {
+    do {
+        cout << "Anio: " << std::flush;
+        if (!(cin >> a)) {
             cin.clear();
-            rlutil::cls();
-            continue;
-        }
-
-        if (!Validation::IsNumeric(input)) {
+            Validation::ClearInputLine();
             Warning w("Entrada invalida", "Ingrese solo digitos.");
             w.Show();
             continue;
         }
+        Validation::ClearInputLine();
 
-        a = stoi(input);
         if (!Validation::IsInRange<int>(a, 1900, 9999)) {
             Warning w("Anio invalido", "El anio debe ser mayor o igual a 1900.");
             w.Show();
             continue;
         }
 
-        rlutil::cls();
         break;
-    }
+    } while (true);
 
     bool isLeap = (a % 4 == 0 && a % 100 != 0) || (a % 400 == 0);
     int maxDay = 31;
     if (m == 2) maxDay = isLeap ? 29 : 28;
     else if (m == 4 || m == 6 || m == 9 || m == 11) maxDay = 30;
 
-    while (true) {
-        rlutil::locate(1, 1);
-        cout << "Ingrese dia: ";
-        if (!(cin >> input)) {
+    do {
+        cout << "Dia: " << std::flush;
+        if (!(cin >> d)) {
             cin.clear();
-            continue;
-        }
-
-        if (!Validation::IsNumeric(input)) {
+            Validation::ClearInputLine();
             Warning w("Entrada invalida", "Ingrese solo digitos.");
             w.Show();
             continue;
         }
+        Validation::ClearInputLine();
 
-        d = stoi(input);
         if (!Validation::IsInRange<int>(d, 1, maxDay)) {
             Warning w("Dia invalido", "El dia ingresado no es valido para el mes y anio seleccionados.");
             w.Show();
             continue;
         }
 
-        rlutil::cls();
         break;
-    }
+    } while (true);
 
     Fecha fecha(d, m, a);
     return fecha;

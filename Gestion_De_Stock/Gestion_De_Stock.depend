@@ -467,11 +467,12 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1765591866 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.cpp
+1765775837 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.cpp
 	"validation.h"
 	<cstring>
+	<iostream>
 
-1765499918 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
+1765775819 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\validation.h
 	<string>
 
 1763529317 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\array.cpp
@@ -546,7 +547,7 @@
 	"Comprobante.h"
 	<cstring>
 
-1765516702 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\fecha.cpp
+1765775850 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\fecha.cpp
 	"Fecha.h"
 
 1763044356 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\notadecredito.cpp
@@ -847,7 +848,7 @@
 1765229486 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.cpp
 	"Item.h"
 
-1765429849 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
+1765750749 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
 	"invoice_generator.h"
 
 1764906880 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
@@ -913,7 +914,7 @@
 	"manager_factura.h"
 	"manager_nota_de_credito.h"
 
-1764730481 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\main_menu.cpp
+1765744524 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\main_menu.cpp
 	"main_menu.h"
 	<iostream>
 
@@ -927,7 +928,7 @@
 	"../menu_utils.h"
 	"../../manager/ventas/manager_factura.h"
 
-1764551202 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.h
+1765775000 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.h
 	<string>
 	<iostream>
 	<string>
@@ -965,7 +966,7 @@
 	"../menu_utils.h"
 	"../../manager/ventas/manager_ventas.h"
 
-1764555545 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.cpp
+1765775713 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\menu_utils.cpp
 	"menu_utils.h"
 
 1764655954 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\venta_menu.cpp
@@ -1525,11 +1526,13 @@
 	"../../menu_utils.h"
 	"../../../manager/ventas/manager_nota_de_credito.h"
 
-1764655954 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.cpp
+1765775718 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.cpp
 	"venta_menu.h"
 	<iostream>
+	"../../../controller/table/table.h"
+	"../../../manager/ventas/manager_nota_de_credito.h"
 
-1765747930 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
+1765773693 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.h
 	"../../menu.h"
 	"../../menu_utils.h"
 	"../../../manager/ventas/manager_factura.h"

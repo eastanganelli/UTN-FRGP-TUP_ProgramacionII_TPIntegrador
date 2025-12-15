@@ -46,8 +46,10 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
                 f.AgregarItem(item);
             }
 
-            // Si la factura tiene items, generar CAE antes de persistir
-            if (f.CantidadItems() > 0) f.Facturar();
+            // Solo algunas facturas obtienen CAE para mezclar facturadas y pendientes
+            if (f.CantidadItems() > 0 && (rand() % 100) < 70) {
+                f.Facturar();
+            }
 
             bool added = facturas.New(f);
             if (printLog)

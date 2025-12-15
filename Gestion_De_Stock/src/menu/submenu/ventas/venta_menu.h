@@ -18,12 +18,27 @@ private:
     ProductoManager productos;
     ClienteManager clientes;
 
+    void AgregarFactura();
+    void ModificarFactura();
+    void ListarFacturasPorMonto();
+    void BuscarComprobantePorExtra();
+    void BuscarComprobantePorRangoFecha();
+    void ListarComprobantesPorCliente();
+    void BuscarComprobantePorCliente();
+    void AnularFactura();
+    void ImprimirComprobantesCliente(const std::string& dni);
+    void ImprimirIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);
+    void OrdenarPorNumero(GenericArray<Factura>& fcs);
+    void OrdenarPorNumero(GenericArray<NotaDeCredito>& nts);
+    void OrdenarPorCliente(GenericArray<Factura>& fcs);
+    void OrdenarPorCliente(GenericArray<NotaDeCredito>& nts);
+    void ImprimirIntercaladoOrdenCliente(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);
+
     std::string SeleccionarCliente();
     std::string SeleccionarProductoCodigo();
     bool AgregarItemInteractivo(Factura& factura);
     Factura CrearFactura(unsigned int numero, bool& ok);
     void ModificarFacturaInteractiva(Factura& factura);
-    void BajaFactura(Factura& factura);
     bool ConvertirFacturaEnNota(unsigned int numero, const std::string& motivo);
 public:
     VentaMenu();
