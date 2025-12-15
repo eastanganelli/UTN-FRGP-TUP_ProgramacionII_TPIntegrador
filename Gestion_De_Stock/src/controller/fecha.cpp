@@ -77,6 +77,30 @@ Fecha Fecha::CrearFecha() {
     }
     Validation::ClearInputLine();
 
+    cout << "Fecha (dd/mm/aaaa):" << endl;
+
+    // Dia
+    do {
+        cout << "Dia: " << std::flush;
+        if (!(cin >> d)) {
+            cin.clear();
+            Validation::ClearInputLine();
+            Warning w("Entrada invalida", "Ingrese solo digitos.");
+            w.Show();
+            continue;
+        }
+        Validation::ClearInputLine();
+
+        if (!Validation::IsInRange<int>(d, 1, 31)) {
+            Warning w("Dia invalido", "El dia debe estar entre 1 y 31.");
+            w.Show();
+            continue;
+        }
+
+        break;
+    } while (true);
+
+    // Mes
     do {
         cout << "Mes: " << std::flush;
         if (!(cin >> m)) {
@@ -97,6 +121,7 @@ Fecha Fecha::CrearFecha() {
         break;
     } while (true);
 
+    // Año
     do {
         cout << "Anio: " << std::flush;
         if (!(cin >> a)) {
@@ -116,14 +141,14 @@ Fecha Fecha::CrearFecha() {
 
         break;
     } while (true);
-
+ 
     bool isLeap = (a % 4 == 0 && a % 100 != 0) || (a % 400 == 0);
     int maxDay = 31;
     if (m == 2) maxDay = isLeap ? 29 : 28;
     else if (m == 4 || m == 6 || m == 9 || m == 11) maxDay = 30;
 
-    do {
-        cout << "Dia: " << std::flush;
+    while (!Validation::IsInRange<int>(d, 1, maxDay)) {
+        cout << "Dia invalido para el mes/anio. Reingrese Dia (1-" << maxDay << "): " << std::flush;
         if (!(cin >> d)) {
             cin.clear();
             Validation::ClearInputLine();
@@ -132,15 +157,7 @@ Fecha Fecha::CrearFecha() {
             continue;
         }
         Validation::ClearInputLine();
-
-        if (!Validation::IsInRange<int>(d, 1, maxDay)) {
-            Warning w("Dia invalido", "El dia ingresado no es valido para el mes y anio seleccionados.");
-            w.Show();
-            continue;
-        }
-
-        break;
-    } while (true);
+    }
 
     Fecha fecha(d, m, a);
     return fecha;

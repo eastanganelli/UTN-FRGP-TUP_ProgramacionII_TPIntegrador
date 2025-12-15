@@ -20,13 +20,13 @@ private:
 
     void AgregarFactura();
     void ModificarFactura();
+    void AnularFactura();
+    void ListarComprobantesPorCliente();
     void ListarFacturasPorMonto();
+    void BuscarComprobantePorCliente();
     void BuscarComprobantePorExtra();
     void BuscarComprobantePorRangoFecha();
-    void ListarComprobantesPorCliente();
-    void BuscarComprobantePorCliente();
     void VerDetalleComprobante();
-    void AnularFactura();
     void ImprimirComprobantesCliente(const std::string& dni);
     void ConstruirOrdenIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, bool ordenarPorCliente, GenericArray<unsigned int>& mapTipo, GenericArray<unsigned int>& mapIdx);
     void ConstruirIntercaladoPorNumero(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, GenericArray<unsigned int>& numeros, GenericArray<unsigned int>& tipos);

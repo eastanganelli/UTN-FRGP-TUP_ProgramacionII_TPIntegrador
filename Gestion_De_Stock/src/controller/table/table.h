@@ -11,10 +11,11 @@ using namespace std;
 namespace Tabling {
     class Table {
     private:
-        const unsigned int rows;
+        unsigned int rows;
         const char separator;
         unsigned int startY;
         unsigned int used;
+        unsigned int capacity;
         Tabling::Row** table_rows;
 
         void PrintSeparator(unsigned int y);
