@@ -25,6 +25,7 @@ private:
     void BuscarComprobantePorRangoFecha();
     void ListarComprobantesPorCliente();
     void BuscarComprobantePorCliente();
+    void VerDetalleComprobante();
     void AnularFactura();
     void ImprimirComprobantesCliente(const std::string& dni);
     void ImprimirIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);

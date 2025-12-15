@@ -4,6 +4,7 @@
 #include "../../../manager/ventas/manager_nota_de_credito.h"
 #include "../../../main_classes/ventas/comprobante.h"
 #include "../../../main_classes/ventas/factura.h"
+#include "../../../controller/modals/warning.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ VentaMenu::VentaMenu() : Menu("Menu Ventas", true) {
     AddOption("Buscar Comprobante por Cliente");
     AddOption("Buscar Comprobante por Extra (CAE/Motivo)");
     AddOption("Buscar Comprobante por Rango de Fecha");
+    AddOption("Ver detalle de Comprobante");
     AddOption("Volver");
 }
 
@@ -30,7 +32,8 @@ bool VentaMenu::OnSelect(int index) {
         case 5: BuscarComprobantePorCliente(); return false;
         case 6: BuscarComprobantePorExtra(); return false;
         case 7: BuscarComprobantePorRangoFecha(); return false;
-        case 8: {
+        case 8: VerDetalleComprobante(); return false;
+        case 9: {
             return true;
         }
         default:
@@ -157,6 +160,150 @@ void VentaMenu::ListarComprobantesPorCliente() {
     PauseConsole();
 }
 
+void VentaMenu::VerDetalleComprobante() {
+    rlutil::cls();
+
+    GenericArray<Factura> fcs;
+    for (unsigned int i = 0; i < facturas.Count(); ++i) {
+        Factura* f = facturas.At(i);
+        if (f != nullptr) { fcs.Append(*f); delete f; }
+    }
+
+    GenericArray<NotaDeCredito> nts;
+    for (unsigned int i = 0; i < notas.Count(); ++i) {
+        NotaDeCredito* n = notas.At(i);
+        if (n != nullptr) { nts.Append(*n); delete n; }
+    }
+
+    if (fcs.Size() == 0 && nts.Size() == 0) {
+        Warning w("Sin comprobantes", "No hay facturas ni notas para mostrar.");
+        w.Show(); w.WaitForKey();
+        PauseConsole();
+        return;
+    }
+
+    OrdenarPorNumero(fcs);
+    OrdenarPorNumero(nts);
+
+    GenericArray<unsigned int> mapEsFactura; // 1 = factura/presupuesto, 0 = nota
+    GenericArray<unsigned int> mapIdx;       // indice dentro de su arreglo
+
+    const unsigned int columnas = 6;
+    const unsigned int widthNumero = Comprobante::ColNumeroSize();
+    const unsigned int widthFecha = Comprobante::ColFechaEmisionSize();
+    const unsigned int widthTotal = Comprobante::ColMontoTotalSize();
+    const unsigned int widthCliente = Comprobante::ColClienteDNISize();
+    const unsigned int widthTipo = Comprobante::ColTipoSize();
+
+    Tabling::Table tabla(fcs.Size() + nts.Size(), columnas);
+    Tabling::Row* header = new Tabling::Row(columnas);
+    header->AddCell("Idx", 4);
+    header->AddCell("Numero", widthNumero);
+    header->AddCell("Tipo", widthTipo);
+    header->AddCell("Cliente", widthCliente);
+    header->AddCell("Fecha", widthFecha);
+    header->AddCell("Total", widthTotal);
+    tabla.AddRow(header);
+
+    unsigned int i = 0, j = 0, idxTabla = 0;
+    while (i < fcs.Size() || j < nts.Size()) {
+        bool tomarFactura = false;
+        if (i < fcs.Size() && j < nts.Size()) {
+            tomarFactura = fcs[i]->getNumero() <= nts[j]->getNumero();
+        } else if (i < fcs.Size()) {
+            tomarFactura = true;
+        }
+
+        Tabling::Row* row = new Tabling::Row(columnas);
+        if (tomarFactura) {
+            Factura* f = fcs[i];
+            const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
+            row->AddCell(to_string(idxTabla), 4);
+            row->AddCell(to_string(f->getNumero()), widthNumero);
+            row->AddCell(tipo, widthTipo);
+            row->AddCell(f->getClienteDNI(), widthCliente);
+            row->AddCell(f->getFechaEmision().toString(), widthFecha);
+            row->AddCell(to_string(f->TotalSinIVA()), widthTotal);
+            unsigned int flag = 1; // factura/presupuesto
+            unsigned int pos = i;
+            mapEsFactura.Append(flag);
+            mapIdx.Append(pos);
+            ++i;
+        } else {
+            NotaDeCredito* n = nts[j];
+            row->AddCell(to_string(idxTabla), 4);
+            row->AddCell(to_string(n->getNumero()), widthNumero);
+            row->AddCell("Nota", widthTipo);
+            row->AddCell(n->getClienteDNI(), widthCliente);
+            row->AddCell(n->getFechaEmision().toString(), widthFecha);
+            row->AddCell(to_string(n->TotalSinIVA()), widthTotal);
+            unsigned int flag = 0; // nota
+            unsigned int pos = j;
+            mapEsFactura.Append(flag);
+            mapIdx.Append(pos);
+            ++j;
+        }
+        tabla.AddRow(row);
+        ++idxTabla;
+    }
+
+    int seleccionado = -1;
+    while (true) {
+        rlutil::cls();
+        tabla.Print();
+        string entrada = InputBox("Indice a ver (vacio para cancelar): ");
+        if (entrada.empty()) return;
+        char* endptr = nullptr;
+        const char* raw = entrada.c_str();
+        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
+        if (endptr == raw || *endptr != '\0') continue;
+        if (idxLong >= mapEsFactura.Size()) continue;
+        seleccionado = static_cast<int>(idxLong);
+        break;
+    }
+
+    const unsigned int flag = *mapEsFactura[static_cast<unsigned int>(seleccionado)];
+    const unsigned int pos = *mapIdx[static_cast<unsigned int>(seleccionado)];
+    rlutil::cls();
+    if (flag == 1) {
+        Factura* f = fcs[pos];
+        const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
+        cout << "Tipo: " << tipo << "\n";
+        cout << "Numero: " << f->getNumero() << "\n";
+        cout << "Cliente: " << f->getClienteDNI() << "\n";
+        cout << "Fecha emision: " << f->getFechaEmision().toString() << "\n";
+        cout << "Total sin IVA: " << f->TotalSinIVA() << "\n";
+        cout << "CAE: " << f->getCAE() << "\n";
+        cout << "Vto CAE: " << f->getVencimientoCAE().toString() << "\n";
+        cout << "Items (" << f->CantidadItems() << "):" << "\n";
+        for (unsigned int k = 0; k < f->CantidadItems(); ++k) {
+            const Item* it = f->ObtenerItem(k);
+            if (it == nullptr) continue;
+            cout << "  - " << it->getCodigo() << " | Cant: " << it->getCantidad()
+                 << " | Precio: " << it->getPrecioUnitario()
+                 << " | Subtotal: " << it->getCantidad() * it->getPrecioUnitario() << "\n";
+        }
+    } else {
+        NotaDeCredito* n = nts[pos];
+        cout << "Tipo: Nota de Credito\n";
+        cout << "Numero: " << n->getNumero() << "\n";
+        cout << "Cliente: " << n->getClienteDNI() << "\n";
+        cout << "Fecha emision: " << n->getFechaEmision().toString() << "\n";
+        cout << "Total sin IVA: " << n->TotalSinIVA() << "\n";
+        cout << "Motivo: " << n->getMotivoAnulacion() << "\n";
+        cout << "Items (" << n->CantidadItems() << "):" << "\n";
+        for (unsigned int k = 0; k < n->CantidadItems(); ++k) {
+            const Item* it = n->ObtenerItem(k);
+            if (it == nullptr) continue;
+            cout << "  - " << it->getCodigo() << " | Cant: " << it->getCantidad()
+                 << " | Precio: " << it->getPrecioUnitario()
+                 << " | Subtotal: " << it->getCantidad() * it->getPrecioUnitario() << "\n";
+        }
+    }
+
+    PauseConsole();
+}
+
 void VentaMenu::ImprimirComprobantesCliente(const string& dni) {
     GenericArray<Factura> fcs = facturas.BuscarPorCliente(dni);
     GenericArray<NotaDeCredito> nts = notas.BuscarPorCliente(dni);
@@ -225,8 +372,9 @@ void VentaMenu::ImprimirIntercalado(GenericArray<Factura>& fcs, GenericArray<Not
         Tabling::Row* row = new Tabling::Row(columnas);
         if (tomarFactura) {
             Factura* f = fcs[i];
+            const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
             row->AddCell(to_string(f->getNumero()), widthNumero);
-            row->AddCell("Factura", widthTipo);
+            row->AddCell(tipo, widthTipo);
             row->AddCell(f->getFechaEmision().toString(), widthFecha);
             row->AddCell(to_string(f->TotalSinIVA()), widthTotal);
             row->AddCell(to_string(f->CantidadItems()), 6);
@@ -319,9 +467,10 @@ void VentaMenu::ImprimirIntercaladoOrdenCliente(GenericArray<Factura>& fcs, Gene
         Tabling::Row* row = new Tabling::Row(columnas);
         if (tomarFactura) {
             Factura* f = fcs[i];
+            const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
             row->AddCell(f->getClienteDNI(), widthCliente);
             row->AddCell(to_string(f->getNumero()), widthNumero);
-            row->AddCell("Factura", widthTipo);
+            row->AddCell(tipo, widthTipo);
             row->AddCell(f->getFechaEmision().toString(), widthFecha);
             row->AddCell(to_string(f->TotalSinIVA()), widthTotal);
             row->AddCell(string("CAE: ") + f->getCAE(), widthExtra);
@@ -356,14 +505,14 @@ void VentaMenu::AnularFactura() {
     }
 
     if (candidatas.Size() == 0) {
-        Warning w("Sin facturas facturadas", "No hay facturas con CAE para anular.");
+        Warning w("Sin comprobantes facturados", "No hay facturas con CAE para anular.");
         w.Show(); w.WaitForKey();
         PauseConsole();
         return;
     }
 
     const unsigned int cols = 7;
-    Tabling::Table tabla(candidatas.Size() + 1, cols);
+    Tabling::Table tabla(candidatas.Size(), cols);
     Tabling::Row* header = new Tabling::Row(cols);
     header->AddCell("Idx", 4);
     header->AddCell("Numero", Comprobante::ColNumeroSize());
@@ -387,20 +536,27 @@ void VentaMenu::AnularFactura() {
         tabla.AddRow(row);
     }
 
-    tabla.Print();
-
     int idx = -1;
     while (true) {
-        idx = static_cast<int>(InputNumber("Indice a anular: "));
-        if (idx >= 0 && static_cast<unsigned int>(idx) < candidatas.Size()) break;
-        Warning w("Indice invalido", "Seleccione un indice de la lista.");
-        w.Show(); w.WaitForKey();
+        rlutil::cls();
+        tabla.Print();
+        string entrada = InputBox("Indice a anular (vacio para cancelar): ");
+        if (entrada.empty()) return;
+
+        char* endptr = nullptr;
+        const char* raw = entrada.c_str();
+        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
+        if (endptr == raw || *endptr != '\0') continue;
+        if (idxLong >= candidatas.Size()) continue;
+        idx = static_cast<int>(idxLong);
+        break;
     }
 
     Factura* seleccion = candidatas[idx];
     unsigned int nro = seleccion->getNumero();
     string motivo = InputBox("Motivo de anulación: ");
-    if (Confirm("Confirmar anular factura?")) {
+    Warning confirmacion("Confirmar", "Anular factura?");
+    if (confirmacion.ShowYesNo()) {
         bool ok = ConvertirFacturaEnNota(nro, motivo);
         if (ok) cout << "Factura convertida en Nota de Credito." << endl;
         else cout << "Error: no se pudo convertir la factura." << endl;
