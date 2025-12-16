@@ -150,7 +150,7 @@ void VentaMenu::AnularFactura() {
 
     Factura* seleccion = candidatas[idx];
     unsigned int nro = seleccion->getNumero();
-    string motivo = InputBox("Motivo de anulación: ");
+    string motivo = InputBox("Motivo de anulacion: ");
     Warning confirmacion("Confirmar", "Anular factura?");
     if (confirmacion.ShowYesNo()) {
         bool ok = ConvertirFacturaEnNota(nro, motivo);
@@ -882,6 +882,13 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                     w.Show(); w.WaitForKey();
                     break;
                 }
+                cout << "\nItems en la factura:\n";
+                for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
+                    const Item* pitList = factura.ObtenerItem(k);
+                    if (pitList != nullptr) {
+                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
+                    }
+                }
                 unsigned int idx = InputNumber("Indice de item (0-based): ");
                 const Item* pit = factura.ObtenerItem(idx);
                 if (pit == nullptr) {
@@ -902,6 +909,13 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                     Warning w("Sin items", "La factura no tiene items para eliminar.");
                     w.Show(); w.WaitForKey();
                     break;
+                }
+                cout << "\nItems en la factura:\n";
+                for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
+                    const Item* pitList = factura.ObtenerItem(k);
+                    if (pitList != nullptr) {
+                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
+                    }
                 }
                 unsigned int idx = InputNumber("Indice de item (0-based): ");
                 const Item* pit = factura.ObtenerItem(idx);
