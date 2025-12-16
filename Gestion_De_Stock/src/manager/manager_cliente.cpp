@@ -228,7 +228,7 @@ void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
                         columnas = 9;
     Tabling::Table mi_tabla(altura, columnas);
 
-    Tabling::Row* header = new Tabling::Row(9);
+    Tabling::Row* header = new Tabling::Row(columnas);
     header->AddCell("DNI", Cliente::GetDniSize());
     header->AddCell("Nombre", Cliente::GetNombreSize());
     header->AddCell("Apellido", Cliente::GetApellidoSize());

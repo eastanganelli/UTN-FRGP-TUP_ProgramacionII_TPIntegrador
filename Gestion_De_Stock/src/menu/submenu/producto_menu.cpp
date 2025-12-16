@@ -1,6 +1,7 @@
 #include "producto_menu.h"
 #include <iostream>
 #include <algorithm>
+#include <cstdlib>
 #include "../../controller/generic_array.h"
 
 using namespace std;
@@ -182,7 +183,8 @@ bool ProductoMenu::OnSelect(int index) {
             return false;
         }
         case 1: {
-            string codigo = InputBox("Codigo del producto a modificar: ");
+            string codigo = SeleccionarProductoCodigo();
+            if (codigo.empty()) return false;
             Producto* prod = productos[codigo];
             if (prod == nullptr) {
                 cout << "Producto no encontrado." << endl;
@@ -198,7 +200,8 @@ bool ProductoMenu::OnSelect(int index) {
             return false;
         }
         case 2: {
-            string codigo = InputBox("Codigo del producto a eliminar: ");
+            string codigo = SeleccionarProductoCodigo();
+            if (codigo.empty()) return false;
             Producto* prod = productos[codigo];
             if (prod == nullptr) {
                 cout << "Producto no encontrado." << endl;
@@ -305,5 +308,61 @@ void ProductoMenu::ImprimirProveedoresActivos(GenericArray<string>& cuits, Gener
     cout << "\nSeleccione proveedor:\n";
     for (unsigned int i = 0; i < cuits.Size(); ++i) {
         cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << "\n";
+    }
+}
+
+string ProductoMenu::SeleccionarProductoCodigo() {
+    rlutil::cls();
+    const unsigned int total = productos.Count();
+    GenericArray<string> codigos;
+    GenericArray<string> filas;
+
+    for (unsigned int i = 0; i < total; ++i) {
+        Producto* p = productos.At(i);
+        if (p != nullptr) {
+            string codigo = p->getCodigo();
+            string fila = codigo + " - " + p->getDescripcion() + " | Precio: " + to_string(p->getPrecio()) + " | Stock: " + to_string(p->getStock());
+            codigos.Append(codigo);
+            filas.Append(fila);
+            delete p;
+        }
+    }
+
+    if (codigos.Size() == 0) {
+        Warning w("Sin productos", "No hay productos cargados para seleccionar.");
+        w.Show(); w.WaitForKey();
+        return "";
+    }
+
+    ImprimirProductosListado(codigos, filas);
+
+    while (true) {
+        string entrada = InputBox("Indice (vacio para cancelar): ");
+        if (entrada.empty()) return "";
+
+        char* endptr = nullptr;
+        const char* raw = entrada.c_str();
+        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
+        if (endptr == raw || *endptr != '\0') {
+            Warning w("Indice invalido", "Ingrese un numero de la lista.");
+            w.Show(); w.WaitForKey();
+            ImprimirProductosListado(codigos, filas);
+            continue;
+        }
+        if (idxLong >= codigos.Size()) {
+            Warning w("Fuera de rango", "Seleccione un indice existente.");
+            w.Show(); w.WaitForKey();
+            ImprimirProductosListado(codigos, filas);
+            continue;
+        }
+        return *codigos[static_cast<unsigned int>(idxLong)];
+    }
+}
+
+void ProductoMenu::ImprimirProductosListado(GenericArray<string>& codigos, GenericArray<string>& filas) {
+    rlutil::cls();
+    cout << "\nSeleccione producto:\n";
+    for (unsigned int i = 0; i < codigos.Size(); ++i) {
+        cout << i << ") " << *filas[i] << "\n";
     }
 }

@@ -57,7 +57,7 @@ public:
     bool EliminarItem(const string codigo);
     unsigned int CantidadItems();
     const Item* ObtenerItem(unsigned int index) const;
-    GenericArray<Item> ObtenerTodosLosItems();
+    GenericArray<Item>* ObtenerTodosLosItems();
     void LimpiarItems();
 };
 

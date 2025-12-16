@@ -24,9 +24,9 @@ Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion,
 
 Producto::~Producto() { }
 
-string Producto::getCodigo() { return string(this->codigo); }
+string Producto::getCodigo() { return string(this->codigo, CODIGO_SIZE); }
 
-string Producto::getCodigoProveedor() { return string(this->codigoProveedor); }
+string Producto::getCodigoProveedor() { return string(this->codigoProveedor, CODIGOPROVEEDOR_SIZE); }
 
 string Producto::getDescripcion() { return string(this->descripcion); }
 
@@ -77,8 +77,7 @@ unsigned int Producto::ColPrecioSize() { return Producto::COL_Precio; }
 unsigned int Producto::ColStockSize() { return Producto::COL_Stock; }
 
 string Producto::GenerarCodigo() {
-    // genera un codigo alfanumerico de longitud maxima permitida (dejando espacio para '\0')
-    return DataGenerator::generarCodigoAlfaNumerico(static_cast<int>(CODIGO_SIZE - 1));
+    return DataGenerator::generarCodigoAlfaNumerico(CODIGO_SIZE);
 }
 
 bool Producto::operator==(const Producto& otro) {

@@ -350,7 +350,7 @@ void VentaMenu::VerDetalleComprobante() {
     const unsigned int pos = *mapIdx[static_cast<unsigned int>(seleccionado)];
 
     unsigned int cantidad_filas = 0;
-    GenericArray<Item> items_comprobante;
+    GenericArray<Item>* items_comprobante = nullptr;
 
     rlutil::cls();
     if (flag == 1) {
@@ -395,17 +395,23 @@ void VentaMenu::VerDetalleComprobante() {
     ih->AddCell("Precio", widthPrecio);
     ih->AddCell("Subtotal", widthSub);
     itemsTable.AddRow(ih);
-    for (unsigned int k = 0; k < cantidad_filas; ++k) {
-        const Item* it = items_comprobante[k];
-        if (it == nullptr) continue;
+    for (unsigned int k = 0; k < cantidad_filas; k++) {
+        Item* it = (*items_comprobante)[k];
         Tabling::Row* ir = new Tabling::Row(itemCols);
-        ir->AddCell(it->getCodigo(), widthCod);
-        ir->AddCell(to_string(it->getCantidad()), widthCant);
-        ir->AddCell(to_string(it->getPrecioUnitario()), widthPrecio);
-        ir->AddCell(to_string(it->getCantidad() * it->getPrecioUnitario()), widthSub);
+        if (it == nullptr) continue;
+        string codigo = it->getCodigo(), 
+               cantidad = to_string(it->getCantidad()),
+               precioUnitario = to_string(it->getPrecioUnitario()),
+               subtotal = to_string(it->getCantidad() * it->getPrecioUnitario());
+        ir->AddCell(codigo, widthCod);
+        ir->AddCell(cantidad, widthCant);
+        ir->AddCell(precioUnitario, widthPrecio);
+        ir->AddCell(subtotal, widthSub);
         itemsTable.AddRow(ir);
     }
     itemsTable.Print();
+
+    delete items_comprobante;
 
     PauseConsole();
 }
@@ -960,9 +966,8 @@ bool VentaMenu::ConvertirFacturaEnNota(unsigned int numero, const string& motivo
         if (it == nullptr) continue;
         Producto* p = productos[it->getCodigo()];
         if (p != nullptr) {
-            Producto actualizado = *p;
-            actualizado.setStock(p->getStock() + it->getCantidad());
-            productos.Modificar(actualizado.getCodigo(), &actualizado);
+            p->setStock(p->getStock() + it->getCantidad());
+            productos.Modificar(p->getCodigo(), p);
             delete p;
         }
     }

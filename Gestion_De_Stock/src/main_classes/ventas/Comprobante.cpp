@@ -53,7 +53,7 @@ bool Comprobante::IsEmpty() {
 bool Comprobante::AgregarItem(const Item& it) {
     for (unsigned int i = 0; i < this->itemsActuales; i++) {
         if (this->items[i] == it) {
-            return false; // duplicate
+            return false;
         }
     }
     if (this->itemsActuales >= ITEMS_MAX) return false;
@@ -84,10 +84,10 @@ const Item* Comprobante::ObtenerItem(unsigned int index) const {
     return &this->items[index];
 }
 
-GenericArray<Item> Comprobante::ObtenerTodosLosItems() {
-    GenericArray<Item> resultado;
+GenericArray<Item>* Comprobante::ObtenerTodosLosItems() {
+    GenericArray<Item>* resultado = new GenericArray<Item>();
     for (unsigned int i = 0; i < this->itemsActuales; i++) {
-        resultado.Append(this->items[i]);
+        resultado->Append(this->items[i]);
     }
     return resultado;
 }
