@@ -889,7 +889,7 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                         cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
                     }
                 }
-                unsigned int idx = InputNumber("Indice de item (0-based): ");
+                unsigned int idx = InputNumber("Indice de item: ");
                 const Item* pit = factura.ObtenerItem(idx);
                 if (pit == nullptr) {
                     rlutil::cls();
@@ -917,7 +917,7 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                         cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
                     }
                 }
-                unsigned int idx = InputNumber("Indice de item (0-based): ");
+                unsigned int idx = InputNumber("Indice de item: ");
                 const Item* pit = factura.ObtenerItem(idx);
                 if (pit == nullptr) {
                     rlutil::cls();
