@@ -3,6 +3,7 @@
 
 #include <ctime>
 #include <string>
+#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -18,6 +19,7 @@ using namespace std;
 #include "../../manager/manager_proveedor.h"
 #include "../../manager/manager_cliente.h"
 #include "../../manager/manager_tipo_responsables.h"
+#include "../validation.h"
 
 #include "../../main_classes/ventas/Item.h"
 
@@ -29,6 +31,10 @@ namespace DataGenerator {
         char tipoFactura;
     };
 
+    void LogFacturaBasica(Factura& f, bool printItems);
+    void CollectClientes(ClienteManager& clientes, GenericArray<string>& dnis);
+    Fecha RandomFechaWithinDays(int spanDays);
+    void GenerateInvoices(unsigned int count, bool printLog);
     void GenerateInvoices(unsigned int count = 30, bool printLog = false);
     Fecha RandomFechaWithinDays(int spanDays = 180);
 }

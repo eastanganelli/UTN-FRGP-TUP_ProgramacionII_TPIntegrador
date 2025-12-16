@@ -20,21 +20,23 @@ private:
 
     void AgregarFactura();
     void ModificarFactura();
+    void AnularFactura();
+    void ListarComprobantesPorCliente();
     void ListarFacturasPorMonto();
+    void BuscarComprobantePorCliente();
     void BuscarComprobantePorExtra();
     void BuscarComprobantePorRangoFecha();
-    void ListarComprobantesPorCliente();
-    void BuscarComprobantePorCliente();
     void VerDetalleComprobante();
-    void AnularFactura();
     void ImprimirComprobantesCliente(const std::string& dni);
-    void ImprimirIntercaladoComun(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, bool ordenarPorCliente);
-    void ImprimirIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);
+    void ConstruirOrdenIntercalado(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, bool ordenarPorCliente, GenericArray<unsigned int>& mapTipo, GenericArray<unsigned int>& mapIdx);
+    void ConstruirIntercaladoPorNumero(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, GenericArray<unsigned int>& numeros, GenericArray<unsigned int>& tipos);
+    void OrdenarComprobantesPorCliente(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, GenericArray<unsigned int>& numeros, GenericArray<unsigned int>& tipos);
+    void OrdenarComprobantesPorMonto(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts, GenericArray<unsigned int>& numeros, GenericArray<unsigned int>& tipos);
+    void ImprimirIntercalado(GenericArray<unsigned int>& numeros, GenericArray<unsigned int>& tipos);
     void OrdenarPorNumero(GenericArray<Factura>& fcs);
     void OrdenarPorNumero(GenericArray<NotaDeCredito>& nts);
     void OrdenarPorCliente(GenericArray<Factura>& fcs);
     void OrdenarPorCliente(GenericArray<NotaDeCredito>& nts);
-    void ImprimirIntercaladoOrdenCliente(GenericArray<Factura>& fcs, GenericArray<NotaDeCredito>& nts);
 
     std::string SeleccionarCliente();
     std::string SeleccionarProductoCodigo();

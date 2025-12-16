@@ -17,9 +17,10 @@ class Item {
 private:
     static const unsigned int CODIGO_SIZE = 9;
 
-    static const unsigned int COL_Codigo = 11;
-    static const unsigned int COL_Cantidad = 10;
+    static const unsigned int COL_Codigo = 12;
+    static const unsigned int COL_Cantidad = 12;
     static const unsigned int COL_PrecioUnitario = 16;
+    static const unsigned int COL_TotalItem = 16;
 
     char codigo[CODIGO_SIZE];
     unsigned int cantidad;
@@ -37,6 +38,7 @@ public:
     static const unsigned int CodigoSize() { return COL_Codigo; }
     static const unsigned int CantidadSize() { return COL_Cantidad; }
     static const unsigned int PrecioUnitarioSize() { return COL_PrecioUnitario; }
+    static const unsigned int TotalItemSize() { return COL_TotalItem; }
 
     // Setters
     void setCodigo(const std::string& c);
