@@ -1,8 +1,60 @@
 #include "invoice_generator.h"
 
-#include <vector>
-#include <algorithm>
-#include "../validation.h"
+const float IVA_RATE = 0.21f;
+
+void DataGenerator::LogFacturaBasica(Factura& f, bool printItems) {
+    const float neto = f.TotalSinIVA();
+    const float totalConIVA = neto * (1.0f + IVA_RATE);
+
+    cout << "Factura - ID: " << f.getNumero()
+         << " | Cliente: " << f.getClienteDNI()
+         << " | Neto: " << neto
+         << " | Total c/IVA: " << totalConIVA
+         << " | Items: " << f.CantidadItems() << std::endl;
+
+    if (!printItems) return;
+
+    for (unsigned int k = 0; k < f.CantidadItems(); ++k) {
+        const Item* it = f.ObtenerItem(k);
+        if (it != nullptr) {
+            cout << "  - Item codigo: " << it->getCodigo() << std::endl;
+        }
+    }
+}
+
+void DataGenerator::CollectClientes(ClienteManager& clientes, GenericArray<string>& dnis) {
+    const unsigned int cliCount = clientes.Count();
+    for (unsigned int c = 0; c < cliCount; ++c) {
+        Cliente* cli = clientes.At(c);
+        if (cli != nullptr) {
+            string dni = cli->getDNI();
+            dnis.Append(dni);
+            delete cli;
+        }
+    }
+}
+
+static void ShuffleDnis(GenericArray<string>& dnis) {
+    if (dnis.Size() < 2) return;
+    // Fisher-Yates sin STL
+    for (int i = static_cast<int>(dnis.Size()) - 1; i > 0; --i) {
+        unsigned int j = static_cast<unsigned int>(rand() % (i + 1));
+        dnis.Swap(dnis[static_cast<unsigned int>(i)], dnis[j]);
+    }
+}
+
+static Fecha RandomFechaWithinDaysLocal(int spanDays) {
+    time_t now = time(nullptr);
+    int span = spanDays > 0 ? spanDays : 1;
+    int offset = rand() % span;
+    time_t target = now - static_cast<time_t>(offset * 24 * 3600);
+    tm* ltm = localtime(&target);
+    return Fecha(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+}
+
+Fecha DataGenerator::RandomFechaWithinDays(int spanDays) {
+    return RandomFechaWithinDaysLocal(spanDays);
+}
 
 void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
@@ -27,29 +79,19 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             return;
         }
 
-        // Distribuir clientes de forma rotativa para no repetir siempre el mismo
-        std::vector<string> clientDnis;
-        clientDnis.reserve(cliCount);
-        for (unsigned int c = 0; c < cliCount; ++c) {
-            Cliente* cli = clientes.At(c);
-            if (cli != nullptr) {
-                clientDnis.push_back(cli->getDNI());
-                delete cli;
-            }
-        }
-        if (clientDnis.size() > 1) {
-            std::random_shuffle(clientDnis.begin(), clientDnis.end());
-        }
+        GenericArray<string> clientDnis;
+        CollectClientes(clientes, clientDnis);
+        ShuffleDnis(clientDnis);
 
-        std::vector<unsigned int> facturasConCAE;
+        GenericArray<unsigned int> facturasConCAE;
 
         for (unsigned int i = 0; i < count; ++i) {
-            const string& clienteDNI = clientDnis[i % clientDnis.size()];
+            const string clienteDNI = *clientDnis[i % clientDnis.Size()];
 
             unsigned int id = 1000 + i;
 
             Factura f(id, clienteDNI);
-            f.getFechaEmision() = DataGenerator::RandomFechaWithinDays(180);
+            f.getFechaEmision() = RandomFechaWithinDaysLocal(180);
 
             unsigned int itemsCount = (rand() % 6) + 1;
             for (unsigned int it = 0; it < itemsCount; ++it) {
@@ -67,7 +109,8 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             // Solo algunas facturas obtienen CAE para mezclar facturadas y pendientes
             if (f.CantidadItems() > 0 && (rand() % 100) < 70) {
                 if (f.Facturar() && !Validation::IsEmpty(f.getCAE())) {
-                    facturasConCAE.push_back(f.getNumero());
+                    unsigned int nro = f.getNumero();
+                    facturasConCAE.Append(nro);
                 }
             }
 
@@ -85,67 +128,21 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             }
 
             if (saved != nullptr) {
-                // Calcular porcentaje de IVA consultando TipoResponsableManager
-//                TipoResponsable* tr = nullptr;
-//                if (!Validation::IsEmpty(codigoRazon)) {
-//                    tr = tipos[codigoRazon];
-//                }
-//                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
-
-                float neto = saved->TotalSinIVA();
-                float totalConIVA = neto * (1.0f + 1 / 100.0f);
-
                 if (printLog) {
-                    cout << "Factura leida del archivo - ID: " << saved->getNumero()
-                        << " | Cliente: " << saved->getClienteDNI()
-                        //  << " | Tipo: " << saved->getTipoFactura()
-                        << " | Neto: " << neto
-    //                     << " | IVA(%): " << porcentaje
-                        << " | Total c/IVA: " << totalConIVA
-                        << " | Items: " << saved->CantidadItems() << std::endl;
-
-                    for (unsigned int k = 0; k < saved->CantidadItems(); ++k) {
-                        const Item* it = saved->ObtenerItem(k);
-                        if (it != nullptr) {
-                            cout << "  - Item codigo: " << it->getCodigo() << std::endl;
-                        }
-                    }
+                    cout << "Factura leida del archivo -> ";
+                    LogFacturaBasica(*saved, true);
                 }
-
                 delete saved; // FileSystem::At devuelve un nuevo puntero
-            } else {
-                // Fallback: imprimir la factura auxiliar en memoria
-//                TipoResponsableManager tipos;
-//                TipoResponsable* tr = nullptr;
-//                if (codigoRazon > 0 && codigoRazon < tipos.Count()) tr = tipos[codigoRazon];
-//                float porcentaje = (tr != nullptr) ? tr->getPorcentaje() : 21.0f;
-
-                float neto = f.TotalSinIVA();
-                float totalConIVA = neto * (1.0f + 1 / 100.0f);
-
-                if (printLog) {
-                    cout << "Factura (no encontrada en archivo) - ID: " << f.getNumero()
-                        << " | Cliente: " << f.getClienteDNI()
-                        //  << " | Tipo: " << f.getTipoFactura()
-                        << " | Neto: " << neto
-    //                     << " | IVA(%): " << porcentaje
-                        << " | Total c/IVA: " << totalConIVA
-                        << " | Items: " << f.CantidadItems() << std::endl;
-
-                    for (unsigned int k = 0; k < f.CantidadItems(); ++k) {
-                        const Item* it = f.ObtenerItem(k);
-                        if (it != nullptr) {
-                            cout << "  - Item codigo: " << it->getCodigo() << std::endl;
-                        }
-                    }
-                }
+            } else if (printLog) {
+                cout << "Factura (no encontrada en archivo, auxiliar) -> ";
+                LogFacturaBasica(f, true);
             }
         }
 
         // Convertir algunas facturas facturadas en notas de credito
-        for (unsigned int idx = 0; idx < facturasConCAE.size(); ++idx) {
+        for (unsigned int idx = 0; idx < facturasConCAE.Size(); ++idx) {
             if ((rand() % 100) >= 20) continue; // 20% se anulan
-            unsigned int nro = facturasConCAE[idx];
+            unsigned int nro = *facturasConCAE[idx];
             Factura* fac = facturas[nro];
             if (fac == nullptr) continue;
             if (Validation::IsEmpty(fac->getCAE())) { delete fac; continue; }
@@ -177,13 +174,4 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
     } else {
         std::cout << "Las facturas ya existen. No se generaron nuevos datos." << std::endl;
     }
-}
-
-Fecha DataGenerator::RandomFechaWithinDays(int spanDays) {
-    time_t now = time(nullptr);
-    int span = spanDays > 0 ? spanDays : 1;
-    int offset = rand() % span;
-    time_t target = now - static_cast<time_t>(offset * 24 * 3600);
-    tm* ltm = localtime(&target);
-    return Fecha(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
 }

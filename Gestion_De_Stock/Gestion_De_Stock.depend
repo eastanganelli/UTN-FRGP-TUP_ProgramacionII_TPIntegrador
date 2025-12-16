@@ -737,7 +737,7 @@
 1765509830 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\table\row.cpp
 	"row.h"
 
-1765858360 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_producto.cpp
+1765860433 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_producto.cpp
 	"manager_producto.h"
 
 1764909138 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_producto.h
@@ -853,9 +853,10 @@
 	<algorithm>
 	"../validation.h"
 
-1765776760 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
+1765861947 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
 	<ctime>
 	<string>
+	<cstdlib>
 	<iostream>
 	"generator.h"
 	"client_generator.h"
@@ -867,6 +868,7 @@
 	"../../manager/manager_proveedor.h"
 	"../../manager/manager_cliente.h"
 	"../../manager/manager_tipo_responsables.h"
+	"../validation.h"
 	"../../main_classes/ventas/Item.h"
 
 1764911658 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\manager\manager_tipo_responsables.cpp
