@@ -20,7 +20,7 @@ void Factura::ObtenerCAE() {
     const char caracteres[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     int num_caracteres = sizeof(caracteres) - 1;
     srand(static_cast<unsigned int>(time(0)));
-    for (int i = 0; i < Factura::CAE_SIZE; ++i) {
+    for (int i = 0; i < (int)Factura::CAE_SIZE; ++i) {
         this->cae[i] = caracteres[rand() % num_caracteres];
     }
 }
@@ -153,7 +153,8 @@ void Factura::ModificarFactura(Factura& factura, ProductoManager& pm) {
         cout << "1) Agregar Item\n";
         cout << "2) Modificar Item\n";
         cout << "3) Eliminar Item\n";
-        cout << "4) Terminar\n";
+        cout << "4) Facturar\n";
+        cout << "5) Terminar\n";
         opcion = InputNumber("Seleccione accion: ");
         switch(opcion) {
             case 1: {
@@ -192,10 +193,18 @@ void Factura::ModificarFactura(Factura& factura, ProductoManager& pm) {
                 }
                 break;
             }
-            case 4: break;
+            case 4: {
+                if (factura.Facturar()) {
+                    rlutil::cls();
+                    Informational i("Factura facturada", "Se genero CAE para la factura.");
+                    i.Show(); i.WaitForKey();
+                }
+                break;
+            }
+            case 5: break;
             default: { Warning w("Opcion invalida", "Seleccione una opcion valida."); w.Show(); w.WaitForKey(); break; }
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
     rlutil::cls();
 }
 

@@ -840,18 +840,21 @@ Factura VentaMenu::CrearFactura(unsigned int numero, bool& ok) {
 
     while (AgregarItemInteractivo(f)) { }
 
-    if (f.CantidadItems() > 0) {
-        if (!f.Facturar()) {
-            rlutil::cls();
-            Warning w("Facturacion", "No se pudo generar CAE para la factura.");
-            w.Show(); w.WaitForKey();
-        }
-    } else {
+    if (f.CantidadItems() == 0) {
         rlutil::cls();
         Informational i("Factura guardada", "Factura creada sin items. No puede ser facturada hasta agregar items.");
         i.Show(); i.WaitForKey();
+    } else {
+        Warning deseaFacturar("Facturar", "Desea facturar ahora? (requiere items)");
+        bool facturar = deseaFacturar.ShowYesNo();
+        if (facturar) {
+            if (!f.Facturar()) {
+                rlutil::cls();
+                Warning w("Facturacion", "No se pudo generar CAE para la factura.");
+                w.Show(); w.WaitForKey();
+            }
+        }
     }
-
     ok = true;
     return f;
 }

@@ -847,11 +847,8 @@
 1765809750 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\main_classes\ventas\item.cpp
 	"Item.h"
 
-1765809305 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
+1765861846 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.cpp
 	"invoice_generator.h"
-	<vector>
-	<algorithm>
-	"../validation.h"
 
 1765861947 c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\controller\data_generator\invoice_generator.h
 	<ctime>
@@ -1532,7 +1529,7 @@
 	"../../menu_utils.h"
 	"../../../manager/ventas/manager_nota_de_credito.h"
 
-1765834735 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.cpp
+1765863070 source:c:\users\ezequ\documents\facultad\utn-frgp-tup_programacionii_tpintegrador\gestion_de_stock\src\menu\submenu\ventas\venta_menu.cpp
 	"venta_menu.h"
 	<iostream>
 	"../../../controller/table/table.h"
