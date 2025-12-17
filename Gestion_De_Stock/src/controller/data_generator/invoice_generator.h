@@ -33,10 +33,9 @@ namespace DataGenerator {
 
     void LogFacturaBasica(Factura& f, bool printItems);
     void CollectClientes(ClienteManager& clientes, GenericArray<string>& dnis);
+    void ShuffleDnis(GenericArray<string>& dnis);
     Fecha RandomFechaWithinDays(int spanDays);
-    void GenerateInvoices(unsigned int count, bool printLog);
     void GenerateInvoices(unsigned int count = 30, bool printLog = false);
-    Fecha RandomFechaWithinDays(int spanDays = 180);
 }
 
 #endif // INVOICE_GENERATOR_H

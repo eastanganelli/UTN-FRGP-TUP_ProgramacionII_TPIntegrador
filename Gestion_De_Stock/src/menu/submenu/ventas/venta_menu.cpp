@@ -59,8 +59,16 @@ void VentaMenu::AgregarFactura() {
         PauseConsole();
         return;
     }
-    if (facturas.Agregar(f)) cout << "Factura agregada exitosamente." << endl;
-    else cout << "Error al agregar la factura." << endl;
+    if (facturas.Agregar(f)) {
+        rlutil::cls();
+        Informational i("Factura agregada", "Factura agregada exitosamente.");
+        i.Show(); i.WaitForKey();
+    }
+    else {
+        rlutil::cls();
+        Error e("Error Adiccion", "Error al agregar la factura.");
+        e.Show(); e.WaitForKey();
+    }
     PauseConsole();
 }
 
@@ -68,7 +76,9 @@ void VentaMenu::ModificarFactura() {
     unsigned int numero = InputNumber("Numero de la factura a modificar: ");
     Factura* f = facturas[numero];
     if (f == nullptr) {
-        cout << "Factura no encontrada." << endl;
+        rlutil::cls();
+        Warning w("Factura no encontrada", "No se encontro factura con numero " + to_string(numero) + ".");
+        w.Show(); w.WaitForKey();
         PauseConsole();
         return;
     }
@@ -82,8 +92,16 @@ void VentaMenu::ModificarFactura() {
 
     ModificarFacturaInteractiva(*f);
 
-    if (facturas.Modificar(numero, f)) cout << "Factura modificada exitosamente." << endl;
-    else cout << "Error al modificar la factura." << endl;
+    if (facturas.Modificar(numero, f)) {
+        rlutil::cls();
+        Informational i("Factura modificada", "Factura modificada exitosamente.");
+        i.Show(); i.WaitForKey();
+    }
+    else {
+        rlutil::cls();
+        Error e("Error Modificacion", "Error al modificar la factura.");
+        e.Show(); e.WaitForKey();
+    }
     PauseConsole();
 }
 
@@ -101,6 +119,7 @@ void VentaMenu::AnularFactura() {
     }
 
     if (candidatas.Size() == 0) {
+        rlutil::cls();
         Warning w("Sin comprobantes facturados", "No hay facturas con CAE para anular.");
         w.Show(); w.WaitForKey();
         PauseConsole();
@@ -154,8 +173,16 @@ void VentaMenu::AnularFactura() {
     Warning confirmacion("Confirmar", "Anular factura?");
     if (confirmacion.ShowYesNo()) {
         bool ok = ConvertirFacturaEnNota(nro, motivo);
-        if (ok) cout << "Factura convertida en Nota de Credito." << endl;
-        else cout << "Error: no se pudo convertir la factura." << endl;
+        if (ok) {
+            rlutil::cls();
+            Informational i("Factura convertida", "Factura convertida en Nota de Credito.");
+            i.Show(); i.WaitForKey();
+        }
+        else {
+            rlutil::cls();
+            Error e("Error Conversion", "Error: no se pudo convertir la factura.");
+            e.Show(); e.WaitForKey();
+        }
     }
     PauseConsole();
 }

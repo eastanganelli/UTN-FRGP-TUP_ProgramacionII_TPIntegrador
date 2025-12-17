@@ -34,7 +34,7 @@ void DataGenerator::CollectClientes(ClienteManager& clientes, GenericArray<strin
     }
 }
 
-static void ShuffleDnis(GenericArray<string>& dnis) {
+void DataGenerator::ShuffleDnis(GenericArray<string>& dnis) {
     if (dnis.Size() < 2) return;
     // Fisher-Yates sin STL
     for (int i = static_cast<int>(dnis.Size()) - 1; i > 0; --i) {
@@ -43,7 +43,7 @@ static void ShuffleDnis(GenericArray<string>& dnis) {
     }
 }
 
-static Fecha RandomFechaWithinDaysLocal(int spanDays) {
+Fecha DataGenerator::RandomFechaWithinDays(int spanDays) {
     time_t now = time(nullptr);
     int span = spanDays > 0 ? spanDays : 1;
     int offset = rand() % span;
@@ -52,12 +52,8 @@ static Fecha RandomFechaWithinDaysLocal(int spanDays) {
     return Fecha(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
 }
 
-Fecha DataGenerator::RandomFechaWithinDays(int spanDays) {
-    return RandomFechaWithinDaysLocal(spanDays);
-}
-
 void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
-    srand(static_cast<unsigned int>(time(NULL)));
+    srand(time(NULL));
 
     FacturaManager facturas;
     NotaDeCreditoManager notas;
@@ -70,7 +66,6 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
         std::cout << "--- Datos de Facturas Generados ---" << std::endl;
 
         unsigned int prodCount = productos.Count();
-        // unsigned int provCount = proveedores.Count();
         unsigned int cliCount = clientes.Count();
 
         if (prodCount == 0 || cliCount == 0) {
@@ -91,7 +86,8 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             unsigned int id = 1000 + i;
 
             Factura f(id, clienteDNI);
-            f.getFechaEmision() = RandomFechaWithinDaysLocal(180);
+            Fecha aux = RandomFechaWithinDays(180);
+            f.setFechaEmision(aux);
 
             unsigned int itemsCount = (rand() % 10) + 1;
             for (unsigned int it = 0; it < itemsCount; ++it) {
@@ -148,7 +144,8 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             if (Validation::IsEmpty(fac->getCAE())) { delete fac; continue; }
 
             NotaDeCredito nota(fac->getNumero(), fac->getClienteDNI(), "Anulada por generador");
-            nota.getFechaEmision() = Fecha::Hoy();
+            Fecha aux = Fecha::Hoy();
+            nota.setFechaEmision(aux);
 
             for (unsigned int it = 0; it < fac->CantidadItems(); ++it) {
                 const Item* item = fac->ObtenerItem(it);

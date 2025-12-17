@@ -51,6 +51,7 @@ public:
 
     // Setters
     void setClienteDNI(string dni);
+    void setFechaEmision(Fecha& fecha);
 
     // Items
     bool AgregarItem(const Item& it);
