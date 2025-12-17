@@ -17,6 +17,7 @@ Factura::Factura(unsigned int _id, string _cliente) : Comprobante(_id, _cliente)
 Factura::~Factura() { }
 
 void Factura::ObtenerCAE() {
+    srand(time(NULL));
     const char caracteres[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     int num_caracteres = sizeof(caracteres) - 1;
     srand(static_cast<unsigned int>(time(0)));

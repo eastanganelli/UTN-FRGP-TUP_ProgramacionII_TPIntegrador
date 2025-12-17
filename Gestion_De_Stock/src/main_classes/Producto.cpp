@@ -96,6 +96,3 @@ void Producto::Print() {
            " | Precio: " + to_string(this->getPrecio()) +
            " | Stock: " + to_string(this->getStock());
 }
-
-// Interactive methods moved to menu layer (producto_menu)
-

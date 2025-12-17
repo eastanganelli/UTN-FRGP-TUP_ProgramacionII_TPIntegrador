@@ -37,6 +37,10 @@ void Comprobante::setClienteDNI(string dni) {
     strcpy(this->clienteDNI, dni.c_str());
 }
 
+void Comprobante::setFechaEmision(Fecha &fecha) {
+    this->fechaEmision = fecha;
+}
+
 bool Comprobante::IsEqual(const Comprobante& otro) {
     return Validation::IsEqual(this->clienteDNI, otro.clienteDNI)
         && this->numero == otro.numero

@@ -113,6 +113,14 @@ namespace Validation {
     bool IsEqual(const char* str1, const char* str2);
 
     /**
+     * @brief Comprueba si dos cadenas son similares (ignora mayúsculas/minúsculas).
+     * @param str1 Primera cadena.
+     * @param str2 Segunda cadena.
+     * @return true si las cadenas son similares; false en caso contrario.
+     */
+    bool IsSimilar(const string& str1, const string& str2);
+
+    /**
      * @brief Convierte una cadena a mayúsculas.
      * @param str Cadena a convertir.
      * @return Cadena en mayúsculas.
