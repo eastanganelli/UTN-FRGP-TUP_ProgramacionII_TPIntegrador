@@ -408,7 +408,7 @@ void VentaMenu::VerDetalleComprobante() {
         cantidad_filas = n->CantidadItems();
         items_comprobante = n->ObtenerTodosLosItems();
     }
-    
+
     const unsigned int itemCols = 4;
     const unsigned int widthCod = Item::CodigoSize();
     const unsigned int widthCant = Item::CantidadSize();
@@ -426,7 +426,7 @@ void VentaMenu::VerDetalleComprobante() {
         Item* it = (*items_comprobante)[k];
         Tabling::Row* ir = new Tabling::Row(itemCols);
         if (it == nullptr) continue;
-        string codigo = it->getCodigo(), 
+        string codigo = it->getCodigo(),
                cantidad = to_string(it->getCantidad()),
                precioUnitario = to_string(it->getPrecioUnitario()),
                subtotal = to_string(it->getCantidad() * it->getPrecioUnitario());
@@ -911,21 +911,25 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 }
                 cout << "\nItems en la factura:\n";
                 for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
-                    const Item* pitList = factura.ObtenerItem(k);
+                    Item* pitList = factura.ObtenerItem(k);
                     if (pitList != nullptr) {
                         cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
                     }
                 }
                 unsigned int idx = InputNumber("Indice de item: ");
-                const Item* pit = factura.ObtenerItem(idx);
+                Item* pit = factura.ObtenerItem(idx);
                 if (pit == nullptr) {
                     rlutil::cls();
                     Warning w("Item no encontrado", "Indice invalido.");
                     w.Show(); w.WaitForKey();
                     break;
                 }
-                Item mutableItem = *pit;
-                Item::ModificarItem(mutableItem, productos);
+                Item::ModificarItem(*pit, productos);
+                if (!facturas.Modificar(factura.getNumero(), &factura)) {
+                    rlutil::cls();
+                    Warning w("Error modificacion", "No se pudo modificar el item en la factura.");
+                    w.Show(); w.WaitForKey();
+                }
                 break;
             }
             case 3: {
@@ -953,6 +957,11 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 Item temp = *pit;
                 if (Item::EliminarItem(temp, productos)) {
                     factura.EliminarItem(temp.getCodigo());
+                }
+                if (!facturas.Modificar(factura.getNumero(), &factura)) {
+                    rlutil::cls();
+                    Warning w("Error eliminacion", "No se pudo eliminar el item de la factura.");
+                    w.Show(); w.WaitForKey();
                 }
                 break;
             }

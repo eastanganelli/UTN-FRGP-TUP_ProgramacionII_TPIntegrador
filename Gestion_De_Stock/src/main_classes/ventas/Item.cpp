@@ -95,12 +95,16 @@ void Item::ModificarItem(Item& item, ProductoManager& pm) {
     unsigned int stock = p->getStock();
     unsigned int old = item.getCantidad();
     unsigned int nueva = InputNumber("Nueva cantidad: ");
-    if (nueva == 0) { Warning w("Cantidad invalida", "Cantidad debe ser mayor a 0.");
-    w.Show(); w.WaitForKey(); return; }
+    if (nueva == 0) {
+        Warning w("Cantidad invalida", "Cantidad debe ser mayor a 0.");
+        w.Show(); w.WaitForKey(); return;
+    }
     if (nueva > old) {
         unsigned int delta = nueva - old;
-        if (delta > stock) { Warning w("Stock insuficiente", "No hay suficiente stock para aumentar la cantidad.");
-        w.Show(); w.WaitForKey(); return; }
+        if (delta > stock) {
+            Warning w("Stock insuficiente", "No hay suficiente stock para aumentar la cantidad.");
+            w.Show(); w.WaitForKey(); return;
+        }
         Producto aux = *p; aux.setStock(stock - delta);
         pm.Modificar(aux.getCodigo(), &aux);
         item.setCantidad(nueva);
