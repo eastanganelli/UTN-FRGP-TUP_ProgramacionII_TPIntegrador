@@ -60,18 +60,21 @@ Item Item::NuevoItem(ProductoManager& pm) {
     while (true) {
         codigo = InputBox("Codigo producto: ");
         if (Validation::IsEmpty(codigo)) {
-            Warning w("Codigo invalido", "Ingrese codigo de producto."); w.Show(); w.WaitForKey();
+            Warning w("Codigo invalido", "Ingrese codigo de producto.");
+            w.Show(); w.WaitForKey();
             continue;
         }
         Producto* p = pm[codigo];
         if (p == nullptr) {
-            Warning w("Producto no encontrado", "No existe producto con ese codigo."); w.Show(); w.WaitForKey();
+            Warning w("Producto no encontrado", "No existe producto con ese codigo.");
+            w.Show(); w.WaitForKey();
             continue;
         }
         unsigned int stock = p->getStock();
         unsigned int cantidad = InputNumber("Cantidad: ");
         if (cantidad == 0 || cantidad > stock) {
-            Warning w("Cantidad invalida", "Cantidad debe ser >0 y menor o igual al stock disponible."); w.Show(); w.WaitForKey();
+            Warning w("Cantidad invalida", "Cantidad debe ser >0 y menor o igual al stock disponible.");
+            w.Show(); w.WaitForKey();
             continue;
         }
         float precio = p->getPrecio();
@@ -85,21 +88,26 @@ Item Item::NuevoItem(ProductoManager& pm) {
 void Item::ModificarItem(Item& item, ProductoManager& pm) {
     Producto* p = pm[item.getCodigo()];
     if (p == nullptr) {
-        Warning w("Producto no encontrado", "No existe producto asociado al item."); w.Show(); w.WaitForKey();
+        Warning w("Producto no encontrado", "No existe producto asociado al item.");
+        w.Show(); w.WaitForKey();
         return;
     }
     unsigned int stock = p->getStock();
     unsigned int old = item.getCantidad();
     unsigned int nueva = InputNumber("Nueva cantidad: ");
-    if (nueva == 0) { Warning w("Cantidad invalida", "Cantidad debe ser mayor a 0."); w.Show(); w.WaitForKey(); return; }
+    if (nueva == 0) { Warning w("Cantidad invalida", "Cantidad debe ser mayor a 0.");
+    w.Show(); w.WaitForKey(); return; }
     if (nueva > old) {
         unsigned int delta = nueva - old;
-        if (delta > stock) { Warning w("Stock insuficiente", "No hay suficiente stock para aumentar la cantidad."); w.Show(); w.WaitForKey(); return; }
-        Producto aux = *p; aux.setStock(stock - delta); pm.Modificar(aux.getCodigo(), &aux);
+        if (delta > stock) { Warning w("Stock insuficiente", "No hay suficiente stock para aumentar la cantidad.");
+        w.Show(); w.WaitForKey(); return; }
+        Producto aux = *p; aux.setStock(stock - delta);
+        pm.Modificar(aux.getCodigo(), &aux);
         item.setCantidad(nueva);
     } else if (nueva < old) {
         unsigned int delta = old - nueva;
-        Producto aux = *p; aux.setStock(stock + delta); pm.Modificar(aux.getCodigo(), &aux);
+        Producto aux = *p; aux.setStock(stock + delta);
+        pm.Modificar(aux.getCodigo(), &aux);
         item.setCantidad(nueva);
     }
 }
