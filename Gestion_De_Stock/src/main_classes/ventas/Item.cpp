@@ -13,7 +13,7 @@ Item::Item(const char* _codigo, unsigned int _cantidad, float _precioUnitario) {
 
 Item::~Item() { }
 
-std::string Item::getCodigo() const { return std::string(this->codigo); }
+std::string Item::getCodigo() const { return std::string(this->codigo, CODIGO_SIZE); }
 
 unsigned int Item::getCantidad() const { return this->cantidad; }
 
@@ -28,7 +28,7 @@ void Item::setCodigo(const std::string& c) {
         this->codigo[0] = '\0';
         return;
     }
-    strncpy(this->codigo, c.c_str(), CODIGO_SIZE - 1);
+    strncpy(this->codigo, c.c_str(), CODIGO_SIZE);
     this->codigo[CODIGO_SIZE - 1] = '\0';
 }
 
@@ -76,7 +76,6 @@ Item Item::NuevoItem(ProductoManager& pm) {
             continue;
         }
         float precio = p->getPrecio();
-        // disminuir stock
         Producto aux = *p;
         aux.setStock(stock - cantidad);
         pm.Modificar(aux.getCodigo(), &aux);

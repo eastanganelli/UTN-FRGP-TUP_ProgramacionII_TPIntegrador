@@ -80,8 +80,6 @@
 		<Unit filename="src/main_classes/cliente.h" />
 		<Unit filename="src/main_classes/datos_personales.cpp" />
 		<Unit filename="src/main_classes/datos_personales.h" />
-		<Unit filename="src/main_classes/fecha.cpp" />
-		<Unit filename="src/main_classes/fecha.h" />
 		<Unit filename="src/main_classes/tipo_responsable.cpp" />
 		<Unit filename="src/main_classes/tipo_responsable.h" />
 		<Unit filename="src/main_classes/ventas/Factura.cpp" />

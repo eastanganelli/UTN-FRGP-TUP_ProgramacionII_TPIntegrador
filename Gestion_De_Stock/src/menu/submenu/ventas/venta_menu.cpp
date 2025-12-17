@@ -899,8 +899,6 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 }
                 Item mutableItem = *pit;
                 Item::ModificarItem(mutableItem, productos);
-                factura.EliminarItem(mutableItem.getCodigo());
-                factura.AgregarItem(mutableItem);
                 break;
             }
             case 3: {
