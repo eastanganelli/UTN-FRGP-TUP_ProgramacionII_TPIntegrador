@@ -93,7 +93,7 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             Factura f(id, clienteDNI);
             f.getFechaEmision() = RandomFechaWithinDaysLocal(180);
 
-            unsigned int itemsCount = (rand() % 6) + 1;
+            unsigned int itemsCount = (rand() % 10) + 1;
             for (unsigned int it = 0; it < itemsCount; ++it) {
                 Producto* p = productos.At(rand() % prodCount);
                 if (p == nullptr) continue;

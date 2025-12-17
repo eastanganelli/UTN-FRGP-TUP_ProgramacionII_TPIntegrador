@@ -29,7 +29,6 @@ void Item::setCodigo(const std::string& c) {
         return;
     }
     strncpy(this->codigo, c.c_str(), CODIGO_SIZE);
-    this->codigo[CODIGO_SIZE - 1] = '\0';
 }
 
 void Item::setCantidad(unsigned int c) {

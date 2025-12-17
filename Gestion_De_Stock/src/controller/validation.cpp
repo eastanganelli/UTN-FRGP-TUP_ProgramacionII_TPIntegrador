@@ -76,6 +76,10 @@ namespace Validation {
         return std::strcmp(str1, str2) == 0;
     }
 
+    bool IsSimilar(const string& str1, const string& str2) {
+        return str1.find(str2) != string::npos;
+    }
+
     string ToUpper(const string& str) {
         string result = str;
         for (char& c : result) {
