@@ -3,8 +3,7 @@
 
 #include "../../menu.h"
 #include "../../menu_utils.h"
-#include "../../../manager/ventas/manager_factura.h"
-#include "../../../manager/ventas/manager_nota_de_credito.h"
+#include "../../../manager/manager_ventas.h"
 #include "../../../manager/manager_producto.h"
 #include "../../../manager/manager_cliente.h"
 #include "../../../manager/manager_tipo_responsables.h"

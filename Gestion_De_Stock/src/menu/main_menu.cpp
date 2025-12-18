@@ -52,7 +52,17 @@ bool MainMenu::OnSelect(int index) {
             PauseConsole();
             return false;
         }
-        case 6: { // Salir
+        case 6: {
+            ReportsMenu m;
+            while (!m.Run());
+            return false;
+        }
+        case 7: {
+            BackupMenu m;
+            while (!m.Run());
+            return false;
+        }
+        case 8: { // Salir
             return true;
         }
         default:
