@@ -393,7 +393,7 @@ void VentaMenu::VerDetalleComprobante() {
             << "Total con IVA: " << tipoResp->Resultado(f->TotalSinIVA()) << endl
             << "CAE: " << f->getCAE() << endl
             << "Vto CAE: " << f->getVencimientoCAE().toString() << endl
-            << endl << "Items " << endl;
+            << endl << "Items" << endl;
 
         cantidad_filas = f->CantidadItems();
         items_comprobante = f->ObtenerTodosLosItems();
@@ -409,14 +409,15 @@ void VentaMenu::VerDetalleComprobante() {
             << "Total sin IVA: " << n->TotalSinIVA() << endl
             << "Total con IVA: " << tipoResp->Resultado(n->TotalSinIVA()) << endl
             << "Motivo: " << n->getMotivoAnulacion() << endl
-            << endl << "Items " << endl;
+            << endl << "Items" << endl;
 
         cantidad_filas = n->CantidadItems();
         items_comprobante = n->ObtenerTodosLosItems();
     }
 
-    const unsigned int itemCols = 4;
+    const unsigned int itemCols = 5;
     const unsigned int widthCod = Item::CodigoSize();
+    const unsigned int widthProd = Producto::ColDescripcionSize();
     const unsigned int widthCant = Item::CantidadSize();
     const unsigned int widthPrecio = Item::PrecioUnitarioSize();
     const unsigned int widthSub = Item::TotalItemSize();
@@ -424,6 +425,7 @@ void VentaMenu::VerDetalleComprobante() {
     Tabling::Table itemsTable(cantidad_filas, itemCols, '-', 9);
     Tabling::Row* ih = new Tabling::Row(itemCols);
     ih->AddCell("Codigo", widthCod);
+    ih->AddCell("Producto / Servicio", widthProd);
     ih->AddCell("Cant", widthCant);
     ih->AddCell("Precio", widthPrecio);
     ih->AddCell("Subtotal", widthSub);
@@ -437,6 +439,7 @@ void VentaMenu::VerDetalleComprobante() {
                precioUnitario = to_string(it->getPrecioUnitario()),
                subtotal = to_string(it->getCantidad() * it->getPrecioUnitario());
         ir->AddCell(codigo, widthCod);
+        ir->AddCell(this->productos[codigo]->getDescripcion(), widthProd);
         ir->AddCell(cantidad, widthCant);
         ir->AddCell(precioUnitario, widthPrecio);
         ir->AddCell(subtotal, widthSub);
