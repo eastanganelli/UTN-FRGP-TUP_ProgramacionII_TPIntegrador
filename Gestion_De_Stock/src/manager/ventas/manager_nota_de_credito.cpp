@@ -1,5 +1,9 @@
 #include "manager_nota_de_credito.h"
 
+#include <cstdio>
+
+#include "../manager_producto.h"
+
 NotaDeCreditoManager::NotaDeCreditoManager(const string& notasPath)
     : FileSystem<NotaDeCredito>(notasPath) { }
 
@@ -197,4 +201,74 @@ void NotaDeCreditoManager::Imprimir(GenericArray<NotaDeCredito>& notas) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
+}
+
+bool NotaDeCreditoManager::ExportCSV(const string& comprobantesPath, const string& itemsPath, bool append, bool includeHeader) {
+    const char* mode = append ? "a" : "w";
+
+    FILE* compFile = fopen(comprobantesPath.c_str(), mode);
+    if(compFile == nullptr) {
+        Error mi_error("Exportar Ventas", "No se pudo abrir o crear " + comprobantesPath + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    FILE* itemsFile = fopen(itemsPath.c_str(), mode);
+    if(itemsFile == nullptr) {
+        fclose(compFile);
+        Error mi_error("Exportar Ventas", "No se pudo abrir o crear " + itemsPath + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    if(includeHeader) {
+        fprintf(compFile, "tipo,numero,cliente_dni,fecha_emision,total_sin_iva,cantidad_items,extra1,extra2\n");
+        fprintf(itemsFile, "nro_comprobante,cod_producto,nombre_producto,cantidad,precio_unitario,sub_total\n");
+    }
+
+    ProductoManager pm;
+
+    const unsigned int total = this->Count();
+    for(unsigned int i = 0; i < total; i++) {
+        NotaDeCredito* n = this->At(i);
+        if(n == nullptr) { continue; }
+
+        const string fecha = n->getFechaEmision().toString();
+        const unsigned int itemsCount = n->CantidadItems();
+
+        fprintf(compFile,
+                "NotaDeCredito,%u,\"%s\",\"%s\",%.2f,%u,\"%s\",\"\"\n",
+                n->getNumero(),
+                n->getClienteDNI().c_str(),
+                fecha.c_str(),
+                n->TotalSinIVA(),
+                itemsCount,
+                n->getMotivoAnulacion().c_str());
+
+        for(unsigned int j = 0; j < itemsCount; j++) {
+            Item* it = n->ObtenerItem(j);
+            if(it == nullptr) { continue; }
+            const float totalItem = it->getCantidad() * it->getPrecioUnitario();
+            Producto* prod = pm[it->getCodigo()];
+            string nombreProd = prod ? prod->getDescripcion() : "";
+            if (prod) { delete prod; }
+            fprintf(itemsFile,
+                "%u,\"%s\",\"%s\",%u,%.2f,%.2f\n",
+                n->getNumero(),
+                it->getCodigo().c_str(),
+                nombreProd.c_str(),
+                it->getCantidad(),
+                it->getPrecioUnitario(),
+                totalItem);
+        }
+
+        delete n;
+    }
+
+    fclose(compFile);
+    fclose(itemsFile);
+
+    Informational ok("Exportar Ventas", "Se exportaron notas de credito a " + comprobantesPath + " y sus items a " + itemsPath + ".");
+    ok.Show();
+    return true;
 }

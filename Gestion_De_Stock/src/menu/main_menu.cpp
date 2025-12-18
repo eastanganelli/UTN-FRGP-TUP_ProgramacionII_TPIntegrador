@@ -11,7 +11,7 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Ventas");
     AddOption("Data Generator");
     AddOption("Informes");
-    AddOption("Copias de Seguridad");
+    AddOption("Copias de Seguridad/Exportacion de Datos");
     AddOption("Salir");
 }
 

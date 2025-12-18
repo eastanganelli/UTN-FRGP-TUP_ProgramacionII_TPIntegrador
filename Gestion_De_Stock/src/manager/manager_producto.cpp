@@ -1,5 +1,7 @@
 #include "manager_producto.h"
 
+#include <cstdio>
+
 ProductoManager::ProductoManager(const string& productoPath)
     : FileSystem<Producto>(productoPath) { }
 
@@ -219,4 +221,35 @@ void ProductoManager::Imprimir(GenericArray<Producto>& productos) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
+}
+
+bool ProductoManager::ExportCSV(const string& path) {
+    FILE* file = fopen(path.c_str(), "w");
+    if(file == nullptr) {
+        Error mi_error("Exportar Productos", "No se pudo crear el archivo " + path + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    fprintf(file, "codigo,codigo_proveedor,descripcion,precio,stock\n");
+
+    const unsigned int total = this->Count();
+    for(unsigned int i = 0; i < total; i++) {
+        Producto* p = this->At(i);
+        if(p == nullptr) { continue; }
+        fprintf(file,
+                "\"%s\",\"%s\",\"%s\",%.2f,%u\n",
+                p->getCodigo().c_str(),
+                p->getCodigoProveedor().c_str(),
+                p->getDescripcion().c_str(),
+                p->getPrecio(),
+                p->getStock());
+        delete p;
+    }
+
+    fclose(file);
+
+    Informational ok("Exportar Productos", "Se exportaron los productos a " + path + ".");
+    ok.Show();
+    return true;
 }

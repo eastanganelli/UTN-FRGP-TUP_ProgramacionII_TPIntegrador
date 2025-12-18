@@ -21,6 +21,8 @@ public:
     FacturaManager(const string& facturaPath = "facturas.dat");
     ~FacturaManager();
 
+    bool ExportCSV(const string& comprobantesPath = "ventas.csv", const string& itemsPath = "ventas_items.csv", bool append = false, bool includeHeader = true);
+
     bool Agregar(Factura& factura);
     bool Modificar(unsigned int numero, Factura* factura);
     bool Eliminar(unsigned int numero);

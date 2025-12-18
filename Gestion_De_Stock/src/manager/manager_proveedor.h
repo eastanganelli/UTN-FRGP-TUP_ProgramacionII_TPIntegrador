@@ -21,6 +21,8 @@ public:
     ProveedorManager(const string& proveedorPath = "proveedores.dat");
     ~ProveedorManager();
 
+    bool ExportCSV(const string& path = "proveedores.csv");
+
     bool Agregar(Proveedor& proveedor);
     bool Modificar(string cuit, Proveedor* proveedor);
     bool Eliminar(string cuit);

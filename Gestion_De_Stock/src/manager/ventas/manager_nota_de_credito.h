@@ -21,6 +21,8 @@ public:
     NotaDeCreditoManager(const string& notasPath = "notas_de_credito.dat");
     ~NotaDeCreditoManager();
 
+    bool ExportCSV(const string& comprobantesPath = "ventas.csv", const string& itemsPath = "ventas_items.csv", bool append = true, bool includeHeader = false);
+
     bool Agregar(NotaDeCredito& nota);
     bool Modificar(unsigned int numero, NotaDeCredito* nota);
     bool Eliminar(unsigned int numero);
