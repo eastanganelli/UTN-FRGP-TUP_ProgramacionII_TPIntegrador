@@ -10,6 +10,8 @@ MainMenu::MainMenu() : Menu("Menu Principal", true) {
     AddOption("Tipo Responsables");
     AddOption("Ventas");
     AddOption("Data Generator");
+    AddOption("Informes");
+    AddOption("Copias de Seguridad/Exportacion de Datos");
     AddOption("Salir");
 }
 
@@ -41,7 +43,6 @@ bool MainMenu::OnSelect(int index) {
             return false;
         }
         case 5: {
-            cout << "--- Generando datos de prueba... ---" << endl << endl;
             DataGenerator::GenerateTipoResponsable();
             DataGenerator::GenerateClients();
             DataGenerator::GenerateProviders();
@@ -51,7 +52,17 @@ bool MainMenu::OnSelect(int index) {
             PauseConsole();
             return false;
         }
-        case 6: { // Salir
+        case 6: {
+            ReportsMenu m;
+            while (!m.Run());
+            return false;
+        }
+        case 7: {
+            BackupMenu m;
+            while (!m.Run());
+            return false;
+        }
+        case 8: { // Salir
             return true;
         }
         default:

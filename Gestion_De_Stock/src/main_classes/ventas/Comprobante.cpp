@@ -83,7 +83,7 @@ unsigned int Comprobante::CantidadItems() {
     return this->itemsActuales;
 }
 
-const Item* Comprobante::ObtenerItem(unsigned int index) const {
+Item* Comprobante::ObtenerItem(unsigned int index) {
     if (index >= this->itemsActuales) return nullptr;
     return &this->items[index];
 }

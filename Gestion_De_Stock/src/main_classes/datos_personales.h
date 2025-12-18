@@ -70,6 +70,7 @@ public:
     void setDireccion(const string& direccion);
     void setTelefono(const string& t);
     void setCelular(const string& c);
+    void setCodigoRazonSocial(const string& codigo);
 };
 
 #endif // DATOSPERSONALES_H

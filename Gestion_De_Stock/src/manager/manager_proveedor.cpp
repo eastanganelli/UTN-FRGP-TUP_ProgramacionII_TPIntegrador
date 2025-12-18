@@ -1,5 +1,7 @@
 #include "manager_proveedor.h"
 
+#include <cstdio>
+
 static const string RUBROS[] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
 
 ProveedorManager::ProveedorManager(const string& proveedorPath)
@@ -281,4 +283,41 @@ void ProveedorManager::Imprimir(GenericArray<Proveedor>& proveedores) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
+}
+
+bool ProveedorManager::ExportCSV(const string& path) {
+    FILE* file = fopen(path.c_str(), "w");
+    if(file == nullptr) {
+        Error mi_error("Exportar Proveedores", "No se pudo crear el archivo " + path + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    fprintf(file, "cuit,nombre_razon,rubro,rubro_nombre,direccion,correo,telefono,celular,estado,codigo_razon_social\n");
+
+    const unsigned int total = this->Count();
+    for(unsigned int i = 0; i < total; i++) {
+        Proveedor* p = this->At(i);
+        if(p == nullptr) { continue; }
+        const unsigned int rubro = p->getRubro();
+        fprintf(file,
+                "\"%s\",\"%s\",%u,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+                p->getCuit().c_str(),
+                p->getNombreRazon().c_str(),
+                rubro,
+                this->getNombreRubro(rubro).c_str(),
+                p->getDireccion().c_str(),
+                p->getCorreo().c_str(),
+                p->getTelefono().c_str(),
+                p->getCelular().c_str(),
+                p->Estado().c_str(),
+                p->getCodigoRazonSocial().c_str());
+        delete p;
+    }
+
+    fclose(file);
+
+    Informational ok("Exportar Proveedores", "Se exportaron los proveedores a " + path + ".");
+    ok.Show();
+    return true;
 }

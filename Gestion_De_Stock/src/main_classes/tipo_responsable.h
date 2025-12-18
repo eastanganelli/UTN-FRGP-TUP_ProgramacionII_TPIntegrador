@@ -45,6 +45,8 @@ public:
     bool operator==(const TipoResponsable& otra) const;
     bool IsEmpty() const;
     void Print();
+    float Resultado(float valor);
+
     static TipoResponsable NuevoTipoResponsable();
     static void ModificarTipoResponsable(TipoResponsable& tipo);
     static unsigned int EliminarTipoResponsable(TipoResponsable& tipo);

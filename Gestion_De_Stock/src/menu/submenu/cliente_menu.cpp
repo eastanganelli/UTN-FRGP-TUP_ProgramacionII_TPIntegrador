@@ -1,5 +1,8 @@
 #include "cliente_menu.h"
+#include <cctype>
+#include <cstdlib>
 #include <iostream>
+#include "../../controller/table/table.h"
 
 using namespace std;
 
@@ -14,8 +17,9 @@ ClienteMenu::ClienteMenu() : Menu("Menu Clientes", true) {
     AddOption("Buscar por CUIL/CUIT");
     AddOption("Buscar por Nombre y Apellido");
     AddOption("Buscar por Correo");
+    AddOption("Ver detalle de Cliente");
     AddOption("Volver");
-} 
+}
 
 Cliente ClienteMenu::CrearCliente() {
     Cliente nuevoCliente;
@@ -120,6 +124,16 @@ Cliente ClienteMenu::CrearCliente() {
         nuevoCliente.setCelular(v);
         break;
     }
+
+    if (tiposResponsables.Cantidad() == 0) {
+        Warning w("Sin tipos de responsable", "Cargue tipos de responsable antes de asignar la razon social.");
+        w.Show(); w.WaitForKey();
+    } else {
+        string codigo = SeleccionarRazonSocial(true);
+        if (!codigo.empty()) {
+            nuevoCliente.setCodigoRazonSocial(codigo);
+        }
+    }
     return nuevoCliente;
 }
 
@@ -136,7 +150,8 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
         cout << "5) Correo: " << cliente.getCorreo() << "\n";
         cout << "6) Telefono: " << cliente.getTelefono() << "\n";
         cout << "7) Celular: " << cliente.getCelular() << "\n";
-        cout << "8) Terminar\n";
+        cout << "8) Razon Social: " << cliente.getCodigoRazonSocial() << "\n";
+        cout << "9) Terminar\n";
 
         opcion = InputNumber("Seleccione campo a modificar: ");
 
@@ -250,7 +265,16 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
                 }
                 break;
             }
-            case 8: { // Terminar
+            case 8: {
+                string codigo = SeleccionarRazonSocial(false);
+                if (!codigo.empty()) {
+                    cliente.setCodigoRazonSocial(codigo);
+                    Informational i("Razon social modificada", "Razon social actualizada correctamente.");
+                    i.Show(); i.WaitForKey();
+                }
+                break;
+            }
+            case 9: { // Terminar
                 break;
             }
             default: {
@@ -259,7 +283,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
                 break;
             }
         }
-    } while (opcion != 8);
+    } while (opcion != 9);
     rlutil::cls();
 }
 
@@ -270,6 +294,74 @@ bool ClienteMenu::EliminarClienteInteractivo(Cliente& cliente) {
         return true;
     }
     return false;
+}
+
+string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
+    const unsigned int total = tiposResponsables.Cantidad();
+    if (total == 0) {
+        Warning w("Sin tipos de responsable", "No hay tipos de responsable cargados.");
+        w.Show(); w.WaitForKey();
+        return "";
+    }
+
+    GenericArray<TipoResponsable> lista;
+    for (unsigned int i = 0; i < total; ++i) {
+        TipoResponsable* t = tiposResponsables.At(i);
+        if (t != nullptr) {
+            lista.Append(*t);
+            delete t;
+        }
+    }
+
+    if (lista.Size() == 0) {
+        Warning w("Sin tipos de responsable", "No hay tipos de responsable cargados.");
+        w.Show(); w.WaitForKey();
+        return "";
+    }
+
+    const unsigned int columnas = 5;
+    Tabling::Table tabla(lista.Size(), columnas, '=', 3);
+    Tabling::Row* header = new Tabling::Row(columnas);
+    header->AddCell("Idx", 4);
+    header->AddCell("Codigo", TipoResponsable::ColCodigoSize());
+    header->AddCell("Descripcion", TipoResponsable::ColDescripcionSize());
+    header->AddCell("% IVA", TipoResponsable::ColPorcentajeSize());
+    header->AddCell("Tipo", TipoResponsable::ColTipoFacturacion());
+    tabla.AddRow(header);
+
+    for (unsigned int i = 0; i < lista.Size(); ++i) {
+        TipoResponsable* t = lista[i];
+        Tabling::Row* fila = new Tabling::Row(columnas);
+        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(t->getCodigo(), TipoResponsable::ColCodigoSize());
+        fila->AddCell(t->getDescripcion(), TipoResponsable::ColDescripcionSize());
+        fila->AddCell(Validation::ToFixedDecimal(t->getPorcentaje(), 1), TipoResponsable::ColPorcentajeSize());
+        fila->AddCell(string(1, toupper(t->getTipoFacturacion())), TipoResponsable::ColTipoFacturacion());
+        tabla.AddRow(fila);
+    }
+
+    while (true) {
+        rlutil::cls();
+        cout << "-- Seleccionar Razon Social --" << endl;
+        tabla.Print();
+
+        string entrada = InputBox("Indice (vacio para cancelar): ");
+        if (entrada.empty()) {
+            if (obligatoria) {
+                Warning w("Seleccion requerida", "Debe elegir una razon social.");
+                w.Show(); w.WaitForKey();
+                continue;
+            }
+            return "";
+        }
+
+        char* endptr = nullptr;
+        const char* raw = entrada.c_str();
+        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
+        if (endptr == raw || *endptr != '\0') { continue; }
+        if (idxLong >= lista.Size()) { continue; }
+        return lista[static_cast<unsigned int>(idxLong)]->getCodigo();
+    }
 }
 
 bool ClienteMenu::OnSelect(int index) {
@@ -358,9 +450,99 @@ bool ClienteMenu::OnSelect(int index) {
             return false;
         }
         case 10: {
+            VerDetalleCliente();
+            return false;
+        }
+        case 11: {
             return true; // Volver
         }
         default:
             return false;
     }
+}
+
+void ClienteMenu::VerDetalleCliente() {
+    rlutil::cls();
+    const unsigned int total = clientes.Count();
+    if (total == 0) {
+        Warning w("Sin clientes", "No hay clientes cargados.");
+        w.Show(); w.WaitForKey();
+        return;
+    }
+
+    GenericArray<Cliente> lista;
+    for (unsigned int i = 0; i < total; ++i) {
+        Cliente* c = clientes.At(i);
+        if (c != nullptr) {
+            lista.Append(*c);
+            delete c;
+        }
+    }
+
+    if (lista.Size() == 0) {
+        Warning w("Sin clientes", "No hay clientes cargados.");
+        w.Show(); w.WaitForKey();
+        return;
+    }
+
+    const unsigned int cols = 5;
+    const unsigned int widthNombre = Cliente::ColApellidoSize() + Cliente::ColNombreSize();
+    Tabling::Table tabla(lista.Size(), cols);
+    Tabling::Row* header = new Tabling::Row(cols);
+    header->AddCell("Idx", 4);
+    header->AddCell("DNI", Cliente::ColDniSize());
+    header->AddCell("Nombre", widthNombre);
+    header->AddCell("Correo", DatosPersonales::ColCorreoSize());
+    header->AddCell("Estado", 8);
+    tabla.AddRow(header);
+
+    for (unsigned int i = 0; i < lista.Size(); ++i) {
+        Cliente* c = lista[i];
+        Tabling::Row* row = new Tabling::Row(cols);
+        row->AddCell(std::to_string(i), 4);
+        row->AddCell(c->getDNI(), Cliente::ColDniSize());
+        row->AddCell(c->getApellido() + string(", ") + c->getNombre(), widthNombre);
+        row->AddCell(c->getCorreo(), DatosPersonales::ColCorreoSize());
+        row->AddCell(c->getAlta() ? "Alta" : "Baja", 8);
+        tabla.AddRow(row);
+    }
+
+    int seleccionado = -1;
+    while (true) {
+        rlutil::cls();
+        tabla.Print();
+        string entrada = InputBox("Indice a ver (vacio para cancelar): ");
+        if (entrada.empty()) return;
+        char* endptr = nullptr;
+        const char* raw = entrada.c_str();
+        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
+        if (endptr == raw || *endptr != '\0') continue;
+        if (idxLong >= lista.Size()) continue;
+        seleccionado = static_cast<int>(idxLong);
+        break;
+    }
+
+    Cliente* elegido = lista[static_cast<unsigned int>(seleccionado)];
+    if (elegido == nullptr) return;
+
+    TipoResponsable* tipoResp = this->tiposResponsables[elegido->getCodigoRazonSocial()];
+    string razonSocialDesc = "Sin datos";
+    if (tipoResp != nullptr) {
+        razonSocialDesc = tipoResp->getDescripcion();
+        delete tipoResp;
+    }
+
+    rlutil::cls();
+    cout << "-- Detalle de Cliente --" << endl
+        << "DNI: " << elegido->getDNI() << endl
+        << "CUIL/CUIT: " << elegido->getCuilCuit() << endl
+        << "Razon Social: " << razonSocialDesc << endl
+        << "Nombre: " << elegido->getNombre() << endl
+        << "Apellido: " << elegido->getApellido() << endl
+        << "Direccion: " << elegido->getDireccion() << endl
+        << "Correo: " << elegido->getCorreo() << endl
+        << "Telefono: " << elegido->getTelefono() << endl
+        << "Celular: " << elegido->getCelular() << endl
+        << "Estado: " << (elegido->getAlta() ? "Alta" : "Baja") << endl;
+    PauseConsole();
 }

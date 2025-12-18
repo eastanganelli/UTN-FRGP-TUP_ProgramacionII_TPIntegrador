@@ -1,8 +1,20 @@
 #include "client_generator.h"
+#include "tiporesponsables_generator.h"
+#include "../../manager/manager_tipo_responsables.h"
 
 void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
     ClienteManager clientes("clientes.dat");
+    TipoResponsableManager tipos("tipo_responsable.dat");
+
+    GenericArray<TipoResponsable> tiposDisponibles;
+    for (unsigned int i = 0; i < tipos.Cantidad(); ++i) {
+        TipoResponsable* t = tipos.At(i);
+        if (t != nullptr) {
+            tiposDisponibles.Append(*t);
+            delete t;
+        }
+    }
 
     string nombres[]   = {"Juan", "Maria", "Carlos", "Ana", "Luis", "Sofia", "Miguel", "Laura", "Diego", "Elena",
                             "Jorge", "Carmen", "Pedro", "Lucia", "Andres", "Marta", "Fernando", "Isabel", "Ricardo", "Patricia", "Alberto", "Gabriela"},
@@ -25,8 +37,9 @@ void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
             dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
             dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
             dc.alta = (i % 2 == 0);
+            dc.codigoRazonSocial = tiposDisponibles.Size() == 0 ? "" : tiposDisponibles[rand() % tiposDisponibles.Size()]->getCodigo();
 
-            Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta);
+            Cliente dataCliente(dc.nombre, dc.apellido, dc.DNI, dc.cuilCuit, dc.direccion, dc.correo, dc.telefono, dc.celular, dc.alta, dc.codigoRazonSocial);
             if(printLog) {
                 cout << "Cliente agregado? >> " << (clientes.New(dataCliente) ? "Si" : "No") << endl;
                 dataCliente.Print();

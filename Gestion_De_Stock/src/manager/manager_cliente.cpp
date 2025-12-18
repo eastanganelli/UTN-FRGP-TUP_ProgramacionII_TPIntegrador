@@ -1,5 +1,7 @@
 #include "manager_cliente.h"
 
+#include <cstdio>
+
 ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(clientePath)/*, CondicionIVAManager(nullptr)*/ {
 
 }
@@ -254,4 +256,40 @@ void ClienteManager::Imprimir(GenericArray<Cliente>& clientes) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
+}
+
+bool ClienteManager::ExportCSV(const string& path) {
+    FILE* file = fopen(path.c_str(), "w");
+    if(file == nullptr) {
+        Error mi_error("Exportar Clientes", "No se pudo crear el archivo " + path + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    fprintf(file, "dni,nombre,apellido,cuil_cuit,direccion,correo,telefono,celular,estado,codigo_razon_social\n");
+
+    const unsigned int total = this->Count();
+    for(unsigned int i = 0; i < total; i++) {
+        Cliente* c = this->At(i);
+        if(c == nullptr) { continue; }
+        fprintf(file,
+                "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+                c->getDNI().c_str(),
+                c->getNombre().c_str(),
+                c->getApellido().c_str(),
+                c->getCuilCuit().c_str(),
+                c->getDireccion().c_str(),
+                c->getCorreo().c_str(),
+                c->getTelefono().c_str(),
+                c->getCelular().c_str(),
+                c->Estado().c_str(),
+                c->getCodigoRazonSocial().c_str());
+        delete c;
+    }
+
+    fclose(file);
+
+    Informational ok("Exportar Clientes", "Se exportaron los clientes a " + path + ".");
+    ok.Show();
+    return true;
 }

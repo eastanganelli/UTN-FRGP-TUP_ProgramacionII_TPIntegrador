@@ -1,0 +1,11 @@
+dni,nombre,apellido,cuil_cuit,direccion,correo,telefono,celular,estado,codigo_razon_social
+"50000000","Juan","Lopez","20500000001","Calle de la Amistad4540","Lopez.Juan@example.com","42647-5349","11-5231-2268","Alta","1A4"
+"50000001","Maria","Gomez","20500000011","Calle Falsa5704","Gomez.Maria@example.com","45070-5085","11-1163-6138","Baja","5B4"
+"50000002","Carlos","Gomez","20500000021","Paseo del Parque3081","Gomez.Carlos@example.com","46803-5751","11-1251-3881","Alta",""
+"50000003","Juan","Lopez","20500000031","Calle Falsa4523","Lopez.Juan@example.com","47601-9413","11-8027-5132","Baja","4B5"
+"50000004","Carlos","Rodriguez","20500000041","Boulevard Central4314","Rodriguez.Carlos@example.com","43628-3701","11-3112-1865","Alta","5B5"
+"50000005","Juan","Lopez","20500000051","Calle de la Amistad8598","Lopez.Juan@example.com","42718-7642","11-9823-8900","Baja","5B4"
+"50000006","Juan","Lopez","20500000061","Calle de la Amistad5750","Lopez.Juan@example.com","47278-1128","11-6890-8828","Alta","6B5"
+"50000007","Juan","Perez","20500000071","Callejón del Beso8913","Perez.Juan@example.com","43820-6643","11-8266-3940","Baja","9E3"
+"50000008","Maria","Perez","20500000081","Calle del Lago102","Perez.Maria@example.com","43438-1761","11-3719-9724","Alta","1A5"
+"50000009","Juan","Gomez","20500000091","Camino Real3702","Gomez.Juan@example.com","46767-3987","11-6914-5142","Baja","5B5"

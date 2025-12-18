@@ -19,7 +19,7 @@ TipoResponsable::TipoResponsable(const string codigo, const string descripcion, 
 
 TipoResponsable::~TipoResponsable() { }
 
-string TipoResponsable::getCodigo() const { return string(this->codigo); }
+string TipoResponsable::getCodigo() const { return string(this->codigo, CODIGO_SIZE); }
 
 string TipoResponsable::getDescripcion() const { return string(this->descripcion); }
 
@@ -65,6 +65,10 @@ void TipoResponsable::Print() {
     std::cout << std::left << std::setw(TipoResponsable::COL_Porcentaje) << (char)toupper(this->tipoFacturacion);
 
     rlutil::locate(1, row + 1);
+}
+
+float TipoResponsable::Resultado(float valor) {
+    return valor * (1 + this->porcentaje / 100.0f);
 }
 
 TipoResponsable TipoResponsable::NuevoTipoResponsable() {

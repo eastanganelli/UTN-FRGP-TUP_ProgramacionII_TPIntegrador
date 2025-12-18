@@ -21,6 +21,8 @@ public:
     ProductoManager(const string& productoPath = "productos.dat");
     ~ProductoManager();
 
+    bool ExportCSV(const string& path = "productos.csv");
+
     bool Agregar(Producto& producto);
     bool Modificar(string codigo, Producto* producto);
     bool Eliminar(string codigo);

@@ -21,6 +21,8 @@ public:
     ClienteManager(const string& clientePath = "clientes.dat");
     ~ClienteManager();
 
+    bool ExportCSV(const string& path = "clientes.csv");
+
     bool Agregar(Cliente& cliente);
     bool Modificar(string dni, Cliente* cliente);
     bool Eliminar(string dni);

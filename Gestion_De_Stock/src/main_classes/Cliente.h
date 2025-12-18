@@ -31,7 +31,7 @@ private:
     char cuilCuit[CUIL_CUIT_SIZE];
 
 public:
-    Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", bool _alta = true);
+    Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", bool _alta = true, string _codigoRazonSocial = "");
     ~Cliente();
 
     // Getters

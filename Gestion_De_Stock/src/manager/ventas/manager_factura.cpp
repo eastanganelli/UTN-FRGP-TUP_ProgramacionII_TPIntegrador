@@ -1,5 +1,9 @@
 #include "manager_factura.h"
 
+#include <cstdio>
+
+#include "../manager_producto.h"
+
 FacturaManager::FacturaManager(const string& facturaPath)
     : FileSystem<Factura>(facturaPath) { }
 
@@ -222,4 +226,77 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         mi_tabla.AddRow(row);
     }
     mi_tabla.Print();
+}
+
+bool FacturaManager::ExportCSV(const string& comprobantesPath, const string& itemsPath, bool append, bool includeHeader) {
+    const char* mode = append ? "a" : "w";
+
+    FILE* compFile = fopen(comprobantesPath.c_str(), mode);
+    if(compFile == nullptr) {
+        Error mi_error("Exportar Ventas", "No se pudo abrir o crear " + comprobantesPath + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    FILE* itemsFile = fopen(itemsPath.c_str(), mode);
+    if(itemsFile == nullptr) {
+        fclose(compFile);
+        Error mi_error("Exportar Ventas", "No se pudo abrir o crear " + itemsPath + ".");
+        mi_error.Show();
+        return false;
+    }
+
+    if(includeHeader) {
+        fprintf(compFile, "tipo,numero,cliente_dni,fecha_emision,total_sin_iva,cantidad_items,extra1,extra2\n");
+        fprintf(itemsFile, "nro_comprobante,cod_producto,nombre_producto,cantidad,precio_unitario,sub_total\n");
+    }
+
+    ProductoManager pm;
+
+    const unsigned int total = this->Count();
+    for(unsigned int i = 0; i < total; i++) {
+        Factura* f = this->At(i);
+        if(f == nullptr) { continue; }
+
+        const string fecha = f->getFechaEmision().toString();
+        const string cae = f->getCAE();
+        const string venc = f->getVencimientoCAE().toString();
+        const unsigned int itemsCount = f->CantidadItems();
+
+        fprintf(compFile,
+                "Factura,%u,\"%s\",\"%s\",%.2f,%u,\"%s\",\"%s\"\n",
+                f->getNumero(),
+                f->getClienteDNI().c_str(),
+                fecha.c_str(),
+                f->TotalSinIVA(),
+                itemsCount,
+                cae.c_str(),
+                venc.c_str());
+
+        for(unsigned int j = 0; j < itemsCount; j++) {
+            Item* it = f->ObtenerItem(j);
+            if(it == nullptr) { continue; }
+            const float totalItem = it->getCantidad() * it->getPrecioUnitario();
+            Producto* prod = pm[it->getCodigo()];
+            string nombreProd = prod ? prod->getDescripcion() : "";
+            if (prod) { delete prod; }
+            fprintf(itemsFile,
+                    "%u,\"%s\",\"%s\",%u,%.2f,%.2f\n",
+                    f->getNumero(),
+                    it->getCodigo().c_str(),
+                    nombreProd.c_str(),
+                    it->getCantidad(),
+                    it->getPrecioUnitario(),
+                    totalItem);
+        }
+
+        delete f;
+    }
+
+    fclose(compFile);
+    fclose(itemsFile);
+
+    Informational ok("Exportar Ventas", "Se exportaron facturas a " + comprobantesPath + " y sus items a " + itemsPath + ".");
+    ok.Show();
+    return true;
 }

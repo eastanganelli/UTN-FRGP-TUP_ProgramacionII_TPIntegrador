@@ -19,7 +19,7 @@ namespace DataGenerator {
         std::string correo;
         std::string telefono;
         std::string celular;
-        unsigned int codigoRazonSocial;
+        std::string codigoRazonSocial;
         bool alta;
     };
     void GenerateClients(unsigned int count = 15, bool printLog = false);

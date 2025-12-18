@@ -6,5 +6,7 @@
 #include "submenu/proveedor_menu.h"
 #include "submenu/tipo_responsable_menu.h"
 #include "submenu/ventas/venta_menu.h"
+#include "submenu/reports_menu.h"
+#include "submenu/backup_menu.h"
 
 #endif // SUBMENU_H

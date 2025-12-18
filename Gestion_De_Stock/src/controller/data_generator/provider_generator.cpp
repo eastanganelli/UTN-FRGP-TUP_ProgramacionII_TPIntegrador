@@ -10,7 +10,7 @@ void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
 
     if(proveedores.Count() == 0) {
         std::cout << "--- Datos de Proveedores Generados ---" << std::endl;
-        for (int i = 0; i < count; ++i) {
+        for (int i = 0; i < (int)count; ++i) {
             DatosProveedor dp;
             dp.cuit = "30" + std::to_string(rand() % 40000000 + 10000000 + i) + "9";
             dp.nombreRazon = "Proveedor SA " + generarCodigoAlfaNumerico(6);
