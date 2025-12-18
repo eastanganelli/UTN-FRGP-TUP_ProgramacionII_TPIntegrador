@@ -2,8 +2,8 @@
 #include "../controller/modals.h"
 #include <algorithm>
 
-Cliente::Cliente(string _nombre, string _apellido, string _DNI, string _cuilCuit, string direccion, string correo, string _telefono, string _celular, bool _alta)
-    : DatosPersonales(_alta, direccion, correo, _telefono, _celular) {
+Cliente::Cliente(string _nombre, string _apellido, string _DNI, string _cuilCuit, string direccion, string correo, string _telefono, string _celular, bool _alta, string _codigoRazonSocial)
+    : DatosPersonales(_alta, direccion, correo, _telefono, _celular, _codigoRazonSocial) {
     this->DNI[0] = '\0';
     this->nombre[0] = '\0';
     this->apellido[0] = '\0';

@@ -24,17 +24,17 @@ VentaMenu::VentaMenu() : Menu("Menu Ventas", true) {
 bool VentaMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
-        case 0: AgregarFactura(); return false;
-        case 1: ModificarFactura(); return false;
-        case 2: AnularFactura(); return false;
-        case 3: ListarComprobantesPorCliente(); return false;
-        case 4: ListarFacturasPorMonto(); return false;
-        case 5: BuscarComprobantePorCliente(); return false;
-        case 6: BuscarComprobantePorExtra(); return false;
+        case 0: AgregarFactura();                 return false;
+        case 1: ModificarFactura();               return false;
+        case 2: AnularFactura();                  return false;
+        case 3: ListarComprobantesPorCliente();   return false;
+        case 4: ListarFacturasPorMonto();         return false;
+        case 5: BuscarComprobantePorCliente();    return false;
+        case 6: BuscarComprobantePorExtra();      return false;
         case 7: BuscarComprobantePorRangoFecha(); return false;
-        case 8: VerDetalleComprobante(); return false;
-        case 9: return true;
-        default: return false;
+        case 8: VerDetalleComprobante();          return false;
+        case 9:                                   return true;
+        default:                                  return false;
     }
 }
 
@@ -382,12 +382,15 @@ void VentaMenu::VerDetalleComprobante() {
     rlutil::cls();
     if (flag == 1) {
         Factura* f = fcs[pos];
+        Cliente* cliente = this->clientes[f->getClienteDNI()];
+        TipoResponsable* tipoResp = this->tiposResponsables[cliente->getCodigoRazonSocial()];
         const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
-        cout << "Tipo: " << tipo << endl
+        cout << "Tipo: " << tipoResp->getTipoFacturacion() << tipo << endl
             << "Numero: " << f->getNumero() << endl
             << "Cliente: " << f->getClienteDNI() << endl
             << "Fecha emision: " << f->getFechaEmision().toString() << endl
             << "Total sin IVA: " << f->TotalSinIVA() << endl
+            << "Total con IVA: " << tipoResp->Resultado(f->TotalSinIVA()) << endl
             << "CAE: " << f->getCAE() << endl
             << "Vto CAE: " << f->getVencimientoCAE().toString() << endl
             << endl << "Items " << endl;
@@ -397,11 +400,14 @@ void VentaMenu::VerDetalleComprobante() {
 
     } else {
         NotaDeCredito* n = nts[pos];
-        cout << "Tipo: Nota de Credito" << endl
+        Cliente* cliente = this->clientes[n->getClienteDNI()];
+        TipoResponsable* tipoResp = this->tiposResponsables[cliente->getCodigoRazonSocial()];
+        cout << "Tipo: Nota de Credito " << tipoResp->getTipoFacturacion() << endl
             << "Numero: " << n->getNumero() << endl
             << "Cliente: " << n->getClienteDNI() << endl
             << "Fecha emision: " << n->getFechaEmision().toString() << endl
             << "Total sin IVA: " << n->TotalSinIVA() << endl
+            << "Total con IVA: " << tipoResp->Resultado(n->TotalSinIVA()) << endl
             << "Motivo: " << n->getMotivoAnulacion() << endl
             << endl << "Items " << endl;
 
@@ -601,14 +607,15 @@ void VentaMenu::ImprimirIntercalado(GenericArray<unsigned int>& numeros, Generic
         return;
     }
 
-    const unsigned int totalRows = numeros.Size();
-    const unsigned int columnas = 6;
-    const unsigned int widthNumero = Comprobante::ColNumeroSize();
-    const unsigned int widthFecha = Comprobante::ColFechaEmisionSize();
-    const unsigned int widthTotal = Comprobante::ColMontoTotalSize();
-    const unsigned int widthExtra = Factura::ColCAESize();
-    const unsigned int widthTipo = Comprobante::ColTipoSize();
-    const unsigned int widthCliente = Comprobante::ColClienteDNISize();
+    const unsigned int totalRows = numeros.Size(),
+                    columnas = 6,
+                    widthNumero = Comprobante::ColNumeroSize(),
+                    widthFecha = Comprobante::ColFechaEmisionSize(),
+                    widthTotal = Comprobante::ColMontoTotalSize(),
+                    widthExtra = Factura::ColCAESize(),
+                    widthTipo = Comprobante::ColTipoSize(),
+                    widthCliente = Comprobante::ColClienteDNISize();
+
 
     Tabling::Table tabla(totalRows, columnas);
 
@@ -890,12 +897,13 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
     unsigned int opcion = 0;
     do {
         rlutil::cls();
-        cout << "-- Modificar Factura (ID: " << factura.getNumero() << ") --\n";
-        cout << "1) Agregar Item\n";
-        cout << "2) Modificar Item\n";
-        cout << "3) Eliminar Item\n";
-        cout << "4) Cambiar cliente\n";
-        cout << "5) Terminar\n";
+        cout << "-- Modificar Factura (ID: " << factura.getNumero() << ") --" << endl
+            << "1) Agregar Item" << endl
+            << "2) Modificar Item" << endl
+            << "3) Eliminar Item" << endl
+            << "4) Cambiar cliente" << endl
+            << "5) Facturar" << endl
+            << "6) Terminar" << endl;
         opcion = InputNumber("Seleccione accion: ");
         switch(opcion) {
             case 1: {
@@ -909,11 +917,11 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                     w.Show(); w.WaitForKey();
                     break;
                 }
-                cout << "\nItems en la factura:\n";
+                cout << endl << "Items en la factura: " << endl;
                 for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
                     Item* pitList = factura.ObtenerItem(k);
                     if (pitList != nullptr) {
-                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
+                        cout << k << ".- " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
                     }
                 }
                 unsigned int idx = InputNumber("Indice de item: ");
@@ -939,11 +947,11 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                     w.Show(); w.WaitForKey();
                     break;
                 }
-                cout << "\nItems en la factura:\n";
+                cout << endl << "Items en la factura:\n";
                 for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
                     const Item* pitList = factura.ObtenerItem(k);
                     if (pitList != nullptr) {
-                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << "\n";
+                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
                     }
                 }
                 unsigned int idx = InputNumber("Indice de item: ");
@@ -975,7 +983,20 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 }
                 break;
             }
-            case 5: break;
+            case 5: {
+                if (factura.Facturar()) {
+                    rlutil::cls();
+                    Informational i("Factura facturada", "La factura ha sido facturada correctamente.");
+                    i.Show(); i.WaitForKey();
+                } else {
+                    rlutil::cls();
+                    Warning w("Facturacion", "No se pudo generar CAE para la factura.\nVerifique los datos e intente nuevamente.");
+                    w.Show(); w.WaitForKey();
+                    return;
+                }
+                break;
+            }
+            case 6: break;
             default: {
                 rlutil::cls();
                 Warning w("Opcion invalida", "Seleccione una opcion valida.");

@@ -7,6 +7,7 @@
 #include "../../../manager/ventas/manager_nota_de_credito.h"
 #include "../../../manager/manager_producto.h"
 #include "../../../manager/manager_cliente.h"
+#include "../../../manager/manager_tipo_responsables.h"
 #include "../../../controller/generic_array.h"
 #include "../../../controller/validation.h"
 #include "../../../../rlutil.h"
@@ -17,6 +18,7 @@ private:
     NotaDeCreditoManager notas;
     ProductoManager productos;
     ClienteManager clientes;
+    TipoResponsableManager tiposResponsables;
 
     void AgregarFactura();
     void ModificarFactura();

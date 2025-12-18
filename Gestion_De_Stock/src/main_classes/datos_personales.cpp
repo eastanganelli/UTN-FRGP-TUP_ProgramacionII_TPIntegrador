@@ -25,12 +25,13 @@ DatosPersonales::~DatosPersonales() {
 bool DatosPersonales::IsEqual(const DatosPersonales& otro) {
     return Validation::IsEqual(this->correo, otro.correo) && Validation::IsEqual(this->direccion, otro.direccion)
         && Validation::IsEqual(this->telefono, otro.telefono) && Validation::IsEqual(this->celular, otro.celular)
-        && this->alta == otro.alta;
+        && Validation::IsEqual(this->codigoRazonSocial, otro.codigoRazonSocial) && this->alta == otro.alta;
 }
 
 bool DatosPersonales::IsEmpty() {
     return Validation::IsEmpty(this->correo) && Validation::IsEmpty(this->direccion)
-        && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular);
+        && Validation::IsEmpty(this->telefono) && Validation::IsEmpty(this->celular)
+        && Validation::IsEmpty(this->codigoRazonSocial);
 }
 
 bool DatosPersonales::getAlta() { return this->alta; }
@@ -45,7 +46,7 @@ string DatosPersonales::getTelefono() { return string(this->telefono); }
 
 string DatosPersonales::getCelular() { return string(this->celular); }
 
-string DatosPersonales::getCodigoRazonSocial() { return string(this->codigoRazonSocial); }
+string DatosPersonales::getCodigoRazonSocial() { return string(this->codigoRazonSocial, CODIGORAZONSOCIAL_SIZE); }
 
 unsigned int DatosPersonales::GetCorreoSize() { return CORREO_SIZE; }
 
@@ -80,3 +81,5 @@ void DatosPersonales::setDireccion(const string& d) { strcpy(this->direccion, d.
 void DatosPersonales::setTelefono(const string& t) { strcpy(this->telefono, t.c_str()); }
 
 void DatosPersonales::setCelular(const string& c) { strcpy(this->celular, c.c_str()); }
+
+void DatosPersonales::setCodigoRazonSocial(const string& codigo) { strcpy(this->codigoRazonSocial, codigo.c_str()); }
