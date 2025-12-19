@@ -1,17 +1,29 @@
 #ifndef REPORT_H
 #define REPORT_H
 
+
+#include "../controller/fecha.h"
+#include "../menu/menu_utils.h"
+#include "../controller/validation.h"
+
 #include <string>
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 class Report {
 protected:
-	std::string title;
+	string title;
+
+	unsigned int AskYearOrCurrent();
+	void PrintDecoratedTitle(const string& text, char deco = '=');
 
 public:
-	explicit Report(const std::string& _title);
+	explicit Report(const string& _title);
 	virtual ~Report();
 
-	const std::string& GetTitle() const;
+	const string& GetTitle() const;
 	virtual void Run() = 0;
 };
 
