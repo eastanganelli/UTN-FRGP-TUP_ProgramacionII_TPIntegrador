@@ -146,6 +146,9 @@ void TipoResponsable::ModificarTipoResponsable(TipoResponsable& tipo) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nuevo Codigo: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= CODIGO_SIZE || !Validation::IsAlphanumeric(entrada)) {
                         Warning w("Codigo invalido", "Ingrese un codigo valido (alfanumerico y longitud aceptable).");
                         w.Show(); w.WaitForKey();
@@ -161,6 +164,9 @@ void TipoResponsable::ModificarTipoResponsable(TipoResponsable& tipo) {
             case 2: {
                 while (true) {
                     entrada = InputBox("Nueva Descripcion: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DESCRIPCION_SIZE) {
                         Warning w("Descripcion invalida", "Ingrese una descripcion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -176,6 +182,9 @@ void TipoResponsable::ModificarTipoResponsable(TipoResponsable& tipo) {
             case 3: {
                 while (true) {
                     entrada = InputBox("Nuevo Porcentaje (0.0 - 100.0): ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     float p = -1.0f;
                     try { p = std::stof(entrada); } catch(...) { p = -1.0f; }
                     if (p < 0.0f || p > 100.0f) {
@@ -193,6 +202,9 @@ void TipoResponsable::ModificarTipoResponsable(TipoResponsable& tipo) {
             case 4: {
                 while (true) {
                     entrada = InputBox("Nuevo Tipo Facturacion (A, B, C o E): ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada)) { Warning w("Tipo invalido", "Ingrese A, B, C o E."); w.Show(); w.WaitForKey(); continue; }
                     char t = toupper(entrada[0]);
                     if (t != 'A' && t != 'B' && t != 'C' && t != 'E') { Warning w("Tipo invalido", "Ingrese A, B, C o E."); w.Show(); w.WaitForKey(); continue; }

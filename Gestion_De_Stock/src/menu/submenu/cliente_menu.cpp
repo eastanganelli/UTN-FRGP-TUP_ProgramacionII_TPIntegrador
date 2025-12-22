@@ -161,6 +161,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 1: { // Nombre
                 while (true) {
                     entrada = InputBox("Nuevo Nombre: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     string tmp = entrada;
                     Validation::RemoveSpaces(tmp);
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(tmp)) {
@@ -178,6 +181,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 2: { // Apellido
                 while (true) {
                     entrada = InputBox("Nuevo Apellido: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     string tmp = entrada;
                     Validation::RemoveSpaces(tmp);
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(tmp)) {
@@ -195,6 +201,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 3: { // CUIL/CUIT
                 while (true) {
                     entrada = InputBox("Nuevo CUIL/CUIT: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= Cliente::GetCuilCuitSize() || !Validation::IsAlphanumeric(entrada)) {
                         Warning w("CUIL/CUIT invalido", "Ingrese CUIL/CUIT valido (solo letras y/o digitos, longitud correcta).");
                         w.Show(); w.WaitForKey();
@@ -210,6 +219,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 4: { // Direccion
                 while (true) {
                     entrada = InputBox("Nueva Direccion: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetDireccionSize()) {
                         Warning w("Direccion invalida", "Ingrese una direccion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -225,6 +237,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 5: { // Correo
                 while (true) {
                     entrada = InputBox("Nuevo Correo: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetCorreoSize() || entrada.find('@') == string::npos || entrada.find('.') == string::npos) {
                         Warning w("Correo invalido", "Ingrese un correo valido (contiene @ y .) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -240,6 +255,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 6: { // Telefono
                 while (true) {
                     entrada = InputBox("Nuevo Telefono: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetTelefonoSize()) {
                         Warning w("Telefono invalido", "Ingrese un telefono valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -255,6 +273,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 7: { // Celular
                 while (true) {
                     entrada = InputBox("Nuevo Celular: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetCelularSize()) {
                         Warning w("Celular invalido", "Ingrese un celular valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -347,8 +368,8 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
         cout << "-- Seleccionar Razon Social --" << endl;
         tabla.Print();
 
-        string entrada = InputBox("Indice (vacio para cancelar): ");
-        if (entrada.empty()) {
+        int idx = SelectorIndex(tabla, "Indice (vacio para cancelar): ", lista.Size());
+        if (idx == -1) {
             if (obligatoria) {
                 Warning w("Seleccion requerida", "Debe elegir una razon social.");
                 w.Show(); w.WaitForKey();
@@ -356,13 +377,8 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
             }
             return "";
         }
-
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') { continue; }
-        if (idxLong >= lista.Size()) { continue; }
-        return lista[static_cast<unsigned int>(idxLong)]->getCodigo();
+        if (idx < 0) { continue; }
+        return lista[static_cast<unsigned int>(idx)]->getCodigo();
     }
 }
 
@@ -532,14 +548,9 @@ void ClienteMenu::VerDetalleCliente() {
     while (true) {
         rlutil::cls();
         tabla.Print();
-        string entrada = InputBox("Indice a ver (vacio para cancelar): ");
-        if (entrada.empty()) return;
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') continue;
-        if (idxLong >= lista.Size()) continue;
-        seleccionado = static_cast<int>(idxLong);
+        seleccionado = SelectorIndex(tabla, "Indice a ver (vacio para cancelar): ", lista.Size());
+        if (seleccionado == -1) return;
+        if (seleccionado < 0) continue;
         break;
     }
 

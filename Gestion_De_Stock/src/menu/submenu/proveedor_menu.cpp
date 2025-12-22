@@ -1,5 +1,6 @@
 #include "proveedor_menu.h"
 #include <iostream>
+#include <cstdlib>
 #include "../../controller/modals/error.h"
 
 using namespace std;
@@ -126,6 +127,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nuevo Nombre/Razon: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(entrada) || entrada.length() >= 35) {
                         Warning w("Nombre invalido", "Ingrese solo letras para el nombre/razon.");
                         w.Show(); w.WaitForKey();
@@ -141,6 +145,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 2: {
                 while (true) {
                     entrada = InputBox("Nuevo CUIT: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 12 || !Validation::IsAlphanumeric(entrada)) {
                         Warning w("CUIT invalido", "Ingrese CUIT valido (solo letras y/o digitos, longitud correcta).");
                         w.Show(); w.WaitForKey();
@@ -156,7 +163,16 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 3: {
                 while (true) {
                     cout << "Rubros disponibles:\n1) Textil\n2) Calzado\n3) Gastronimia\n4) Automotor\n5) Libreria\n";
-                    unsigned int r = InputNumber("Seleccione rubro (1-5): ");
+                    entrada = InputBox("Seleccione rubro (vacio para mantener): ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
+                    if (!Validation::IsNumeric(entrada)) {
+                        Warning w("Rubro invalido", "Seleccione un rubro valido (1-5).");
+                        w.Show(); w.WaitForKey();
+                        continue;
+                    }
+                    unsigned int r = static_cast<unsigned int>(std::strtoul(entrada.c_str(), nullptr, 10));
                     if (r < 1 || r > 5) {
                         Warning w("Rubro invalido", "Seleccione un rubro valido (1-5).");
                         w.Show(); w.WaitForKey();
@@ -172,6 +188,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 4: {
                 while (true) {
                     entrada = InputBox("Nueva Direccion: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 100) {
                         Warning w("Direccion invalida", "Ingrese una direccion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -187,6 +206,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 5: {
                 while (true) {
                     entrada = InputBox("Nuevo Correo: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 100 || entrada.find('@') == string::npos || entrada.find('.') == string::npos) {
                         Warning w("Correo invalido", "Ingrese un correo valido (contiene @ y .) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -202,6 +224,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 6: {
                 while (true) {
                     entrada = InputBox("Nuevo Telefono: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= 25) {
                         Warning w("Telefono invalido", "Ingrese un telefono valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -217,6 +242,9 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 7: {
                 while (true) {
                     entrada = InputBox("Nuevo Celular: ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= 25) {
                         Warning w("Celular invalido", "Ingrese un celular valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();

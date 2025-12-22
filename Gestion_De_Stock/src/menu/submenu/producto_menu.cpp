@@ -91,6 +91,9 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nueva Descripcion: ");
+                    if (entrada.empty()) { // mantener valor actual si no se ingresa nada
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= Producto::GetDescripcionSize()) {
                         Warning w("Descripcion invalida", "Ingrese una descripcion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -105,7 +108,10 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             }
             case 2: {
                 while (true) {
-                    entrada = InputNumber("Nuevo Precio: ");
+                    entrada = InputBox("Nuevo Precio (vacio para mantener): ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
                     float p = 0.0f;
                     if (sscanf(entrada.c_str(), "%f", &p) != 1) { p = 0.0f; }
                     if (!Validation::IsPositiveNumber(p) || p < 0.01f || p > 9999.99f) {
@@ -122,7 +128,17 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             }
             case 3: {
                 while (true) {
-                    unsigned int s = InputNumber("Nuevo Stock: ");
+                    entrada = InputBox("Nuevo Stock (vacio para mantener): ");
+                    if (entrada.empty()) { // mantener valor actual
+                        break;
+                    }
+                    unsigned int s = 0;
+                    if (!Validation::IsNumeric(entrada)) {
+                        Warning w("Stock invalido", "Ingrese un stock valido (numero).");
+                        w.Show(); w.WaitForKey();
+                        continue;
+                    }
+                    s = static_cast<unsigned int>(std::strtoul(entrada.c_str(), nullptr, 10));
                     if (!Validation::IsInRange<unsigned int>(s, 0u, 100000u)) {
                         Warning w("Stock invalido", "Ingrese un stock valido (0 - 100000).");
                         w.Show(); w.WaitForKey();
@@ -278,102 +294,101 @@ bool ProductoMenu::OnSelect(int index) {
 string ProductoMenu::SeleccionarProveedor() {
     rlutil::cls();
     const unsigned int total = proveedores.Count();
-    GenericArray<string> cuits;
-    GenericArray<string> descripciones;
+    GenericArray<Proveedor> lista;
 
     for (unsigned int i = 0; i < total; ++i) {
         Proveedor* p = proveedores.At(i);
         if (p != nullptr) {
             if (p->getAlta()) {
-                string cuit = p->getCuit();
-                string desc = p->getNombreRazon() + string(" ( ") + p->getRubroNombre() + string(" )");
-                cuits.Append(cuit);
-                descripciones.Append(desc);
+                lista.Append(*p);
             }
             delete p;
         }
     }
 
-    if (cuits.Size() == 0) {
+    if (lista.Size() == 0) {
         Warning w("Sin proveedores activos", "No hay proveedores dados de alta para seleccionar.");
         w.Show(); w.WaitForKey();
         return "";
     }
 
-    ImprimirProveedoresActivos(cuits, descripciones);
+    const unsigned int columnas = 4;
+    Tabling::Table tabla(lista.Size(), columnas);
+    Tabling::Row* header = new Tabling::Row(columnas);
+    header->AddCell("Idx", 4);
+    header->AddCell("CUIT", Proveedor::ColCuitSize());
+    header->AddCell("Nombre/Razon", Proveedor::ColNombreRazonSize());
+    header->AddCell("Rubro", 12);
+    tabla.AddRow(header);
 
-    unsigned int idx = cuits.Size();
-    do {
-        idx = InputNumber("Ingrese indice: ");
-        if (idx < cuits.Size()) break;
-        Warning w("Indice invalido", "Seleccione un indice existente.");
-        w.Show(); w.WaitForKey();
-        ImprimirProveedoresActivos(cuits, descripciones);
-    } while (true);
+    for (unsigned int i = 0; i < lista.Size(); ++i) {
+        Proveedor* p = lista[i];
+        Tabling::Row* fila = new Tabling::Row(columnas);
+        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(p->getCuit(), Proveedor::ColCuitSize());
+        fila->AddCell(p->getNombreRazon(), Proveedor::ColNombreRazonSize());
+        fila->AddCell(p->getRubroNombre(), 12);
+        tabla.AddRow(fila);
+    }
 
-    return *cuits[idx];
-}
-
-void ProductoMenu::ImprimirProveedoresActivos(GenericArray<string>& cuits, GenericArray<string>& descripciones) {
-    rlutil::cls();
-    cout << "\nSeleccione proveedor:\n";
-    for (unsigned int i = 0; i < cuits.Size(); ++i) {
-        cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << endl;
+    int idx = -1;
+    while (true) {
+        rlutil::cls();
+        tabla.Print();
+        idx = SelectorIndex(tabla, "Indice de proveedor (vacio para cancelar): ", lista.Size());
+        if (idx == -1) return "";
+        if (idx < 0) continue;
+        return lista[static_cast<unsigned int>(idx)]->getCuit();
     }
 }
 
 string ProductoMenu::SeleccionarProductoCodigo() {
     rlutil::cls();
     const unsigned int total = productos.Count();
-    GenericArray<string> codigos;
-    GenericArray<string> filas;
+    GenericArray<Producto> lista;
 
     for (unsigned int i = 0; i < total; ++i) {
         Producto* p = productos.At(i);
         if (p != nullptr) {
-            string codigo = p->getCodigo();
-            string fila = codigo + " - " + p->getDescripcion() + " | Precio: " + to_string(p->getPrecio()) + " | Stock: " + to_string(p->getStock());
-            codigos.Append(codigo);
-            filas.Append(fila);
+            lista.Append(*p);
             delete p;
         }
     }
 
-    if (codigos.Size() == 0) {
+    if (lista.Size() == 0) {
         Warning w("Sin productos", "No hay productos cargados para seleccionar.");
         w.Show(); w.WaitForKey();
         return "";
     }
 
-    ImprimirProductosListado(codigos, filas);
+    const unsigned int columnas = 5;
+    Tabling::Table tabla(lista.Size(), columnas);
+    Tabling::Row* header = new Tabling::Row(columnas);
+    header->AddCell("Idx", 4);
+    header->AddCell("Codigo", Producto::ColCodigoSize());
+    header->AddCell("Descripcion", Producto::ColDescripcionSize());
+    header->AddCell("Precio", Producto::ColPrecioSize());
+    header->AddCell("Stock", Producto::ColStockSize());
+    tabla.AddRow(header);
 
-    while (true) {
-        string entrada = InputBox("Indice (vacio para cancelar): ");
-        if (entrada.empty()) return "";
-
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') {
-            Warning w("Indice invalido", "Ingrese un numero de la lista.");
-            w.Show(); w.WaitForKey();
-            ImprimirProductosListado(codigos, filas);
-            continue;
-        }
-        if (idxLong >= codigos.Size()) {
-            Warning w("Fuera de rango", "Seleccione un indice existente.");
-            w.Show(); w.WaitForKey();
-            ImprimirProductosListado(codigos, filas);
-            continue;
-        }
-        return *codigos[static_cast<unsigned int>(idxLong)];
+    for (unsigned int i = 0; i < lista.Size(); ++i) {
+        Producto* p = lista[i];
+        Tabling::Row* fila = new Tabling::Row(columnas);
+        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(p->getCodigo(), Producto::ColCodigoSize());
+        fila->AddCell(p->getDescripcion(), Producto::ColDescripcionSize());
+        fila->AddCell(Validation::ToFixedDecimal(p->getPrecio(), 2), Producto::ColPrecioSize());
+        fila->AddCell(std::to_string(p->getStock()), Producto::ColStockSize());
+        tabla.AddRow(fila);
     }
-}
 
-void ProductoMenu::ImprimirProductosListado(GenericArray<string>& codigos, GenericArray<string>& filas) {
-    rlutil::cls();
-    cout << "\nSeleccione producto:\n";
-    for (unsigned int i = 0; i < codigos.Size(); ++i) {
-        cout << i << ") " << *filas[i] << "\n";
+    int idx = -1;
+    while (true) {
+        rlutil::cls();
+        tabla.Print();
+        idx = SelectorIndex(tabla, "Indice (vacio para cancelar): ", lista.Size());
+        if (idx == -1) return "";
+        if (idx < 0) continue;
+        return lista[static_cast<unsigned int>(idx)]->getCodigo();
     }
 }
