@@ -327,7 +327,7 @@ string ProductoMenu::SeleccionarProveedor() {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         Proveedor* p = lista[i];
         Tabling::Row* fila = new Tabling::Row(columnas);
-        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(std::to_string(i + 1), 4);
         fila->AddCell(p->getCuit(), Proveedor::ColCuitSize());
         fila->AddCell(p->getNombreRazon(), Proveedor::ColNombreRazonSize());
         fila->AddCell(p->getRubroNombre(), 12);
@@ -377,7 +377,7 @@ string ProductoMenu::SeleccionarProductoCodigo() {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         Producto* p = lista[i];
         Tabling::Row* fila = new Tabling::Row(columnas);
-        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(std::to_string(i + 1), 4);
         fila->AddCell(p->getCodigo(), Producto::ColCodigoSize());
         fila->AddCell(p->getDescripcion(), Producto::ColDescripcionSize());
         fila->AddCell(Validation::ToFixedDecimal(p->getPrecio(), 2), Producto::ColPrecioSize());

@@ -359,7 +359,7 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         TipoResponsable* t = lista[i];
         Tabling::Row* fila = new Tabling::Row(columnas);
-        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(std::to_string(i + 1), 4);
         fila->AddCell(t->getCodigo(), TipoResponsable::ColCodigoSize());
         fila->AddCell(t->getDescripcion(), TipoResponsable::ColDescripcionSize());
         fila->AddCell(Validation::ToFixedDecimal(t->getPorcentaje(), 1), TipoResponsable::ColPorcentajeSize());
@@ -537,7 +537,7 @@ void ClienteMenu::VerDetalleCliente() {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         Cliente* c = lista[i];
         Tabling::Row* row = new Tabling::Row(cols);
-        row->AddCell(std::to_string(i), 4);
+        row->AddCell(std::to_string(i + 1), 4);
         row->AddCell(c->getDNI(), Cliente::ColDniSize());
         row->AddCell(c->getApellido() + string(", ") + c->getNombre(), widthNombre);
         row->AddCell(c->getCorreo(), DatosPersonales::ColCorreoSize());

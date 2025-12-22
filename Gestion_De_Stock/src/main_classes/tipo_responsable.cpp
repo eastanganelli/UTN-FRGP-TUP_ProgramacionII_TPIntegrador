@@ -27,6 +27,10 @@ float TipoResponsable::getPorcentaje() const { return this->porcentaje; }
 
 char TipoResponsable::getTipoFacturacion() const { return toupper(this->tipoFacturacion); }
 
+unsigned int TipoResponsable::GetCodigoSize() { return CODIGO_SIZE; }
+
+unsigned int TipoResponsable::GetDescripcionSize() { return DESCRIPCION_SIZE; }
+
 unsigned int TipoResponsable::ColCodigoSize() { return TipoResponsable::COL_Codigo; }
 
 unsigned int TipoResponsable::ColDescripcionSize() { return TipoResponsable::COL_Descripcion; }

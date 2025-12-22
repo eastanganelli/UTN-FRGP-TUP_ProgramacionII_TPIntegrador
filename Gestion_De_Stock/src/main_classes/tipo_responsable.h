@@ -36,6 +36,9 @@ public:
     float getPorcentaje() const;
     char getTipoFacturacion() const;
 
+    static unsigned int GetCodigoSize();
+    static unsigned int GetDescripcionSize();
+
     static unsigned int ColCodigoSize();
     static unsigned int ColDescripcionSize();
     static unsigned int ColPorcentajeSize();

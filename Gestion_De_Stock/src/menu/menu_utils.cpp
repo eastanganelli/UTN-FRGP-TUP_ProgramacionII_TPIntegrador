@@ -54,8 +54,8 @@ int SelectorIndex(Tabling::Table& table, const std::string& prompt, unsigned int
         if (!Validation::IsNumeric(entrada)) continue;
 
         unsigned long idxLong = std::strtoul(entrada.c_str(), nullptr, 10);
-        if (idxLong >= maxExclusive) continue;
+        if (idxLong == 0 || idxLong > maxExclusive) continue;
 
-        return static_cast<int>(idxLong);
+        return static_cast<int>(idxLong - 1);
     }
 }

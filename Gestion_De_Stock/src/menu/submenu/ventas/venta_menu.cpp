@@ -106,7 +106,7 @@ void VentaMenu::ModificarFactura() {
     for (unsigned int i = 0; i < editables.Size(); ++i) {
         Factura* fc = editables[i];
         Tabling::Row* row = new Tabling::Row(cols);
-        row->AddCell(std::to_string(i), 4);
+        row->AddCell(std::to_string(i + 1), 4);
         row->AddCell(std::to_string(fc->getNumero()), Comprobante::ColNumeroSize());
         row->AddCell(fc->getClienteDNI(), Comprobante::ColClienteDNISize());
         row->AddCell(fc->getFechaEmision().toString(), Comprobante::ColFechaEmisionSize());
@@ -194,7 +194,7 @@ void VentaMenu::AnularFactura() {
     for (unsigned int i = 0; i < candidatas.Size(); ++i) {
         Factura* f = candidatas[i];
         Tabling::Row* row = new Tabling::Row(cols);
-        row->AddCell(std::to_string(i), 4);
+        row->AddCell(std::to_string(i + 1), 4);
         row->AddCell(std::to_string(f->getNumero()), Comprobante::ColNumeroSize());
         row->AddCell(f->getClienteDNI(), Comprobante::ColClienteDNISize());
         row->AddCell(f->getFechaEmision().toString(), Comprobante::ColFechaEmisionSize());
@@ -376,7 +376,7 @@ void VentaMenu::VerDetalleComprobante() {
         if (tomarFactura) {
             Factura* f = fcs[i];
             const string tipo = Validation::IsEmpty(f->getCAE()) ? "Presupuesto" : "Factura";
-            row->AddCell(to_string(idxTabla), 4);
+            row->AddCell(to_string(idxTabla + 1), 4);
             row->AddCell(to_string(f->getNumero()), widthNumero);
             row->AddCell(tipo, widthTipo);
             row->AddCell(f->getClienteDNI(), widthCliente);
@@ -389,7 +389,7 @@ void VentaMenu::VerDetalleComprobante() {
             ++i;
         } else {
             NotaDeCredito* n = nts[j];
-            row->AddCell(to_string(idxTabla), 4);
+            row->AddCell(to_string(idxTabla + 1), 4);
             row->AddCell(to_string(n->getNumero()), widthNumero);
             row->AddCell("Nota", widthTipo);
             row->AddCell(n->getClienteDNI(), widthCliente);
@@ -776,7 +776,7 @@ string VentaMenu::SeleccionarCliente() {
     while (true) {
         cout << "\nSeleccione cliente (solo activos):\n";
         for (unsigned int i = 0; i < dnis.Size(); ++i) {
-            cout << i << ") " << *dnis[i] << " - " << *nombres[i] << "\n";
+            cout << (i + 1) << ") " << *dnis[i] << " - " << *nombres[i] << "\n";
         }
 
         string entrada = InputBox("Indice (vacio para cancelar): ");
@@ -791,8 +791,7 @@ string VentaMenu::SeleccionarCliente() {
             rlutil::cls();
             continue;
         }
-        unsigned int idx = static_cast<unsigned int>(idxLong);
-        if (idx >= dnis.Size()) {
+        if (idxLong == 0 || idxLong > dnis.Size()) {
             rlutil::cls();
             Warning w("Fuera de rango", "Seleccione un indice existente.");
             w.Show(); w.WaitForKey();
@@ -800,6 +799,7 @@ string VentaMenu::SeleccionarCliente() {
             continue;
         }
 
+        unsigned int idx = static_cast<unsigned int>(idxLong - 1);
         return *dnis[idx];
     }
 }
@@ -819,7 +819,7 @@ string VentaMenu::SeleccionarProductoCodigo() {
         for (unsigned int i = 0; i < total; ++i) {
             Producto* p = productos.At(i);
             if (p != nullptr) {
-                cout << i << ") " << p->getCodigo() << " - " << p->getDescripcion() << " | Precio: " << p->getPrecio() << " | Stock: " << p->getStock() << "\n";
+                cout << (i + 1) << ") " << p->getCodigo() << " - " << p->getDescripcion() << " | Precio: " << p->getPrecio() << " | Stock: " << p->getStock() << "\n";
                 delete p;
             }
         }
@@ -836,15 +836,14 @@ string VentaMenu::SeleccionarProductoCodigo() {
             rlutil::cls();
             continue;
         }
-        unsigned int idx = static_cast<unsigned int>(idxLong);
-        if (idx >= total) {
+        if (idxLong == 0 || idxLong > total) {
             rlutil::cls();
             Warning w("Fuera de rango", "Seleccione un indice existente.");
             w.Show(); w.WaitForKey();
             rlutil::cls();
             continue;
         }
-
+        unsigned int idx = static_cast<unsigned int>(idxLong - 1);
         Producto* elegido = productos.At(idx);
         string codigo = "";
         if (elegido != nullptr) {
@@ -966,18 +965,19 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
                     Item* pitList = factura.ObtenerItem(k);
                     if (pitList != nullptr) {
-                        cout << k << ".- " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
+                        cout << (k + 1) << ".- " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
                     }
                 }
-                unsigned int idx = InputNumber("Indice de item: ");
-                Item* pit = factura.ObtenerItem(idx);
-                if (pit == nullptr) {
+                unsigned int idxInput = InputNumber("Indice de item: ");
+                if (idxInput == 0 || idxInput > factura.CantidadItems()) {
                     rlutil::cls();
                     Warning w("Item no encontrado", "Indice invalido.");
                     w.Show(); w.WaitForKey();
                     break;
                 }
-                Item::ModificarItem(*pit, productos);
+                unsigned int idx = idxInput - 1;
+                Item* pit = factura.ObtenerItem(idx);
+                ModificarItemInteractivo(*pit);
                 if (!facturas.Modificar(factura.getNumero(), &factura)) {
                     rlutil::cls();
                     Warning w("Error modificacion", "No se pudo modificar el item en la factura.");
@@ -996,19 +996,20 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
                 for (unsigned int k = 0; k < factura.CantidadItems(); ++k) {
                     const Item* pitList = factura.ObtenerItem(k);
                     if (pitList != nullptr) {
-                        cout << k << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
+                        cout << (k + 1) << ") " << pitList->getCodigo() << " | Cant: " << pitList->getCantidad() << " | Precio: " << pitList->getPrecioUnitario() << endl;
                     }
                 }
-                unsigned int idx = InputNumber("Indice de item: ");
-                const Item* pit = factura.ObtenerItem(idx);
-                if (pit == nullptr) {
+                unsigned int idxInput = InputNumber("Indice de item: ");
+                if (idxInput == 0 || idxInput > factura.CantidadItems()) {
                     rlutil::cls();
                     Warning w("Item no encontrado", "Indice invalido.");
                     w.Show(); w.WaitForKey();
                     break;
                 }
+                unsigned int idx = idxInput - 1;
+                const Item* pit = factura.ObtenerItem(idx);
                 Item temp = *pit;
-                if (Item::EliminarItem(temp, productos)) {
+                if (EliminarItemInteractivo(temp)) {
                     factura.EliminarItem(temp.getCodigo());
                 }
                 if (!facturas.Modificar(factura.getNumero(), &factura)) {
@@ -1051,6 +1052,79 @@ void VentaMenu::ModificarFacturaInteractiva(Factura& factura) {
         }
     } while (opcion != 5);
     rlutil::cls();
+}
+
+bool VentaMenu::ModificarItemInteractivo(Item& item) {
+    Producto* p = productos[item.getCodigo()];
+    if (p == nullptr) {
+        rlutil::cls();
+        Warning w("Producto no encontrado", "No existe producto asociado al item.");
+        w.Show(); w.WaitForKey();
+        return false;
+    }
+
+    unsigned int stock = p->getStock();
+    unsigned int old = item.getCantidad();
+
+    string entrada = InputBox("Nueva cantidad (vacio para mantener): ");
+    if (entrada.empty()) {
+        delete p;
+        return true; // mantener
+    }
+    if (!Validation::IsNumeric(entrada)) {
+        rlutil::cls();
+        Warning w("Cantidad invalida", "Ingrese un numero valido.");
+        w.Show(); w.WaitForKey();
+        delete p;
+        return false;
+    }
+
+    unsigned int nueva = static_cast<unsigned int>(std::strtoul(entrada.c_str(), nullptr, 10));
+    if (nueva == 0) {
+        rlutil::cls();
+        Warning w("Cantidad invalida", "Cantidad debe ser mayor a 0.");
+        w.Show(); w.WaitForKey();
+        delete p;
+        return false;
+    }
+
+    if (nueva > old) {
+        unsigned int delta = nueva - old;
+        if (delta > stock) {
+            rlutil::cls();
+            Warning w("Stock insuficiente", "No hay suficiente stock para aumentar la cantidad.");
+            w.Show(); w.WaitForKey();
+            delete p;
+            return false;
+        }
+        Producto aux = *p;
+        aux.setStock(stock - delta);
+        productos.Modificar(aux.getCodigo(), &aux);
+        item.setCantidad(nueva);
+    } else if (nueva < old) {
+        unsigned int delta = old - nueva;
+        Producto aux = *p;
+        aux.setStock(stock + delta);
+        productos.Modificar(aux.getCodigo(), &aux);
+        item.setCantidad(nueva);
+    }
+
+    delete p;
+    return true;
+}
+
+bool VentaMenu::EliminarItemInteractivo(Item& item) {
+    Warning w("Eliminar Item", "Esta seguro que desea eliminar este item?");
+    if (!w.ShowYesNo()) return false;
+
+    Producto* p = productos[item.getCodigo()];
+    if (p != nullptr) {
+        Producto aux = *p;
+        aux.setStock(p->getStock() + item.getCantidad());
+        productos.Modificar(aux.getCodigo(), &aux);
+        delete p;
+    }
+    return true;
 }
 
 bool VentaMenu::ConvertirFacturaEnNota(unsigned int numero, const string& motivo) {

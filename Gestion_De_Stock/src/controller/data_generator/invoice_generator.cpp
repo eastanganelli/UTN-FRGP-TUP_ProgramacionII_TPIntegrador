@@ -105,7 +105,6 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
                 f.AgregarItem(item);
             }
 
-            // Solo algunas facturas obtienen CAE para mezclar facturadas y pendientes
             if (f.CantidadItems() > 0 && (rand() % 100) < 70) {
                 if (f.Facturar() && !Validation::IsEmpty(f.getCAE())) {
                     unsigned int nro = f.getNumero();
@@ -117,7 +116,6 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             if (printLog)
                 cout << endl << "Factura agregada? >> " << (added ? "Si" : "No") << endl;
 
-            // Intentar leer la factura recién guardada desde el archivo
             Factura* saved = nullptr;
             if (added) {
                 unsigned int total = facturas.Count();

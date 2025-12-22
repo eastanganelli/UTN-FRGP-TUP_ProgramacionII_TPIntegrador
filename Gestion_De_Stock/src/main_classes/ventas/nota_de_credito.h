@@ -35,9 +35,6 @@ public:
     bool operator==(NotaDeCredito& nota);
     bool IsEmpty();
     string toString();
-    static NotaDeCredito NuevoNotaDeCredito(unsigned int numero, class ProductoManager& pm);
-    static void ModificarNotaDeCredito(NotaDeCredito& nota, class ProductoManager& pm);
-    static unsigned int EliminarNotaDeCredito(NotaDeCredito& nota, class ProductoManager& pm);
 };
 
 #endif // NOTADECREDITO_H

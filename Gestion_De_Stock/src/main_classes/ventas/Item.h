@@ -50,9 +50,6 @@ public:
     bool operator==(const Item& otro) const;
     bool IsEmpty() const;
     std::string toString() const;
-    static Item NuevoItem(class ProductoManager& pm);
-    static void ModificarItem(Item& item, class ProductoManager& pm);
-    static unsigned int EliminarItem(Item& item, class ProductoManager& pm);
 };
 
 #endif // ITEM_H

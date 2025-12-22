@@ -42,6 +42,8 @@ private:
     std::string SeleccionarCliente();
     std::string SeleccionarProductoCodigo();
     bool AgregarItemInteractivo(Factura& factura);
+    bool ModificarItemInteractivo(Item& item);
+    bool EliminarItemInteractivo(Item& item);
     Factura CrearFactura(unsigned int numero, bool& ok);
     void ModificarFacturaInteractiva(Factura& factura);
     bool ConvertirFacturaEnNota(unsigned int numero, const std::string& motivo);
