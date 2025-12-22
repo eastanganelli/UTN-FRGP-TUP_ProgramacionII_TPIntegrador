@@ -1,7 +1,5 @@
 #include "manager_proveedor.h"
 
-#include <cstdio>
-
 static const string RUBROS[] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
 
 ProveedorManager::ProveedorManager(const string& proveedorPath)

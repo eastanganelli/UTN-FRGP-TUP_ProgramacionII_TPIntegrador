@@ -1,8 +1,5 @@
 #include "top_cliente.h"
 
-#include "../controller/modals/warning.h"
-
-
 TopClienteReport::TopClienteReport() : Report("Cliente con mayor volumen de compras") {}
 
 void TopClienteReport::Run() {

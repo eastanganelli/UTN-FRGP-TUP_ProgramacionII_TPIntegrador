@@ -1,19 +1,18 @@
 #ifndef FACTURA_H
 #define FACTURA_H
 
-#include "Comprobante.h"
-
-#include "../../manager/manager_producto.h"
-#include "../../manager/manager_cliente.h"
-#include "../../manager/ventas/manager_factura.h"
-#include "../../manager/ventas/manager_nota_de_credito.h"
-#include "../../menu/menu_utils.h"
-#include "../../controller/modals.h"
-
 #include <cstdio>
 #include <iostream>
 
 using namespace std;
+
+#include "Comprobante.h"
+
+#include "../../menu/menu_utils.h"
+#include "../../controller/modals.h"
+#include "../../manager/manager_producto.h"
+#include "../../manager/manager_cliente.h"
+#include "../../manager/ventas/manager_nota_de_credito.h"
 
 class Factura : public Comprobante {
 private:

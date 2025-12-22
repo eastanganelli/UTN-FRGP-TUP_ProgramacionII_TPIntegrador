@@ -1,7 +1,5 @@
 #include "top_10_productos.h"
 
-#include "../controller/modals/warning.h"
-
 Top10ProductosReport::Top10ProductosReport() : Report("Top 10 productos mas vendidos") {}
 
 void Top10ProductosReport::Run() {

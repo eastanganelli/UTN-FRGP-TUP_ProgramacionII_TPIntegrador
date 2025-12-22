@@ -1,11 +1,4 @@
 #include "tipo_responsable.h"
-#include <cctype>
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include "../../rlutil.h"
-#include "../controller/modals.h"
-#include "../menu/menu_utils.h"
 
 TipoResponsable::TipoResponsable(const string codigo, const string descripcion, const float _porcentaje, const char _tipoFacturacion) {
     this->codigo[0] = '\0';

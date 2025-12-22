@@ -2,13 +2,13 @@
 #define MENU_H
 
 #include <string>
-#include <vector>
-
-#include "../controller/generic_array.h"
-#include "../controller/modals.h"
-#include "../../rlutil.h"
+#include <iostream>
 
 using namespace std;
+
+#include "../../rlutil.h"
+#include "../controller/modals.h"
+#include "../controller/generic_array.h"
 
 class Menu {
 protected:

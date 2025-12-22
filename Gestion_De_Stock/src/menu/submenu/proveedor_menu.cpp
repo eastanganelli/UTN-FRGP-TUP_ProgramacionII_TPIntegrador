@@ -1,7 +1,4 @@
 #include "proveedor_menu.h"
-#include <iostream>
-#include <cstdlib>
-#include "../../controller/modals/error.h"
 
 using namespace std;
 

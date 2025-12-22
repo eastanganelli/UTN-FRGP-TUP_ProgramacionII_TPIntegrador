@@ -1,7 +1,5 @@
 #include "manager_producto.h"
 
-#include <cstdio>
-
 ProductoManager::ProductoManager(const string& productoPath)
     : FileSystem<Producto>(productoPath) { }
 

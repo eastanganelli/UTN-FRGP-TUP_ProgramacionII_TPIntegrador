@@ -1,7 +1,4 @@
 #include "tipo_responsable_menu.h"
-#include <iostream>
-#include "../../controller/modals/warning.h"
-#include "../../controller/modals/error.h"
 
 using namespace std;
 

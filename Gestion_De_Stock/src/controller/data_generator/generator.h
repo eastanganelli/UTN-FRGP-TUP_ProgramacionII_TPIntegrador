@@ -4,9 +4,9 @@
 #include <ctime>
 #include <string>
 
-#include "../../main_classes/datos_personales.h"
-
 using namespace std;
+
+#include "../../main_classes/datos_personales.h"
 
 namespace DataGenerator {
     std::string generarCodigoAlfaNumerico(int longitud);

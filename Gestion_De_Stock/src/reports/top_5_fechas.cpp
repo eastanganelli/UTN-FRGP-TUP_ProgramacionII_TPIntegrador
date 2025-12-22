@@ -1,9 +1,5 @@
 #include "top_5_fechas.h"
 
-#include "../../rlutil.h"
-#include "../controller/table/table.h"
-#include "../controller/modals/warning.h"
-
 Top5FechasReport::Top5FechasReport() : Report("Top 5 fechas de mayores ventas") {}
 
 void Top5FechasReport::Run() {

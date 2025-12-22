@@ -1,6 +1,16 @@
 #ifndef CLIENTE_MENU_H
 #define CLIENTE_MENU_H
 
+#include <cctype>
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+#include "../../controller/modals/warning.h"
+#include "../../controller/modals/error.h"
+#include "../../controller/table/table.h"
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 #include "..\..\manager\manager_cliente.h"

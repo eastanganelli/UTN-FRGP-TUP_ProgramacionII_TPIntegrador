@@ -1,19 +1,19 @@
 #ifndef NOTADECREDITO_H
 #define NOTADECREDITO_H
 
-#include "Comprobante.h"
-#include "../producto.h"
-
-#include "../../manager/manager_producto.h"
-#include "../../menu/menu_utils.h"
-#include "../../controller/modals.h"
-
 #include <cstdio>
 #include <cstring>
 #include <string>
 #include <iostream>
 
 using namespace std;
+
+#include "Comprobante.h"
+#include "../producto.h"
+
+#include "../../menu/menu_utils.h"
+#include "../../controller/modals.h"
+#include "../../manager/manager_producto.h"
 
 class NotaDeCredito : public Comprobante {
 private:

@@ -1,15 +1,15 @@
 #ifndef TIPORESPONSABLEMANAGER_H
 #define TIPORESPONSABLEMANAGER_H
 
+using namespace std;
+
 #include "../../rlutil.h"
-#include "../main_classes/tipo_responsable.h"
+#include "../controller/modals.h"
+#include "../controller/table/table.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 
-#include "../controller/modals.h"
-#include "../controller/table/table.h"
-
-using namespace std;
+#include "../main_classes/tipo_responsable.h"
 
 /** Mantiene condiciones IVA y listados por descripción o porcentaje. */
 class TipoResponsableManager : public FileSystem<TipoResponsable> {

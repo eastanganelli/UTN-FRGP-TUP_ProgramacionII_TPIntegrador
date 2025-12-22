@@ -1,15 +1,16 @@
 #ifndef CLIENTEMANAGER_H
 #define CLIENTEMANAGER_H
 
-#include "../../rlutil.h"
-#include "../main_classes/cliente.h"
-#include "../controller/generic_array.h"
-#include "../file_manager/file_system.h"
-
-#include "../controller/modals.h"
-#include "../controller/table/table.h"
+#include <cstdio>
 
 using namespace std;
+
+#include "../../rlutil.h"
+#include "../controller/modals.h"
+#include "../controller/table/table.h"
+#include "../controller/generic_array.h"
+#include "../main_classes/cliente.h"
+#include "../file_manager/file_system.h"
 
 /** Maneja operaciones CRUD y listados de clientes. */
 class ClienteManager : public FileSystem<Cliente> {

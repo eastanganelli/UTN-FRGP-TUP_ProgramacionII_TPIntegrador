@@ -1,10 +1,4 @@
 #include "venta_menu.h"
-#include <iostream>
-#include "../../../controller/table/table.h"
-#include "../../../manager/ventas/manager_nota_de_credito.h"
-#include "../../../main_classes/ventas/comprobante.h"
-#include "../../../main_classes/ventas/factura.h"
-#include "../../../controller/modals/warning.h"
 
 using namespace std;
 

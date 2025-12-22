@@ -1,15 +1,25 @@
 #ifndef VENTA_MENU_H
 #define VENTA_MENU_H
 
+#include <iostream>
+
+using namespace std;
+
+#include "../../../../rlutil.h"
+#include "../../../controller/validation.h"
+#include "../../../controller/table/table.h"
+#include "../../../controller/generic_array.h"
+#include "../../../controller/modals/warning.h"
+
 #include "../../menu.h"
 #include "../../menu_utils.h"
+#include "../../../main_classes/ventas/comprobante.h"
+#include "../../../main_classes/ventas/factura.h"
 #include "../../../manager/manager_ventas.h"
 #include "../../../manager/manager_producto.h"
 #include "../../../manager/manager_cliente.h"
+#include "../../../manager/ventas/manager_nota_de_credito.h"
 #include "../../../manager/manager_tipo_responsables.h"
-#include "../../../controller/generic_array.h"
-#include "../../../controller/validation.h"
-#include "../../../../rlutil.h"
 
 class VentaMenu : public Menu {
 private:

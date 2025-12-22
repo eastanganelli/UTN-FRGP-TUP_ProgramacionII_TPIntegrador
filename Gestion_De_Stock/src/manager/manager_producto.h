@@ -1,15 +1,17 @@
 #ifndef PRODUCTOMANAGER_H
 #define PRODUCTOMANAGER_H
 
+#include <cstdio>
+
+using namespace std;
+
 #include "../../rlutil.h"
-#include "../main_classes/producto.h"
+#include "../controller/modals.h"
+#include "../controller/table/table.h"
 #include "../controller/generic_array.h"
 #include "../file_manager/file_system.h"
 
-#include "../controller/modals.h"
-#include "../controller/table/table.h"
-
-using namespace std;
+#include "../main_classes/producto.h"
 
 /** Gestiona alta, baja, modificación y reportes de productos. */
 class ProductoManager : public FileSystem<Producto> {

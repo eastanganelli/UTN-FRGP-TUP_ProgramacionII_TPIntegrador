@@ -1,9 +1,5 @@
 #include "manager_nota_de_credito.h"
 
-#include <cstdio>
-
-#include "../manager_producto.h"
-
 NotaDeCreditoManager::NotaDeCreditoManager(const string& notasPath)
     : FileSystem<NotaDeCredito>(notasPath) { }
 

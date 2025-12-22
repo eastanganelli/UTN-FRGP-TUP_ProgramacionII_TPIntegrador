@@ -1,8 +1,13 @@
 #ifndef MAIN_MENU_H
 #define MAIN_MENU_H
 
-#include "menu.h"
+#include <iostream>
+
+using namespace std;
+
 #include "../controller/data_generator.h"
+
+#include "menu.h"
 #include "submenu.h"
 
 class MainMenu : public Menu {

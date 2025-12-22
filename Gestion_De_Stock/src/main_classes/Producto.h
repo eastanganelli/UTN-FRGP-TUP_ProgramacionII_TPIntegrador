@@ -1,13 +1,17 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
 
+#include <cstdio>
 #include <string>
 #include <cstring>
 #include <iostream>
 
-#include "../controller/validation.h"
-
 using namespace std;
+
+#include "../controller/modals.h"
+#include "../controller/validation.h"
+#include "../controller/data_generator/generator.h"
+#include "../menu/menu_utils.h"
 
 class Producto {
 private:

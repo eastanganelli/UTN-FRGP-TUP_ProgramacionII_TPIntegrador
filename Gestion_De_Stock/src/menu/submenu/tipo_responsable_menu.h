@@ -1,6 +1,13 @@
 #ifndef TIPORESPONSABLE_MENU_H
 #define TIPORESPONSABLE_MENU_H
 
+#include <iostream>
+
+using namespace std;
+
+#include "../../controller/modals/error.h"
+#include "../../controller/modals/warning.h"
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 #include "..\..\manager\manager_tipo_responsables.h"

@@ -6,12 +6,12 @@
 #include <sstream>
 #include <cstdio>
 
+using namespace std;
+
 #include "../../controller/validation.h"
 #include "../../menu/menu_utils.h"
 #include "../../controller/modals.h"
 #include "../../manager/manager_producto.h"
-
-using namespace std;
 
 class Item {
 private:

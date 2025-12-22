@@ -4,11 +4,12 @@
 #include <string>
 #include <cstring>
 
+using namespace std;
+
 #include "../../controller/fecha.h"
 #include "../../controller/validation.h"
-#include "Item.h"
 
-using namespace std;
+#include "Item.h"
 
 class Comprobante {
 private:

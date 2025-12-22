@@ -1,10 +1,4 @@
 #include "cliente_menu.h"
-#include <cctype>
-#include <cstdlib>
-#include <iostream>
-#include "../../controller/modals/warning.h"
-#include "../../controller/modals/error.h"
-#include "../../controller/table/table.h"
 
 using namespace std;
 

@@ -1,6 +1,13 @@
 #ifndef PROVEEDOR_MENU_H
 #define PROVEEDOR_MENU_H
 
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+#include "../../controller/modals/error.h"
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 #include "..\..\manager\manager_proveedor.h"

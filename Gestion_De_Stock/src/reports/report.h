@@ -1,16 +1,15 @@
 #ifndef REPORT_H
 #define REPORT_H
 
-
-#include "../controller/fecha.h"
-#include "../menu/menu_utils.h"
-#include "../controller/validation.h"
-
 #include <string>
 #include <cstdlib>
 #include <iostream>
 
 using namespace std;
+
+#include "../controller/fecha.h"
+#include "../menu/menu_utils.h"
+#include "../controller/validation.h"
 
 class Report {
 protected:

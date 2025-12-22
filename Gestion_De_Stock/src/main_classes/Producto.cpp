@@ -1,8 +1,4 @@
 #include "Producto.h"
-#include "../controller/modals.h"
-#include "../menu/menu_utils.h"
-#include "../controller/data_generator/generator.h"
-#include <cstdio>
 
 Producto::Producto(string _codigo, string _codigoProveedor, string _descripcion, float _precio, unsigned int _stock) {
     this->codigo[0] = '\0';

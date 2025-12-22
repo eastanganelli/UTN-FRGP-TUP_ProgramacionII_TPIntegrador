@@ -1,17 +1,19 @@
 #ifndef TOP_CLIENTE_REPORT_H
 #define TOP_CLIENTE_REPORT_H
 
-#include "../manager/ventas/manager_factura.h"
-#include "../manager/manager_cliente.h"
-#include "../menu/menu_utils.h"
-#include "../controller/validation.h"
-#include "../controller/generic_array.h"
-
-#include "report.h"
-
 #include <iostream>
 
 using namespace std;
+
+#include "../menu/menu_utils.h"
+#include "../controller/validation.h"
+#include "../controller/generic_array.h"
+#include "../controller/modals/warning.h"
+
+#include "../manager/manager_cliente.h"
+#include "../manager/ventas/manager_factura.h"
+
+#include "report.h"
 
 class TopClienteReport : public Report {
 private:

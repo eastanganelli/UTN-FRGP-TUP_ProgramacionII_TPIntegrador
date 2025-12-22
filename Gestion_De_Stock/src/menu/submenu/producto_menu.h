@@ -1,6 +1,14 @@
 #ifndef PRODUCTO_MENU_H
 #define PRODUCTO_MENU_H
 
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+#include "../../controller/modals/error.h"
+#include "../../controller/generic_array.h"
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 #include "..\..\manager\manager_producto.h"

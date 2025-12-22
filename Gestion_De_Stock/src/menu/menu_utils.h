@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <iostream>
 
+using namespace std;
+
 #include "../../rlutil.h"
 #include "../controller/fecha.h"
 #include "../controller/validation.h"

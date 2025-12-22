@@ -3,6 +3,7 @@
 
 #include "datos_personales.h"
 #include "../controller/validation.h"
+#include "../controller/modals.h"
 #include "../menu/menu_utils.h"
 
 #include <iostream>

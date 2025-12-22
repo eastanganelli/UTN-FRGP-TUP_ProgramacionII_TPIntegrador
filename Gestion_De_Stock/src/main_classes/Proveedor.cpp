@@ -1,6 +1,4 @@
 #include "Proveedor.h"
-#include "../controller/modals.h"
-#include "../menu/menu_utils.h"
 
 Proveedor::Proveedor(string _cuit, string _nombreRazon, unsigned int _rubro, string _direccion, string _correo, string _telefono, string _celular, string _razonSocial, bool _alta)
     : DatosPersonales(_alta, _direccion, _correo, _telefono, _celular, _razonSocial) {

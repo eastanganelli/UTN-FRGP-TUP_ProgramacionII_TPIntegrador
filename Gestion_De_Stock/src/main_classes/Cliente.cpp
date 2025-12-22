@@ -1,6 +1,4 @@
 #include "Cliente.h"
-#include "../controller/modals.h"
-#include <algorithm>
 
 Cliente::Cliente(string _nombre, string _apellido, string _DNI, string _cuilCuit, string direccion, string correo, string _telefono, string _celular, bool _alta, string _codigoRazonSocial)
     : DatosPersonales(_alta, direccion, correo, _telefono, _celular, _codigoRazonSocial) {

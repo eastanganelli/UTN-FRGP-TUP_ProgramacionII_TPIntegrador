@@ -1,12 +1,12 @@
 #ifndef DATOSPERSONALES_H
 #define DATOSPERSONALES_H
 
-#include "../controller/validation.h"
-
 #include <cstring>
 #include <string>
 
 using namespace std;
+
+#include "../controller/validation.h"
 
 class DatosPersonales {
 private:

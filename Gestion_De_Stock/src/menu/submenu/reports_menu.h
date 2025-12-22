@@ -1,6 +1,10 @@
 #ifndef REPORTS_MENU_H
 #define REPORTS_MENU_H
 
+#include <iostream>
+
+using namespace std;
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 

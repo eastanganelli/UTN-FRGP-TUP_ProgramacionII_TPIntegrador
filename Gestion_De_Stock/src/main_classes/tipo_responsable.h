@@ -2,11 +2,16 @@
 #define TIPORESPONSABLE_H
 
 #include <string>
+#include <iomanip>
 #include <cstring>
-
-#include "../controller/validation.h"
+#include <iostream>
 
 using namespace std;
+
+#include "../../rlutil.h"
+#include "../controller/modals.h"
+#include "../controller/validation.h"
+#include "../menu/menu_utils.h"
 
 class TipoResponsable {
 private:

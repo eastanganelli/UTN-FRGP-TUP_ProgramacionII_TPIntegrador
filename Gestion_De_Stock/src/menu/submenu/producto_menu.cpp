@@ -1,9 +1,4 @@
 #include "producto_menu.h"
-#include <iostream>
-#include <algorithm>
-#include <cstdlib>
-#include "../../controller/modals/error.h"
-#include "../../controller/generic_array.h"
 
 using namespace std;
 

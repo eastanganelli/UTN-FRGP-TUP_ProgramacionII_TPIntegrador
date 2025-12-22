@@ -1,7 +1,5 @@
 #include "reports_menu.h"
 
-#include <iostream>
-
 ReportsMenu::ReportsMenu() : Menu("Menu de Informes", true) {
     AddOption("Recaudacion Anual");
     AddOption("Recaudacion Trimestral");

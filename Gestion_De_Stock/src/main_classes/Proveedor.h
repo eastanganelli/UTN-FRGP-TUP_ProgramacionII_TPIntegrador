@@ -3,10 +3,12 @@
 
 #include <iostream>
 
-#include "../controller/validation.h"
-#include "datos_personales.h"
-
 using namespace std;
+
+#include "../controller/modals.h"
+#include "../controller/validation.h"
+#include "../menu/menu_utils.h"
+#include "datos_personales.h"
 
 class Proveedor : public DatosPersonales {
 private:
