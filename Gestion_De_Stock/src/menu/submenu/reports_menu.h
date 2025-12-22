@@ -1,6 +1,10 @@
 #ifndef REPORTS_MENU_H
 #define REPORTS_MENU_H
 
+#include <iostream>
+
+using namespace std;
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 
@@ -12,7 +16,9 @@
 
 class ReportsMenu : public Menu {
 public:
+    /** Inicializa el menu de reportes. */
     ReportsMenu();
+    /** Ejecuta la opcion seleccionada para reportes. */
     bool OnSelect(int index) override;
 };
 

@@ -7,6 +7,10 @@
 
 using namespace std;
 
+#include "generator.h"
+#include "tiporesponsables_generator.h"
+
+#include "../../manager/manager_tipo_responsables.h"
 #include "../../manager/manager_cliente.h"
 
 namespace DataGenerator {

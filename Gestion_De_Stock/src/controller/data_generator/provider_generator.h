@@ -6,6 +6,7 @@
 #include <iostream>
 
 using namespace std;
+
 #include "generator.h"
 #include "../../manager/manager_proveedor.h"
 

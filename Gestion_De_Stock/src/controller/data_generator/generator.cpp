@@ -9,3 +9,12 @@ std::string DataGenerator::generarCodigoAlfaNumerico(int longitud) {
     }
     return codigoGenerado;
 }
+
+std::string DataGenerator::generarNumero(unsigned int longitud) {
+    std::string numero;
+    numero.reserve(longitud);
+    for (unsigned int i = 0; i < longitud; ++i) {
+        numero.push_back(static_cast<char>('0' + (rand() % 10)));
+    }
+    return numero;
+}

@@ -1,13 +1,17 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
 
+#include <cstdio>
 #include <string>
 #include <cstring>
 #include <iostream>
 
-#include "../controller/validation.h"
-
 using namespace std;
+
+#include "../controller/modals.h"
+#include "../controller/validation.h"
+#include "../controller/data_generator/generator.h"
+#include "../menu/menu_utils.h"
 
 class Producto {
 private:
@@ -32,15 +36,20 @@ private:
     void generarCodigoProducto(char* codigo);
 
 public:
-    // Constructor y Desctructor
+    /** Crea un producto con datos opcionales y stock inicial. */
     Producto(string _codigo = "", string _codigoProveedor = "", string _descripcion = "", float _precio = 0, unsigned int _stock = 0);
+    /** Destructor de producto. */
     ~Producto();
 
-    // Getters
+    /** Obtiene el codigo interno. */
     string getCodigo();
+    /** Obtiene el codigo del proveedor. */
     string getCodigoProveedor();
+    /** Obtiene la descripcion. */
     string getDescripcion();
+    /** Obtiene el precio unitario. */
     float getPrecio();
+    /** Obtiene el stock disponible. */
     unsigned int getStock();
 
     static unsigned int GetCodigoSize();
@@ -55,22 +64,27 @@ public:
     static unsigned int ColPrecioSize();
     static unsigned int ColStockSize();
 
-    // Setters
+    /** Actualiza la descripcion. */
     void setDescripcion(string d);
+    /** Actualiza el precio. */
     void setPrecio(float p);
+    /** Actualiza el stock. */
     void setStock(unsigned int s);
+    /** Fija el codigo interno. */
     void setCodigo(const string& c);
+    /** Fija el codigo de proveedor. */
     void setCodigoProveedor(const string& c);
 
-    // Generador de codigo alfanumerico
+    /** Genera un codigo alfanumerico de producto. */
     static string GenerarCodigo();
 
-    // Métodos
+    /** Compara igualdad por campos. */
     bool operator==(const Producto& otro);
+    /** Indica si el producto esta vacio. */
     bool IsEmpty();
+    /** Imprime el producto en consola. */
     void Print();
 
-    // interactive UI methods moved to menu layer
 };
 
 #endif // PRODUCTO_H

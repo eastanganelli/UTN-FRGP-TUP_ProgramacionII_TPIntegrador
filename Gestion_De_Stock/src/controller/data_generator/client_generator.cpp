@@ -1,6 +1,4 @@
 #include "client_generator.h"
-#include "tiporesponsables_generator.h"
-#include "../../manager/manager_tipo_responsables.h"
 
 void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
@@ -34,8 +32,8 @@ void DataGenerator::GenerateClients(unsigned int count, bool printLog) {
             dc.cuilCuit = "20" + dc.DNI + "1";
             dc.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
             dc.correo = dc.apellido + "." + dc.nombre + "@example.com";
-            dc.telefono = "4" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
-            dc.celular = "11-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+            dc.telefono = generarNumero(DatosPersonales::GetTelefonoSize() - 1);
+            dc.celular = generarNumero(DatosPersonales::GetCelularSize() - 1);
             dc.alta = (i % 2 == 0);
             dc.codigoRazonSocial = tiposDisponibles.Size() == 0 ? "" : tiposDisponibles[rand() % tiposDisponibles.Size()]->getCodigo();
 

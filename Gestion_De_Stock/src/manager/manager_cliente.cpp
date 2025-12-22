@@ -1,7 +1,5 @@
 #include "manager_cliente.h"
 
-#include <cstdio>
-
 ClienteManager::ClienteManager(const string& clientePath) : FileSystem<Cliente>(clientePath)/*, CondicionIVAManager(nullptr)*/ {
 
 }

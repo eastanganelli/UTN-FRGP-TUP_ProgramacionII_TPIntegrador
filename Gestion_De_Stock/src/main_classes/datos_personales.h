@@ -1,12 +1,12 @@
 #ifndef DATOSPERSONALES_H
 #define DATOSPERSONALES_H
 
-#include "../controller/validation.h"
-
 #include <cstring>
 #include <string>
 
 using namespace std;
+
+#include "../controller/validation.h"
 
 class DatosPersonales {
 private:
@@ -33,20 +33,30 @@ protected:
     char celular[CELULAR_SIZE];
     char codigoRazonSocial[CODIGORAZONSOCIAL_SIZE];
 
+    /** Constructor protegido que inicializa datos personales. */
     DatosPersonales(bool _alta = false, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", string _codigoRazonSocial = "");
+    /** Compara igualdad de datos personales. */
     bool IsEqual(const DatosPersonales& otro);
+    /** Indica si los datos personales estan vacios. */
     bool IsEmpty();
 
 public:
+    /** Destructor base de datos personales. */
     ~DatosPersonales();
 
-    // Getters
+    /** Indica si el registro esta de alta. */
     bool getAlta();
+    /** Devuelve el estado textual. */
     string Estado();
+    /** Obtiene el correo. */
     string getCorreo();
+    /** Obtiene la direccion. */
     string getDireccion();
+    /** Obtiene el telefono. */
     string getTelefono();
+    /** Obtiene el celular. */
     string getCelular();
+    /** Obtiene el codigo de razon social. */
     string getCodigoRazonSocial();
 
     static unsigned int GetCorreoSize();
@@ -56,20 +66,30 @@ public:
     static unsigned int GetEstadoSize();
     static unsigned int GetCodigoRazonSocialSize();
 
-    // Column-size accessors
+    /** Ancho de columna para correo. */
     static unsigned int ColCorreoSize();
+    /** Ancho de columna para direccion. */
     static unsigned int ColDireccionSize();
+    /** Ancho de columna para telefono. */
     static unsigned int ColTelefonoSize();
+    /** Ancho de columna para celular. */
     static unsigned int ColCelularSize();
+    /** Ancho de columna para estado. */
     static unsigned int ColEstadoSize();
+    /** Ancho de columna para codigo de razon social. */
     static unsigned int ColCodigoRazonSocialSize();
 
-    // Setters
+    /** Actualiza estado de alta/baja. */
     void setAlta(bool a);
+    /** Actualiza correo. */
     void setCorreo(const string& correo);
+    /** Actualiza direccion. */
     void setDireccion(const string& direccion);
+    /** Actualiza telefono. */
     void setTelefono(const string& t);
+    /** Actualiza celular. */
     void setCelular(const string& c);
+    /** Actualiza codigo de razon social. */
     void setCodigoRazonSocial(const string& codigo);
 };
 

@@ -1,8 +1,4 @@
 #include "cliente_menu.h"
-#include <cctype>
-#include <cstdlib>
-#include <iostream>
-#include "../../controller/table/table.h"
 
 using namespace std;
 
@@ -21,7 +17,8 @@ ClienteMenu::ClienteMenu() : Menu("Menu Clientes", true) {
     AddOption("Volver");
 }
 
-Cliente ClienteMenu::CrearCliente() {
+Cliente ClienteMenu::CrearCliente(bool& ok) {
+    ok = false;
     Cliente nuevoCliente;
     string v;
 
@@ -128,12 +125,15 @@ Cliente ClienteMenu::CrearCliente() {
     if (tiposResponsables.Cantidad() == 0) {
         Warning w("Sin tipos de responsable", "Cargue tipos de responsable antes de asignar la razon social.");
         w.Show(); w.WaitForKey();
-    } else {
-        string codigo = SeleccionarRazonSocial(true);
-        if (!codigo.empty()) {
-            nuevoCliente.setCodigoRazonSocial(codigo);
-        }
+        return nuevoCliente;
     }
+
+    string codigo = SeleccionarRazonSocial(true);
+    if (codigo.empty()) {
+        return nuevoCliente;
+    }
+    nuevoCliente.setCodigoRazonSocial(codigo);
+    ok = true;
     return nuevoCliente;
 }
 
@@ -159,6 +159,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 1: { // Nombre
                 while (true) {
                     entrada = InputBox("Nuevo Nombre: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     string tmp = entrada;
                     Validation::RemoveSpaces(tmp);
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(tmp)) {
@@ -176,6 +179,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 2: { // Apellido
                 while (true) {
                     entrada = InputBox("Nuevo Apellido: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     string tmp = entrada;
                     Validation::RemoveSpaces(tmp);
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(tmp)) {
@@ -193,6 +199,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 3: { // CUIL/CUIT
                 while (true) {
                     entrada = InputBox("Nuevo CUIL/CUIT: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= Cliente::GetCuilCuitSize() || !Validation::IsAlphanumeric(entrada)) {
                         Warning w("CUIL/CUIT invalido", "Ingrese CUIL/CUIT valido (solo letras y/o digitos, longitud correcta).");
                         w.Show(); w.WaitForKey();
@@ -208,6 +217,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 4: { // Direccion
                 while (true) {
                     entrada = InputBox("Nueva Direccion: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetDireccionSize()) {
                         Warning w("Direccion invalida", "Ingrese una direccion valida y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -223,6 +235,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 5: { // Correo
                 while (true) {
                     entrada = InputBox("Nuevo Correo: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetCorreoSize() || entrada.find('@') == string::npos || entrada.find('.') == string::npos) {
                         Warning w("Correo invalido", "Ingrese un correo valido (contiene @ y .) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -238,6 +253,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 6: { // Telefono
                 while (true) {
                     entrada = InputBox("Nuevo Telefono: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetTelefonoSize()) {
                         Warning w("Telefono invalido", "Ingrese un telefono valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -253,6 +271,9 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 7: { // Celular
                 while (true) {
                     entrada = InputBox("Nuevo Celular: ");
+                    if (entrada.empty()) {
+                        break;
+                    }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetCelularSize()) {
                         Warning w("Celular invalido", "Ingrese un celular valido (solo digitos) y de longitud aceptable.");
                         w.Show(); w.WaitForKey();
@@ -274,7 +295,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
                 }
                 break;
             }
-            case 9: { // Terminar
+            case 9: {
                 break;
             }
             default: {
@@ -332,7 +353,7 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         TipoResponsable* t = lista[i];
         Tabling::Row* fila = new Tabling::Row(columnas);
-        fila->AddCell(std::to_string(i), 4);
+        fila->AddCell(std::to_string(i + 1), 4);
         fila->AddCell(t->getCodigo(), TipoResponsable::ColCodigoSize());
         fila->AddCell(t->getDescripcion(), TipoResponsable::ColDescripcionSize());
         fila->AddCell(Validation::ToFixedDecimal(t->getPorcentaje(), 1), TipoResponsable::ColPorcentajeSize());
@@ -345,22 +366,12 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
         cout << "-- Seleccionar Razon Social --" << endl;
         tabla.Print();
 
-        string entrada = InputBox("Indice (vacio para cancelar): ");
-        if (entrada.empty()) {
-            if (obligatoria) {
-                Warning w("Seleccion requerida", "Debe elegir una razon social.");
-                w.Show(); w.WaitForKey();
-                continue;
-            }
-            return "";
+        int idx = SelectorIndex(tabla, "Indice (vacio para cancelar): ", lista.Size());
+        if (idx == -1) {
+            return ""; 
         }
-
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') { continue; }
-        if (idxLong >= lista.Size()) { continue; }
-        return lista[static_cast<unsigned int>(idxLong)]->getCodigo();
+        if (idx < 0) { continue; }
+        return lista[static_cast<unsigned int>(idx)]->getCodigo();
     }
 }
 
@@ -368,41 +379,115 @@ bool ClienteMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
         case 0: {
-            Cliente nuevoCliente = CrearCliente();
-            if(clientes.Agregar(nuevoCliente)) cout << "Cliente agregado exitosamente." << endl;
-            else cout << "Error al agregar el cliente." << endl;
+            bool ok = false;
+            Cliente nuevoCliente = CrearCliente(ok);
+            if (!ok) { return false; }
+            if(clientes.Agregar(nuevoCliente)) {
+                Informational i("Cliente agregado", "Cliente " + nuevoCliente.getDNI() + " agregado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al agregar el cliente.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 1: {
-            string dni = InputBox("DNI del cliente a modificar: ");
-            Cliente* cliente = clientes[dni];
-            if (cliente == nullptr) {
-                cout << "Cliente no encontrado." << endl;
-                PauseConsole();
+            const unsigned int total = clientes.Count();
+            if (total == 0) {
+                Warning w("Sin clientes", "No hay clientes cargados.");
+                w.Show(); w.WaitForKey();
                 return false;
             }
+
+            GenericArray<Cliente> lista;
+            for (unsigned int i = 0; i < total; ++i) {
+                Cliente* c = clientes.At(i);
+                if (c != nullptr) { lista.Append(*c); delete c; }
+            }
+
+            if (lista.Size() == 0) {
+                Warning w("Sin clientes", "No hay clientes cargados.");
+                w.Show(); w.WaitForKey();
+                return false;
+            }
+
+            const unsigned int cols = 5;
+            const unsigned int widthNombre = Cliente::ColApellidoSize() + Cliente::ColNombreSize();
+            Tabling::Table tabla(lista.Size(), cols);
+            Tabling::Row* header = new Tabling::Row(cols);
+            header->AddCell("Idx", 4);
+            header->AddCell("DNI", Cliente::ColDniSize());
+            header->AddCell("Nombre", widthNombre);
+            header->AddCell("Correo", DatosPersonales::ColCorreoSize());
+            header->AddCell("Estado", 8);
+            tabla.AddRow(header);
+
+            for (unsigned int i = 0; i < lista.Size(); ++i) {
+                Cliente* c = lista[i];
+                Tabling::Row* row = new Tabling::Row(cols);
+                row->AddCell(std::to_string(i + 1), 4);
+                row->AddCell(c->getDNI(), Cliente::ColDniSize());
+                row->AddCell(c->getApellido() + string(", ") + c->getNombre(), widthNombre);
+                row->AddCell(c->getCorreo(), DatosPersonales::ColCorreoSize());
+                row->AddCell(c->getAlta() ? "Alta" : "Baja", 8);
+                tabla.AddRow(row);
+            }
+
+            int seleccionado = -1;
+            while (true) {
+                rlutil::cls();
+                tabla.Print();
+                seleccionado = SelectorIndex(tabla, "Indice a modificar (vacio para cancelar): ", lista.Size());
+                if (seleccionado == -1) return false;
+                if (seleccionado < 0) continue;
+                break;
+            }
+
+            string dni = lista[static_cast<unsigned int>(seleccionado)]->getDNI();
+            Cliente* cliente = clientes[dni];
+            if (cliente == nullptr) {
+                Warning w("Cliente no encontrado", "No se encontro cliente con DNI " + dni + ".");
+                w.Show(); w.WaitForKey();
+                return false;
+            }
+
             ModificarClienteInteractivo(*cliente);
 
-            if (clientes.Modificar(dni, cliente)) cout << "Cliente modificado exitosamente." << endl;
-            else cout << "Error al modificar el cliente." << endl;
-            PauseConsole();
+            if (clientes.Modificar(dni, cliente)) {
+                Informational i("Cliente modificado", "Cliente " + dni + " modificado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al modificar el cliente.");
+                e.Show(); e.WaitForKey();
+            }
+            delete cliente;
             return false;
         }
         case 2: {
             string dni = InputBox("DNI del cliente a eliminar: ");
             Cliente* cliente = clientes[dni];
             if (cliente == nullptr) {
-                cout << "Cliente no encontrado." << endl;
-                PauseConsole();
+                Warning w("Cliente no encontrado", "No se encontro cliente con DNI " + dni + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             bool confirma = EliminarClienteInteractivo(*cliente);
             delete cliente;
             if (confirma) {
-                if (clientes.Eliminar(dni)) cout << "Cliente eliminado exitosamente." << endl;
-                else cout << "Error al eliminar el cliente." << endl;
-            } else cout << "Operacion cancelada." << endl;
-            PauseConsole();
+                if (clientes.Eliminar(dni)) {
+                    Informational i("Cliente eliminado", "Cliente " + dni + " eliminado exitosamente.");
+                    i.Show(); i.WaitForKey();
+                    PauseConsole();
+                } else {
+                    Error e("Error", "Error al eliminar el cliente.");
+                    e.Show(); e.WaitForKey();
+                }
+            } else {
+                cout << "Operacion cancelada." << endl;
+                PauseConsole();
+            }
             return false;
         }
         case 3: {
@@ -499,7 +584,7 @@ void ClienteMenu::VerDetalleCliente() {
     for (unsigned int i = 0; i < lista.Size(); ++i) {
         Cliente* c = lista[i];
         Tabling::Row* row = new Tabling::Row(cols);
-        row->AddCell(std::to_string(i), 4);
+        row->AddCell(std::to_string(i + 1), 4);
         row->AddCell(c->getDNI(), Cliente::ColDniSize());
         row->AddCell(c->getApellido() + string(", ") + c->getNombre(), widthNombre);
         row->AddCell(c->getCorreo(), DatosPersonales::ColCorreoSize());
@@ -511,14 +596,9 @@ void ClienteMenu::VerDetalleCliente() {
     while (true) {
         rlutil::cls();
         tabla.Print();
-        string entrada = InputBox("Indice a ver (vacio para cancelar): ");
-        if (entrada.empty()) return;
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') continue;
-        if (idxLong >= lista.Size()) continue;
-        seleccionado = static_cast<int>(idxLong);
+        seleccionado = SelectorIndex(tabla, "Indice a ver (vacio para cancelar): ", lista.Size());
+        if (seleccionado == -1) return;
+        if (seleccionado < 0) continue;
         break;
     }
 

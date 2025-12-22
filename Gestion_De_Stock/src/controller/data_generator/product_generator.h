@@ -7,6 +7,8 @@
 
 using namespace std;
 
+#include "../modals/warning.h"
+
 #include "generator.h"
 #include "../../manager/manager_proveedor.h"
 #include "../../manager/manager_producto.h"

@@ -1,6 +1,5 @@
 #include "top_cliente.h"
 
-
 TopClienteReport::TopClienteReport() : Report("Cliente con mayor volumen de compras") {}
 
 void TopClienteReport::Run() {
@@ -19,7 +18,8 @@ void TopClienteReport::Run() {
 	PrintDecoratedTitle(this->GetTitle() + " (" + std::to_string(anio) + ")", '=');
 
 	if (!top.found) {
-		cout << "No hay facturas con CAE para el anio " << anio << "." << endl;
+		Warning w("Sin datos", "No hay facturas con CAE para el anio " + std::to_string(anio) + ".");
+		w.Show(); w.WaitForKey();
 	} else {
 		Cliente* c = clientes[top.dni];
 		string nombre = c ? c->getNombre() : "";

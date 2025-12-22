@@ -1,9 +1,5 @@
 #include "manager_factura.h"
 
-#include <cstdio>
-
-#include "../manager_producto.h"
-
 FacturaManager::FacturaManager(const string& facturaPath)
     : FileSystem<Factura>(facturaPath) { }
 
@@ -206,9 +202,6 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
     header->AddCell("ID", 6);
     header->AddCell("Cliente", 9);
     header->AddCell("Fecha", 12);
-//    header->AddCell("Monto", 10);
-//    header->AddCell("Items", 6);
-//    header->AddCell("Tipo", 6);
     header->AddCell("CAE", 16);
     mi_tabla.AddRow(header);
 
@@ -217,11 +210,7 @@ void FacturaManager::Imprimir(GenericArray<Factura>& facturas) {
         row->AddCell(to_string(facturas[i]->getNumero()), 6);
         row->AddCell(facturas[i]->getClienteDNI(), 9);
         row->AddCell(facturas[i]->getFechaEmision().toString(), 12);
-//        row->AddCell(to_string(facturas[i]->Total()), 10);
-//        row->AddCell(to_string(facturas[i]->GetItemsCount()), 6);
-//        Factura-specific fields: dynamic cast
         Factura* f = facturas[i];
-//        row->AddCell(string(1, f->getTipoFactura()), 6);
         row->AddCell(f->getCAE(), 16);
         mi_tabla.AddRow(row);
     }

@@ -13,7 +13,8 @@ void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
         std::cout << "--- Datos de Productos Generados ---" << std::endl;
         unsigned int totalProveedores = proveedores.Count();
         if (totalProveedores == 0) {
-            std::cout << "No hay proveedores cargados. No se generaron productos." << std::endl;
+            Warning w("Sin proveedores", "No hay proveedores cargados. No se generaron productos.");
+            w.Show(); w.WaitForKey();
             return;
         }
 

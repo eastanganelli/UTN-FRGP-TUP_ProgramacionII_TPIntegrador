@@ -2,6 +2,8 @@
 #define VALIDATION_H
 
 #include <string>
+#include <cstring>
+#include <iostream>
 
 using namespace std;
 

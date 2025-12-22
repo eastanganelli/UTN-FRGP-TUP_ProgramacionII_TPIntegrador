@@ -1,11 +1,18 @@
 #ifndef FACTURA_H
 #define FACTURA_H
 
-#include "Comprobante.h"
-
-#include <cstring>
+#include <cstdio>
+#include <iostream>
 
 using namespace std;
+
+#include "Comprobante.h"
+
+#include "../../menu/menu_utils.h"
+#include "../../controller/modals.h"
+#include "../../manager/manager_producto.h"
+#include "../../manager/manager_cliente.h"
+#include "../../manager/ventas/manager_nota_de_credito.h"
 
 class Factura : public Comprobante {
 private:
@@ -25,30 +32,32 @@ private:
     void ObtenerCAE();
 
 public:
+    /** Crea una factura con numero y cliente opcional. */
     Factura(unsigned int _id = 0, string _cliente = "");
+    /** Destructor de factura. */
     ~Factura();
 
-    // Getters
+    /** Obtiene el CAE asignado. */
     string getCAE();
+    /** Obtiene el vencimiento del CAE. */
     Fecha getVencimientoCAE();
+    /** Calcula total sin IVA. */
     float TotalSinIVA();
 
     static unsigned int ColTipoFacturaSize();
     static unsigned int ColCAESize();
     static unsigned int ColVencimientoCAESize();
 
-    // Setters
+    /** Intenta facturar generando CAE y vencimiento. */
     bool Facturar();
 
-    // Métodos
+    /** Compara igualdad entre facturas. */
     bool operator==(const Factura& otra);
+    /** Indica si la factura esta vacia. */
     bool IsEmpty();
+    /** Imprime datos de la factura. */
     void Print();
-    
-    // CRUD helpers
-    static Factura NuevoFactura(unsigned int numero, class ProductoManager& pm, class ClienteManager& cm);
-    static void ModificarFactura(Factura& factura, class ProductoManager& pm);
-    static unsigned int EliminarFactura(Factura& factura, class ProductoManager& pm);
+    /** Reservado para futuras ayudas CRUD. */
 };
 
 #endif // FACTURA_H

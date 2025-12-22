@@ -1,7 +1,5 @@
 #include "manager_proveedor.h"
 
-#include <cstdio>
-
 static const string RUBROS[] = { "Textil", "Calzado", "Gastronomia", "Automotor", "Libreria", "Indumentaria" };
 
 ProveedorManager::ProveedorManager(const string& proveedorPath)
@@ -105,7 +103,6 @@ GenericArray<Proveedor> ProveedorManager::ConsultarPorNombre(string nombreRazon)
         mi_warning.Show();
         return resultados;
     }
-    // Convertir a minusculas la cadena de busqueda
     for(size_t k = 0; k < nombreRazon.size(); k++) nombreRazon[k] = tolower(nombreRazon[k]);
 
     for(unsigned int i = 0; i < cantidad; i++) {

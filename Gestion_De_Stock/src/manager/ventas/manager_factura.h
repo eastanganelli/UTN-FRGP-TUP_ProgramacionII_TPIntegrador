@@ -1,16 +1,20 @@
 #ifndef FACTURAMANAGER_H
 #define FACTURAMANAGER_H
 
-#include "../../../rlutil.h"
-#include "../../main_classes/ventas/factura.h"
-#include "../../controller/generic_array.h"
-#include "../../file_manager/file_system.h"
-
-#include "../../controller/modals.h"
-#include "../../controller/table/table.h"
+#include <cstdio>
 
 using namespace std;
 
+#include "../../../rlutil.h"
+#include "../../controller/modals.h"
+#include "../../controller/table/table.h"
+#include "../../controller/generic_array.h"
+#include "../../file_manager/file_system.h"
+
+#include "../../main_classes/ventas/Factura.h"
+#include "../manager_producto.h"
+
+/** Gestiona facturas, exportaciones y listados filtrados. */
 class FacturaManager : public FileSystem<Factura> {
 private:
     GenericArray<Factura> Listar();

@@ -1,6 +1,14 @@
 #ifndef PRODUCTO_MENU_H
 #define PRODUCTO_MENU_H
 
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+#include "../../controller/modals/error.h"
+#include "../../controller/generic_array.h"
+
 #include "..\menu.h"
 #include "..\menu_utils.h"
 #include "..\..\manager\manager_producto.h"
@@ -10,15 +18,20 @@ class ProductoMenu : public Menu {
 private:
     ProductoManager productos;
     ProveedorManager proveedores;
-    Producto CrearProducto();
+    /** Construye un producto mediante ingreso interactivo. */
+    Producto CrearProducto(bool& ok);
+    /** Permite modificar campos del producto indicado. */
     void ModificarProductoInteractivo(Producto& producto);
+    /** Marca como baja un producto tras confirmacion. */
     bool EliminarProductoInteractivo(Producto& producto);
+    /** Selecciona un proveedor vigente. */
     string SeleccionarProveedor();
-    void ImprimirProveedoresActivos(class GenericArray<string>& cuits, class GenericArray<string>& descripciones);
+    /** Selecciona un codigo de producto disponible. */
     string SeleccionarProductoCodigo();
-    void ImprimirProductosListado(class GenericArray<string>& codigos, class GenericArray<string>& filas);
 public:
+    /** Inicializa el menu de productos. */
     ProductoMenu();
+    /** Ejecuta la opcion elegida del menu de productos. */
     virtual bool OnSelect(int index) override;
 };
 

@@ -28,11 +28,9 @@ void Top10ProductosReport::Run() {
 
 	const unsigned int limite = lista.Size() < 10 ? lista.Size() : 10;
 	if(limite == 0) {
-		cout << "No hay facturas para el anio indicado." << endl;
-		cout << "==============================" << endl;
 		rlutil::resetColor();
-		cout << endl << "Presione una tecla para continuar..." << endl;
-		rlutil::anykey();
+		Warning w("Sin datos", "No hay facturas para el anio indicado.");
+		w.Show(); w.WaitForKey();
 		return;
 	}
 

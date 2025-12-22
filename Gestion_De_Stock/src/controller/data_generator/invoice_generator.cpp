@@ -69,8 +69,10 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
         unsigned int cliCount = clientes.Count();
 
         if (prodCount == 0 || cliCount == 0) {
-            if (printLog)
-                std::cout << "No hay productos o clientes suficientes para generar facturas." << std::endl;
+            if (printLog) {
+                Warning w("Sin datos", "No hay productos o clientes suficientes para generar facturas.");
+                w.Show(); w.WaitForKey();
+            }
             return;
         }
 
@@ -102,7 +104,6 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
                 f.AgregarItem(item);
             }
 
-            // Solo algunas facturas obtienen CAE para mezclar facturadas y pendientes
             if (f.CantidadItems() > 0 && (rand() % 100) < 70) {
                 if (f.Facturar() && !Validation::IsEmpty(f.getCAE())) {
                     unsigned int nro = f.getNumero();
@@ -114,7 +115,6 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
             if (printLog)
                 cout << endl << "Factura agregada? >> " << (added ? "Si" : "No") << endl;
 
-            // Intentar leer la factura recién guardada desde el archivo
             Factura* saved = nullptr;
             if (added) {
                 unsigned int total = facturas.Count();
