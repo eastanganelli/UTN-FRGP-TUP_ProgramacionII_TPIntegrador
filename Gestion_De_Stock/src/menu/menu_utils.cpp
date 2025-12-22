@@ -43,3 +43,19 @@ void PauseConsole() {
     string tmp; getline(cin, tmp);
     if (tmp.size() == 0) getline(cin, tmp);
 }
+
+int SelectorIndex(Tabling::Table& table, const std::string& prompt, unsigned int maxExclusive) {
+    while (true) {
+        rlutil::cls();
+        table.Print();
+
+        string entrada = InputBox(prompt);
+        if (entrada.empty()) return -1;
+        if (!Validation::IsNumeric(entrada)) continue;
+
+        unsigned long idxLong = std::strtoul(entrada.c_str(), nullptr, 10);
+        if (idxLong >= maxExclusive) continue;
+
+        return static_cast<int>(idxLong);
+    }
+}

@@ -1,4 +1,5 @@
 #include "invoice_generator.h"
+#include "../modals/warning.h"
 
 const float IVA_RATE = 0.21f;
 
@@ -69,8 +70,10 @@ void DataGenerator::GenerateInvoices(unsigned int count, bool printLog) {
         unsigned int cliCount = clientes.Count();
 
         if (prodCount == 0 || cliCount == 0) {
-            if (printLog)
-                std::cout << "No hay productos o clientes suficientes para generar facturas." << std::endl;
+            if (printLog) {
+                Warning w("Sin datos", "No hay productos o clientes suficientes para generar facturas.");
+                w.Show(); w.WaitForKey();
+            }
             return;
         }
 

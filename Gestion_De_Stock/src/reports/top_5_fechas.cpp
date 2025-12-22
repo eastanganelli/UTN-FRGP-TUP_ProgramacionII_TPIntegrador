@@ -2,6 +2,7 @@
 
 #include "../../rlutil.h"
 #include "../controller/table/table.h"
+#include "../controller/modals/warning.h"
 
 Top5FechasReport::Top5FechasReport() : Report("Top 5 fechas de mayores ventas") {}
 
@@ -38,10 +39,9 @@ void Top5FechasReport::Run() {
 
 	const unsigned int limite = lista.Size() < 5 ? lista.Size() : 5;
 	if(limite == 0) {
-		cout << "No hay facturas con CAE para el anio indicado." << endl;
 		rlutil::resetColor();
-		cout << endl << "Presione una tecla para continuar..." << endl;
-		rlutil::anykey();
+		Warning w("Sin datos", "No hay facturas con CAE para el anio indicado.");
+		w.Show(); w.WaitForKey();
 		return;
 	}
 

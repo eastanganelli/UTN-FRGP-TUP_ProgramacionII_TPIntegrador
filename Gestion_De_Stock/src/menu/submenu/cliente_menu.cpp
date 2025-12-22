@@ -2,6 +2,8 @@
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
+#include "../../controller/modals/warning.h"
+#include "../../controller/modals/error.h"
 #include "../../controller/table/table.h"
 
 using namespace std;
@@ -369,40 +371,59 @@ bool ClienteMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             Cliente nuevoCliente = CrearCliente();
-            if(clientes.Agregar(nuevoCliente)) cout << "Cliente agregado exitosamente." << endl;
-            else cout << "Error al agregar el cliente." << endl;
+            if(clientes.Agregar(nuevoCliente)) {
+                Informational i("Cliente agregado", "Cliente " + nuevoCliente.getDNI() + " agregado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al agregar el cliente.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 1: {
             string dni = InputBox("DNI del cliente a modificar: ");
             Cliente* cliente = clientes[dni];
             if (cliente == nullptr) {
-                cout << "Cliente no encontrado." << endl;
-                PauseConsole();
+                Warning w("Cliente no encontrado", "No se encontro cliente con DNI " + dni + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             ModificarClienteInteractivo(*cliente);
 
-            if (clientes.Modificar(dni, cliente)) cout << "Cliente modificado exitosamente." << endl;
-            else cout << "Error al modificar el cliente." << endl;
-            PauseConsole();
+            if (clientes.Modificar(dni, cliente)) {
+                Informational i("Cliente modificado", "Cliente " + dni + " modificado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al modificar el cliente.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 2: {
             string dni = InputBox("DNI del cliente a eliminar: ");
             Cliente* cliente = clientes[dni];
             if (cliente == nullptr) {
-                cout << "Cliente no encontrado." << endl;
-                PauseConsole();
+                Warning w("Cliente no encontrado", "No se encontro cliente con DNI " + dni + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             bool confirma = EliminarClienteInteractivo(*cliente);
             delete cliente;
             if (confirma) {
-                if (clientes.Eliminar(dni)) cout << "Cliente eliminado exitosamente." << endl;
-                else cout << "Error al eliminar el cliente." << endl;
-            } else cout << "Operacion cancelada." << endl;
-            PauseConsole();
+                if (clientes.Eliminar(dni)) {
+                    Informational i("Cliente eliminado", "Cliente " + dni + " eliminado exitosamente.");
+                    i.Show(); i.WaitForKey();
+                    PauseConsole();
+                } else {
+                    Error e("Error", "Error al eliminar el cliente.");
+                    e.Show(); e.WaitForKey();
+                }
+            } else {
+                cout << "Operacion cancelada." << endl;
+                PauseConsole();
+            }
             return false;
         }
         case 3: {

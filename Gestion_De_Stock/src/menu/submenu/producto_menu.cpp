@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstdlib>
+#include "../../controller/modals/error.h"
 #include "../../controller/generic_array.h"
 
 using namespace std;
@@ -24,7 +25,6 @@ Producto ProductoMenu::CrearProducto() {
     Producto producto;
     string v;
 
-    // Seleccionar proveedor mostrando lista con indice
     string cuitProveedor = SeleccionarProveedor();
     if (Validation::IsEmpty(cuitProveedor)) {
         Warning w("Proveedor requerido", "No se selecciono proveedor. Operacion cancelada.");
@@ -33,10 +33,8 @@ Producto ProductoMenu::CrearProducto() {
     }
     producto.setCodigoProveedor(cuitProveedor);
 
-    // Codigo generado automaticamente (se puede mostrar al usuario si se desea)
     producto.setCodigo(Producto::GenerarCodigo());
 
-    // Descripcion (no vacio, longitud max)
     while (true) {
         v = InputBox("Descripcion: ");
         if (Validation::IsEmpty(v) || v.length() >= Producto::GetDescripcionSize()) {
@@ -48,7 +46,6 @@ Producto ProductoMenu::CrearProducto() {
         break;
     }
 
-    // Precio (numero float, > 0)
     while (true) {
         v = InputBox("Precio: ");
         float p = 0.0f;
@@ -62,7 +59,6 @@ Producto ProductoMenu::CrearProducto() {
         break;
     }
 
-    // Stock (numero entero >= 0)
     while (true) {
         unsigned int s = InputNumber("Stock inicial: ");
         if (!Validation::IsInRange<unsigned int>(s, 0u, 100000u)) {
@@ -101,7 +97,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
                         continue;
                     }
                     producto.setDescripcion(entrada);
-                    Informational i("Descripcion modificada", "Descripcion actualizada correctamente.");
+                    Informational i("Descripcion modificada", "Descripcion " + producto.getDescripcion() + " actualizada correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -118,7 +114,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
                         continue;
                     }
                     producto.setPrecio(p);
-                    Informational i("Precio modificado", "Precio actualizado correctamente.");
+                    Informational i("Precio modificado", "Precio " + producto.getDescripcion() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -133,7 +129,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
                         continue;
                     }
                     producto.setStock(s);
-                    Informational i("Stock modificado", "Stock actualizado correctamente.");
+                    Informational i("Stock modificado", "Stock " + producto.getDescripcion() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -177,9 +173,14 @@ bool ProductoMenu::OnSelect(int index) {
             if (Validation::IsEmpty(nuevo.getCodigoProveedor())) {
                 return false;
             }
-            if (productos.Agregar(nuevo)) cout << "Producto agregado exitosamente." << endl;
-            else cout << "Error al agregar el producto." << endl;
-            PauseConsole();
+            if (productos.Agregar(nuevo)) {
+                Informational i("Producto agregado", "Producto " + nuevo.getCodigo() + " agregado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al agregar el producto.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 1: {
@@ -187,16 +188,21 @@ bool ProductoMenu::OnSelect(int index) {
             if (codigo.empty()) return false;
             Producto* prod = productos[codigo];
             if (prod == nullptr) {
-                cout << "Producto no encontrado." << endl;
-                PauseConsole();
+                Warning w("Producto no encontrado", "No se encontro producto con codigo " + codigo + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
 
             ModificarProductoInteractivo(*prod);
 
-            if (productos.Modificar(codigo, prod)) cout << "Producto modificado exitosamente." << endl;
-            else cout << "Error al modificar el producto." << endl;
-            PauseConsole();
+            if (productos.Modificar(codigo, prod)) {
+                Informational i("Producto modificado", "Producto " + codigo + " modificado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al modificar el producto.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 2: {
@@ -204,19 +210,24 @@ bool ProductoMenu::OnSelect(int index) {
             if (codigo.empty()) return false;
             Producto* prod = productos[codigo];
             if (prod == nullptr) {
-                cout << "Producto no encontrado." << endl;
-                PauseConsole();
+                Warning w("Producto no encontrado", "No se encontro producto con codigo " + codigo + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             bool confirma = EliminarProductoInteractivo(*prod);
             delete prod;
             if (confirma) {
-                if (productos.Eliminar(codigo))
-                    cout << "Producto eliminado exitosamente." << endl;
-                else
-                    cout << "Error al eliminar el producto." << endl;
-            } else
-                cout << "Operacion cancelada." << endl;
+                if (productos.Eliminar(codigo)) {
+                    Informational i("Producto eliminado", "Producto " + codigo + " eliminado exitosamente.");
+                    i.Show(); i.WaitForKey();
+                } else {
+                    Error e("Error", "Error al eliminar el producto.");
+                    e.Show(); e.WaitForKey();
+                }
+            } else {
+                Informational i("Operacion cancelada", "Operacion de eliminacion cancelada.");
+                i.Show(); i.WaitForKey();
+            }
             PauseConsole();
             return false;
         }
@@ -291,7 +302,7 @@ string ProductoMenu::SeleccionarProveedor() {
 
     ImprimirProveedoresActivos(cuits, descripciones);
 
-    unsigned int idx = cuits.Size(); // valor invalido inicial
+    unsigned int idx = cuits.Size();
     do {
         idx = InputNumber("Ingrese indice: ");
         if (idx < cuits.Size()) break;
@@ -307,7 +318,7 @@ void ProductoMenu::ImprimirProveedoresActivos(GenericArray<string>& cuits, Gener
     rlutil::cls();
     cout << "\nSeleccione proveedor:\n";
     for (unsigned int i = 0; i < cuits.Size(); ++i) {
-        cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << "\n";
+        cout << i << ") " << *cuits[i] << " - " << *descripciones[i] << endl;
     }
 }
 

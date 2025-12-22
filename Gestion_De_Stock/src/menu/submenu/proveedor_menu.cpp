@@ -1,5 +1,6 @@
 #include "proveedor_menu.h"
 #include <iostream>
+#include "../../controller/modals/error.h"
 
 using namespace std;
 
@@ -22,7 +23,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
     string nombreRazon, cuit, direccion, correo, telefono, celular;
     unsigned int rubro = 0;
 
-    // Nombre / Razon
     while (true) {
         v = InputBox("Nombre/Razon: ");
         if (Validation::IsEmpty(v) || !Validation::IsAlphabetic(v) || v.length() >= 35) {
@@ -34,7 +34,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // CUIT
     while (true) {
         v = InputBox("CUIT: ");
         if (Validation::IsEmpty(v) || v.length() >= 12 || !Validation::IsAlphanumeric(v)) {
@@ -46,7 +45,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // Rubro
     while (true) {
         cout << "Rubros disponibles:\n1) Textil\n2) Calzado\n3) Gastronimia\n4) Automotor\n5) Libreria\n";
         unsigned int r = InputNumber("Seleccione rubro (1-5): ");
@@ -59,7 +57,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // Direccion
     while (true) {
         v = InputBox("Direccion: ");
         if (Validation::IsEmpty(v) || v.length() >= 100) {
@@ -71,7 +68,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // Correo
     while (true) {
         v = InputBox("Correo: ");
         if (Validation::IsEmpty(v) || v.length() >= 100 || v.find('@') == string::npos || v.find('.') == string::npos) {
@@ -83,7 +79,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // Telefono
     while (true) {
         v = InputBox("Telefono: ");
         if (Validation::IsEmpty(v) || !Validation::IsNumeric(v) || v.length() >= 25) {
@@ -95,7 +90,6 @@ Proveedor ProveedorMenu::CrearProveedor() {
         break;
     }
 
-    // Celular
     while (true) {
         v = InputBox("Celular: ");
         if (Validation::IsEmpty(v) || !Validation::IsNumeric(v) || v.length() >= 25) {
@@ -138,7 +132,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setNombreRazon(entrada);
-                    Informational i("Nombre modificado", "Nombre actualizado correctamente.");
+                    Informational i("Nombre modificado", "Nombre " + proveedor.getNombreRazon() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -153,7 +147,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setCuit(entrada);
-                    Informational i("CUIT modificado", "CUIT actualizado correctamente.");
+                    Informational i("CUIT modificado", "CUIT " + proveedor.getCuit() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -169,7 +163,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setRubro(r);
-                    Informational i("Rubro modificado", "Rubro actualizado correctamente.");
+                    Informational i("Rubro modificado", "Rubro " + proveedor.getRubroNombre() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -184,7 +178,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setDireccion(entrada);
-                    Informational i("Direccion modificada", "Direccion actualizada correctamente.");
+                    Informational i("Direccion modificada", "Direccion " + proveedor.getDireccion() + " actualizada correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -199,7 +193,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setCorreo(entrada);
-                    Informational i("Correo modificado", "Correo actualizado correctamente.");
+                    Informational i("Correo modificado", "Correo " + proveedor.getCorreo() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -214,7 +208,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setTelefono(entrada);
-                    Informational i("Telefono modificado", "Telefono actualizado correctamente.");
+                    Informational i("Telefono modificado", "Telefono " + proveedor.getTelefono() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -229,7 +223,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                         continue;
                     }
                     proveedor.setCelular(entrada);
-                    Informational i("Celular modificado", "Celular actualizado correctamente.");
+                    Informational i("Celular modificado", "Celular " + proveedor.getCelular() + " actualizado correctamente.");
                     i.Show(); i.WaitForKey();
                     break;
                 }
@@ -263,10 +257,14 @@ bool ProveedorMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             Proveedor nuevo = CrearProveedor();
-            if (proveedores.Agregar(nuevo))
-                cout << "Proveedor agregado exitosamente." << endl;
-            else
-                cout << "Error al agregar el proveedor." << endl;
+            if (proveedores.Agregar(nuevo)) {
+                Informational i("Proveedor agregado", "Proveedor " + nuevo.getNombreRazon() + " agregado exitosamente.");
+                i.Show(); i.WaitForKey();
+            }
+            else {
+                Error e("Error", "Error al agregar el proveedor.");
+                e.Show(); e.WaitForKey();
+            }
             PauseConsole();
             return false;
         }
@@ -274,37 +272,49 @@ bool ProveedorMenu::OnSelect(int index) {
             string cuit = InputBox("CUIT del proveedor a modificar: ");
             Proveedor* pv = proveedores[cuit];
             if (pv == nullptr) {
-                cout << "Proveedor no encontrado." << endl;
-                PauseConsole();
+                Warning w("Proveedor no encontrado", "No se encontro proveedor con CUIT " + cuit + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
 
             ModificarProveedorInteractivo(*pv);
 
-            if (proveedores.Modificar(cuit, pv))
-                cout << "Proveedor modificado exitosamente." << endl;
-            else
-                cout << "Error al modificar el proveedor." << endl;
-            PauseConsole();
+            if (proveedores.Modificar(cuit, pv)) {
+                Informational i("Proveedor modificado", "Proveedor " + pv->getNombreRazon() + " modificado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            }
+            else {
+                Error e("Error", "Error al modificar el proveedor.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 2: {
             string cuit = InputBox("CUIT del proveedor a eliminar: ");
             Proveedor* pv = proveedores[cuit];
             if (pv == nullptr) {
-                cout << "Proveedor no encontrado." << endl;
-                PauseConsole();
+                Warning w("Proveedor no encontrado", "No se encontro proveedor con CUIT " + cuit + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             bool confirma = EliminarProveedorInteractivo(*pv);
-            delete pv;
             if (confirma) {
-                if (proveedores.Eliminar(cuit))
-                    cout << "Proveedor eliminado exitosamente." << endl;
+                if (proveedores.Eliminar(cuit)) {
+                    Informational i("Proveedor eliminado", "Proveedor " + pv->getNombreRazon() + " eliminado exitosamente.");
+                    i.Show(); i.WaitForKey();
+                }
                 else
-                    cout << "Error al eliminar el proveedor." << endl;
-            } else
-                cout << "Operacion cancelada." << endl;
+                {
+                    Error e("Error", "Error al eliminar el proveedor.");
+                    e.Show(); e.WaitForKey();
+                }
+            } else {
+                Informational i("Operacion cancelada", "Operacion de eliminacion cancelada.");
+                i.Show(); i.WaitForKey();
+            }
+            
+            delete pv;
             PauseConsole();
             return false;
         }

@@ -73,7 +73,58 @@ void VentaMenu::AgregarFactura() {
 }
 
 void VentaMenu::ModificarFactura() {
-    unsigned int numero = InputNumber("Numero de la factura a modificar: ");
+    rlutil::cls();
+    GenericArray<Factura> editables;
+    for (unsigned int i = 0; i < facturas.Count(); ++i) {
+        Factura* cand = facturas.At(i);
+        if (cand != nullptr) {
+            if (Validation::IsEmpty(cand->getCAE())) {
+                editables.Append(*cand);
+            }
+            delete cand;
+        }
+    }
+
+    if (editables.Size() == 0) {
+        rlutil::cls();
+        Warning w("Sin comprobantes", "No hay facturas sin CAE para modificar.");
+        w.Show(); w.WaitForKey();
+        PauseConsole();
+        return;
+    }
+
+    const unsigned int cols = 5;
+    Tabling::Table tabla(editables.Size(), cols, '=', 5);
+    Tabling::Row* header = new Tabling::Row(cols);
+    header->AddCell("Idx", 4);
+    header->AddCell("Numero", Comprobante::ColNumeroSize());
+    header->AddCell("Cliente", Comprobante::ColClienteDNISize());
+    header->AddCell("Fecha", Comprobante::ColFechaEmisionSize());
+    header->AddCell("Items", 6);
+    tabla.AddRow(header);
+
+    for (unsigned int i = 0; i < editables.Size(); ++i) {
+        Factura* fc = editables[i];
+        Tabling::Row* row = new Tabling::Row(cols);
+        row->AddCell(std::to_string(i), 4);
+        row->AddCell(std::to_string(fc->getNumero()), Comprobante::ColNumeroSize());
+        row->AddCell(fc->getClienteDNI(), Comprobante::ColClienteDNISize());
+        row->AddCell(fc->getFechaEmision().toString(), Comprobante::ColFechaEmisionSize());
+        row->AddCell(std::to_string(fc->CantidadItems()), 6);
+        tabla.AddRow(row);
+    }
+
+    int idx = -1;
+    while (true) {
+        rlutil::cls();
+        tabla.Print();
+        idx = SelectorIndex(tabla, "Indice a modificar (vacio para cancelar): ", editables.Size());
+        if (idx == -1) return;
+        if (idx < 0) continue;
+        break;
+    }
+
+    unsigned int numero = editables[idx]->getNumero();
     Factura* f = facturas[numero];
     if (f == nullptr) {
         rlutil::cls();
@@ -86,6 +137,7 @@ void VentaMenu::ModificarFactura() {
         rlutil::cls();
         Warning w("Factura facturada", "No se puede modificar una factura con CAE asignado.");
         w.Show(); w.WaitForKey();
+        delete f;
         PauseConsole();
         return;
     }
@@ -102,6 +154,7 @@ void VentaMenu::ModificarFactura() {
         Error e("Error Modificacion", "Error al modificar la factura.");
         e.Show(); e.WaitForKey();
     }
+    delete f;
     PauseConsole();
 }
 
@@ -155,15 +208,9 @@ void VentaMenu::AnularFactura() {
     while (true) {
         rlutil::cls();
         tabla.Print();
-        string entrada = InputBox("Indice a anular (vacio para cancelar): ");
-        if (entrada.empty()) return;
-
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') continue;
-        if (idxLong >= candidatas.Size()) continue;
-        idx = static_cast<int>(idxLong);
+        idx = SelectorIndex(tabla, "Indice a anular (vacio para cancelar): ", candidatas.Size());
+        if (idx == -1) return;
+        if (idx < 0) continue;
         break;
     }
 
@@ -362,14 +409,9 @@ void VentaMenu::VerDetalleComprobante() {
     while (true) {
         rlutil::cls();
         tabla.Print();
-        string entrada = InputBox("Indice a ver (vacio para cancelar): ");
-        if (entrada.empty()) return;
-        char* endptr = nullptr;
-        const char* raw = entrada.c_str();
-        unsigned long idxLong = std::strtoul(raw, &endptr, 10);
-        if (endptr == raw || *endptr != '\0') continue;
-        if (idxLong >= mapEsFactura.Size()) continue;
-        seleccionado = static_cast<int>(idxLong);
+        seleccionado = SelectorIndex(tabla, "Indice a ver (vacio para cancelar): ", mapEsFactura.Size());
+        if (seleccionado == -1) return;
+        if (seleccionado < 0) continue;
         break;
     }
 

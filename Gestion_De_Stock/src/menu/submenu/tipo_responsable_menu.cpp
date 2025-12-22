@@ -1,5 +1,7 @@
 #include "tipo_responsable_menu.h"
 #include <iostream>
+#include "../../controller/modals/warning.h"
+#include "../../controller/modals/error.h"
 
 using namespace std;
 
@@ -18,48 +20,59 @@ bool TipoResponsableMenu::OnSelect(int index) {
     switch(index) {
         case 0: {
             TipoResponsable nuevo = TipoResponsable::NuevoTipoResponsable();
-            if (tipos.Agregar(nuevo))
+            if (tipos.Agregar(nuevo)) {
                 cout << "Tipo responsable agregado exitosamente." << endl;
-            else
-                cout << "Error al agregar el tipo responsable." << endl;
-            PauseConsole();
+                PauseConsole();
+            } else {
+                Error e("Error", "Error al agregar el tipo responsable.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 1: {
             string codigo = InputBox("Codigo del tipo a modificar: ");
             TipoResponsable* t = tipos[codigo];
             if (t == nullptr) {
-                cout << "Tipo responsable no encontrado." << endl;
-                PauseConsole();
+                Warning w("Tipo responsable no encontrado", "No se encontro tipo con codigo " + codigo + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
 
             TipoResponsable::ModificarTipoResponsable(*t);
 
-            if (tipos.Modificar(codigo, t))
-                cout << "Tipo responsable modificado exitosamente." << endl;
-            else
-                cout << "Error al modificar el tipo responsable." << endl;
-            PauseConsole();
+            if (tipos.Modificar(codigo, t)) {
+                Informational i("Tipo responsable modificado", "Tipo responsable " + codigo + " modificado exitosamente.");
+                i.Show(); i.WaitForKey();
+                PauseConsole();
+            }
+            else {
+                Error e("Error", "Error al modificar el tipo responsable.");
+                e.Show(); e.WaitForKey();
+            }
             return false;
         }
         case 2: {
             string codigo = InputBox("Codigo del tipo a eliminar: ");
             TipoResponsable* t = tipos[codigo];
             if (t == nullptr) {
-                cout << "Tipo responsable no encontrado." << endl;
-                PauseConsole();
+                Warning w("Tipo responsable no encontrado", "No se encontro tipo con codigo " + codigo + ".");
+                w.Show(); w.WaitForKey();
                 return false;
             }
             bool confirma = TipoResponsable::EliminarTipoResponsable(*t);
             delete t;
             if (confirma) {
-                if (tipos.Eliminar(codigo))
-                    cout << "Tipo responsable eliminado exitosamente." << endl;
-                else
-                    cout << "Error al eliminar el tipo responsable." << endl;
-            } else
-                cout << "Operacion cancelada." << endl;
+                if (tipos.Eliminar(codigo)) {
+                    Informational i("Tipo responsable eliminado", "Tipo responsable " + codigo + " eliminado exitosamente.");
+                    i.Show(); i.WaitForKey();
+                } else {
+                    Error e("Error", "Error al eliminar el tipo responsable.");
+                    e.Show(); e.WaitForKey();
+                }
+            } else {
+                Informational i("Operacion cancelada", "Operacion cancelada por el usuario.");
+                i.Show(); i.WaitForKey();
+            }
             PauseConsole();
             return false;
         }
