@@ -24,10 +24,13 @@ private:
 		bool found;
 	};
 
+	/** Calcula el top 5 de fechas por facturacion. */
 	void CalcularTop(unsigned int anio, GenericArray<FechaData>& lista);
 
 public:
+	/** Inicializa el reporte Top 5 fechas. */
 	Top5FechasReport();
+	/** Ejecuta el reporte Top 5 fechas. */
 	void Run() override;
 };
 

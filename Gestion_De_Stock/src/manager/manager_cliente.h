@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Maneja operaciones CRUD y listados de clientes. */
 class ClienteManager : public FileSystem<Cliente> {
 private:
     GenericArray<Cliente> Listar();

@@ -30,17 +30,24 @@ private:
     Item items[ITEMS_MAX];
 
 protected:
+    /** Calcula el total de todos los items. */
     float Total();
+    /** Compara igualdad con otro comprobante. */
     bool IsEqual(const Comprobante& otro);
+    /** Indica si el comprobante esta vacio. */
     bool IsEmpty();
 
 public:
+    /** Crea un comprobante con numero y cliente opcional. */
     Comprobante(unsigned int _numero = 0, string _clienteDNI = "");
+    /** Destructor de comprobante. */
     ~Comprobante();
 
-    // Getters
+    /** Obtiene el numero de comprobante. */
     unsigned int getNumero();
+    /** Obtiene el DNI del cliente. */
     string getClienteDNI();
+    /** Obtiene la fecha de emision. */
     Fecha& getFechaEmision();
 
     static unsigned int ColNumeroSize();
@@ -49,16 +56,22 @@ public:
     static unsigned int ColMontoTotalSize();
     static unsigned int ColTipoSize();
 
-    // Setters
+    /** Actualiza el DNI del cliente. */
     void setClienteDNI(string dni);
+    /** Actualiza la fecha de emision. */
     void setFechaEmision(Fecha& fecha);
 
-    // Items
+    /** Agrega un item si no esta duplicado y hay espacio. */
     bool AgregarItem(const Item& it);
+    /** Elimina un item por codigo. */
     bool EliminarItem(const string codigo);
+    /** Devuelve cantidad de items. */
     unsigned int CantidadItems();
+    /** Devuelve puntero al item en indice. */
     Item* ObtenerItem(unsigned int index);
+    /** Devuelve copia de todos los items. */
     GenericArray<Item>* ObtenerTodosLosItems();
+    /** Limpia todos los items. */
     void LimpiarItems();
 };
 

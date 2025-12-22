@@ -12,7 +12,9 @@
 
 class ReportsMenu : public Menu {
 public:
+    /** Inicializa el menu de reportes. */
     ReportsMenu();
+    /** Ejecuta la opcion seleccionada para reportes. */
     bool OnSelect(int index) override;
 };
 

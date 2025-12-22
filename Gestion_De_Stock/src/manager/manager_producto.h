@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Gestiona alta, baja, modificación y reportes de productos. */
 class ProductoManager : public FileSystem<Producto> {
 private:
     GenericArray<Producto> Listar();

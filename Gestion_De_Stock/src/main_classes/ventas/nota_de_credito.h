@@ -19,21 +19,26 @@ private:
     char motivoAnulacion[120];
 
 public:
+    /** Crea una nota de credito con cliente y motivo. */
     NotaDeCredito(unsigned int _id = 0, string _cliente = "", string _motivoAnulacion = "");
+    /** Destructor de nota de credito. */
     ~NotaDeCredito();
 
-    // Getters
+    /** Obtiene el motivo de anulacion. */
     string getMotivoAnulacion();
+    /** Calcula total sin IVA. */
     float TotalSinIVA();
 
     static unsigned int ColMotivoAnulacionSize();
 
-    // Setters
+    /** Actualiza el motivo de anulacion. */
     void setMotivoAnulacion(string m);
 
-    // Metodos
+    /** Compara igualdad entre notas. */
     bool operator==(NotaDeCredito& nota);
+    /** Indica si la nota esta vacia. */
     bool IsEmpty();
+    /** Devuelve representacion en texto. */
     string toString();
 };
 

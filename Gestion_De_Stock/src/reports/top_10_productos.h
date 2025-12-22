@@ -26,10 +26,13 @@ private:
 		bool found;
 	};
 
+	/** Calcula el top 10 de productos por ventas. */
 	void CalcularTop(unsigned int anio, GenericArray<ProductoData>& lista);
 
 public:
+	/** Inicializa el reporte Top 10 de productos. */
 	Top10ProductosReport();
+	/** Ejecuta el reporte Top 10 de productos. */
 	void Run() override;
 };
 

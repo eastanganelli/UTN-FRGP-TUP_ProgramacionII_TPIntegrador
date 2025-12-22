@@ -165,7 +165,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 1: { // Nombre
                 while (true) {
                     entrada = InputBox("Nuevo Nombre: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     string tmp = entrada;
@@ -185,7 +185,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 2: { // Apellido
                 while (true) {
                     entrada = InputBox("Nuevo Apellido: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     string tmp = entrada;
@@ -205,7 +205,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 3: { // CUIL/CUIT
                 while (true) {
                     entrada = InputBox("Nuevo CUIL/CUIT: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= Cliente::GetCuilCuitSize() || !Validation::IsAlphanumeric(entrada)) {
@@ -223,7 +223,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 4: { // Direccion
                 while (true) {
                     entrada = InputBox("Nueva Direccion: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetDireccionSize()) {
@@ -241,7 +241,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 5: { // Correo
                 while (true) {
                     entrada = InputBox("Nuevo Correo: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= DatosPersonales::GetCorreoSize() || entrada.find('@') == string::npos || entrada.find('.') == string::npos) {
@@ -259,7 +259,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 6: { // Telefono
                 while (true) {
                     entrada = InputBox("Nuevo Telefono: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetTelefonoSize()) {
@@ -277,7 +277,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
             case 7: { // Celular
                 while (true) {
                     entrada = InputBox("Nuevo Celular: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= DatosPersonales::GetCelularSize()) {
@@ -301,7 +301,7 @@ void ClienteMenu::ModificarClienteInteractivo(Cliente& cliente) {
                 }
                 break;
             }
-            case 9: { // Terminar
+            case 9: {
                 break;
             }
             default: {
@@ -374,7 +374,7 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
 
         int idx = SelectorIndex(tabla, "Indice (vacio para cancelar): ", lista.Size());
         if (idx == -1) {
-            return ""; // cancelar seleccion
+            return ""; 
         }
         if (idx < 0) { continue; }
         return lista[static_cast<unsigned int>(idx)]->getCodigo();
@@ -399,13 +399,65 @@ bool ClienteMenu::OnSelect(int index) {
             return false;
         }
         case 1: {
-            string dni = InputBox("DNI del cliente a modificar: ");
+            const unsigned int total = clientes.Count();
+            if (total == 0) {
+                Warning w("Sin clientes", "No hay clientes cargados.");
+                w.Show(); w.WaitForKey();
+                return false;
+            }
+
+            GenericArray<Cliente> lista;
+            for (unsigned int i = 0; i < total; ++i) {
+                Cliente* c = clientes.At(i);
+                if (c != nullptr) { lista.Append(*c); delete c; }
+            }
+
+            if (lista.Size() == 0) {
+                Warning w("Sin clientes", "No hay clientes cargados.");
+                w.Show(); w.WaitForKey();
+                return false;
+            }
+
+            const unsigned int cols = 5;
+            const unsigned int widthNombre = Cliente::ColApellidoSize() + Cliente::ColNombreSize();
+            Tabling::Table tabla(lista.Size(), cols);
+            Tabling::Row* header = new Tabling::Row(cols);
+            header->AddCell("Idx", 4);
+            header->AddCell("DNI", Cliente::ColDniSize());
+            header->AddCell("Nombre", widthNombre);
+            header->AddCell("Correo", DatosPersonales::ColCorreoSize());
+            header->AddCell("Estado", 8);
+            tabla.AddRow(header);
+
+            for (unsigned int i = 0; i < lista.Size(); ++i) {
+                Cliente* c = lista[i];
+                Tabling::Row* row = new Tabling::Row(cols);
+                row->AddCell(std::to_string(i + 1), 4);
+                row->AddCell(c->getDNI(), Cliente::ColDniSize());
+                row->AddCell(c->getApellido() + string(", ") + c->getNombre(), widthNombre);
+                row->AddCell(c->getCorreo(), DatosPersonales::ColCorreoSize());
+                row->AddCell(c->getAlta() ? "Alta" : "Baja", 8);
+                tabla.AddRow(row);
+            }
+
+            int seleccionado = -1;
+            while (true) {
+                rlutil::cls();
+                tabla.Print();
+                seleccionado = SelectorIndex(tabla, "Indice a modificar (vacio para cancelar): ", lista.Size());
+                if (seleccionado == -1) return false;
+                if (seleccionado < 0) continue;
+                break;
+            }
+
+            string dni = lista[static_cast<unsigned int>(seleccionado)]->getDNI();
             Cliente* cliente = clientes[dni];
             if (cliente == nullptr) {
                 Warning w("Cliente no encontrado", "No se encontro cliente con DNI " + dni + ".");
                 w.Show(); w.WaitForKey();
                 return false;
             }
+
             ModificarClienteInteractivo(*cliente);
 
             if (clientes.Modificar(dni, cliente)) {
@@ -416,6 +468,7 @@ bool ClienteMenu::OnSelect(int index) {
                 Error e("Error", "Error al modificar el cliente.");
                 e.Show(); e.WaitForKey();
             }
+            delete cliente;
             return false;
         }
         case 2: {

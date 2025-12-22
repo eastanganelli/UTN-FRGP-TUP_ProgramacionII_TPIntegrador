@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Gestiona facturas, exportaciones y listados filtrados. */
 class FacturaManager : public FileSystem<Factura> {
 private:
     GenericArray<Factura> Listar();

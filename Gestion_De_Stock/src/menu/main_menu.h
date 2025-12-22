@@ -7,7 +7,9 @@
 
 class MainMenu : public Menu {
 public:
+    /** Construye el menu principal de la aplicacion. */
     MainMenu();
+    /** Despacha la opcion seleccionada del menu principal. */
     virtual bool OnSelect(int index) override;
 };
 

@@ -16,7 +16,9 @@ using namespace std;
 
 class BackupMenu : public Menu {
 public:
+    /** Inicializa el menu de backups. */
     BackupMenu();
+    /** Ejecuta la opcion seleccionada del menu de backups. */
     bool OnSelect(int index) override;
 };
 

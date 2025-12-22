@@ -25,11 +25,14 @@ private:
 		bool found;
 	};
 
+	/** Calcula el cliente con mayor facturacion del anio. */
 	TopClienteData CalcularTopCliente(unsigned int anio);
 
     
 public:
+	/** Inicializa el reporte de top cliente. */
 	TopClienteReport();
+	/** Ejecuta el reporte de top cliente. */
 	void Run() override;
 };
 

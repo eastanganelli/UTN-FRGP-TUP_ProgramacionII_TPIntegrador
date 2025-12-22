@@ -25,27 +25,32 @@ private:
     void ObtenerCAE();
 
 public:
+    /** Crea una factura con numero y cliente opcional. */
     Factura(unsigned int _id = 0, string _cliente = "");
+    /** Destructor de factura. */
     ~Factura();
 
-    // Getters
+    /** Obtiene el CAE asignado. */
     string getCAE();
+    /** Obtiene el vencimiento del CAE. */
     Fecha getVencimientoCAE();
+    /** Calcula total sin IVA. */
     float TotalSinIVA();
 
     static unsigned int ColTipoFacturaSize();
     static unsigned int ColCAESize();
     static unsigned int ColVencimientoCAESize();
 
-    // Setters
+    /** Intenta facturar generando CAE y vencimiento. */
     bool Facturar();
 
-    // Métodos
+    /** Compara igualdad entre facturas. */
     bool operator==(const Factura& otra);
+    /** Indica si la factura esta vacia. */
     bool IsEmpty();
+    /** Imprime datos de la factura. */
     void Print();
-    
-    // CRUD helpers
+    /** Reservado para futuras ayudas CRUD. */
 };
 
 #endif // FACTURA_H

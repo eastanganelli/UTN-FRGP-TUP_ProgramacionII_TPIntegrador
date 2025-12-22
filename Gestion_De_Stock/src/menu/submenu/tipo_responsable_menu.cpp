@@ -214,7 +214,6 @@ TipoResponsable TipoResponsableMenu::CrearTipoResponsable(bool& ok) {
     float porcentaje = -1.0f;
     char tipo = '\0';
 
-    // Codigo
     while (true) {
         codigo = InputBox("Codigo: ");
         if (Validation::IsEmpty(codigo) || codigo.length() >= TipoResponsable::GetCodigoSize() || !Validation::IsAlphanumeric(codigo)) {
@@ -225,7 +224,6 @@ TipoResponsable TipoResponsableMenu::CrearTipoResponsable(bool& ok) {
         break;
     }
 
-    // Descripcion
     while (true) {
         descripcion = InputBox("Descripcion: ");
         if (Validation::IsEmpty(descripcion) || descripcion.length() >= TipoResponsable::GetDescripcionSize()) {
@@ -236,7 +234,6 @@ TipoResponsable TipoResponsableMenu::CrearTipoResponsable(bool& ok) {
         break;
     }
 
-    // Porcentaje
     while (true) {
         entrada = InputBox("Porcentaje (0.0 - 100.0): ");
         try {
@@ -250,7 +247,6 @@ TipoResponsable TipoResponsableMenu::CrearTipoResponsable(bool& ok) {
         break;
     }
 
-    // Tipo Facturacion
     while (true) {
         entrada = InputBox("Tipo de facturacion (A, B, C o E): ");
         if (Validation::IsEmpty(entrada)) {

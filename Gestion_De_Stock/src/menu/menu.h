@@ -17,18 +17,22 @@ protected:
     bool centered;
     int selectedIndex;
 
+    /** Dibuja el encabezado del menu. */
     virtual void DrawHeader();
+    /** Dibuja la lista de opciones. */
     virtual void DrawOptions();
 
 public:
+    /** Crea un menu con titulo y alineacion opcional. */
     Menu(const std::string& title = "", bool centered = true);
+    /** Destructor virtual de menu base. */
     virtual ~Menu();
 
+    /** Agrega una opcion visible al menu. */
     void AddOption(const std::string& opt);
+    /** Ejecuta el loop interactivo de seleccion. */
     bool Run();
-
-    // Subclases implementan la acción a realizar al seleccionar una opción
-    // Devuelven true si la ejecución del menú debe terminar (p.ej. "Volver" o "Salir").
+    /** Maneja la accion de la opcion seleccionada. */
     virtual bool OnSelect(int index) = 0;
 };
 

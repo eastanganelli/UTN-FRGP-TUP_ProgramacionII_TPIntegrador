@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Administra notas de crédito y exportes de comprobantes. */
 class NotaDeCreditoManager : public FileSystem<NotaDeCredito> {
 private:
     GenericArray<NotaDeCredito> Listar();

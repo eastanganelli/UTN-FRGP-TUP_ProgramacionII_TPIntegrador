@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Mantiene condiciones IVA y listados por descripción o porcentaje. */
 class TipoResponsableManager : public FileSystem<TipoResponsable> {
 private:
     GenericArray<TipoResponsable> Listar();

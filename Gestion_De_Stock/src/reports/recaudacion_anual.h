@@ -14,10 +14,13 @@ using namespace std;
 class RecaudacionAnualReport : public Report {
 private:
     FacturaManager facturas;
+    /** Calcula la recaudacion del anio. */
     double CalcularRecaudacion(unsigned int anio);
 
 public:
+	/** Inicializa el reporte anual. */
 	RecaudacionAnualReport();
+	/** Ejecuta el reporte anual. */
 	void Run() override;
 };
 

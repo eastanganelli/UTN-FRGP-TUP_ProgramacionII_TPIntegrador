@@ -11,6 +11,7 @@
 
 using namespace std;
 
+/** Administra proveedores y consultas por CUIT, rubro y estado. */
 class ProveedorManager : public FileSystem<Proveedor> {
 private:
     GenericArray<Proveedor> Listar();

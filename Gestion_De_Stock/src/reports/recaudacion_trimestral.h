@@ -14,10 +14,13 @@ using namespace std;
 class RecaudacionTrimestralReport : public Report {
 private:
     FacturaManager facturas;
+    /** Calcula recaudacion de un trimestre especifico. */
     double CalcularRecaudacion(unsigned int anio, unsigned int trimestre);
 
 public:
+	/** Inicializa el reporte trimestral. */
 	RecaudacionTrimestralReport();
+	/** Ejecuta el reporte trimestral. */
 	void Run() override;
 };
 

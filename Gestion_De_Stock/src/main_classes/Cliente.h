@@ -31,13 +31,18 @@ private:
     char cuilCuit[CUIL_CUIT_SIZE];
 
 public:
+    /** Crea un cliente con datos personales y fiscales. */
     Cliente(string _nombre = "", string _apellido = "", string _DNI = "", string _cuilCuit = "", string direccion = "", string correo = "", string _telefono = "", string _celular = "", bool _alta = true, string _codigoRazonSocial = "");
+    /** Destructor de cliente. */
     ~Cliente();
 
-    // Getters
+    /** Obtiene el DNI. */
     string getDNI();
+    /** Obtiene el nombre. */
     string getNombre();
+    /** Obtiene el apellido. */
     string getApellido();
+    /** Obtiene CUIL/CUIT. */
     string getCuilCuit();
 
     static unsigned int GetDniSize();
@@ -45,21 +50,29 @@ public:
     static unsigned int GetApellidoSize();
     static unsigned int GetCuilCuitSize();
 
-    // Column-size accessors (align with other main_classes naming)
+    /** Ancho de columna para DNI. */
     static unsigned int ColDniSize();
+    /** Ancho de columna para Nombre. */
     static unsigned int ColNombreSize();
+    /** Ancho de columna para Apellido. */
     static unsigned int ColApellidoSize();
+    /** Ancho de columna para CUIL/CUIT. */
     static unsigned int ColCuilCuitSize();
 
-    // Setters
+    /** Actualiza el DNI. */
     void setDNI(const string& dni);
+    /** Actualiza el nombre. */
     void setNombre(const string& n);
+    /** Actualiza el apellido. */
     void setApellido(const string& a);
+    /** Actualiza CUIL/CUIT. */
     void setCuilCuit(const string& cuilCuit);
 
-    // Métodos
+    /** Compara igualdad de clientes. */
     bool operator==(Cliente& cliente);
+    /** Indica si el cliente esta vacio. */
     bool IsEmpty();
+    /** Imprime datos del cliente. */
     void Print();
 };
 

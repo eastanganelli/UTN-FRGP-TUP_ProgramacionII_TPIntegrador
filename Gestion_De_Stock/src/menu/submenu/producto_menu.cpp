@@ -93,7 +93,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nueva Descripcion: ");
-                    if (entrada.empty()) { // mantener valor actual si no se ingresa nada
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= Producto::GetDescripcionSize()) {
@@ -111,7 +111,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             case 2: {
                 while (true) {
                     entrada = InputBox("Nuevo Precio (vacio para mantener): ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     float p = 0.0f;
@@ -131,7 +131,7 @@ void ProductoMenu::ModificarProductoInteractivo(Producto& producto) {
             case 3: {
                 while (true) {
                     entrada = InputBox("Nuevo Stock (vacio para mantener): ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     unsigned int s = 0;

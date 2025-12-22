@@ -11,13 +11,20 @@ private:
     ClienteManager clientes;
     TipoResponsableManager tiposResponsables;
 
+    /** Construye un cliente mediante ingreso interactivo. */
     Cliente CrearCliente(bool& ok);
+    /** Permite modificar campos del cliente indicado. */
     void ModificarClienteInteractivo(Cliente& cliente);
+    /** Marca como baja un cliente tras confirmacion. */
     bool EliminarClienteInteractivo(Cliente& cliente);
+    /** Muestra el detalle del cliente seleccionado. */
     void VerDetalleCliente();
+    /** Selecciona codigo de razon social, obligatorio o no. */
     std::string SeleccionarRazonSocial(bool obligatoria);
 public:
+    /** Inicializa el menu de clientes. */
     ClienteMenu();
+    /** Ejecuta la opcion seleccionada del menu de clientes. */
     virtual bool OnSelect(int index) override;
 };
 

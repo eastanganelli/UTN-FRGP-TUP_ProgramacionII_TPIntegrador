@@ -129,7 +129,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 1: {
                 while (true) {
                     entrada = InputBox("Nuevo Nombre/Razon: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || !Validation::IsAlphabetic(entrada) || entrada.length() >= 35) {
@@ -147,7 +147,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 2: {
                 while (true) {
                     entrada = InputBox("Nuevo CUIT: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 12 || !Validation::IsAlphanumeric(entrada)) {
@@ -166,7 +166,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
                 while (true) {
                     cout << "Rubros disponibles:\n1) Textil\n2) Calzado\n3) Gastronimia\n4) Automotor\n5) Libreria\n";
                     entrada = InputBox("Seleccione rubro (vacio para mantener): ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (!Validation::IsNumeric(entrada)) {
@@ -190,7 +190,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 4: {
                 while (true) {
                     entrada = InputBox("Nueva Direccion: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 100) {
@@ -208,7 +208,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 5: {
                 while (true) {
                     entrada = InputBox("Nuevo Correo: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || entrada.length() >= 100 || entrada.find('@') == string::npos || entrada.find('.') == string::npos) {
@@ -226,7 +226,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 6: {
                 while (true) {
                     entrada = InputBox("Nuevo Telefono: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= 25) {
@@ -244,7 +244,7 @@ void ProveedorMenu::ModificarProveedorInteractivo(Proveedor& proveedor) {
             case 7: {
                 while (true) {
                     entrada = InputBox("Nuevo Celular: ");
-                    if (entrada.empty()) { // mantener valor actual
+                    if (entrada.empty()) {
                         break;
                     }
                     if (Validation::IsEmpty(entrada) || !Validation::IsNumeric(entrada) || entrada.length() >= 25) {

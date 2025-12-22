@@ -21,14 +21,20 @@ private:
     unsigned int rubro;
 
 public:
+    /** Crea un proveedor con datos de contacto y rubro. */
     Proveedor(string _cuit = "", string _nombreRazon = "", unsigned int _rubro = 0, string _direccion = "", string _correo = "", string _telefono = "", string _celular = "", string _razonSocial = "", bool _alta = false);
+    /** Destructor de proveedor. */
     ~Proveedor();
 
-    // Getters
+    /** Indica si el proveedor esta de alta. */
     bool getAlta();
+    /** Obtiene CUIT. */
     string getCuit();
+    /** Obtiene el rubro. */
     unsigned int getRubro();
+    /** Obtiene el nombre del rubro. */
     string getRubroNombre();
+    /** Obtiene nombre o razon social. */
     string getNombreRazon();
 
     static unsigned int GetCuitSize();
@@ -37,15 +43,20 @@ public:
     static unsigned int ColCuitSize();
     static unsigned int ColNombreRazonSize();
 
-    // Setters
+    /** Actualiza alta/baja. */
     void setAlta(bool alta);
+    /** Actualiza rubro. */
     void setRubro(unsigned int rubro);
+    /** Actualiza nombre o razon social. */
     void setNombreRazon(string nombre);
+    /** Actualiza CUIT. */
     void setCuit(string cuit);
 
-    // Metodos
+    /** Compara igualdad de proveedores. */
     bool operator==(const Proveedor& otro);
+    /** Indica si el proveedor esta vacio. */
     bool IsEmpty();
+    /** Imprime datos del proveedor. */
     void Print();
 };
 

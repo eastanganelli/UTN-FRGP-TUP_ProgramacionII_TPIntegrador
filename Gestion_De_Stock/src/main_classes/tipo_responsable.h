@@ -26,14 +26,18 @@ private:
     char tipoFacturacion;
 
 public:
-    // Constructor
+    /** Crea un tipo de responsable con codigo, descripcion y alicuota. */
     TipoResponsable(const string _codigo = "", const string _descripcion = "", const float _porcentaje = -1.0f, const char _tipoFacturacion = '\0');
+    /** Destructor de tipo de responsable. */
     ~TipoResponsable();
 
-    // Getters
+    /** Obtiene el codigo del tipo. */
     string getCodigo() const;
+    /** Obtiene la descripcion. */
     string getDescripcion() const;
+    /** Obtiene el porcentaje aplicado. */
     float getPorcentaje() const;
+    /** Obtiene el tipo de facturacion. */
     char getTipoFacturacion() const;
 
     static unsigned int GetCodigoSize();
@@ -44,10 +48,13 @@ public:
     static unsigned int ColPorcentajeSize();
     static unsigned int ColTipoFacturacion();
 
-    // Métodos
+    /** Compara igualdad por contenido. */
     bool operator==(const TipoResponsable& otra) const;
+    /** Indica si esta vacio. */
     bool IsEmpty() const;
+    /** Imprime el tipo de responsable. */
     void Print();
+    /** Calcula el resultado aplicando el porcentaje a un valor. */
     float Resultado(float valor);
 
 };
