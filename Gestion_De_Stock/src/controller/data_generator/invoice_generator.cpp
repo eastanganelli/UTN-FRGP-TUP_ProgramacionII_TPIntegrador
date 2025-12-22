@@ -1,5 +1,4 @@
 #include "invoice_generator.h"
-#include "../modals/warning.h"
 
 const float IVA_RATE = 0.21f;
 

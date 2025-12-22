@@ -1,9 +1,5 @@
 #include "manager_factura.h"
 
-#include <cstdio>
-
-#include "../manager_producto.h"
-
 FacturaManager::FacturaManager(const string& facturaPath)
     : FileSystem<Factura>(facturaPath) { }
 

@@ -4,10 +4,14 @@
 #include <ctime>
 #include <string>
 
+#include "../../main_classes/datos_personales.h"
+
 using namespace std;
 
 namespace DataGenerator {
     std::string generarCodigoAlfaNumerico(int longitud);
+    /** Genera una cadena numerica de longitud fija (rellena con digitos). */
+    std::string generarNumero(unsigned int longitud);
 }
 
 #endif // GENERATOR_H

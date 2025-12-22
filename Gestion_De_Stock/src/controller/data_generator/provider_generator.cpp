@@ -17,8 +17,8 @@ void DataGenerator::GenerateProviders(unsigned int count, bool printLog) {
             dp.rubro = (i % 6) + 1;
             dp.direccion = calles[rand() % calles->length()] + std::to_string(rand() % 9999 + 1);
             dp.correo = "info@" + dp.nombreRazon.substr(0, dp.nombreRazon.find(" ")) + ".com";
-            dp.telefono = "0810-" + std::to_string(rand() % 9000 + 1000) + "\0";
-            dp.celular = "15-" + std::to_string(rand() % 9000 + 1000) + "-" + std::to_string(rand() % 9000 + 1000);
+            dp.telefono = generarNumero(DatosPersonales::GetTelefonoSize() - 1);
+            dp.celular = generarNumero(DatosPersonales::GetCelularSize() - 1);
             dp.alta = (i % 2 != 0);
 
             Proveedor dataProveedor(dp.cuit, dp.nombreRazon, dp.rubro, dp.direccion, dp.correo, dp.telefono, dp.celular, "", dp.alta);

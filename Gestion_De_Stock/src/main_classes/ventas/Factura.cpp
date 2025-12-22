@@ -1,13 +1,4 @@
-#include "factura.h"
-
-#include "../../manager/manager_producto.h"
-#include "../../manager/manager_cliente.h"
-#include "../../manager/ventas/manager_factura.h"
-#include "../../manager/ventas/manager_nota_de_credito.h"
-#include "../../menu/menu_utils.h"
-#include "../../controller/modals.h"
-#include <cstdio>
-#include <iostream>
+#include "Factura.h"
 
 Factura::Factura(unsigned int _id, string _cliente) : Comprobante(_id, _cliente) {
     this->cae[0] = '\0';

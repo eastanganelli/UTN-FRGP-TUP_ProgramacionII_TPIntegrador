@@ -8,6 +8,9 @@
 
 using namespace std;
 
+#include "../validation.h"
+#include "../modals/warning.h"
+
 #include "generator.h"
 #include "client_generator.h"
 #include "product_generator.h"
@@ -19,7 +22,6 @@ using namespace std;
 #include "../../manager/manager_proveedor.h"
 #include "../../manager/manager_cliente.h"
 #include "../../manager/manager_tipo_responsables.h"
-#include "../validation.h"
 
 #include "../../main_classes/ventas/Item.h"
 

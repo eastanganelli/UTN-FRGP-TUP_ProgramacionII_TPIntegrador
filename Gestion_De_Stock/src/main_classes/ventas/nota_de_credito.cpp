@@ -1,8 +1,4 @@
 #include "nota_de_credito.h"
-#include "../../manager/manager_producto.h"
-#include "../../menu/menu_utils.h"
-#include "../../controller/modals.h"
-#include <cstdio>
 
 NotaDeCredito::NotaDeCredito(unsigned int _id, string _cliente, string _motivoAnulacion)
     : Comprobante(_id, _cliente) {

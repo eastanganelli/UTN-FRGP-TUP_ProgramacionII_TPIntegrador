@@ -4,9 +4,14 @@
 #include "Comprobante.h"
 #include "../producto.h"
 
-#include <iostream>
+#include "../../manager/manager_producto.h"
+#include "../../menu/menu_utils.h"
+#include "../../controller/modals.h"
+
+#include <cstdio>
 #include <cstring>
 #include <string>
+#include <iostream>
 
 using namespace std;
 

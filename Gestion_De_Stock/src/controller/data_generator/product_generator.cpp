@@ -1,5 +1,4 @@
 #include "product_generator.h"
-#include "../modals/warning.h"
 
 void DataGenerator::GenerateProduct(unsigned int count, bool printLog) {
     srand(static_cast<unsigned int>(time(NULL)));
