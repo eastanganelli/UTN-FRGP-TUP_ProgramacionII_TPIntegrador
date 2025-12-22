@@ -8,7 +8,7 @@
 class ProveedorMenu : public Menu {
 private:
     ProveedorManager proveedores;
-    Proveedor CrearProveedor();
+    Proveedor CrearProveedor(bool& ok);
     void ModificarProveedorInteractivo(Proveedor& proveedor);
     bool EliminarProveedorInteractivo(Proveedor& proveedor);
 public:

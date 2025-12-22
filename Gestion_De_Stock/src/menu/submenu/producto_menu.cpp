@@ -20,7 +20,8 @@ ProductoMenu::ProductoMenu() : Menu("Menu Productos", true) {
     AddOption("Volver");
 }
 
-Producto ProductoMenu::CrearProducto() {
+Producto ProductoMenu::CrearProducto(bool& ok) {
+    ok = false;
     rlutil::cls();
     Producto producto;
     string v;
@@ -70,6 +71,7 @@ Producto ProductoMenu::CrearProducto() {
         break;
     }
 
+    ok = true;
     return producto;
 }
 
@@ -185,8 +187,9 @@ bool ProductoMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
         case 0: {
-            Producto nuevo = CrearProducto();
-            if (Validation::IsEmpty(nuevo.getCodigoProveedor())) {
+            bool ok = false;
+            Producto nuevo = CrearProducto(ok);
+            if (!ok || Validation::IsEmpty(nuevo.getCodigoProveedor())) {
                 return false;
             }
             if (productos.Agregar(nuevo)) {

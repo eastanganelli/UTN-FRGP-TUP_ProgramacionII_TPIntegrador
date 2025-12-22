@@ -147,9 +147,9 @@ class TipoResponsable {
 	+ bool operator==(const TipoResponsable& otra) const
 	+ bool IsEmpty() const
 	+ void Print()
-	+ static TipoResponsable NuevoTipoResponsable()
-	+ static void ModificarTipoResponsable(TipoResponsable& tipo)
-	+ static unsigned int EliminarTipoResponsable(TipoResponsable& tipo)
+	- static TipoResponsable NuevoTipoResponsable() // movido al menu
+	- static void ModificarTipoResponsable(TipoResponsable& tipo) // movido al menu
+	- static unsigned int EliminarTipoResponsable(TipoResponsable& tipo) // movido al menu
 }
 
 class Item {

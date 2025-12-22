@@ -11,7 +11,7 @@ private:
     ClienteManager clientes;
     TipoResponsableManager tiposResponsables;
 
-    Cliente CrearCliente();
+    Cliente CrearCliente(bool& ok);
     void ModificarClienteInteractivo(Cliente& cliente);
     bool EliminarClienteInteractivo(Cliente& cliente);
     void VerDetalleCliente();

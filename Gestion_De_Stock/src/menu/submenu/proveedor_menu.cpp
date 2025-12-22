@@ -19,7 +19,8 @@ ProveedorMenu::ProveedorMenu() : Menu("Menu Proveedores", true) {
     AddOption("Volver");
 }
 
-Proveedor ProveedorMenu::CrearProveedor() {
+Proveedor ProveedorMenu::CrearProveedor(bool& ok) {
+    ok = false;
     string v;
     string nombreRazon, cuit, direccion, correo, telefono, celular;
     unsigned int rubro = 0;
@@ -103,6 +104,7 @@ Proveedor ProveedorMenu::CrearProveedor() {
     }
 
     Proveedor p(cuit, nombreRazon, rubro, direccion, correo, telefono, celular, "", true);
+    ok = true;
     return p;
 }
 
@@ -284,7 +286,9 @@ bool ProveedorMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
         case 0: {
-            Proveedor nuevo = CrearProveedor();
+            bool ok = false;
+            Proveedor nuevo = CrearProveedor(ok);
+            if (!ok) { return false; }
             if (proveedores.Agregar(nuevo)) {
                 Informational i("Proveedor agregado", "Proveedor " + nuevo.getNombreRazon() + " agregado exitosamente.");
                 i.Show(); i.WaitForKey();

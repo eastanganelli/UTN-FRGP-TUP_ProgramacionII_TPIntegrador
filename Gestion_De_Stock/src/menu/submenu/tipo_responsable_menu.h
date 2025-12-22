@@ -8,6 +8,9 @@
 class TipoResponsableMenu : public Menu {
 private:
     TipoResponsableManager tipos;
+    TipoResponsable CrearTipoResponsable(bool& ok);
+    void ModificarTipoResponsable(TipoResponsable& tipo);
+    bool EliminarTipoResponsable(TipoResponsable& tipo);
 public:
     TipoResponsableMenu();
     virtual bool OnSelect(int index) override;

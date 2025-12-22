@@ -10,7 +10,7 @@ class ProductoMenu : public Menu {
 private:
     ProductoManager productos;
     ProveedorManager proveedores;
-    Producto CrearProducto();
+    Producto CrearProducto(bool& ok);
     void ModificarProductoInteractivo(Producto& producto);
     bool EliminarProductoInteractivo(Producto& producto);
     string SeleccionarProveedor();

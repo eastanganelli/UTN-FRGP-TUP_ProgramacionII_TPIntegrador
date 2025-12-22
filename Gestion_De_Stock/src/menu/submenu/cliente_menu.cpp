@@ -23,7 +23,8 @@ ClienteMenu::ClienteMenu() : Menu("Menu Clientes", true) {
     AddOption("Volver");
 }
 
-Cliente ClienteMenu::CrearCliente() {
+Cliente ClienteMenu::CrearCliente(bool& ok) {
+    ok = false;
     Cliente nuevoCliente;
     string v;
 
@@ -130,12 +131,15 @@ Cliente ClienteMenu::CrearCliente() {
     if (tiposResponsables.Cantidad() == 0) {
         Warning w("Sin tipos de responsable", "Cargue tipos de responsable antes de asignar la razon social.");
         w.Show(); w.WaitForKey();
-    } else {
-        string codigo = SeleccionarRazonSocial(true);
-        if (!codigo.empty()) {
-            nuevoCliente.setCodigoRazonSocial(codigo);
-        }
+        return nuevoCliente;
     }
+
+    string codigo = SeleccionarRazonSocial(true);
+    if (codigo.empty()) {
+        return nuevoCliente;
+    }
+    nuevoCliente.setCodigoRazonSocial(codigo);
+    ok = true;
     return nuevoCliente;
 }
 
@@ -370,12 +374,7 @@ string ClienteMenu::SeleccionarRazonSocial(bool obligatoria) {
 
         int idx = SelectorIndex(tabla, "Indice (vacio para cancelar): ", lista.Size());
         if (idx == -1) {
-            if (obligatoria) {
-                Warning w("Seleccion requerida", "Debe elegir una razon social.");
-                w.Show(); w.WaitForKey();
-                continue;
-            }
-            return "";
+            return ""; // cancelar seleccion
         }
         if (idx < 0) { continue; }
         return lista[static_cast<unsigned int>(idx)]->getCodigo();
@@ -386,7 +385,9 @@ bool ClienteMenu::OnSelect(int index) {
     rlutil::cls();
     switch(index) {
         case 0: {
-            Cliente nuevoCliente = CrearCliente();
+            bool ok = false;
+            Cliente nuevoCliente = CrearCliente(ok);
+            if (!ok) { return false; }
             if(clientes.Agregar(nuevoCliente)) {
                 Informational i("Cliente agregado", "Cliente " + nuevoCliente.getDNI() + " agregado exitosamente.");
                 i.Show(); i.WaitForKey();
